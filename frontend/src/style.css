@@ -81,3 +81,7 @@ body {
 @media (pointer: coarse) {
   button, .trow, .cchip { min-height: 36px; }
 }
+
+/* 窄屏：仅收窄侧栏宽度（侧栏保持在文档流，始终可点；Dock 由 --side-w 自动避让，不重叠） */
+@media (max-width: 880px) { :root { --side-w: 208px; } }
+@media (max-width: 560px) { :root { --side-w: 176px; } }

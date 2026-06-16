@@ -153,14 +153,16 @@ const toastMsg = ref('')
 const dockRef = ref(null)
 const langBottom = ref(70)
 let toastT = null
+let _ro = null
 const view = reactive({ type: 'welcome', crumb: [{ label: '全部体系' }], title: '', hint: '', cards: [], terms: [], code: '' })
 
 onMounted(() => {
   kb.init()
   window.addEventListener('keydown', onKey)
   measureDock()
+  if (window.ResizeObserver && dockRef.value) { _ro = new ResizeObserver(() => measureDock()); _ro.observe(dockRef.value) }
 })
-onUnmounted(() => window.removeEventListener('keydown', onKey))
+onUnmounted(() => { window.removeEventListener('keydown', onKey); if (_ro) _ro.disconnect() })
 
 const vols = computed(() => (kb.state.index ? kb.state.index.volumes : []))
 const totalTerms = computed(() => (kb.state.index ? kb.state.index.total_terms : 0))
@@ -287,8 +289,7 @@ const promptText = computed(() => cart.map((c) => termText(c, copyLang.value)).f
 function setLang(l) { copyLang.value = l; showPrev.value = true; toast('复制语言：' + ({ en: '英文', cn: '中文', both: '中英' }[l]) + (cart.length ? '' : '（篮中加词后生效）')) }
 function copyAll() { if (!cart.length) { toast('提示词篮是空的'); return } navigator.clipboard && navigator.clipboard.writeText(promptText.value); showPrev.value = true; copied.value = true; setTimeout(() => (copied.value = false), 1200); toast('已复制 ' + cart.length + ' 项(' + ({ en: '英文', cn: '中文', both: '中英' }[copyLang.value]) + ')') }
 
-function measureDock() { nextTick(() => { const d = dockRef.value; if (d) langBottom.value = d.getBoundingClientRect().height + 16 + 1 }) }
-watch([() => cart.length, basketOpen, showPrev], measureDock)
+function measureDock() { const d = dockRef.value; if (d) langBottom.value = d.getBoundingClientRect().height + 16 + 1 }
 window.addEventListener('resize', measureDock)
 </script>
 
@@ -407,5 +408,5 @@ window.addEventListener('resize', measureDock)
 .dock-prev .pl { color: var(--faint); } .dock-prev b { color: var(--accent); font-weight: 600; } .dock-prev .warn { color: var(--danger); font-weight: 600; }
 .toast { position: fixed; top: 60px; left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--sel); color: #fff; padding: 8px 18px; border-radius: 10px; font-size: 12.5px; font-weight: 500; opacity: 0; pointer-events: none; z-index: 99; transition: .3s cubic-bezier(.34,1.56,.64,1); }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-@media (max-width: 880px) { .side { position: absolute; height: 100%; z-index: 38; box-shadow: var(--shadow-lg); } .dock { left: 16px; } .langfloat { left: 17px; } }
+@media (max-width: 880px) { .search { width: 160px; } }
 </style>

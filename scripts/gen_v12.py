@@ -1,44 +1,17 @@
 # -*- coding: utf-8 -*-
-"""V12 动画、分镜与动态设计（穷举）。合并模式。"""
+"""V12 动画、分镜与动态设计（穷举级）。合并模式。"""
 import csv, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]; CSV=ROOT/"data"/"raw"/"terms_seed.csv"
 FIELDS=["term_uid","zh_term","en_term","aliases","volume_code","category","definition_short","definition_long","visual_effect","prompt_usage","positive_prompt","negative_prompt","positive_prompt_cn","negative_prompt_cn","use_cases","related_terms","confused_with","tags","source_refs","status","version"]
 V="V12"; rows=[]
-def block(cat,items,tags):
-    for zh,en,defs,pen,pcn in items:
-        rows.append(dict(zip(FIELDS,["",zh,en,"",V,cat,defs+"。","","","",pen,"",pcn,"","","","",tags,"整理","published","V1.0"])))
-block("动画原理",[
-("挤压拉伸","Squash and Stretch","弹性变形","squash and stretch","挤压拉伸"),
-("预备动作","Anticipation","蓄力预备","anticipation","预备动作"),
-("演出布局","Staging","清晰演出","staging clear posing","演出布局"),
-("关键姿势","Pose to Pose","关键帧姿势","pose to pose key poses","关键姿势"),
-("跟随重叠","Follow Through","惯性跟随","follow through overlapping action","跟随重叠"),
-("缓入缓出","Ease In Out","加速减速","ease in ease out, slow in out","缓入缓出"),
-("弧线运动","Arcs","自然弧线","arc motion path","弧线运动"),
-("次要动作","Secondary Action","辅助动作","secondary action","次要动作"),
-("时间节奏","Timing","节奏快慢","timing spacing","时间节奏"),
-("夸张","Exaggeration","夸张强调","exaggeration","夸张"),
-("实体造型","Solid Drawing","体积结构","solid drawing volume","实体造型"),
-("吸引力","Appeal","角色魅力","appeal charisma","吸引力")],"动画;原理")
-block("分镜语言",[
-("分镜构图","Storyboard Framing","分镜画面","storyboard frame composition","分镜构图"),
-("镜头连接","Shot Continuity","镜头衔接","shot to shot continuity","镜头连接"),
-("动态分镜","Animatic","动态预演","animatic motion storyboard","动态分镜"),
-("故事板","Storyboard","叙事板","storyboard panels","故事板"),
-("镜头编号","Shot List","镜头表","shot list breakdown","镜头编号")],"动画;分镜")
-block("特效与合成",[
-("粒子特效","Particle FX","粒子系统","particle effects","粒子特效"),
-("流体模拟","Fluid Sim","液体烟雾","fluid smoke simulation","流体模拟"),
-("刚体破碎","Rigid Body","破碎倒塌","rigid body destruction","刚体破碎"),
-("绿幕抠像","Chroma Key","抠像合成","green screen chroma key","绿幕抠像"),
-("运动跟踪","Motion Tracking","跟踪合成","motion tracking compositing","运动跟踪"),
-("光效叠加","Light FX","光效辉光","light glow effects overlay","光效叠加")],"动画;特效")
-block("动态图形",[
-("MG动画","Motion Graphics","图形动效","motion graphics animation","MG动画"),
-("文字动效","Kinetic Typography","动态文字","kinetic typography","文字动效"),
-("转场动画","Transition","流畅转场","animated transition","转场动画"),
-("图标动效","Icon Animation","图标动画","animated icon micro-interaction","图标动效"),
-("信息动效","Data Animation","数据动画","animated data visualization","信息动效")],"动画;MG")
+def simple(cat,items,tags):
+    for zh,en in items: rows.append(dict(zip(FIELDS,["",zh,en,"",V,cat,zh+"。","","","",en,"",zh,"","","","",tags,"整理","published","V1.0"])))
+simple("动画原理",[("挤压拉伸","squash and stretch"),("预备动作","anticipation"),("演出布局","staging"),("关键姿势","pose to pose"),("逐帧动画","straight ahead action"),("跟随重叠","follow through overlapping"),("缓入缓出","ease in ease out"),("弧线运动","arc motion"),("次要动作","secondary action"),("时间节奏","timing"),("夸张","exaggeration"),("实体造型","solid drawing"),("吸引力","appeal")],"动画;原理")
+simple("分镜语言",[("分镜构图","storyboard framing"),("镜头连接","shot continuity"),("动态分镜","animatic"),("故事板","storyboard panels"),("镜头编号","shot list"),("运动轨迹","motion path"),("摄影表","x-sheet exposure sheet")],"动画;分镜")
+simple("时间与节奏",[("时间控制","timing control"),("节拍停顿","beat pause"),("速度曲线","speed curve graph editor"),("循环动画","loop cycle"),("二次动作","secondary motion"),("预备-动作-缓冲","anticipation action recovery")],"动画;时间")
+simple("角色绑定",[("骨骼绑定","skeleton rigging"),("蒙皮权重","skin weight"),("表情绑定","facial rig blendshape"),("动作捕捉","motion capture"),("IK反向动力学","inverse kinematics"),("控制器","rig controller")],"动画;绑定")
+simple("特效与合成",[("粒子特效","particle effects"),("流体模拟","fluid smoke simulation"),("刚体破碎","rigid body destruction"),("布料模拟","cloth simulation"),("绿幕抠像","green screen chroma key"),("运动跟踪","motion tracking"),("光效叠加","light glow effects"),("烟火特效","pyro fire fx")],"动画;特效")
+simple("动态图形与风格",[("MG动画","motion graphics"),("文字动效","kinetic typography"),("转场动画","animated transition"),("图标动效","animated icon"),("信息动效","animated data viz"),("2D逐帧","2d frame animation"),("3D动画","3d animation"),("定格动画","stop motion"),("黏土动画","claymation"),("剪纸动画","cutout animation"),("转描","rotoscope"),("MMD","mmd 3d dance")],"动画;MG风格")
 existing=[]
 if CSV.exists(): existing=[r for r in csv.DictReader(open(CSV,encoding="utf-8-sig")) if r["volume_code"]!=V]
 for i,r in enumerate(rows,1): r["term_uid"]=f"{V}_T{i:04d}"

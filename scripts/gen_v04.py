@@ -1,76 +1,23 @@
 # -*- coding: utf-8 -*-
-"""V04 游戏原画与概念设计（穷举）。合并模式。"""
+"""V04 游戏原画与概念设计（穷举级）。合并模式。"""
 import csv, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]; CSV=ROOT/"data"/"raw"/"terms_seed.csv"
 FIELDS=["term_uid","zh_term","en_term","aliases","volume_code","category","definition_short","definition_long","visual_effect","prompt_usage","positive_prompt","negative_prompt","positive_prompt_cn","negative_prompt_cn","use_cases","related_terms","confused_with","tags","source_refs","status","version"]
 V="V04"; rows=[]
-def block(cat,items,tags):
-    for zh,en,defs,pen,pcn in items:
-        rows.append(dict(zip(FIELDS,["",zh,en,"",V,cat,defs+"。","","","",pen,"",pcn,"","","","",tags,"互联网研究整理","published","V1.0"])))
-
-block("角色设计 / 职业定位",[
-("骑士","Knight","重甲骑士","armored knight character concept","骑士, 重甲"),
-("法师","Mage","法袍法师","robed mage wizard character","法师, 法袍"),
-("刺客","Assassin","暗影刺客","hooded assassin character","刺客, 暗影"),
-("战士","Warrior","重武器战士","heavy weapon warrior character","战士"),
-("游侠","Ranger","弓箭游侠","archer ranger character","游侠, 弓箭"),
-("机甲驾驶员","Mech Pilot","驾驶服飞行员","mech pilot suit character","机甲驾驶员"),
-("赛博黑客","Cyber Hacker","赛博朋克黑客","cyberpunk hacker character","赛博黑客")],"游戏;角色")
-block("角色设计 / 种族体型",[
-("精灵","Elf","尖耳优雅精灵","elegant elf, pointed ears","精灵"),
-("兽人","Orc","壮硕兽人","muscular orc","兽人"),
-("矮人","Dwarf","矮壮大胡子","stout bearded dwarf","矮人"),
-("龙人","Dragonborn","龙鳞人形","dragonborn scaled humanoid","龙人, 鳞甲"),
-("巨人体型","Giant Build","庞大体型","giant massive build","巨人体型"),
-("娇小体型","Petite Build","娇小灵巧","petite agile build","娇小体型")],"游戏;种族")
-block("角色设计 / 表现",[
-("角色三视图","Character Turnaround","正侧背三视","character turnaround three views","三视图"),
-("姿态设计","Pose Design","动态姿态","dynamic action pose","姿态设计"),
-("表情设计","Expression Sheet","表情合集","expression sheet","表情设计"),
-("角色配色","Color Scheme","配色方案","character color scheme","角色配色")],"游戏;角色表现")
-block("场景与世界观",[
-("奇幻森林","Fantasy Forest","魔法森林环境","fantasy magical forest environment","奇幻森林"),
-("赛博都市","Cyberpunk City","霓虹未来都市","cyberpunk neon megacity","赛博都市"),
-("末世废土","Post-Apocalyptic","荒废废土","post-apocalyptic wasteland","末世废土"),
-("蒸汽朋克城","Steampunk City","齿轮蒸汽","steampunk city, gears steam","蒸汽朋克"),
-("太空站","Space Station","科幻太空站","sci-fi space station interior","太空站"),
-("古代遗迹","Ancient Ruins","失落遗迹","ancient lost ruins","古代遗迹"),
-("浮空岛","Floating Islands","空中浮岛","floating sky islands fantasy","浮空岛"),
-("地下城","Dungeon","幽暗地牢","dark dungeon interior","地下城")],"游戏;场景")
-block("道具与装备",[
-("奇幻长剑","Fantasy Sword","符文长剑","ornate fantasy sword, runes","奇幻长剑"),
-("法杖","Magic Staff","水晶法杖","crystal magic staff","法杖"),
-("枪械设计","Sci-Fi Gun","科幻枪械","sci-fi futuristic gun design","枪械设计"),
-("机甲","Mecha","巨型机甲","giant mecha robot design","机甲"),
-("载具设计","Vehicle Design","未来载具","futuristic vehicle concept","载具设计"),
-("护甲套装","Armor Set","全套护甲","full armor set design","护甲套装"),
-("魔法道具","Magic Artifact","发光神器","glowing magic artifact","魔法道具")],"游戏;道具")
-block("生物设计",[
-("巨龙","Dragon","奇幻巨龙","fantasy dragon creature","巨龙"),
-("怪物","Monster","原创怪物","original monster creature design","怪物"),
-("机械兽","Mech Beast","机械生物","mechanical beast creature","机械兽"),
-("异形生物","Alien Creature","外星生物","alien creature concept","异形生物"),
-("精怪","Spirit Creature","灵兽精怪","spirit fae creature","精怪")],"游戏;生物")
-block("UI与图标",[
-("HUD界面","HUD","游戏抬头显示","game HUD interface","HUD界面"),
-("技能图标","Skill Icon","技能图标","game skill icon set","技能图标"),
-("界面框架","UI Frame","奇幻界面边框","fantasy UI frame ornate","界面框架"),
-("血条法力条","Health/Mana Bar","状态条","health mana bar UI","血条法力条"),
-("地图界面","Map UI","游戏地图","game map interface","地图界面")],"游戏;UI")
-block("概念流程与风格",[
-("剪影设计","Silhouette","剪影探索","silhouette thumbnail exploration","剪影设计"),
-("色彩脚本","Color Script","色彩氛围脚本","color script mood","色彩脚本"),
-("设定图","Concept Sheet","设定集","concept design sheet","设定图"),
-("厚涂风格","Painterly","厚涂概念","painterly digital concept art","厚涂风格"),
-("赛璐璐风格","Cel Shading","卡通平涂","cel-shaded anime style","赛璐璐, 卡通平涂"),
-("写实CG","Realistic CG","写实渲染","realistic CG render","写实CG"),
-("像素风","Pixel Art","复古像素","retro pixel art","像素风"),
-("吉卜力风","Ghibli Style","治愈动画感","ghibli anime style","吉卜力风")],"游戏;风格")
-
+def simple(cat,items,suf,tags):
+    for zh,en in items: rows.append(dict(zip(FIELDS,["",zh,en.title(),"",V,cat,zh+"。","","","",en+" "+suf,"",zh,"","","","",tags,"整理","published","V1.0"])))
+simple("角色设计 / 职业定位",[("骑士","armored knight"),("法师","robed mage wizard"),("刺客","hooded assassin"),("战士","heavy warrior"),("游侠","archer ranger"),("牧师","cleric priest"),("盗贼","rogue thief"),("德鲁伊","druid"),("武僧","monk"),("死灵法师","necromancer"),("圣骑士","paladin"),("枪手","gunslinger"),("机甲驾驶员","mech pilot"),("赛博黑客","cyberpunk hacker"),("赏金猎人","bounty hunter"),("海盗","pirate"),("武士","samurai"),("忍者","ninja")],"character concept","游戏;职业")
+simple("角色设计 / 种族体型",[("精灵","elegant elf"),("兽人","muscular orc"),("矮人","stout bearded dwarf"),("龙人","dragonborn scaled"),("亡灵","undead skeleton"),("恶魔","demon"),("天使","angel winged"),("半兽人","beastman"),("机器人","robot android"),("巨人","giant"),("哥布林","goblin"),("吸血鬼","vampire"),("狼人","werewolf"),("人鱼","mermaid"),("妖精","fairy sprite")],"character concept","游戏;种族")
+simple("角色设计 / 表现",[("角色三视图","character turnaround three views"),("动态姿态","dynamic action pose"),("表情设计","expression sheet"),("角色配色","color scheme"),("立绘","character splash art"),("半身像","character bust portrait"),("Q版","chibi cute style"),("装备拆解","equipment breakdown")],"character","游戏;角色表现")
+simple("场景与世界观",[("奇幻森林","fantasy magical forest"),("赛博都市","cyberpunk neon city"),("末世废土","post-apocalyptic wasteland"),("蒸汽朋克城","steampunk city"),("太空站","sci-fi space station"),("古代遗迹","ancient ruins"),("浮空岛","floating sky islands"),("地下城","dark dungeon"),("雪山","snowy mountains"),("沙漠绿洲","desert oasis"),("水下城市","underwater city"),("火山熔岩","volcanic lava"),("天空之城","sky castle"),("幽暗沼泽","dark swamp"),("东方仙境","oriental fairyland"),("机械都市","mechanical metropolis"),("废弃工厂","abandoned factory"),("魔法学院","magic academy")],"environment concept","游戏;场景")
+simple("道具与装备",[("奇幻长剑","ornate fantasy sword"),("法杖","crystal magic staff"),("弓箭","fantasy bow"),("巨斧","battle axe"),("科幻枪","sci-fi gun"),("能量剑","energy sword"),("机甲","giant mecha"),("载具","futuristic vehicle"),("飞船","spaceship"),("护甲套装","armor set"),("头盔","helmet design"),("盾牌","shield"),("魔法道具","magic artifact"),("药水瓶","potion bottle"),("宝箱","treasure chest"),("机械臂","cybernetic arm")],"prop concept","游戏;道具")
+simple("生物设计",[("巨龙","fantasy dragon"),("怪物","original monster"),("机械兽","mechanical beast"),("异形","alien creature"),("精怪","spirit fae creature"),("巨兽","giant kaiju"),("史莱姆","slime"),("元素生物","elemental creature"),("不死生物","undead creature"),("混合兽","chimera hybrid"),("昆虫怪","insect creature"),("深海怪","deep sea monster")],"creature concept","游戏;生物")
+simple("UI与图标",[("HUD界面","game HUD"),("技能图标","skill icon set"),("界面框架","fantasy UI frame"),("血条法力条","health mana bar"),("地图界面","map interface"),("背包界面","inventory UI"),("技能树","skill tree UI"),("对话框","dialogue box UI"),("成就图标","achievement icon")],"game UI","游戏;UI")
+simple("概念流程与风格",[("剪影设计","silhouette thumbnail"),("色彩脚本","color script mood"),("设定图","concept design sheet"),("厚涂风格","painterly concept art"),("赛璐璐","cel-shaded anime"),("写实CG","realistic CG render"),("像素风","pixel art"),("吉卜力风","ghibli anime style"),("美漫风","american comic style"),("国风","chinese ink game style"),("暗黑风","dark fantasy grimdark"),("卡通渲染","toon shading"),("低多边形","low poly stylized"),("黏土风","clay render style")],"concept style","游戏;风格")
 existing=[]
 if CSV.exists(): existing=[r for r in csv.DictReader(open(CSV,encoding="utf-8-sig")) if r["volume_code"]!=V]
 for i,r in enumerate(rows,1): r["term_uid"]=f"{V}_T{i:04d}"
 allrows=existing+rows
 with open(CSV,"w",encoding="utf-8-sig",newline="") as f:
     w=csv.DictWriter(f,fieldnames=FIELDS); w.writeheader(); w.writerows(allrows)
-print(f"{V}: {len(rows)} | total: {len(allrows)}")
+print(f"{V} 穷举: {len(rows)} | total: {len(allrows)}")

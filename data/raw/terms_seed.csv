@@ -739,3 +739,133 @@ V11_T0041,烟熏妆,Smoky Eye,,V11,配饰发妆,烟熏眼妆。,,,,smoky eye mak
 V11_T0042,复古红唇,Red Lip,,V11,配饰发妆,复古红唇。,,,,vintage red lip,,复古红唇,,,,,时尚;配饰发妆,整理,published,V1.0
 V11_T0043,盘发,Updo,,V11,配饰发妆,盘起发型。,,,,elegant updo hairstyle,,盘发,,,,,时尚;配饰发妆,整理,published,V1.0
 V11_T0044,波浪长发,Wavy Hair,,V11,配饰发妆,波浪卷发。,,,,long wavy hair,,波浪长发,,,,,时尚;配饰发妆,整理,published,V1.0
+V12_T0001,挤压拉伸,Squash and Stretch,,V12,动画原理,弹性变形。,,,,squash and stretch,,挤压拉伸,,,,,动画;原理,整理,published,V1.0
+V12_T0002,预备动作,Anticipation,,V12,动画原理,蓄力预备。,,,,anticipation,,预备动作,,,,,动画;原理,整理,published,V1.0
+V12_T0003,演出布局,Staging,,V12,动画原理,清晰演出。,,,,staging clear posing,,演出布局,,,,,动画;原理,整理,published,V1.0
+V12_T0004,关键姿势,Pose to Pose,,V12,动画原理,关键帧姿势。,,,,pose to pose key poses,,关键姿势,,,,,动画;原理,整理,published,V1.0
+V12_T0005,跟随重叠,Follow Through,,V12,动画原理,惯性跟随。,,,,follow through overlapping action,,跟随重叠,,,,,动画;原理,整理,published,V1.0
+V12_T0006,缓入缓出,Ease In Out,,V12,动画原理,加速减速。,,,,"ease in ease out, slow in out",,缓入缓出,,,,,动画;原理,整理,published,V1.0
+V12_T0007,弧线运动,Arcs,,V12,动画原理,自然弧线。,,,,arc motion path,,弧线运动,,,,,动画;原理,整理,published,V1.0
+V12_T0008,次要动作,Secondary Action,,V12,动画原理,辅助动作。,,,,secondary action,,次要动作,,,,,动画;原理,整理,published,V1.0
+V12_T0009,时间节奏,Timing,,V12,动画原理,节奏快慢。,,,,timing spacing,,时间节奏,,,,,动画;原理,整理,published,V1.0
+V12_T0010,夸张,Exaggeration,,V12,动画原理,夸张强调。,,,,exaggeration,,夸张,,,,,动画;原理,整理,published,V1.0
+V12_T0011,实体造型,Solid Drawing,,V12,动画原理,体积结构。,,,,solid drawing volume,,实体造型,,,,,动画;原理,整理,published,V1.0
+V12_T0012,吸引力,Appeal,,V12,动画原理,角色魅力。,,,,appeal charisma,,吸引力,,,,,动画;原理,整理,published,V1.0
+V12_T0013,分镜构图,Storyboard Framing,,V12,分镜语言,分镜画面。,,,,storyboard frame composition,,分镜构图,,,,,动画;分镜,整理,published,V1.0
+V12_T0014,镜头连接,Shot Continuity,,V12,分镜语言,镜头衔接。,,,,shot to shot continuity,,镜头连接,,,,,动画;分镜,整理,published,V1.0
+V12_T0015,动态分镜,Animatic,,V12,分镜语言,动态预演。,,,,animatic motion storyboard,,动态分镜,,,,,动画;分镜,整理,published,V1.0
+V12_T0016,故事板,Storyboard,,V12,分镜语言,叙事板。,,,,storyboard panels,,故事板,,,,,动画;分镜,整理,published,V1.0
+V12_T0017,镜头编号,Shot List,,V12,分镜语言,镜头表。,,,,shot list breakdown,,镜头编号,,,,,动画;分镜,整理,published,V1.0
+V12_T0018,粒子特效,Particle FX,,V12,特效与合成,粒子系统。,,,,particle effects,,粒子特效,,,,,动画;特效,整理,published,V1.0
+V12_T0019,流体模拟,Fluid Sim,,V12,特效与合成,液体烟雾。,,,,fluid smoke simulation,,流体模拟,,,,,动画;特效,整理,published,V1.0
+V12_T0020,刚体破碎,Rigid Body,,V12,特效与合成,破碎倒塌。,,,,rigid body destruction,,刚体破碎,,,,,动画;特效,整理,published,V1.0
+V12_T0021,绿幕抠像,Chroma Key,,V12,特效与合成,抠像合成。,,,,green screen chroma key,,绿幕抠像,,,,,动画;特效,整理,published,V1.0
+V12_T0022,运动跟踪,Motion Tracking,,V12,特效与合成,跟踪合成。,,,,motion tracking compositing,,运动跟踪,,,,,动画;特效,整理,published,V1.0
+V12_T0023,光效叠加,Light FX,,V12,特效与合成,光效辉光。,,,,light glow effects overlay,,光效叠加,,,,,动画;特效,整理,published,V1.0
+V12_T0024,MG动画,Motion Graphics,,V12,动态图形,图形动效。,,,,motion graphics animation,,MG动画,,,,,动画;MG,整理,published,V1.0
+V12_T0025,文字动效,Kinetic Typography,,V12,动态图形,动态文字。,,,,kinetic typography,,文字动效,,,,,动画;MG,整理,published,V1.0
+V12_T0026,转场动画,Transition,,V12,动态图形,流畅转场。,,,,animated transition,,转场动画,,,,,动画;MG,整理,published,V1.0
+V12_T0027,图标动效,Icon Animation,,V12,动态图形,图标动画。,,,,animated icon micro-interaction,,图标动效,,,,,动画;MG,整理,published,V1.0
+V12_T0028,信息动效,Data Animation,,V12,动态图形,数据动画。,,,,animated data visualization,,信息动效,,,,,动画;MG,整理,published,V1.0
+V13_T0001,青橙调,Teal and Orange,,V13,调色风格,冷暖对比电影色。,,,,teal and orange cinematic grade,,青橙调,,,,,后期;调色,整理,published,V1.0
+V13_T0002,复古褪色,Faded Retro,,V13,调色风格,低对比褪色。,,,,faded retro film grade,,复古褪色,,,,,后期;调色,整理,published,V1.0
+V13_T0003,电影感调色,Cinematic Grade,,V13,调色风格,电影色调。,,,,cinematic color grading,,电影感调色,,,,,后期;调色,整理,published,V1.0
+V13_T0004,黑金调,Black Gold,,V13,调色风格,黑金奢华调。,,,,black and gold grade,,黑金调,,,,,后期;调色,整理,published,V1.0
+V13_T0005,胶片模拟,Film Emulation,,V13,调色风格,模拟胶片色。,,,,film emulation LUT,,胶片模拟,,,,,后期;调色,整理,published,V1.0
+V13_T0006,莫兰迪灰调,Muted Grade,,V13,调色风格,低饱和灰调。,,,,muted desaturated grade,,莫兰迪灰调,,,,,后期;调色,整理,published,V1.0
+V13_T0007,高饱和鲜艳,Vivid Grade,,V13,调色风格,浓艳调色。,,,,vivid saturated grade,,高饱和鲜艳,,,,,后期;调色,整理,published,V1.0
+V13_T0008,暗黑冷调,Dark Moody,,V13,调色风格,暗调冷色。,,,,dark moody cool grade,,暗黑冷调,,,,,后期;调色,整理,published,V1.0
+V13_T0009,阳光暖调,Warm Sunny,,V13,调色风格,温暖阳光调。,,,,warm sunny grade,,阳光暖调,,,,,后期;调色,整理,published,V1.0
+V13_T0010,色调分离,Split Toning,,V13,调色风格,高光阴影分色。,,,,split toning highlights shadows,,色调分离,,,,,后期;调色,整理,published,V1.0
+V13_T0011,一级校色,Primary Correction,,V13,调色技术,整体曝光白平衡。,,,,primary color correction,,一级校色,,,,,后期;调色技术,整理,published,V1.0
+V13_T0012,二级调色,Secondary Grade,,V13,调色技术,局部选区调色。,,,,secondary selective grade,,二级调色,,,,,后期;调色技术,整理,published,V1.0
+V13_T0013,LUT,Look-Up Table,,V13,调色技术,调色查找表。,,,,LUT color lookup,,LUT,,,,,后期;调色技术,整理,published,V1.0
+V13_T0014,曲线调整,Curves,,V13,调色技术,曲线对比。,,,,curves tone adjustment,,曲线调整,,,,,后期;调色技术,整理,published,V1.0
+V13_T0015,HSL调整,HSL Adjust,,V13,调色技术,分色相调整。,,,,HSL color adjustment,,HSL调整,,,,,后期;调色技术,整理,published,V1.0
+V13_T0016,磨皮,Skin Retouch,,V13,修图润饰,皮肤光滑。,,,,skin retouching smooth,,磨皮,,,,,后期;修图,整理,published,V1.0
+V13_T0017,液化,Liquify,,V13,修图润饰,形体调整。,,,,liquify reshape,,液化,,,,,后期;修图,整理,published,V1.0
+V13_T0018,瑕疵修复,Healing,,V13,修图润饰,去瑕疵。,,,,blemish healing removal,,瑕疵修复,,,,,后期;修图,整理,published,V1.0
+V13_T0019,锐化,Sharpening,,V13,修图润饰,增强清晰。,,,,sharpening clarity,,锐化,,,,,后期;修图,整理,published,V1.0
+V13_T0020,降噪,Denoise,,V13,修图润饰,去噪点。,,,,noise reduction,,降噪,,,,,后期;修图,整理,published,V1.0
+V13_T0021,中性灰精修,Dodge and Burn,,V13,修图润饰,明暗精修。,,,,dodge and burn retouch,,中性灰精修,,,,,后期;修图,整理,published,V1.0
+V13_T0022,抠像合成,Compositing,,V13,合成与滤镜,多层合成。,,,,layer compositing,,抠像合成,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0023,景深雾化,Depth Haze,,V13,合成与滤镜,后期景深。,,,,post depth of field haze,,景深雾化,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0024,胶片颗粒,Film Grain Post,,V13,合成与滤镜,后期颗粒。,,,,film grain overlay,,胶片颗粒,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0025,漏光叠加,Light Leak,,V13,合成与滤镜,漏光效果。,,,,light leak overlay,,漏光叠加,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0026,光晕眩光,Glow Bloom,,V13,合成与滤镜,柔光辉光。,,,,glow bloom effect,,光晕眩光,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0027,暗角,Vignette Post,,V13,合成与滤镜,后期暗角。,,,,vignette post effect,,暗角,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0028,故障艺术,Glitch,,V13,合成与滤镜,数字故障。,,,,glitch art effect,,故障艺术,,,,,后期;合成滤镜,整理,published,V1.0
+V13_T0029,HDR合成,HDR Merge,,V13,合成与滤镜,高动态合成。,,,,HDR tone merge,,HDR合成,,,,,后期;合成滤镜,整理,published,V1.0
+V14_T0001,SD1.5,Stable Diffusion 1.5,,V14,模型类型,经典开源底模。,,,,Stable Diffusion 1.5 model,,SD1.5,,,,,AI;模型,整理,published,V1.0
+V14_T0002,SDXL,SDXL,,V14,模型类型,高分辨率底模。,,,,SDXL model,,SDXL,,,,,AI;模型,整理,published,V1.0
+V14_T0003,SD3,Stable Diffusion 3,,V14,模型类型,新一代底模。,,,,Stable Diffusion 3,,SD3,,,,,AI;模型,整理,published,V1.0
+V14_T0004,Flux,Flux,,V14,模型类型,高质量新模型。,,,,Flux model,,Flux,,,,,AI;模型,整理,published,V1.0
+V14_T0005,Midjourney,Midjourney,,V14,模型类型,美学强商业模型。,,,,Midjourney style,,Midjourney,,,,,AI;模型,整理,published,V1.0
+V14_T0006,DALL-E 3,DALL-E 3,,V14,模型类型,语义理解强。,,,,DALL-E 3,,DALL-E3,,,,,AI;模型,整理,published,V1.0
+V14_T0007,扩散模型,Diffusion Model,,V14,模型类型,去噪生成原理。,,,,diffusion model,,扩散模型,,,,,AI;模型,整理,published,V1.0
+V14_T0008,GAN,GAN,,V14,模型类型,对抗生成。,,,,GAN generative adversarial,,GAN,,,,,AI;模型,整理,published,V1.0
+V14_T0009,采样器Euler a,Euler a,,V14,采样与调度,欧拉祖先采样。,,,,Euler a sampler,,Euler a,,,,,AI;采样,整理,published,V1.0
+V14_T0010,采样器DPM++ 2M,DPM++ 2M,,V14,采样与调度,常用采样器。,,,,DPM++ 2M Karras,,DPM++ 2M,,,,,AI;采样,整理,published,V1.0
+V14_T0011,采样器DDIM,DDIM,,V14,采样与调度,确定性采样。,,,,DDIM sampler,,DDIM,,,,,AI;采样,整理,published,V1.0
+V14_T0012,调度器Karras,Karras Scheduler,,V14,采样与调度,噪声调度。,,,,Karras scheduler,,Karras调度,,,,,AI;采样,整理,published,V1.0
+V14_T0013,采样步数,Steps,,V14,采样与调度,迭代步数。,,,,sampling steps 20-40,,采样步数,,,,,AI;采样,整理,published,V1.0
+V14_T0014,CFG引导强度,CFG Scale,,V14,采样与调度,贴合提示度。,,,,CFG scale 7,,CFG引导,,,,,AI;采样,整理,published,V1.0
+V14_T0015,种子Seed,Seed,,V14,采样与调度,随机种子复现。,,,,seed reproducibility,,种子,,,,,AI;采样,整理,published,V1.0
+V14_T0016,ControlNet,ControlNet,,V14,控制与条件生成,结构条件控制。,,,,controlnet conditioning,,ControlNet,,,,,AI;控制,整理,published,V1.0
+V14_T0017,Canny边缘,Canny,,V14,控制与条件生成,边缘线控制。,,,,controlnet canny edge,,Canny边缘,,,,,AI;控制,整理,published,V1.0
+V14_T0018,深度图Depth,Depth,,V14,控制与条件生成,深度控制。,,,,controlnet depth,,深度图,,,,,AI;控制,整理,published,V1.0
+V14_T0019,OpenPose姿态,OpenPose,,V14,控制与条件生成,骨架姿态。,,,,controlnet openpose,,OpenPose,,,,,AI;控制,整理,published,V1.0
+V14_T0020,线稿Lineart,Lineart,,V14,控制与条件生成,线稿控制。,,,,controlnet lineart,,线稿,,,,,AI;控制,整理,published,V1.0
+V14_T0021,T2I-Adapter,T2I-Adapter,,V14,控制与条件生成,轻量条件。,,,,T2I adapter,,T2I-Adapter,,,,,AI;控制,整理,published,V1.0
+V14_T0022,IP-Adapter,IP-Adapter,,V14,控制与条件生成,图像提示。,,,,IP-adapter image prompt,,IP-Adapter,,,,,AI;控制,整理,published,V1.0
+V14_T0023,区域控制,Regional Control,,V14,控制与条件生成,分区生成。,,,,regional prompt control,,区域控制,,,,,AI;控制,整理,published,V1.0
+V14_T0024,LoRA,LoRA,,V14,微调与定制,低秩微调。,,,,LoRA fine-tune,,LoRA,,,,,AI;微调,整理,published,V1.0
+V14_T0025,DreamBooth,DreamBooth,,V14,微调与定制,主体定制。,,,,dreambooth subject training,,DreamBooth,,,,,AI;微调,整理,published,V1.0
+V14_T0026,文本反演,Textual Inversion,,V14,微调与定制,嵌入定制。,,,,textual inversion embedding,,文本反演,,,,,AI;微调,整理,published,V1.0
+V14_T0027,Hypernetwork,Hypernetwork,,V14,微调与定制,风格微调。,,,,hypernetwork,,Hypernetwork,,,,,AI;微调,整理,published,V1.0
+V14_T0028,微调训练,Fine-tuning,,V14,微调与定制,底模微调。,,,,model fine-tuning training,,微调训练,,,,,AI;微调,整理,published,V1.0
+V14_T0029,超分放大,Upscale,,V14,放大与修复,分辨率放大。,,,,AI upscaling super resolution,,超分放大,,,,,AI;放大修复,整理,published,V1.0
+V14_T0030,Hires fix,Hires Fix,,V14,放大与修复,高清修复。,,,,hires fix high-res,,Hires fix,,,,,AI;放大修复,整理,published,V1.0
+V14_T0031,Tiled放大,Tiled Diffusion,,V14,放大与修复,分块放大。,,,,tiled diffusion upscale,,Tiled放大,,,,,AI;放大修复,整理,published,V1.0
+V14_T0032,面部修复,Face Restore,,V14,放大与修复,修脸。,,,,face restoration GFPGAN,,面部修复,,,,,AI;放大修复,整理,published,V1.0
+V14_T0033,ADetailer,ADetailer,,V14,放大与修复,自动细节修复。,,,,adetailer auto detail,,ADetailer,,,,,AI;放大修复,整理,published,V1.0
+V14_T0034,局部重绘,Inpaint,,V14,放大与修复,遮罩重绘。,,,,inpainting,,局部重绘,,,,,AI;放大修复,整理,published,V1.0
+V14_T0035,ComfyUI节点,ComfyUI Node,,V14,工作流与自动化,节点式工作流。,,,,comfyui node workflow,,ComfyUI节点,,,,,AI;工作流,整理,published,V1.0
+V14_T0036,工作流编排,Workflow,,V14,工作流与自动化,流程编排。,,,,generation workflow pipeline,,工作流编排,,,,,AI;工作流,整理,published,V1.0
+V14_T0037,批处理,Batch,,V14,工作流与自动化,批量生成。,,,,batch generation,,批处理,,,,,AI;工作流,整理,published,V1.0
+V14_T0038,API调用,API,,V14,工作流与自动化,接口集成。,,,,generation API integration,,API调用,,,,,AI;工作流,整理,published,V1.0
+V14_T0039,提示词矩阵,XYZ Plot,,V14,工作流与自动化,参数对比图。,,,,XYZ plot parameter grid,,参数矩阵,,,,,AI;工作流,整理,published,V1.0
+V15_T0001,赛博朋克,Cyberpunk,,V15,类型与审美标签,霓虹高科技低生活。,,,,"cyberpunk, neon high-tech dystopia",,赛博朋克,,,,,风格;标签,整理,published,V1.0
+V15_T0002,蒸汽朋克,Steampunk,,V15,类型与审美标签,维多利亚蒸汽齿轮。,,,,"steampunk, victorian gears steam",,蒸汽朋克,,,,,风格;标签,整理,published,V1.0
+V15_T0003,柴油朋克,Dieselpunk,,V15,类型与审美标签,战间柴油工业。,,,,"dieselpunk, interwar diesel",,柴油朋克,,,,,风格;标签,整理,published,V1.0
+V15_T0004,废土风,Wasteland,,V15,类型与审美标签,末世荒废。,,,,post-apocalyptic wasteland aesthetic,,废土风,,,,,风格;标签,整理,published,V1.0
+V15_T0005,国潮,Guochao,,V15,类型与审美标签,中式潮流。,,,,chinese guochao trendy style,,国潮,,,,,风格;标签,整理,published,V1.0
+V15_T0006,侘寂,Wabi-Sabi,,V15,类型与审美标签,质朴残缺美。,,,,wabi-sabi imperfect rustic,,侘寂,,,,,风格;标签,整理,published,V1.0
+V15_T0007,极简主义,Minimalism,,V15,类型与审美标签,极简留白。,,,,minimalist aesthetic,,极简主义,,,,,风格;标签,整理,published,V1.0
+V15_T0008,孟菲斯,Memphis,,V15,类型与审美标签,几何撞色波普。,,,,memphis design bold geometric,,孟菲斯,,,,,风格;标签,整理,published,V1.0
+V15_T0009,蒸汽波,Vaporwave,,V15,类型与审美标签,紫粉复古数码。,,,,"vaporwave, retro digital pink purple",,蒸汽波,,,,,风格;标签,整理,published,V1.0
+V15_T0010,Y2K千禧,Y2K,,V15,类型与审美标签,千禧金属未来。,,,,"Y2K, metallic millennium futurism",,Y2K,,,,,风格;标签,整理,published,V1.0
+V15_T0011,暗黑哥特,Dark Gothic,,V15,类型与审美标签,暗黑哥特。,,,,dark gothic aesthetic,,暗黑哥特,,,,,风格;标签,整理,published,V1.0
+V15_T0012,治愈系,Healing/Cozy,,V15,类型与审美标签,温暖治愈。,,,,cozy healing aesthetic,,治愈系,,,,,风格;标签,整理,published,V1.0
+V15_T0013,梦核,Dreamcore,,V15,类型与审美标签,梦境超现实。,,,,dreamcore surreal nostalgic,,梦核,,,,,风格;标签,整理,published,V1.0
+V15_T0014,怪核,Weirdcore,,V15,类型与审美标签,诡异不安。,,,,weirdcore uncanny,,怪核,,,,,风格;标签,整理,published,V1.0
+V15_T0015,故障艺术,Glitch Art,,V15,类型与审美标签,数字故障美学。,,,,glitch art aesthetic,,故障艺术,,,,,风格;标签,整理,published,V1.0
+V15_T0016,低多边形,Low Poly,,V15,类型与审美标签,低面几何。,,,,low poly geometric,,低多边形,,,,,风格;标签,整理,published,V1.0
+V15_T0017,扁平化,Flat Design,,V15,类型与审美标签,扁平简洁。,,,,flat design illustration,,扁平化,,,,,风格;标签,整理,published,V1.0
+V15_T0018,3D盲盒潮玩,3D Toy,,V15,类型与审美标签,C4D潮玩质感。,,,,3d blind box toy render,,3D潮玩,,,,,风格;标签,整理,published,V1.0
+V15_T0019,黏土风,Clay Render,,V15,类型与审美标签,黏土质感。,,,,clay render claymation style,,黏土风,,,,,风格;标签,整理,published,V1.0
+V15_T0020,80年代复古,80s Retro,,V15,时代美学,霓虹合成器波。,,,,1980s retro neon synthwave,,80年代复古,,,,,风格;时代,整理,published,V1.0
+V15_T0021,90年代,90s,,V15,时代美学,千禧前怀旧。,,,,1990s nostalgic aesthetic,,90年代,,,,,风格;时代,整理,published,V1.0
+V15_T0022,复古未来主义,Retrofuturism,,V15,时代美学,旧时代想象未来。,,,,retrofuturism,,复古未来主义,,,,,风格;时代,整理,published,V1.0
+V15_T0023,世纪中期现代,Mid-Century Modern,,V15,时代美学,50-60年代现代。,,,,mid-century modern aesthetic,,世纪中期现代,,,,,风格;时代,整理,published,V1.0
+V15_T0024,日系,Japanese Aesthetic,,V15,地域与网络美学,清新日系。,,,,japanese aesthetic clean,,日系,,,,,风格;地域网络,整理,published,V1.0
+V15_T0025,韩系,Korean Aesthetic,,V15,地域与网络美学,柔和韩系。,,,,korean soft aesthetic,,韩系,,,,,风格;地域网络,整理,published,V1.0
+V15_T0026,和风浮世,Japanese Traditional,,V15,地域与网络美学,和风传统。,,,,traditional japanese aesthetic,,和风,,,,,风格;地域网络,整理,published,V1.0
+V15_T0027,cottagecore田园,Cottagecore,,V15,地域与网络美学,田园温馨。,,,,cottagecore rural cozy,,田园核,,,,,风格;地域网络,整理,published,V1.0
+V15_T0028,暗黑学院,Dark Academia,,V15,地域与网络美学,复古学术。,,,,dark academia aesthetic,,暗黑学院,,,,,风格;地域网络,整理,published,V1.0
+V15_T0029,阈限空间,Liminal Space,,V15,地域与网络美学,空旷诡异过渡。,,,,liminal space eerie empty,,阈限空间,,,,,风格;地域网络,整理,published,V1.0
+V15_T0030,高级感,Premium/Luxe,,V15,品牌调性与媒介,高级奢华。,,,,premium luxury aesthetic,,高级感,,,,,风格;品牌媒介,整理,published,V1.0
+V15_T0031,科技感,Tech/Futuristic,,V15,品牌调性与媒介,未来科技。,,,,futuristic tech aesthetic,,科技感,,,,,风格;品牌媒介,整理,published,V1.0
+V15_T0032,年轻活力,Youthful Vibrant,,V15,品牌调性与媒介,青春活力。,,,,youthful vibrant playful,,年轻活力,,,,,风格;品牌媒介,整理,published,V1.0
+V15_T0033,拼贴混媒,Mixed Media Collage,,V15,品牌调性与媒介,拼贴混合。,,,,mixed media collage,,拼贴混媒,,,,,风格;品牌媒介,整理,published,V1.0
+V15_T0034,手绘+数字,Hand-drawn Digital,,V15,品牌调性与媒介,手绘数字结合。,,,,hand-drawn digital hybrid,,手绘数字,,,,,风格;品牌媒介,整理,published,V1.0

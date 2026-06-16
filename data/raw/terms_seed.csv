@@ -334,3 +334,101 @@ V03_T0064,克林姆特风格,Klimt Style,,V03,代表性风格,金箔装饰。,,,
 V03_T0065,伦勃朗风格,Rembrandt Style,,V03,代表性风格,暗调明暗对照。,,,,"in the style of Rembrandt, chiaroscuro",,"伦勃朗风格, 明暗",,,,,绘画;风格,互联网研究整理,published,V1.0
 V03_T0066,莫兰迪风格,Morandi Style,,V03,代表性风格,灰调静物。,,,,"in the style of Morandi, muted still life",,"莫兰迪, 灰调",,,,,绘画;风格,互联网研究整理,published,V1.0
 V03_T0067,蒙德里安风格,Mondrian Style,,V03,代表性风格,红黄蓝格子。,,,,"in the style of Mondrian, primary grid",,"蒙德里安, 格子",,,,,绘画;风格,互联网研究整理,published,V1.0
+V04_T0001,骑士,Knight,,V04,角色设计 / 职业定位,重甲骑士。,,,,armored knight character concept,,"骑士, 重甲",,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0002,法师,Mage,,V04,角色设计 / 职业定位,法袍法师。,,,,robed mage wizard character,,"法师, 法袍",,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0003,刺客,Assassin,,V04,角色设计 / 职业定位,暗影刺客。,,,,hooded assassin character,,"刺客, 暗影",,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0004,战士,Warrior,,V04,角色设计 / 职业定位,重武器战士。,,,,heavy weapon warrior character,,战士,,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0005,游侠,Ranger,,V04,角色设计 / 职业定位,弓箭游侠。,,,,archer ranger character,,"游侠, 弓箭",,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0006,机甲驾驶员,Mech Pilot,,V04,角色设计 / 职业定位,驾驶服飞行员。,,,,mech pilot suit character,,机甲驾驶员,,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0007,赛博黑客,Cyber Hacker,,V04,角色设计 / 职业定位,赛博朋克黑客。,,,,cyberpunk hacker character,,赛博黑客,,,,,游戏;角色,互联网研究整理,published,V1.0
+V04_T0008,精灵,Elf,,V04,角色设计 / 种族体型,尖耳优雅精灵。,,,,"elegant elf, pointed ears",,精灵,,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0009,兽人,Orc,,V04,角色设计 / 种族体型,壮硕兽人。,,,,muscular orc,,兽人,,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0010,矮人,Dwarf,,V04,角色设计 / 种族体型,矮壮大胡子。,,,,stout bearded dwarf,,矮人,,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0011,龙人,Dragonborn,,V04,角色设计 / 种族体型,龙鳞人形。,,,,dragonborn scaled humanoid,,"龙人, 鳞甲",,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0012,巨人体型,Giant Build,,V04,角色设计 / 种族体型,庞大体型。,,,,giant massive build,,巨人体型,,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0013,娇小体型,Petite Build,,V04,角色设计 / 种族体型,娇小灵巧。,,,,petite agile build,,娇小体型,,,,,游戏;种族,互联网研究整理,published,V1.0
+V04_T0014,角色三视图,Character Turnaround,,V04,角色设计 / 表现,正侧背三视。,,,,character turnaround three views,,三视图,,,,,游戏;角色表现,互联网研究整理,published,V1.0
+V04_T0015,姿态设计,Pose Design,,V04,角色设计 / 表现,动态姿态。,,,,dynamic action pose,,姿态设计,,,,,游戏;角色表现,互联网研究整理,published,V1.0
+V04_T0016,表情设计,Expression Sheet,,V04,角色设计 / 表现,表情合集。,,,,expression sheet,,表情设计,,,,,游戏;角色表现,互联网研究整理,published,V1.0
+V04_T0017,角色配色,Color Scheme,,V04,角色设计 / 表现,配色方案。,,,,character color scheme,,角色配色,,,,,游戏;角色表现,互联网研究整理,published,V1.0
+V04_T0018,奇幻森林,Fantasy Forest,,V04,场景与世界观,魔法森林环境。,,,,fantasy magical forest environment,,奇幻森林,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0019,赛博都市,Cyberpunk City,,V04,场景与世界观,霓虹未来都市。,,,,cyberpunk neon megacity,,赛博都市,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0020,末世废土,Post-Apocalyptic,,V04,场景与世界观,荒废废土。,,,,post-apocalyptic wasteland,,末世废土,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0021,蒸汽朋克城,Steampunk City,,V04,场景与世界观,齿轮蒸汽。,,,,"steampunk city, gears steam",,蒸汽朋克,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0022,太空站,Space Station,,V04,场景与世界观,科幻太空站。,,,,sci-fi space station interior,,太空站,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0023,古代遗迹,Ancient Ruins,,V04,场景与世界观,失落遗迹。,,,,ancient lost ruins,,古代遗迹,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0024,浮空岛,Floating Islands,,V04,场景与世界观,空中浮岛。,,,,floating sky islands fantasy,,浮空岛,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0025,地下城,Dungeon,,V04,场景与世界观,幽暗地牢。,,,,dark dungeon interior,,地下城,,,,,游戏;场景,互联网研究整理,published,V1.0
+V04_T0026,奇幻长剑,Fantasy Sword,,V04,道具与装备,符文长剑。,,,,"ornate fantasy sword, runes",,奇幻长剑,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0027,法杖,Magic Staff,,V04,道具与装备,水晶法杖。,,,,crystal magic staff,,法杖,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0028,枪械设计,Sci-Fi Gun,,V04,道具与装备,科幻枪械。,,,,sci-fi futuristic gun design,,枪械设计,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0029,机甲,Mecha,,V04,道具与装备,巨型机甲。,,,,giant mecha robot design,,机甲,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0030,载具设计,Vehicle Design,,V04,道具与装备,未来载具。,,,,futuristic vehicle concept,,载具设计,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0031,护甲套装,Armor Set,,V04,道具与装备,全套护甲。,,,,full armor set design,,护甲套装,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0032,魔法道具,Magic Artifact,,V04,道具与装备,发光神器。,,,,glowing magic artifact,,魔法道具,,,,,游戏;道具,互联网研究整理,published,V1.0
+V04_T0033,巨龙,Dragon,,V04,生物设计,奇幻巨龙。,,,,fantasy dragon creature,,巨龙,,,,,游戏;生物,互联网研究整理,published,V1.0
+V04_T0034,怪物,Monster,,V04,生物设计,原创怪物。,,,,original monster creature design,,怪物,,,,,游戏;生物,互联网研究整理,published,V1.0
+V04_T0035,机械兽,Mech Beast,,V04,生物设计,机械生物。,,,,mechanical beast creature,,机械兽,,,,,游戏;生物,互联网研究整理,published,V1.0
+V04_T0036,异形生物,Alien Creature,,V04,生物设计,外星生物。,,,,alien creature concept,,异形生物,,,,,游戏;生物,互联网研究整理,published,V1.0
+V04_T0037,精怪,Spirit Creature,,V04,生物设计,灵兽精怪。,,,,spirit fae creature,,精怪,,,,,游戏;生物,互联网研究整理,published,V1.0
+V04_T0038,HUD界面,HUD,,V04,UI与图标,游戏抬头显示。,,,,game HUD interface,,HUD界面,,,,,游戏;UI,互联网研究整理,published,V1.0
+V04_T0039,技能图标,Skill Icon,,V04,UI与图标,技能图标。,,,,game skill icon set,,技能图标,,,,,游戏;UI,互联网研究整理,published,V1.0
+V04_T0040,界面框架,UI Frame,,V04,UI与图标,奇幻界面边框。,,,,fantasy UI frame ornate,,界面框架,,,,,游戏;UI,互联网研究整理,published,V1.0
+V04_T0041,血条法力条,Health/Mana Bar,,V04,UI与图标,状态条。,,,,health mana bar UI,,血条法力条,,,,,游戏;UI,互联网研究整理,published,V1.0
+V04_T0042,地图界面,Map UI,,V04,UI与图标,游戏地图。,,,,game map interface,,地图界面,,,,,游戏;UI,互联网研究整理,published,V1.0
+V04_T0043,剪影设计,Silhouette,,V04,概念流程与风格,剪影探索。,,,,silhouette thumbnail exploration,,剪影设计,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0044,色彩脚本,Color Script,,V04,概念流程与风格,色彩氛围脚本。,,,,color script mood,,色彩脚本,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0045,设定图,Concept Sheet,,V04,概念流程与风格,设定集。,,,,concept design sheet,,设定图,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0046,厚涂风格,Painterly,,V04,概念流程与风格,厚涂概念。,,,,painterly digital concept art,,厚涂风格,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0047,赛璐璐风格,Cel Shading,,V04,概念流程与风格,卡通平涂。,,,,cel-shaded anime style,,"赛璐璐, 卡通平涂",,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0048,写实CG,Realistic CG,,V04,概念流程与风格,写实渲染。,,,,realistic CG render,,写实CG,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0049,像素风,Pixel Art,,V04,概念流程与风格,复古像素。,,,,retro pixel art,,像素风,,,,,游戏;风格,互联网研究整理,published,V1.0
+V04_T0050,吉卜力风,Ghibli Style,,V04,概念流程与风格,治愈动画感。,,,,ghibli anime style,,吉卜力风,,,,,游戏;风格,互联网研究整理,published,V1.0
+V05_T0001,衬线体,Serif,,V05,字体与排印 / 字体分类,古典衬线。,,,,"serif typeface, classic",,衬线体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0002,无衬线体,Sans-serif,,V05,字体与排印 / 字体分类,现代简洁。,,,,"sans-serif typeface, modern clean",,无衬线体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0003,衬线粗体标题,Slab Serif,,V05,字体与排印 / 字体分类,厚重板衬。,,,,slab serif bold headline,,板衬线,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0004,手写体,Script,,V05,字体与排印 / 字体分类,优雅手写。,,,,script handwritten typeface,,手写体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0005,哥特黑letter,Blackletter,,V05,字体与排印 / 字体分类,哥特黑体。,,,,blackletter gothic type,,哥特黑体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0006,等宽字体,Monospace,,V05,字体与排印 / 字体分类,等宽代码感。,,,,monospace typeface,,等宽字体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0007,display展示体,Display Type,,V05,字体与排印 / 字体分类,夸张展示字。,,,,display decorative typeface,,展示体,,,,,平面;字体,互联网研究整理,published,V1.0
+V05_T0008,字重层级,Font Weight,,V05,字体与排印 / 排印属性,粗细对比。,,,,font weight hierarchy bold light,,字重层级,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0009,字距调整,Kerning/Tracking,,V05,字体与排印 / 排印属性,字间距。,,,,kerning tracking letter spacing,,字距,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0010,行距,Leading,,V05,字体与排印 / 排印属性,行间距节奏。,,,,leading line spacing,,行距,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0011,字号层级,Type Scale,,V05,字体与排印 / 排印属性,大小层级。,,,,type scale hierarchy,,字号层级,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0012,文字排版网格,Baseline Grid,,V05,字体与排印 / 排印属性,基线网格。,,,,baseline grid typography,,基线网格,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0013,首字下沉,Drop Cap,,V05,字体与排印 / 排印属性,装饰首字。,,,,drop cap initial,,首字下沉,,,,,平面;排印,互联网研究整理,published,V1.0
+V05_T0014,网格系统,Grid System,,V05,版式与网格,栅格布局。,,,,grid system layout,,网格系统,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0015,瑞士国际主义,Swiss Style,,V05,版式与网格,客观网格无衬线。,,,,swiss international typographic style,,瑞士国际主义,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0016,黄金比例版式,Golden Layout,,V05,版式与网格,黄金分割排版。,,,,golden ratio layout,,黄金比例版式,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0017,对齐,Alignment,,V05,版式与网格,对齐秩序。,,,,"alignment, ordered",,对齐,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0018,留白,White Space,,V05,版式与网格,负空间呼吸。,,,,"white space, breathing room",,"留白, 负空间",,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0019,分栏,Columns,,V05,版式与网格,多栏排版。,,,,multi-column layout,,分栏,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0020,对称布局,Symmetrical Layout,,V05,版式与网格,对称平衡。,,,,symmetrical balanced layout,,对称布局,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0021,非对称布局,Asymmetrical Layout,,V05,版式与网格,动态非对称。,,,,asymmetrical dynamic layout,,非对称布局,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0022,模块化版式,Modular Layout,,V05,版式与网格,模块拼接。,,,,modular grid layout,,模块化版式,,,,,平面;版式,互联网研究整理,published,V1.0
+V05_T0023,字标logo,Wordmark,,V05,品牌视觉,文字标志。,,,,wordmark logo typographic,,字标,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0024,图形标志,Logomark,,V05,品牌视觉,抽象图形标。,,,,abstract logomark symbol,,图形标志,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0025,徽章logo,Emblem,,V05,品牌视觉,徽章式标志。,,,,emblem badge logo,,徽章logo,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0026,品牌主色,Brand Color,,V05,品牌视觉,品牌色彩。,,,,brand color palette,,品牌主色,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0027,VI系统,Visual Identity,,V05,品牌视觉,视觉识别系统。,,,,visual identity system,,VI系统,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0028,吉祥物,Mascot,,V05,品牌视觉,品牌吉祥物。,,,,brand mascot character,,吉祥物,,,,,平面;品牌,互联网研究整理,published,V1.0
+V05_T0029,极简海报,Minimal Poster,,V05,海报与广告,极简留白海报。,,,,"minimalist poster, white space",,极简海报,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0030,瑞士海报,Swiss Poster,,V05,海报与广告,网格无衬线海报。,,,,swiss grid poster,,瑞士海报,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0031,拼贴海报,Collage Poster,,V05,海报与广告,拼贴混搭。,,,,collage mixed media poster,,拼贴海报,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0032,大字标题,Big Type,,V05,海报与广告,巨型标题字。,,,,oversized typographic headline,,大字标题,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0033,视觉锤主体,Hero Visual,,V05,海报与广告,主视觉冲击。,,,,hero key visual impact,,主视觉,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0034,复古海报,Vintage Poster,,V05,海报与广告,复古印刷感。,,,,vintage retro poster print,,复古海报,,,,,平面;海报,互联网研究整理,published,V1.0
+V05_T0035,信息图,Infographic,,V05,信息设计,数据信息图。,,,,infographic data visual,,信息图,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0036,图表,Chart,,V05,信息设计,数据图表。,,,,data chart diagram,,图表,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0037,数据可视化,Data Viz,,V05,信息设计,数据可视化。,,,,data visualization,,数据可视化,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0038,图标系统,Icon Set,,V05,信息设计,统一图标组。,,,,consistent icon set,,图标系统,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0039,标识系统,Signage,,V05,信息设计,导视系统。,,,,wayfinding signage system,,标识系统,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0040,流程图,Flowchart,,V05,信息设计,流程示意。,,,,flowchart diagram,,流程图,,,,,平面;信息,互联网研究整理,published,V1.0
+V05_T0041,CMYK印刷,CMYK Print,,V05,印刷工艺,四色印刷。,,,,CMYK print color,,CMYK印刷,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0042,专色印刷,Spot Color,,V05,印刷工艺,Pantone专色。,,,,pantone spot color print,,专色印刷,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0043,烫金,Gold Foil,,V05,印刷工艺,烫金工艺。,,,,gold foil stamping,,烫金,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0044,UV局部光油,Spot UV,,V05,印刷工艺,局部光油。,,,,spot UV gloss,,UV局部光油,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0045,压凹凸,Emboss,,V05,印刷工艺,压印浮凸。,,,,emboss deboss texture,,压凹凸,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0046,特种纸,Textured Paper,,V05,印刷工艺,纸张质感。,,,,textured specialty paper,,特种纸,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0047,出血,Bleed,,V05,印刷工艺,出血边。,,,,print bleed edge,,出血,,,,,平面;印刷,互联网研究整理,published,V1.0
+V05_T0048,Riso印刷,Risograph,,V05,印刷工艺,复古孔版套色。,,,,"risograph print, retro overprint",,Riso孔版,,,,,平面;印刷,互联网研究整理,published,V1.0

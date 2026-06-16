@@ -1,0 +1,491 @@
+"""
+AI视觉设计与提示词工程百科 —— 只读 API 服务层（FastAPI）
+
+设计原则：
+- 以只读模式打开 SQLite 主库，物理上无法改坏数据。
+- 返回结构与 build_kb.py 导出的 data/exports/web/*.json 保持同构。
+- 仅提供查询，不开放写入；写入仍走「改 CSV → build」的可追溯流程。
+
+启动：
+    pip install -r api/requirements.txt
+    python -m uvicorn api.app:app --reload --port 8000
+文档：
+    http://localhost:8000/docs
+"""
+from __future__ import annotations
+
+import sqlite3
+from pathlib import Path
+from typing import Optional
+
+from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse, PlainTextResponse
+
+ROOT = Path(__file__).resolve().parents[1]
+DB_PATH = ROOT / "data" / "kb" / "visual_prompt_terms.sqlite"
+WEB_DIR = ROOT / "web"
+
+VALID_SORTS = {
+    "uid": "t.term_uid",
+    "zh": "t.zh_term",
+    "volume": "v.sequence_no, t.term_uid",
+    "status": "t.status, t.term_uid",
+}
+
+app = FastAPI(
+    title="AI视觉设计与提示词工程百科 API",
+    description="只读知识库接口：术语筛选、全文搜索、卷册/分类/标签元数据、提示词导出。",
+    version="2.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
+
+
+def get_conn() -> sqlite3.Connection:
+    """以只读模式连接主库。"""
+    if not DB_PATH.exists():
+        raise HTTPException(
+            status_code=503,
+            detail="数据库不存在，请先运行 python scripts/build_kb.py",
+        )
+    uri = f"file:{DB_PATH.as_posix()}?mode=ro"
+    conn = sqlite3.connect(uri, uri=True, check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+
+def split_list(value: Optional[str]) -> list[str]:
+    if not value:
+        return []
+    return [item.strip() for item in value.split(";") if item.strip()]
+
+
+def serialize_term(row: sqlite3.Row, full: bool = False) -> dict:
+    data = {
+        "term_uid": row["term_uid"],
+        "zh_term": row["zh_term"],
+        "en_term": row["en_term"] or "",
+        "volume_code": row["volume_code"],
+        "volume_title": row["volume_title"],
+        "category": row["category"] or "",
+        "definition_short": row["definition_short"] or "",
+        "positive_prompt": row["positive_prompt"] or "",
+        "negative_prompt": row["negative_prompt"] or "",
+        "tags": split_list(row["tags"] if "tags" in row.keys() else ""),
+        "status": row["status"],
+    }
+    if full:
+        data.update(
+            {
+                "definition_long": row["definition_long"] or "",
+                "visual_effect": row["visual_effect"] or "",
+                "prompt_usage": row["prompt_usage"] or "",
+                "use_cases": split_list(row["use_cases"]),
+                "aliases": split_list(row["aliases"]),
+                "related_terms": split_list(row["related_terms"]),
+                "confused_with": split_list(row["confused_with"]),
+                "source_refs": row["source_refs"] or "",
+                "version": row["version"],
+            }
+        )
+    return data
+
+
+TERM_BASE_SELECT = """
+    SELECT
+        t.id, t.term_uid, t.zh_term, t.en_term,
+        v.code AS volume_code, v.title AS volume_title, v.sequence_no,
+        c.name AS category,
+        t.definition_short, t.positive_prompt, t.negative_prompt, t.status,
+        COALESCE((SELECT GROUP_CONCAT(tags.name, ';')
+                  FROM term_tags JOIN tags ON tags.id = term_tags.tag_id
+                  WHERE term_tags.term_id = t.id), '') AS tags
+    FROM terms t
+    JOIN volumes v ON v.id = t.volume_id
+    LEFT JOIN categories c ON c.id = t.category_id
+"""
+
+
+@app.get("/api/health")
+def health() -> dict:
+    if not DB_PATH.exists():
+        return {"status": "no_db", "detail": "运行 python scripts/build_kb.py 生成主库"}
+    conn = get_conn()
+    try:
+        n = conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]
+    finally:
+        conn.close()
+    return {"status": "ok", "terms": n, "version": "2.0"}
+
+
+@app.get("/api/meta")
+def meta() -> dict:
+    """一次性返回卷册、标签、统计，供前端初始化下拉框。"""
+    conn = get_conn()
+    try:
+        volumes = _volumes(conn)
+        tag_rows = conn.execute(
+            """
+            SELECT tags.name, COUNT(term_tags.term_id) AS c
+            FROM tags LEFT JOIN term_tags ON term_tags.tag_id = tags.id
+            GROUP BY tags.id ORDER BY c DESC, tags.name
+            """
+        ).fetchall()
+        status_rows = conn.execute(
+            "SELECT status, COUNT(*) AS c FROM terms GROUP BY status"
+        ).fetchall()
+        total = conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]
+        target_total = sum(v["target_terms"] for v in volumes)
+    finally:
+        conn.close()
+    return {
+        "project": "AI视觉设计与提示词工程百科",
+        "version": "V1.0",
+        "total_terms": total,
+        "target_total": target_total,
+        "completion_percent": round(total * 100.0 / target_total, 2) if target_total else 0.0,
+        "status_counts": {r["status"]: r["c"] for r in status_rows},
+        "volumes": volumes,
+        "tags": [{"name": r["name"], "term_count": r["c"]} for r in tag_rows],
+    }
+
+
+def _volumes(conn: sqlite3.Connection) -> list[dict]:
+    rows = conn.execute(
+        """
+        SELECT v.code, v.title, v.sequence_no, v.target_terms, v.purpose,
+               COUNT(t.id) AS current_terms
+        FROM volumes v LEFT JOIN terms t ON t.volume_id = v.id
+        GROUP BY v.id ORDER BY v.sequence_no
+        """
+    ).fetchall()
+    out = []
+    for r in rows:
+        cats = conn.execute(
+            """
+            SELECT c.name, COUNT(t.id) AS c
+            FROM categories c LEFT JOIN terms t ON t.category_id = c.id
+            WHERE c.volume_id = (SELECT id FROM volumes WHERE code = ?)
+            GROUP BY c.id ORDER BY c.sort_order
+            """,
+            (r["code"],),
+        ).fetchall()
+        target = r["target_terms"] or 0
+        current = r["current_terms"] or 0
+        out.append(
+            {
+                "code": r["code"],
+                "title": r["title"],
+                "sequence": r["sequence_no"],
+                "target_terms": target,
+                "current_terms": current,
+                "completion_percent": round(current * 100.0 / target, 2) if target else 0.0,
+                "purpose": r["purpose"] or "",
+                "categories": [{"name": c["name"], "term_count": c["c"]} for c in cats],
+            }
+        )
+    return out
+
+
+@app.get("/api/volumes")
+def volumes() -> dict:
+    conn = get_conn()
+    try:
+        return {"items": _volumes(conn)}
+    finally:
+        conn.close()
+
+
+@app.get("/api/volumes/{code}/categories")
+def volume_categories(code: str) -> dict:
+    conn = get_conn()
+    try:
+        vol = conn.execute("SELECT id FROM volumes WHERE code = ?", (code,)).fetchone()
+        if not vol:
+            raise HTTPException(status_code=404, detail=f"未找到卷册 {code}")
+        rows = conn.execute(
+            """
+            SELECT c.name, COUNT(t.id) AS c
+            FROM categories c LEFT JOIN terms t ON t.category_id = c.id
+            WHERE c.volume_id = ? GROUP BY c.id ORDER BY c.sort_order
+            """,
+            (vol["id"],),
+        ).fetchall()
+        return {"volume_code": code, "items": [{"name": r["name"], "term_count": r["c"]} for r in rows]}
+    finally:
+        conn.close()
+
+
+@app.get("/api/tags")
+def tags() -> dict:
+    conn = get_conn()
+    try:
+        rows = conn.execute(
+            """
+            SELECT tags.name, COUNT(term_tags.term_id) AS c
+            FROM tags LEFT JOIN term_tags ON term_tags.tag_id = tags.id
+            GROUP BY tags.id ORDER BY c DESC, tags.name
+            """
+        ).fetchall()
+        return {"items": [{"name": r["name"], "term_count": r["c"]} for r in rows]}
+    finally:
+        conn.close()
+
+
+@app.get("/api/terms")
+def list_terms(
+    q: Optional[str] = Query(None, description="关键词，匹配中英文名/别名/定义"),
+    volume: Optional[str] = Query(None, description="卷册 code，如 V08"),
+    category: Optional[str] = Query(None, description="分类名"),
+    tag: Optional[str] = Query(None, description="标签名"),
+    status: Optional[str] = Query(None, description="draft/review/published/deprecated"),
+    sort: str = Query("volume", description="排序：uid/zh/volume/status"),
+    page: int = Query(1, ge=1),
+    page_size: int = Query(20, ge=1, le=200),
+) -> dict:
+    conn = get_conn()
+    try:
+        where = []
+        params: list = []
+        if volume:
+            where.append("v.code = ?")
+            params.append(volume)
+        if category:
+            where.append("c.name = ?")
+            params.append(category)
+        if status:
+            where.append("t.status = ?")
+            params.append(status)
+        if tag:
+            where.append(
+                "t.id IN (SELECT term_tags.term_id FROM term_tags "
+                "JOIN tags ON tags.id = term_tags.tag_id WHERE tags.name = ?)"
+            )
+            params.append(tag)
+        if q:
+            like = f"%{q}%"
+            where.append(
+                "(t.zh_term LIKE ? OR t.en_term LIKE ? OR t.definition_short LIKE ? "
+                "OR t.id IN (SELECT term_id FROM term_aliases WHERE alias LIKE ?))"
+            )
+            params.extend([like, like, like, like])
+
+        where_sql = (" WHERE " + " AND ".join(where)) if where else ""
+        total = conn.execute(
+            f"SELECT COUNT(*) FROM terms t JOIN volumes v ON v.id = t.volume_id "
+            f"LEFT JOIN categories c ON c.id = t.category_id{where_sql}",
+            params,
+        ).fetchone()[0]
+
+        order_sql = VALID_SORTS.get(sort, VALID_SORTS["volume"])
+        offset = (page - 1) * page_size
+        rows = conn.execute(
+            f"{TERM_BASE_SELECT}{where_sql} ORDER BY {order_sql} LIMIT ? OFFSET ?",
+            params + [page_size, offset],
+        ).fetchall()
+
+        return {
+            "page": page,
+            "page_size": page_size,
+            "total": total,
+            "total_pages": (total + page_size - 1) // page_size if page_size else 0,
+            "items": [serialize_term(r) for r in rows],
+        }
+    finally:
+        conn.close()
+
+
+@app.get("/api/terms/{term_uid}")
+def term_detail(term_uid: str) -> dict:
+    conn = get_conn()
+    try:
+        row = conn.execute(
+            """
+            SELECT
+                t.id, t.term_uid, t.zh_term, t.en_term,
+                v.code AS volume_code, v.title AS volume_title,
+                c.name AS category,
+                t.definition_short, t.definition_long, t.visual_effect,
+                t.prompt_usage, t.positive_prompt, t.negative_prompt,
+                t.use_cases, t.source_refs, t.status, t.version,
+                COALESCE((SELECT GROUP_CONCAT(alias, ';') FROM term_aliases WHERE term_id = t.id), '') AS aliases,
+                COALESCE((SELECT GROUP_CONCAT(tags.name, ';') FROM term_tags
+                          JOIN tags ON tags.id = term_tags.tag_id WHERE term_tags.term_id = t.id), '') AS tags,
+                COALESCE((SELECT GROUP_CONCAT(target_label, ';') FROM term_relations
+                          WHERE source_term_id = t.id AND relation_type = 'related'), '') AS related_terms,
+                COALESCE((SELECT GROUP_CONCAT(target_label, ';') FROM term_relations
+                          WHERE source_term_id = t.id AND relation_type = 'confused_with'), '') AS confused_with
+            FROM terms t
+            JOIN volumes v ON v.id = t.volume_id
+            LEFT JOIN categories c ON c.id = t.category_id
+            WHERE t.term_uid = ?
+            """,
+            (term_uid,),
+        ).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail=f"未找到术语 {term_uid}")
+        return serialize_term(row, full=True)
+    finally:
+        conn.close()
+
+
+@app.get("/api/search")
+def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=100)) -> dict:
+    """全文搜索：FTS5 优先（强于拉丁词），LIKE 兜底（覆盖中文子串）。"""
+    conn = get_conn()
+    try:
+        uids: list[str] = []
+        seen: set[str] = set()
+        try:
+            fts = conn.execute(
+                "SELECT term_uid FROM terms_fts WHERE terms_fts MATCH ? LIMIT ?",
+                (q, limit),
+            ).fetchall()
+            for r in fts:
+                if r[0] not in seen:
+                    uids.append(r[0])
+                    seen.add(r[0])
+        except sqlite3.Error:
+            pass
+
+        like = f"%{q}%"
+        like_rows = conn.execute(
+            f"""{TERM_BASE_SELECT}
+            LEFT JOIN term_aliases a ON a.term_id = t.id
+            WHERE t.zh_term LIKE ? OR t.en_term LIKE ? OR a.alias LIKE ?
+               OR t.definition_short LIKE ? OR t.definition_long LIKE ? OR t.prompt_usage LIKE ?
+            GROUP BY t.id ORDER BY v.sequence_no, t.term_uid LIMIT ?
+            """,
+            (like, like, like, like, like, like, limit),
+        ).fetchall()
+
+        by_uid: dict[str, sqlite3.Row] = {}
+        for r in like_rows:
+            by_uid[r["term_uid"]] = r
+            if r["term_uid"] not in seen:
+                uids.append(r["term_uid"])
+                seen.add(r["term_uid"])
+
+        # 补齐 FTS 命中但不在 LIKE 结果里的行
+        missing = [u for u in uids if u not in by_uid]
+        if missing:
+            ph = ",".join("?" for _ in missing)
+            for r in conn.execute(
+                f"{TERM_BASE_SELECT} WHERE t.term_uid IN ({ph})", missing
+            ).fetchall():
+                by_uid[r["term_uid"]] = r
+
+        items = [serialize_term(by_uid[u]) for u in uids[:limit] if u in by_uid]
+        return {"query": q, "count": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+@app.get("/api/stats")
+def stats() -> dict:
+    conn = get_conn()
+    try:
+        volumes = _volumes(conn)
+        total = conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]
+        target_total = sum(v["target_terms"] for v in volumes)
+        status_rows = conn.execute(
+            "SELECT status, COUNT(*) AS c FROM terms GROUP BY status"
+        ).fetchall()
+        return {
+            "total_terms": total,
+            "target_total": target_total,
+            "completion_percent": round(total * 100.0 / target_total, 2) if target_total else 0.0,
+            "status_counts": {r["status"]: r["c"] for r in status_rows},
+            "volumes": volumes,
+        }
+    finally:
+        conn.close()
+
+
+@app.get("/api/export/prompts")
+def export_prompts(
+    volume: Optional[str] = Query(None),
+    tag: Optional[str] = Query(None),
+    format: str = Query("json", pattern="^(json|text)$"),
+):
+    """按筛选导出纯提示词清单，给提示词工程批量取用。"""
+    conn = get_conn()
+    try:
+        where = ["t.positive_prompt IS NOT NULL AND t.positive_prompt != ''"]
+        params: list = []
+        if volume:
+            where.append("v.code = ?")
+            params.append(volume)
+        if tag:
+            where.append(
+                "t.id IN (SELECT term_tags.term_id FROM term_tags "
+                "JOIN tags ON tags.id = term_tags.tag_id WHERE tags.name = ?)"
+            )
+            params.append(tag)
+        where_sql = " WHERE " + " AND ".join(where)
+        rows = conn.execute(
+            f"""
+            SELECT t.term_uid, t.zh_term, t.en_term, v.code AS volume_code,
+                   t.positive_prompt, t.negative_prompt
+            FROM terms t JOIN volumes v ON v.id = t.volume_id{where_sql}
+            ORDER BY v.sequence_no, t.term_uid
+            """,
+            params,
+        ).fetchall()
+    finally:
+        conn.close()
+
+    if format == "text":
+        lines = []
+        for r in rows:
+            lines.append(f"# {r['zh_term']} / {r['en_term']} [{r['term_uid']}]")
+            lines.append(f"+ {r['positive_prompt']}")
+            if r["negative_prompt"]:
+                lines.append(f"- {r['negative_prompt']}")
+            lines.append("")
+        return PlainTextResponse("\n".join(lines))
+
+    return JSONResponse(
+        {
+            "count": len(rows),
+            "items": [
+                {
+                    "term_uid": r["term_uid"],
+                    "zh_term": r["zh_term"],
+                    "en_term": r["en_term"] or "",
+                    "volume_code": r["volume_code"],
+                    "positive_prompt": r["positive_prompt"] or "",
+                    "negative_prompt": r["negative_prompt"] or "",
+                }
+                for r in rows
+            ],
+        }
+    )
+
+
+@app.get("/")
+def root() -> dict:
+    return {
+        "name": "AI视觉设计与提示词工程百科 API",
+        "docs": "/docs",
+        "web": "/app/" if (WEB_DIR / "index.html").exists() else None,
+        "endpoints": [
+            "/api/health", "/api/meta", "/api/volumes", "/api/tags",
+            "/api/terms", "/api/terms/{term_uid}", "/api/search",
+            "/api/stats", "/api/export/prompts",
+        ],
+    }
+
+
+# 把前端单页同源挂到 /app/ ——这样浏览器打开 http://localhost:8000/app/ 即是 API 模式，无需额外静态服务器。
+if (WEB_DIR / "index.html").exists():
+    from fastapi.staticfiles import StaticFiles
+
+    app.mount("/app", StaticFiles(directory=str(WEB_DIR), html=True), name="web")
+

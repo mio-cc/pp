@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.venv/
+.pid
+logs/
+data/kb/*.sqlite
+data/kb/*.sqlite-*
+data/exports/*.jsonl
+data/exports/*.csv
+data/exports/web/
+generated/terms/
+*.egg-info/
+.env

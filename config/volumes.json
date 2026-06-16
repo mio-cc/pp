@@ -1,0 +1,154 @@
+{
+  "project": {
+    "name": "AI视觉设计与提示词工程百科",
+    "version": "V1.0",
+    "target_total_terms": 10000,
+    "language": "zh-CN",
+    "source_of_truth": "data/kb/visual_prompt_terms.sqlite"
+  },
+  "volumes": [
+    {
+      "code": "V01",
+      "sequence": 1,
+      "title": "摄影体系",
+      "target_terms": 500,
+      "purpose": "建立摄影语言、器材、曝光、镜头和拍摄类型的基础词汇。",
+      "categories": ["摄影基础", "相机与感光", "曝光控制", "镜头与景深", "构图与机位", "摄影类型"]
+    },
+    {
+      "code": "V02",
+      "sequence": 2,
+      "title": "电影摄影体系",
+      "target_terms": 800,
+      "purpose": "覆盖镜头语言、运动、影调、摄影指导工作流与电影画面风格。",
+      "categories": ["镜头景别", "摄影机运动", "灯光与影调", "镜头语言", "电影格式", "片场工作流"]
+    },
+    {
+      "code": "V03",
+      "sequence": 3,
+      "title": "绘画与艺术流派",
+      "target_terms": 600,
+      "purpose": "沉淀绘画媒介、艺术史流派、笔触、造型和艺术风格提示词。",
+      "categories": ["绘画媒介", "艺术流派与时代", "笔触与肌理", "造型语言", "艺术理论", "代表性风格"]
+    },
+    {
+      "code": "V04",
+      "sequence": 4,
+      "title": "游戏原画与概念设计",
+      "target_terms": 1000,
+      "purpose": "服务角色、场景、道具、生物、世界观和生产管线中的视觉概念表达。",
+      "categories": ["角色设计", "场景与世界观", "道具与装备", "生物设计", "UI与图标", "概念设计流程"]
+    },
+    {
+      "code": "V05",
+      "sequence": 5,
+      "title": "平面设计与版式",
+      "target_terms": 500,
+      "purpose": "覆盖字体、网格、品牌、海报、信息层级和印刷相关术语。",
+      "categories": ["字体与排印", "版式与网格", "品牌视觉", "海报与广告", "信息设计", "印刷工艺"]
+    },
+    {
+      "code": "V06",
+      "sequence": 6,
+      "title": "灯光与色彩科学",
+      "target_terms": 800,
+      "purpose": "统一光度、色彩理论、色彩管理、HDR、照明布置和人眼感知词汇。",
+      "categories": ["光度与照度", "色彩科学", "色彩管理", "灯光布置", "HDR与动态范围", "视觉感知"]
+    },
+    {
+      "code": "V07",
+      "sequence": 7,
+      "title": "材质与渲染",
+      "target_terms": 500,
+      "purpose": "覆盖 PBR、贴图、Shader、渲染算法、表面属性和引擎术语。",
+      "categories": ["PBR材质", "贴图通道", "Shader与节点", "渲染算法", "表面与质感", "引擎与管线"]
+    },
+    {
+      "code": "V08",
+      "sequence": 8,
+      "title": "Prompt工程学",
+      "target_terms": 1000,
+      "purpose": "沉淀提示词结构、修饰符、负向提示词、参数、评估与迭代方法。",
+      "categories": ["提示词结构", "视觉修饰符", "负向与约束", "参数与随机性", "评估与迭代", "多模态提示"]
+    },
+    {
+      "code": "V09",
+      "sequence": 9,
+      "title": "构图与视觉叙事",
+      "target_terms": 600,
+      "purpose": "补足跨摄影、电影、绘画和游戏的视觉语法、叙事节奏与观看路径。",
+      "categories": ["构图语法", "视觉层级", "叙事节奏", "视角与主体", "格式与画幅", "心理与格式塔"]
+    },
+    {
+      "code": "V10",
+      "sequence": 10,
+      "title": "建筑、室内与空间设计",
+      "target_terms": 650,
+      "purpose": "覆盖建筑风格、空间构件、室内陈设、景观、空间氛围和环境提示词。",
+      "categories": ["建筑风格", "建筑空间", "室内设计", "家具与陈设", "景观与城市", "空间氛围"]
+    },
+    {
+      "code": "V11",
+      "sequence": 11,
+      "title": "时尚、服装与造型",
+      "target_terms": 550,
+      "purpose": "覆盖服装结构、面料、廓形、时代风格、配饰、发妆和人物造型。",
+      "categories": ["服装结构", "面料与纹样", "廓形与剪裁", "时代与风格", "配饰与道具", "发妆与造型"]
+    },
+    {
+      "code": "V12",
+      "sequence": 12,
+      "title": "动画、分镜与动态设计",
+      "target_terms": 650,
+      "purpose": "覆盖动画原则、分镜、时间控制、绑定、特效和动态图形术语。",
+      "categories": ["动画基础", "分镜语言", "时间与节奏", "角色绑定", "特效与合成", "动态图形"]
+    },
+    {
+      "code": "V13",
+      "sequence": 13,
+      "title": "后期、调色与影像处理",
+      "target_terms": 600,
+      "purpose": "覆盖剪辑、修图、调色、合成、滤镜、修复和输出管理。",
+      "categories": ["剪辑基础", "修图与润饰", "调色流程", "合成技术", "滤镜与效果", "输出与交付"]
+    },
+    {
+      "code": "V14",
+      "sequence": 14,
+      "title": "AI图像模型参数与工作流",
+      "target_terms": 650,
+      "purpose": "覆盖模型、采样、控制条件、LoRA、放大修复、节点流和生产工作流。",
+      "categories": ["模型类型", "采样与调度", "控制与条件生成", "LoRA与微调", "放大与修复", "节点与自动化"]
+    },
+    {
+      "code": "V15",
+      "sequence": 15,
+      "title": "视觉风格、审美标签与时代风格",
+      "target_terms": 600,
+      "purpose": "整理跨媒介的审美标签、时代风格、地域风格、网络美学和混合风格。",
+      "categories": ["类型与审美标签", "时代风格", "地域风格", "网络美学", "品牌语气", "混合媒介"]
+    }
+  ],
+  "relation_types": [
+    "broader",
+    "narrower",
+    "related",
+    "confused_with",
+    "prompt_synonym",
+    "visual_equivalent",
+    "pipeline_before",
+    "pipeline_after"
+  ],
+  "cross_volume_edges": [
+    {"source": "V01", "target": "V02", "type": "foundation_to_application", "rationale": "摄影基础支撑电影摄影镜头语言。"},
+    {"source": "V01", "target": "V06", "type": "shared_science", "rationale": "曝光、色彩、光线共同依赖光学与色彩科学。"},
+    {"source": "V02", "target": "V09", "type": "visual_grammar", "rationale": "电影镜头语言与视觉叙事共用构图、节奏和视角体系。"},
+    {"source": "V03", "target": "V15", "type": "style_source", "rationale": "艺术流派是审美标签和时代风格的重要来源。"},
+    {"source": "V04", "target": "V07", "type": "production_dependency", "rationale": "游戏概念设计需要材质与渲染词汇表达最终质感。"},
+    {"source": "V05", "target": "V09", "type": "layout_to_hierarchy", "rationale": "版式中的视觉层级可复用到通用构图与叙事。"},
+    {"source": "V08", "target": "V14", "type": "prompt_to_workflow", "rationale": "提示词工程与模型参数、控制条件、节点工作流需要协同。"},
+    {"source": "V13", "target": "V06", "type": "color_pipeline", "rationale": "调色和影像处理依赖色彩科学与色彩管理。"},
+    {"source": "V14", "target": "V13", "type": "pipeline_after", "rationale": "AI 生成图像通常进入后期、调色与交付流程。"},
+    {"source": "V15", "target": "V08", "type": "prompt_vocabulary", "rationale": "审美标签是提示词工程中的高频风格词来源。"}
+  ]
+}
+

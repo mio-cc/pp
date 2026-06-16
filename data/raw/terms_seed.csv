@@ -621,3 +621,121 @@ V08_T0051,区域提示,Regional Prompt,,V08,多模态与控制,分区控制。,,
 V08_T0052,LoRA触发词,LoRA Trigger,,V08,多模态与控制,调用微调模型。,,,,LoRA trigger word,,LoRA触发词,,,,,Prompt;多模态,整理,published,V1.0
 V08_T0053,文本反演,Textual Inversion,,V08,多模态与控制,embedding嵌入。,,,,textual inversion embedding,,文本反演,,,,,Prompt;多模态,整理,published,V1.0
 V08_T0054,IP-Adapter,IP-Adapter,,V08,多模态与控制,图像提示适配。,,,,IP-Adapter image prompt,,IP-Adapter,,,,,Prompt;多模态,整理,published,V1.0
+V09_T0001,三分法,Rule of Thirds,,V09,构图语法,三分线。,,,,rule of thirds composition,,三分法,,,,,构图;语法,整理,published,V1.0
+V09_T0002,黄金螺旋,Golden Spiral,,V09,构图语法,斐波那契螺旋。,,,,golden spiral fibonacci composition,,黄金螺旋,,,,,构图;语法,整理,published,V1.0
+V09_T0003,中心对称,Central Symmetry,,V09,构图语法,居中对称。,,,,central symmetrical composition,,中心对称,,,,,构图;语法,整理,published,V1.0
+V09_T0004,对角线,Diagonal,,V09,构图语法,对角动感。,,,,diagonal dynamic composition,,对角线,,,,,构图;语法,整理,published,V1.0
+V09_T0005,引导线,Leading Lines,,V09,构图语法,线条引导。,,,,leading lines,,引导线,,,,,构图;语法,整理,published,V1.0
+V09_T0006,框架式,Framing,,V09,构图语法,框架包围。,,,,framing composition,,框架式,,,,,构图;语法,整理,published,V1.0
+V09_T0007,三角构图,Triangular,,V09,构图语法,稳定三角。,,,,triangular composition,,三角构图,,,,,构图;语法,整理,published,V1.0
+V09_T0008,S形曲线,S-Curve,,V09,构图语法,蜿蜒S线。,,,,S-curve composition,,S形曲线,,,,,构图;语法,整理,published,V1.0
+V09_T0009,重复韵律,Repetition,,V09,构图语法,图案节奏。,,,,repetition pattern rhythm,,重复韵律,,,,,构图;语法,整理,published,V1.0
+V09_T0010,放射构图,Radial,,V09,构图语法,中心放射。,,,,radial composition,,放射构图,,,,,构图;语法,整理,published,V1.0
+V09_T0011,水平线构图,Horizontal,,V09,构图语法,平稳水平。,,,,horizontal calm composition,,水平线构图,,,,,构图;语法,整理,published,V1.0
+V09_T0012,视觉重心,Visual Weight,,V09,视觉层级与引导,注意力重点。,,,,visual weight focal emphasis,,视觉重心,,,,,构图;层级,整理,published,V1.0
+V09_T0013,主次层级,Hierarchy,,V09,视觉层级与引导,主次分明。,,,,visual hierarchy primary secondary,,主次层级,,,,,构图;层级,整理,published,V1.0
+V09_T0014,视线引导,Eye Flow,,V09,视觉层级与引导,引导视线流。,,,,eye flow guidance,,视线引导,,,,,构图;层级,整理,published,V1.0
+V09_T0015,对比强调,Contrast Emphasis,,V09,视觉层级与引导,对比突出主体。,,,,contrast emphasis subject pop,,对比强调,,,,,构图;层级,整理,published,V1.0
+V09_T0016,前中后景,Foreground Layers,,V09,视觉层级与引导,空间纵深层次。,,,,foreground midground background layers,,前中后景,,,,,构图;层级,整理,published,V1.0
+V09_T0017,留白呼吸,Negative Space,,V09,视觉层级与引导,留白呼吸。,,,,negative space breathing room,,留白呼吸,,,,,构图;层级,整理,published,V1.0
+V09_T0018,视觉引力,Focal Point,,V09,视觉层级与引导,视觉焦点。,,,,clear focal point,,视觉焦点,,,,,构图;层级,整理,published,V1.0
+V09_T0019,视觉节奏,Visual Rhythm,,V09,叙事与张力,元素节奏。,,,,visual rhythm pacing,,视觉节奏,,,,,构图;叙事,整理,published,V1.0
+V09_T0020,画面张力,Tension,,V09,叙事与张力,对立张力。,,,,compositional tension,,画面张力,,,,,构图;叙事,整理,published,V1.0
+V09_T0021,叙事留白,Narrative Space,,V09,叙事与张力,想象空间。,,,,narrative space suggestion,,叙事留白,,,,,构图;叙事,整理,published,V1.0
+V09_T0022,方向暗示,Implied Direction,,V09,叙事与张力,方向运动暗示。,,,,implied movement direction,,方向暗示,,,,,构图;叙事,整理,published,V1.0
+V09_T0023,呼应平衡,Balance,,V09,叙事与张力,视觉平衡。,,,,visual balance equilibrium,,呼应平衡,,,,,构图;叙事,整理,published,V1.0
+V09_T0024,打破常规,Breaking Symmetry,,V09,叙事与张力,破缺张力。,,,,broken symmetry tension,,打破常规,,,,,构图;叙事,整理,published,V1.0
+V09_T0025,平视,Eye Level,,V09,视角与画幅,中立平视。,,,,eye level neutral,,平视,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0026,俯视,High Angle,,V09,视角与画幅,向下俯视。,,,,high angle down,,俯视,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0027,仰视,Low Angle,,V09,视角与画幅,向上仰视气势。,,,,low angle up powerful,,仰视,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0028,鸟瞰,Aerial Top,,V09,视角与画幅,顶视俯瞰。,,,,top-down aerial view,,鸟瞰,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0029,正方形画幅,Square 1:1,,V09,视角与画幅,方形构图。,,,,square 1:1 framing,,正方形画幅,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0030,竖幅,Vertical Frame,,V09,视角与画幅,竖构图。,,,,vertical portrait frame,,竖幅,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0031,宽幅全景,Panorama,,V09,视角与画幅,超宽全景。,,,,wide panoramic frame,,宽幅全景,,,,,构图;视角画幅,整理,published,V1.0
+V09_T0032,接近原则,Proximity,,V09,心理与格式塔,邻近成组。,,,,gestalt proximity grouping,,接近原则,,,,,构图;格式塔,整理,published,V1.0
+V09_T0033,相似原则,Similarity,,V09,心理与格式塔,相似成组。,,,,gestalt similarity,,相似原则,,,,,构图;格式塔,整理,published,V1.0
+V09_T0034,闭合原则,Closure,,V09,心理与格式塔,自动补全。,,,,gestalt closure,,闭合原则,,,,,构图;格式塔,整理,published,V1.0
+V09_T0035,连续原则,Continuity,,V09,心理与格式塔,视线连续。,,,,gestalt continuity,,连续原则,,,,,构图;格式塔,整理,published,V1.0
+V09_T0036,图底关系,Figure-Ground,,V09,心理与格式塔,图与底。,,,,figure-ground relationship,,图底关系,,,,,构图;格式塔,整理,published,V1.0
+V09_T0037,简化原则,Pragnanz,,V09,心理与格式塔,简洁优先。,,,,gestalt pragnanz simplicity,,简化原则,,,,,构图;格式塔,整理,published,V1.0
+V10_T0001,古典主义建筑,Classical,,V10,建筑风格,柱式对称神庙。,,,,"classical architecture, columns symmetry",,古典主义建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0002,哥特建筑,Gothic,,V10,建筑风格,尖拱飞扶壁。,,,,"gothic architecture, pointed arches",,哥特建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0003,巴洛克建筑,Baroque Arch,,V10,建筑风格,华丽曲线装饰。,,,,"baroque architecture, ornate",,巴洛克建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0004,现代主义,Modernism,,V10,建筑风格,简洁功能。,,,,"modernist architecture, clean functional",,现代主义建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0005,包豪斯,Bauhaus,,V10,建筑风格,几何功能主义。,,,,"bauhaus architecture, geometric",,包豪斯,,,,,建筑;风格,整理,published,V1.0
+V10_T0006,极简建筑,Minimalist Arch,,V10,建筑风格,极简纯净。,,,,minimalist architecture,,极简建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0007,解构主义,Deconstructivism,,V10,建筑风格,扭曲碎裂。,,,,deconstructivist architecture,,解构主义,,,,,建筑;风格,整理,published,V1.0
+V10_T0008,粗野主义,Brutalism,,V10,建筑风格,裸露混凝土。,,,,brutalist concrete architecture,,粗野主义,,,,,建筑;风格,整理,published,V1.0
+V10_T0009,新中式,New Chinese,,V10,建筑风格,东方禅意现代。,,,,new chinese style architecture,,新中式,,,,,建筑;风格,整理,published,V1.0
+V10_T0010,日式侘寂,Wabi-Sabi,,V10,建筑风格,质朴禅意。,,,,japanese wabi-sabi architecture,,日式侘寂,,,,,建筑;风格,整理,published,V1.0
+V10_T0011,工业风,Industrial,,V10,建筑风格,裸露管线砖墙。,,,,industrial loft architecture,,工业风,,,,,建筑;风格,整理,published,V1.0
+V10_T0012,未来主义建筑,Futuristic,,V10,建筑风格,流线科幻。,,,,"futuristic architecture, sci-fi",,未来主义建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0013,有机建筑,Organic Arch,,V10,建筑风格,自然流线。,,,,organic architecture flowing,,有机建筑,,,,,建筑;风格,整理,published,V1.0
+V10_T0014,中庭,Atrium,,V10,建筑空间,通高中庭。,,,,atrium tall central space,,中庭,,,,,建筑;空间,整理,published,V1.0
+V10_T0015,玻璃幕墙,Glass Curtain Wall,,V10,建筑空间,通透幕墙。,,,,glass curtain wall facade,,玻璃幕墙,,,,,建筑;空间,整理,published,V1.0
+V10_T0016,悬挑结构,Cantilever,,V10,建筑空间,悬挑出挑。,,,,cantilever structure,,悬挑结构,,,,,建筑;空间,整理,published,V1.0
+V10_T0017,开放平面,Open Plan,,V10,建筑空间,开放空间。,,,,open floor plan,,开放平面,,,,,建筑;空间,整理,published,V1.0
+V10_T0018,螺旋楼梯,Spiral Stair,,V10,建筑空间,旋转楼梯。,,,,spiral staircase,,螺旋楼梯,,,,,建筑;空间,整理,published,V1.0
+V10_T0019,拱廊,Arcade,,V10,建筑空间,连续拱券。,,,,arcade arches,,拱廊,,,,,建筑;空间,整理,published,V1.0
+V10_T0020,北欧风,Scandinavian,,V10,室内设计,简约温暖原木。,,,,"scandinavian interior, light wood",,北欧风,,,,,建筑;室内,整理,published,V1.0
+V10_T0021,极简室内,Minimalist Interior,,V10,室内设计,极简留白。,,,,minimalist interior,,极简室内,,,,,建筑;室内,整理,published,V1.0
+V10_T0022,工业风室内,Industrial Interior,,V10,室内设计,裸露做旧。,,,,industrial interior loft,,工业风室内,,,,,建筑;室内,整理,published,V1.0
+V10_T0023,日式原木,Japandi,,V10,室内设计,日式素雅。,,,,japandi interior,,日式原木,,,,,建筑;室内,整理,published,V1.0
+V10_T0024,奶油风,Cream Style,,V10,室内设计,柔和奶油色。,,,,cream style cozy interior,,奶油风,,,,,建筑;室内,整理,published,V1.0
+V10_T0025,法式复古,French Vintage,,V10,室内设计,优雅复古。,,,,french vintage interior,,法式复古,,,,,建筑;室内,整理,published,V1.0
+V10_T0026,中古风,Mid-Century,,V10,室内设计,中世纪现代。,,,,mid-century modern interior,,中古风,,,,,建筑;室内,整理,published,V1.0
+V10_T0027,侘寂室内,Wabi-Sabi Interior,,V10,室内设计,质朴禅意。,,,,wabi-sabi interior,,侘寂室内,,,,,建筑;室内,整理,published,V1.0
+V10_T0028,赛博朋克室内,Cyberpunk Interior,,V10,室内设计,霓虹未来。,,,,cyberpunk neon interior,,赛博朋克室内,,,,,建筑;室内,整理,published,V1.0
+V10_T0029,北欧家具,Scandinavian Furniture,,V10,家具与陈设,原木简约家具。,,,,scandinavian furniture,,北欧家具,,,,,建筑;家具,整理,published,V1.0
+V10_T0030,中古家具,Mid-Century Furniture,,V10,家具与陈设,复古设计椅。,,,,mid-century furniture,,中古家具,,,,,建筑;家具,整理,published,V1.0
+V10_T0031,软装陈设,Soft Furnishing,,V10,家具与陈设,布艺装饰。,,,,soft furnishing decor,,软装陈设,,,,,建筑;家具,整理,published,V1.0
+V10_T0032,绿植装饰,Plants Decor,,V10,家具与陈设,室内绿植。,,,,indoor plants decor,,绿植装饰,,,,,建筑;家具,整理,published,V1.0
+V10_T0033,城市天际线,Skyline,,V10,景观与氛围,都市天际线。,,,,city skyline,,城市天际线,,,,,建筑;景观氛围,整理,published,V1.0
+V10_T0034,园林景观,Garden Landscape,,V10,景观与氛围,古典园林。,,,,garden landscape,,园林景观,,,,,建筑;景观氛围,整理,published,V1.0
+V10_T0035,中庭光井,Light Well,,V10,景观与氛围,天光光井。,,,,light well atrium glow,,光井,,,,,建筑;景观氛围,整理,published,V1.0
+V10_T0036,空间光影,Spatial Light,,V10,景观与氛围,光影氛围。,,,,spatial light and shadow mood,,空间光影,,,,,建筑;景观氛围,整理,published,V1.0
+V10_T0037,黄昏暖光室内,Golden Interior Light,,V10,景观与氛围,暖阳室内。,,,,warm golden hour interior light,,黄昏暖光室内,,,,,建筑;景观氛围,整理,published,V1.0
+V11_T0001,A字廓形,A-Line,,V11,廓形剪裁,上窄下宽。,,,,A-line silhouette,,A字廓形,,,,,时尚;廓形,整理,published,V1.0
+V11_T0002,H字廓形,H-Line,,V11,廓形剪裁,直筒。,,,,H-line straight silhouette,,H字廓形,,,,,时尚;廓形,整理,published,V1.0
+V11_T0003,X字廓形,X-Line,,V11,廓形剪裁,收腰。,,,,X-line cinched waist,,X字廓形,,,,,时尚;廓形,整理,published,V1.0
+V11_T0004,O字廓形,Cocoon,,V11,廓形剪裁,茧型。,,,,cocoon O-line silhouette,,O字廓形,,,,,时尚;廓形,整理,published,V1.0
+V11_T0005,oversize廓形,Oversized,,V11,廓形剪裁,宽松超大。,,,,oversized loose silhouette,,oversize廓形,,,,,时尚;廓形,整理,published,V1.0
+V11_T0006,修身剪裁,Slim Fit,,V11,廓形剪裁,贴身。,,,,slim tailored fit,,修身剪裁,,,,,时尚;廓形,整理,published,V1.0
+V11_T0007,丝绸,Silk,,V11,面料与纹样,顺滑光泽。,,,,"silk fabric, sheen drape",,丝绸,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0008,针织,Knit,,V11,面料与纹样,毛线针织。,,,,knit fabric texture,,针织,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0009,牛仔丹宁,Denim,,V11,面料与纹样,丹宁。,,,,denim fabric,,牛仔丹宁,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0010,皮革,Leather Garment,,V11,面料与纹样,皮衣。,,,,leather garment,,皮革,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0011,雪纺,Chiffon,,V11,面料与纹样,轻薄飘逸。,,,,chiffon sheer flowing,,雪纺,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0012,格纹,Plaid,,V11,面料与纹样,格子纹。,,,,plaid tartan pattern,,格纹,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0013,条纹,Stripes,,V11,面料与纹样,条纹。,,,,stripe pattern,,条纹,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0014,印花,Floral Print,,V11,面料与纹样,花卉印花。,,,,floral print,,印花,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0015,豹纹,Animal Print,,V11,面料与纹样,动物纹。,,,,leopard animal print,,豹纹,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0016,亮片,Sequins,,V11,面料与纹样,闪片。,,,,sequins sparkle,,亮片,,,,,时尚;面料纹样,整理,published,V1.0
+V11_T0017,街头风,Streetwear,,V11,风格流派,潮流街头。,,,,streetwear style,,街头风,,,,,时尚;风格,整理,published,V1.0
+V11_T0018,极简风,Minimalist Fashion,,V11,风格流派,极简。,,,,minimalist fashion,,极简风,,,,,时尚;风格,整理,published,V1.0
+V11_T0019,复古风,Vintage Fashion,,V11,风格流派,怀旧复古。,,,,vintage retro fashion,,复古风,,,,,时尚;风格,整理,published,V1.0
+V11_T0020,朋克风,Punk,,V11,风格流派,叛逆铆钉。,,,,"punk fashion, studs",,朋克风,,,,,时尚;风格,整理,published,V1.0
+V11_T0021,波西米亚,Boho,,V11,风格流派,民族流苏。,,,,bohemian boho style,,波西米亚,,,,,时尚;风格,整理,published,V1.0
+V11_T0022,学院风,Preppy,,V11,风格流派,学院制服。,,,,preppy academia style,,学院风,,,,,时尚;风格,整理,published,V1.0
+V11_T0023,哥特风,Gothic Fashion,,V11,风格流派,暗黑哥特。,,,,gothic dark fashion,,哥特风,,,,,时尚;风格,整理,published,V1.0
+V11_T0024,洛丽塔,Lolita,,V11,风格流派,蓬裙甜美。,,,,lolita fashion,,洛丽塔,,,,,时尚;风格,整理,published,V1.0
+V11_T0025,赛博朋克时装,Cyberpunk Fashion,,V11,风格流派,未来机能。,,,,cyberpunk techwear fashion,,赛博朋克时装,,,,,时尚;风格,整理,published,V1.0
+V11_T0026,机能风,Techwear,,V11,风格流派,功能机能。,,,,techwear functional,,机能风,,,,,时尚;风格,整理,published,V1.0
+V11_T0027,国潮汉服,Hanfu,,V11,风格流派,中式汉服。,,,,hanfu chinese traditional,,国潮汉服,,,,,时尚;风格,整理,published,V1.0
+V11_T0028,高定礼服,Haute Couture,,V11,风格流派,高级定制。,,,,haute couture gown,,高定礼服,,,,,时尚;风格,整理,published,V1.0
+V11_T0029,20年代Gatsby,1920s Flapper,,V11,时代时尚,流苏装饰艺术。,,,,1920s flapper art deco fashion,,20年代,,,,,时尚;时代,整理,published,V1.0
+V11_T0030,50年代,1950s,,V11,时代时尚,蓬裙优雅。,,,,1950s elegant full skirt,,50年代,,,,,时尚;时代,整理,published,V1.0
+V11_T0031,70年代,1970s,,V11,时代时尚,嬉皮迪斯科。,,,,1970s disco hippie,,70年代,,,,,时尚;时代,整理,published,V1.0
+V11_T0032,80年代,1980s,,V11,时代时尚,夸张垫肩。,,,,1980s bold shoulder pad,,80年代,,,,,时尚;时代,整理,published,V1.0
+V11_T0033,90年代,1990s,,V11,时代时尚,极简grunge。,,,,1990s grunge minimal,,90年代,,,,,时尚;时代,整理,published,V1.0
+V11_T0034,Y2K千禧,Y2K,,V11,时代时尚,千禧未来感。,,,,Y2K millennium fashion,,Y2K千禧,,,,,时尚;时代,整理,published,V1.0
+V11_T0035,帽饰,Hats,,V11,配饰发妆,帽子配饰。,,,,hat headwear accessory,,帽饰,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0036,珠宝首饰,Jewelry,,V11,配饰发妆,项链耳环。,,,,jewelry necklace earrings,,珠宝首饰,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0037,箱包,Handbag,,V11,配饰发妆,手袋。,,,,designer handbag,,箱包,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0038,墨镜,Sunglasses,,V11,配饰发妆,太阳镜。,,,,sunglasses,,墨镜,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0039,浓妆,Bold Makeup,,V11,配饰发妆,浓艳妆容。,,,,bold dramatic makeup,,浓妆,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0040,裸妆,Natural Makeup,,V11,配饰发妆,自然裸妆。,,,,natural nude makeup,,裸妆,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0041,烟熏妆,Smoky Eye,,V11,配饰发妆,烟熏眼妆。,,,,smoky eye makeup,,烟熏妆,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0042,复古红唇,Red Lip,,V11,配饰发妆,复古红唇。,,,,vintage red lip,,复古红唇,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0043,盘发,Updo,,V11,配饰发妆,盘起发型。,,,,elegant updo hairstyle,,盘发,,,,,时尚;配饰发妆,整理,published,V1.0
+V11_T0044,波浪长发,Wavy Hair,,V11,配饰发妆,波浪卷发。,,,,long wavy hair,,波浪长发,,,,,时尚;配饰发妆,整理,published,V1.0

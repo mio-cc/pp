@@ -129,13 +129,31 @@ def serialize_term(row: sqlite3.Row, full: bool = False) -> dict:
     return data
 
 
-TERM_BASE_SELECT = """
+_CN_READY = None
+
+
+def cn_ready(conn: sqlite3.Connection) -> bool:
+    """检测 terms 是否有双语列；旧库(未跑 schema 004)缺列时优雅降级，避免 500。"""
+    global _CN_READY
+    if _CN_READY is None:
+        cols = [r[1] for r in conn.execute("PRAGMA table_info(terms)").fetchall()]
+        _CN_READY = "positive_prompt_cn" in cols
+    return _CN_READY
+
+
+def _cn_select(conn: sqlite3.Connection) -> str:
+    return ("t.positive_prompt_cn, t.negative_prompt_cn" if cn_ready(conn)
+            else "'' AS positive_prompt_cn, '' AS negative_prompt_cn")
+
+
+def term_base_select(conn: sqlite3.Connection) -> str:
+    return f"""
     SELECT
         t.id, t.term_uid, t.zh_term, t.en_term,
         v.code AS volume_code, v.title AS volume_title, v.sequence_no,
         c.name AS category,
         t.definition_short, t.positive_prompt, t.negative_prompt,
-        t.positive_prompt_cn, t.negative_prompt_cn, t.status,
+        {_cn_select(conn)}, t.status,
         COALESCE((SELECT GROUP_CONCAT(tags.name, ';')
                   FROM term_tags JOIN tags ON tags.id = term_tags.tag_id
                   WHERE term_tags.term_id = t.id), '') AS tags
@@ -335,7 +353,7 @@ def list_terms(
         order_sql = VALID_SORTS.get(sort, VALID_SORTS["volume"])
         offset = (page - 1) * page_size
         rows = conn.execute(
-            f"{TERM_BASE_SELECT}{where_sql} ORDER BY {order_sql} LIMIT ? OFFSET ?",
+            f"{term_base_select(conn)}{where_sql} ORDER BY {order_sql} LIMIT ? OFFSET ?",
             params + [page_size, offset],
         ).fetchall()
 
@@ -355,14 +373,14 @@ def term_detail(term_uid: str) -> dict:
     conn = get_conn()
     try:
         row = conn.execute(
-            """
+            f"""
             SELECT
                 t.id, t.term_uid, t.zh_term, t.en_term,
                 v.code AS volume_code, v.title AS volume_title,
                 c.name AS category,
                 t.definition_short, t.definition_long, t.visual_effect,
                 t.prompt_usage, t.positive_prompt, t.negative_prompt,
-                t.positive_prompt_cn, t.negative_prompt_cn,
+                {_cn_select(conn)},
                 t.use_cases, t.source_refs, t.status, t.version,
                 COALESCE((SELECT GROUP_CONCAT(alias, ';') FROM term_aliases WHERE term_id = t.id), '') AS aliases,
                 COALESCE((SELECT GROUP_CONCAT(tags.name, ';') FROM term_tags
@@ -397,7 +415,7 @@ def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=10
         if uids:
             ph = ",".join("?" for _ in uids)
             rows = conn.execute(
-                f"{TERM_BASE_SELECT} WHERE t.term_uid IN ({ph})", uids
+                f"{term_base_select(conn)} WHERE t.term_uid IN ({ph})", uids
             ).fetchall()
             by_uid = {r["term_uid"]: r for r in rows}
             items = [serialize_term(by_uid[u]) for u in uids if u in by_uid]
@@ -406,7 +424,7 @@ def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=10
         # 短查询 / 无 trigram：LIKE 兜底
         like = f"%{q}%"
         rows = conn.execute(
-            f"""{TERM_BASE_SELECT}
+            f"""{term_base_select(conn)}
             LEFT JOIN term_aliases a ON a.term_id = t.id
             WHERE t.zh_term LIKE ? OR t.en_term LIKE ? OR a.alias LIKE ?
                OR t.definition_short LIKE ? OR t.definition_long LIKE ? OR t.prompt_usage LIKE ?

@@ -1,54 +1,44 @@
-# 数据契约
+# 数据契约 — terms_seed.csv
 
-## Dataset
+唯一采集入口：`data/raw/terms_seed.csv`（UTF-8 BOM，多值用英文分号 `;`）。
+改完跑 `python scripts/build_kb.py` 重建，再用 `python scripts/validate_kb.py` 校验。
 
-- Name: AI视觉设计与提示词工程百科术语库
-- Owner/team: 个人知识库项目
-- Source system: `data/raw/terms_seed.csv` 与后续分卷 CSV
-- Consumers: SQLite 查询、Markdown 百科页、RAG/向量库、未来 DOCX/PDF/EPUB 导出
+## 字段（21 列，顺序固定）
 
-## 主键与粒度
+| # | 字段 | 必填 | 说明 |
+|---|------|------|------|
+| 1 | term_uid | 是 | `V{XX}_T{NNNN}`，卷内递增 |
+| 2 | zh_term | 是 | 中文名（原子、具体） |
+| 3 | en_term | 是 | 英文名 |
+| 4 | aliases | 否 | 别名，`;` 分隔 |
+| 5 | volume_code | 是 | 卷册代码 V01–V15 |
+| 6 | category | 是 | **分类路径**，` / ` 分隔，深度不限（分支到原子层） |
+| 7 | definition_short | 是 | 一句话定义 |
+| 8 | definition_long | 是 | 详细解释 |
+| 9 | visual_effect | 是 | 视觉表现 |
+| 10 | prompt_usage | 是 | 提示词用法 |
+| 11 | positive_prompt | 是 | 正向提示词（英文） |
+| 12 | negative_prompt | 否 | 负向提示词（英文） |
+| 13 | positive_prompt_cn | 是 | 正向提示词（中文，与英文对应） |
+| 14 | negative_prompt_cn | 否 | 负向提示词（中文，与英文对应） |
+| 15 | use_cases | 是 | 适用场景，`;` 分隔 |
+| 16 | related_terms | 否 | 相关术语（中文名），`;` 分隔 |
+| 17 | confused_with | 否 | 易混淆术语 |
+| 18 | tags | 是 | 标签，`;` 分隔 |
+| 19 | source_refs | 否 | 来源 |
+| 20 | status | 是 | draft/review/published/deprecated |
+| 21 | version | 是 | 版本号 |
 
-- 粒度：一行代表一个术语条目。
-- 主键：`term_uid`，建议格式为 `V01_T0001`。
-- 术语可以跨卷关联，但每条术语必须有一个主归属卷 `volume_code`。
+## 核心约束
 
-## 核心字段
+- **分类即路径，深度不限**：`category` = `顶层分类 / 子类 / … / 叶子`。顶层段须是 config/volumes.json 中该卷的分类；
+  其后自由分支。系统按 ` / ` 递归建树。
+- **术语原子化**：每条术语是可直接复制、无歧义的最小概念。笼统词必须沿路径分支拆细
+  （如 `… / 镜头畸变` → 桶形畸变 / 枕形畸变；`… / 定焦镜头` → 35mm / 50mm / 85mm）。
+- **同叶子互斥**：同一最深路径下的术语互为可选项；前端篮中并存会标红（仅视觉提示，不阻断复制；API 不做冲突检测）。
+- **提示词中英双语并存、与术语对应**：只用 positive(英) + positive_prompt_cn(中)，一一对应到术语本身；**不用负向**，negative 两列留空、前端不展示。
+- 含英文逗号的提示词字段在 CSV 中必须用双引号包裹；列表字段用 `;` 分隔。
 
-| 字段 | 类型 | 必填 | 语义 |
-| --- | --- | --- | --- |
-| `term_uid` | text | 是 | 稳定 ID，不随中文名变化 |
-| `zh_term` | text | 是 | 中文术语 |
-| `en_term` | text | 否 | 英文术语或行业通用表达 |
-| `aliases` | text | 否 | 别名，用 `;` 分隔 |
-| `volume_code` | text | 是 | 所属卷册，如 `V02` |
-| `category` | text | 是 | 卷内一级分类 |
-| `definition_short` | text | 是 | 一句话解释 |
-| `definition_long` | text | 否 | 百科型长解释 |
-| `visual_effect` | text | 否 | 在画面中的视觉表现 |
-| `prompt_usage` | text | 否 | 适合放入提示词的表达 |
-| `positive_prompt` | text | 否 | 正向提示词示例 |
-| `negative_prompt` | text | 否 | 负向提示词或规避项 |
-| `use_cases` | text | 否 | 适用场景，用 `;` 分隔 |
-| `related_terms` | text | 否 | 相关术语，用 `;` 分隔 |
-| `confused_with` | text | 否 | 易混淆术语，用 `;` 分隔 |
-| `tags` | text | 否 | 标签，用 `;` 分隔 |
-| `source_refs` | text | 否 | 来源、书籍、课程或内部整理说明 |
-| `status` | text | 是 | `draft`、`review`、`published`、`deprecated` |
-| `version` | text | 是 | 如 `V1.0` |
+## 权威源
 
-## 质量规则
-
-- `term_uid` 必须唯一。
-- `zh_term + volume_code` 不建议重复。
-- `volume_code` 必须存在于 `config/volumes.json`。
-- `definition_short` 建议不为空。
-- `status` 只能取 `draft/review/published/deprecated`。
-- 别名、标签、相关术语统一用半角分号 `;` 分隔。
-
-## 变更管理
-
-- 新增字段先更新本文件，再更新 `schema/` 和 `scripts/`。
-- 批量导入前保留原始 CSV。
-- 生成物可重建，权威内容应回写到 `data/raw/` 或数据库导出流程中。
-
+SQLite 主库是唯一权威源；Markdown / JSONL / 前端 JSON / API 都是导出物。写入只走「改 CSV → build」可追溯流程，API 只读。

@@ -107,6 +107,8 @@ def serialize_term(row: sqlite3.Row, full: bool = False) -> dict:
         "definition_short": row["definition_short"] or "",
         "positive_prompt": row["positive_prompt"] or "",
         "negative_prompt": row["negative_prompt"] or "",
+        "positive_prompt_cn": (row["positive_prompt_cn"] or "") if "positive_prompt_cn" in row.keys() else "",
+        "negative_prompt_cn": (row["negative_prompt_cn"] or "") if "negative_prompt_cn" in row.keys() else "",
         "tags": split_list(row["tags"] if "tags" in row.keys() else ""),
         "status": row["status"],
     }
@@ -132,7 +134,8 @@ TERM_BASE_SELECT = """
         t.id, t.term_uid, t.zh_term, t.en_term,
         v.code AS volume_code, v.title AS volume_title, v.sequence_no,
         c.name AS category,
-        t.definition_short, t.positive_prompt, t.negative_prompt, t.status,
+        t.definition_short, t.positive_prompt, t.negative_prompt,
+        t.positive_prompt_cn, t.negative_prompt_cn, t.status,
         COALESCE((SELECT GROUP_CONCAT(tags.name, ';')
                   FROM term_tags JOIN tags ON tags.id = term_tags.tag_id
                   WHERE term_tags.term_id = t.id), '') AS tags
@@ -359,6 +362,7 @@ def term_detail(term_uid: str) -> dict:
                 c.name AS category,
                 t.definition_short, t.definition_long, t.visual_effect,
                 t.prompt_usage, t.positive_prompt, t.negative_prompt,
+                t.positive_prompt_cn, t.negative_prompt_cn,
                 t.use_cases, t.source_refs, t.status, t.version,
                 COALESCE((SELECT GROUP_CONCAT(alias, ';') FROM term_aliases WHERE term_id = t.id), '') AS aliases,
                 COALESCE((SELECT GROUP_CONCAT(tags.name, ';') FROM term_tags
@@ -512,9 +516,8 @@ def root() -> dict:
     }
 
 
-# 把前端单页同源挂到 /app/ ——这样浏览器打开 http://localhost:8000/app/ 即是 API 模式，无需额外静态服务器。
+# 把前端单页同源挂到 /app/ —— 浏览器打开 http://localhost:8000/app/ 即 API 模式。
 if (WEB_DIR / "index.html").exists():
     from fastapi.staticfiles import StaticFiles
 
     app.mount("/app", StaticFiles(directory=str(WEB_DIR), html=True), name="web")
-

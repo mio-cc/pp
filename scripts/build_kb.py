@@ -21,6 +21,7 @@ SCHEMA_FILES = [
     ROOT / "schema" / "001_initial_schema.sql",
     ROOT / "schema" / "002_search_indexes.sql",
     ROOT / "schema" / "003_scale_indexes.sql",
+    ROOT / "schema" / "004_bilingual_prompts.sql",
 ]
 
 LIST_SEPARATOR = ";"
@@ -330,9 +331,10 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
                         term_uid, zh_term, en_term, volume_id, category_id,
                         definition_short, definition_long, visual_effect,
                         prompt_usage, positive_prompt, negative_prompt,
+                        positive_prompt_cn, negative_prompt_cn,
                         use_cases, source_refs, notes, status, version
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         row["term_uid"],
@@ -346,6 +348,8 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
                         row.get("prompt_usage", ""),
                         row.get("positive_prompt", ""),
                         row.get("negative_prompt", ""),
+                        row.get("positive_prompt_cn", ""),
+                        row.get("negative_prompt_cn", ""),
                         row.get("use_cases", ""),
                         row.get("source_refs", ""),
                         row.get("notes", ""),
@@ -552,6 +556,8 @@ def export_web_json(conn: sqlite3.Connection) -> int:
             t.prompt_usage,
             t.positive_prompt,
             t.negative_prompt,
+            t.positive_prompt_cn,
+            t.negative_prompt_cn,
             t.use_cases,
             t.source_refs,
             t.status,
@@ -595,6 +601,8 @@ def export_web_json(conn: sqlite3.Connection) -> int:
                 "prompt_usage": row["prompt_usage"] or "",
                 "positive_prompt": row["positive_prompt"] or "",
                 "negative_prompt": row["negative_prompt"] or "",
+                "positive_prompt_cn": row["positive_prompt_cn"] or "",
+                "negative_prompt_cn": row["negative_prompt_cn"] or "",
                 "use_cases": split_list(row["use_cases"]),
                 "aliases": split_list(row["aliases"]),
                 "tags": split_list(row["tags"]),
@@ -823,6 +831,8 @@ def export_markdown(conn: sqlite3.Connection) -> int:
             t.prompt_usage,
             t.positive_prompt,
             t.negative_prompt,
+            t.positive_prompt_cn,
+            t.negative_prompt_cn,
             t.use_cases,
             t.source_refs,
             t.status,
@@ -887,4 +897,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

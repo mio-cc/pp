@@ -18,3 +18,4 @@ frontend/.npmcache/
 frontend/dist/
 frontend/.vite/
 node_modules/
+frontend/.pw-browsers/

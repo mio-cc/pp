@@ -108,7 +108,7 @@
       <div class="dock-top">
         <span class="dlbl"><span class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></span>提示词篮<span class="num">{{ cart.length }}</span></span>
         <span class="divd"></span>
-        <div class="frags" :class="{ expanded: basketOpen }">
+        <div class="frags" :class="{ expanded: basketExpanded }">
           <span v-if="!cart.length" class="ph">点术语卡右上角 + 添加</span>
           <span v-for="(c, i) in cart" :key="c.term_uid" class="frag" :class="{ conflict: conflictUids.has(c.term_uid) }" :title="c.category">
             <span v-if="conflictUids.has(c.term_uid)" class="fdot"></span>{{ c.zh_term }}<x @click="cart.splice(i,1)">✕</x>
@@ -166,7 +166,6 @@ onUnmounted(() => { window.removeEventListener('keydown', onKey); if (_ro) _ro.d
 
 const vols = computed(() => (kb.state.index ? kb.state.index.volumes : []))
 const totalTerms = computed(() => (kb.state.index ? kb.state.index.total_terms : 0))
-const basketOpen = computed(() => basketExpanded.value || cart.length >= 6)
 
 function toast(m) { toastMsg.value = m; clearTimeout(toastT); toastT = setTimeout(() => (toastMsg.value = ''), 1600) }
 function onKey(e) {

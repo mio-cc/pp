@@ -432,51 +432,6 @@ V05_T0045,压凹凸,Emboss,,V05,印刷工艺,压印浮凸。,,,,emboss deboss te
 V05_T0046,特种纸,Textured Paper,,V05,印刷工艺,纸张质感。,,,,textured specialty paper,,特种纸,,,,,平面;印刷,互联网研究整理,published,V1.0
 V05_T0047,出血,Bleed,,V05,印刷工艺,出血边。,,,,print bleed edge,,出血,,,,,平面;印刷,互联网研究整理,published,V1.0
 V05_T0048,Riso印刷,Risograph,,V05,印刷工艺,复古孔版套色。,,,,"risograph print, retro overprint",,Riso孔版,,,,,平面;印刷,互联网研究整理,published,V1.0
-V07_T0001,基础色,Albedo/Base Color,,V07,PBR材质 / 通道属性,固有色。,,,,PBR albedo base color,,基础色,,,,,材质;PBR,整理,published,V1.0
-V07_T0002,金属度,Metallic,,V07,PBR材质 / 通道属性,金属非金属。,,,,metallic workflow,,金属度,,,,,材质;PBR,整理,published,V1.0
-V07_T0003,粗糙度,Roughness,,V07,PBR材质 / 通道属性,表面光滑粗糙。,,,,roughness glossy matte,,粗糙度,,,,,材质;PBR,整理,published,V1.0
-V07_T0004,法线贴图,Normal Map,,V07,PBR材质 / 通道属性,表面凹凸细节。,,,,normal map surface detail,,法线贴图,,,,,材质;PBR,整理,published,V1.0
-V07_T0005,环境光遮蔽,Ambient Occlusion,,V07,PBR材质 / 通道属性,缝隙暗部。,,,,ambient occlusion AO,,环境光遮蔽,,,,,材质;PBR,整理,published,V1.0
-V07_T0006,置换贴图,Displacement,,V07,PBR材质 / 通道属性,真实位移凹凸。,,,,displacement height map,,置换贴图,,,,,材质;PBR,整理,published,V1.0
-V07_T0007,次表面散射,Subsurface Scattering,,V07,PBR材质 / 通道属性,皮肤玉石透光。,,,,subsurface scattering SSS skin jade,,次表面散射,,,,,材质;PBR,整理,published,V1.0
-V07_T0008,透明折射,Transparency/Refraction,,V07,PBR材质 / 通道属性,玻璃透明折射。,,,,transparency refraction glass,,透明折射,,,,,材质;PBR,整理,published,V1.0
-V07_T0009,自发光,Emissive,,V07,PBR材质 / 通道属性,材质发光。,,,,emissive glow material,,自发光,,,,,材质;PBR,整理,published,V1.0
-V07_T0010,清漆涂层,Clearcoat,,V07,PBR材质 / 通道属性,车漆清漆层。,,,,clearcoat car paint layer,,清漆涂层,,,,,材质;PBR,整理,published,V1.0
-V07_T0011,抛光金属,Polished Metal,,V07,材质类型,镜面金属反射。,,,,polished reflective metal,,抛光金属,,,,,材质;类型,整理,published,V1.0
-V07_T0012,拉丝金属,Brushed Metal,,V07,材质类型,拉丝纹理金属。,,,,brushed metal texture,,拉丝金属,,,,,材质;类型,整理,published,V1.0
-V07_T0013,生锈金属,Rusted Metal,,V07,材质类型,锈蚀斑驳。,,,,rusted weathered metal,,生锈金属,,,,,材质;类型,整理,published,V1.0
-V07_T0014,木材,Wood,,V07,材质类型,木纹质感。,,,,wood grain texture,,木材,,,,,材质;类型,整理,published,V1.0
-V07_T0015,织物布料,Fabric,,V07,材质类型,布料纤维。,,,,woven fabric cloth texture,,织物布料,,,,,材质;类型,整理,published,V1.0
-V07_T0016,皮革,Leather,,V07,材质类型,皮革纹理。,,,,leather texture,,皮革,,,,,材质;类型,整理,published,V1.0
-V07_T0017,玻璃,Glass,,V07,材质类型,透明玻璃。,,,,clear glass material,,玻璃,,,,,材质;类型,整理,published,V1.0
-V07_T0018,陶瓷,Ceramic,,V07,材质类型,光滑陶瓷釉面。,,,,glazed ceramic,,陶瓷,,,,,材质;类型,整理,published,V1.0
-V07_T0019,大理石,Marble,,V07,材质类型,纹理大理石。,,,,veined marble stone,,大理石,,,,,材质;类型,整理,published,V1.0
-V07_T0020,混凝土,Concrete,,V07,材质类型,粗糙水泥。,,,,rough concrete,,混凝土,,,,,材质;类型,整理,published,V1.0
-V07_T0021,水面液体,Water/Liquid,,V07,材质类型,流动液体。,,,,flowing water liquid surface,,水面液体,,,,,材质;类型,整理,published,V1.0
-V07_T0022,塑料,Plastic,,V07,材质类型,光滑塑料。,,,,glossy plastic material,,塑料,,,,,材质;类型,整理,published,V1.0
-V07_T0023,橡胶,Rubber,,V07,材质类型,哑光橡胶。,,,,matte rubber,,橡胶,,,,,材质;类型,整理,published,V1.0
-V07_T0024,皮肤,Skin,,V07,材质类型,真实皮肤次表面。,,,,realistic skin subsurface,,皮肤,,,,,材质;类型,整理,published,V1.0
-V07_T0025,毛发,Fur/Hair,,V07,材质类型,毛发丝状。,,,,fur hair strands,,毛发,,,,,材质;类型,整理,published,V1.0
-V07_T0026,有机植物,Foliage,,V07,材质类型,叶片植被。,,,,organic foliage leaves,,有机植物,,,,,材质;类型,整理,published,V1.0
-V07_T0027,做旧风化,Weathering,,V07,材质做旧与质感,风化痕迹。,,,,weathered aged surface,,做旧风化,,,,,材质;做旧,整理,published,V1.0
-V07_T0028,磨损划痕,Scratches,,V07,材质做旧与质感,边角磨损。,,,,worn scratches edge wear,,磨损划痕,,,,,材质;做旧,整理,published,V1.0
-V07_T0029,湿润反光,Wet Look,,V07,材质做旧与质感,潮湿高光。,,,,wet glossy reflective,,湿润反光,,,,,材质;做旧,整理,published,V1.0
-V07_T0030,灰尘污渍,Grime/Dust,,V07,材质做旧与质感,脏污积灰。,,,,grime dust dirt,,灰尘污渍,,,,,材质;做旧,整理,published,V1.0
-V07_T0031,苔藓附着,Moss,,V07,材质做旧与质感,苔藓覆盖。,,,,moss overgrowth,,苔藓,,,,,材质;做旧,整理,published,V1.0
-V07_T0032,光线追踪,Ray Tracing,,V07,渲染算法,真实光线反射。,,,,ray tracing realistic reflections,,光线追踪,,,,,材质;渲染,整理,published,V1.0
-V07_T0033,路径追踪,Path Tracing,,V07,渲染算法,物理路径渲染。,,,,path tracing physically based,,路径追踪,,,,,材质;渲染,整理,published,V1.0
-V07_T0034,全局光照,Global Illumination,,V07,渲染算法,间接光弹射。,,,,global illumination GI bounce light,,全局光照,,,,,材质;渲染,整理,published,V1.0
-V07_T0035,光栅化,Rasterization,,V07,渲染算法,实时光栅。,,,,real-time rasterization,,光栅化,,,,,材质;渲染,整理,published,V1.0
-V07_T0036,体积渲染,Volumetric,,V07,渲染算法,体积雾光。,,,,volumetric fog lighting,,体积渲染,,,,,材质;渲染,整理,published,V1.0
-V07_T0037,焦散,Caustics,,V07,渲染算法,光线聚焦光斑。,,,,caustics light focusing,,焦散,,,,,材质;渲染,整理,published,V1.0
-V07_T0038,环境光遮蔽渲染,SSAO,,V07,渲染算法,屏幕空间遮蔽。,,,,screen space ambient occlusion,,SSAO,,,,,材质;渲染,整理,published,V1.0
-V07_T0039,虚幻引擎渲染,Unreal Engine,,V07,引擎与质量,UE5实时影视级。,,,,"unreal engine 5 render, cinematic",,虚幻引擎,,,,,材质;引擎,整理,published,V1.0
-V07_T0040,Octane渲染,Octane Render,,V07,引擎与质量,GPU物理渲染。,,,,octane render,,Octane渲染,,,,,材质;引擎,整理,published,V1.0
-V07_T0041,Arnold渲染,Arnold,,V07,引擎与质量,影视级离线渲染。,,,,arnold cinematic render,,Arnold渲染,,,,,材质;引擎,整理,published,V1.0
-V07_T0042,Blender Cycles,Cycles,,V07,引擎与质量,Blender路径追踪。,,,,blender cycles render,,Cycles渲染,,,,,材质;引擎,整理,published,V1.0
-V07_T0043,3D渲染,3D Render,,V07,引擎与质量,三维渲染感。,,,,"3D render, CGI",,3D渲染,,,,,材质;引擎,整理,published,V1.0
-V07_T0044,照片级写实,Photorealistic,,V07,引擎与质量,照片级真实。,,,,photorealistic render,,照片级写实,,,,,材质;引擎,整理,published,V1.0
-V07_T0045,8K高细节,8K Detail,,V07,引擎与质量,超高分辨率细节。,,,,8k highly detailed,,8K高细节,,,,,材质;引擎,整理,published,V1.0
 V08_T0001,主体描述,Subject,,V08,提示词结构,核心主体内容。,,,,clear subject description,,主体描述,,,,,Prompt;结构,整理,published,V1.0
 V08_T0002,风格修饰,Style Modifier,,V08,提示词结构,风格限定。,,,,style modifier keywords,,风格修饰,,,,,Prompt;结构,整理,published,V1.0
 V08_T0003,媒介声明,Medium,,V08,提示词结构,媒介类型声明。,,,,"medium declaration, photo painting render",,媒介声明,,,,,Prompt;结构,整理,published,V1.0
@@ -989,3 +944,124 @@ V06_T0207,色彩对比,Color Contrast,,V06,色彩管理与感知,冷暖明暗对
 V06_T0208,同时对比,Simultaneous Contrast,,V06,色彩管理与感知,相邻互影响。,,,,simultaneous contrast,,同时对比,,,,,色彩;管理感知,互联网研究整理,published,V1.0
 V06_T0209,HDR,HDR,,V06,色彩管理与感知,高动态细节。,,,,high dynamic range,,HDR,,,,,色彩;管理感知,互联网研究整理,published,V1.0
 V06_T0210,色彩恒常,Color Constancy,,V06,色彩管理与感知,知觉恒常。,,,,color constancy perception,,色彩恒常,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V07_T0001,基础色,Albedo,,V07,PBR材质 / 通道属性,固有色。,,,,PBR albedo base color,,基础色,,,,,材质;PBR,整理,published,V1.0
+V07_T0002,金属度,Metallic,,V07,PBR材质 / 通道属性,金属非金属。,,,,metallic workflow,,金属度,,,,,材质;PBR,整理,published,V1.0
+V07_T0003,粗糙度,Roughness,,V07,PBR材质 / 通道属性,光滑粗糙。,,,,roughness map,,粗糙度,,,,,材质;PBR,整理,published,V1.0
+V07_T0004,法线贴图,Normal Map,,V07,PBR材质 / 通道属性,表面凹凸。,,,,normal map detail,,法线贴图,,,,,材质;PBR,整理,published,V1.0
+V07_T0005,环境光遮蔽,AO,,V07,PBR材质 / 通道属性,缝隙暗部。,,,,ambient occlusion,,环境光遮蔽,,,,,材质;PBR,整理,published,V1.0
+V07_T0006,置换贴图,Displacement,,V07,PBR材质 / 通道属性,真实位移。,,,,displacement map,,置换贴图,,,,,材质;PBR,整理,published,V1.0
+V07_T0007,次表面散射,SSS,,V07,PBR材质 / 通道属性,透光皮肤玉石。,,,,subsurface scattering,,次表面散射,,,,,材质;PBR,整理,published,V1.0
+V07_T0008,透明折射,Refraction,,V07,PBR材质 / 通道属性,玻璃折射。,,,,transparency refraction,,透明折射,,,,,材质;PBR,整理,published,V1.0
+V07_T0009,自发光,Emissive,,V07,PBR材质 / 通道属性,材质发光。,,,,emissive glow,,自发光,,,,,材质;PBR,整理,published,V1.0
+V07_T0010,清漆层,Clearcoat,,V07,PBR材质 / 通道属性,车漆涂层。,,,,clearcoat layer,,清漆层,,,,,材质;PBR,整理,published,V1.0
+V07_T0011,各向异性,Anisotropy,,V07,PBR材质 / 通道属性,拉丝高光。,,,,anisotropic highlight,,各向异性,,,,,材质;PBR,整理,published,V1.0
+V07_T0012,光泽度,Sheen,,V07,PBR材质 / 通道属性,织物绒光。,,,,sheen fabric,,光泽度,,,,,材质;PBR,整理,published,V1.0
+V07_T0013,黄金,Gold,,V07,材质类型 / 金属,黄金。,,,,gold metal material,,黄金,,,,,材质;金属,整理,published,V1.0
+V07_T0014,白银,Silver,,V07,材质类型 / 金属,白银。,,,,silver metal material,,白银,,,,,材质;金属,整理,published,V1.0
+V07_T0015,紫铜,Copper,,V07,材质类型 / 金属,紫铜。,,,,copper metal material,,紫铜,,,,,材质;金属,整理,published,V1.0
+V07_T0016,黄铜,Brass,,V07,材质类型 / 金属,黄铜。,,,,brass metal material,,黄铜,,,,,材质;金属,整理,published,V1.0
+V07_T0017,青铜,Bronze,,V07,材质类型 / 金属,青铜。,,,,bronze metal material,,青铜,,,,,材质;金属,整理,published,V1.0
+V07_T0018,铸铁,Cast Iron,,V07,材质类型 / 金属,铸铁。,,,,cast iron metal material,,铸铁,,,,,材质;金属,整理,published,V1.0
+V07_T0019,不锈钢,Stainless Steel,,V07,材质类型 / 金属,不锈钢。,,,,stainless steel metal material,,不锈钢,,,,,材质;金属,整理,published,V1.0
+V07_T0020,铝,Aluminum,,V07,材质类型 / 金属,铝。,,,,aluminum metal material,,铝,,,,,材质;金属,整理,published,V1.0
+V07_T0021,钛,Titanium,,V07,材质类型 / 金属,钛。,,,,titanium metal material,,钛,,,,,材质;金属,整理,published,V1.0
+V07_T0022,镀铬,Chrome,,V07,材质类型 / 金属,镀铬。,,,,chrome metal material,,镀铬,,,,,材质;金属,整理,published,V1.0
+V07_T0023,枪铁,Gunmetal,,V07,材质类型 / 金属,枪铁。,,,,gunmetal metal material,,枪铁,,,,,材质;金属,整理,published,V1.0
+V07_T0024,锡,Pewter,,V07,材质类型 / 金属,锡。,,,,pewter metal material,,锡,,,,,材质;金属,整理,published,V1.0
+V07_T0025,玫瑰金,Rose Gold,,V07,材质类型 / 金属,玫瑰金。,,,,rose gold metal material,,玫瑰金,,,,,材质;金属,整理,published,V1.0
+V07_T0026,大理石,Marble,,V07,材质类型 / 石材,大理石。,,,,marble stone material,,大理石,,,,,材质;石材,整理,published,V1.0
+V07_T0027,花岗岩,Granite,,V07,材质类型 / 石材,花岗岩。,,,,granite stone material,,花岗岩,,,,,材质;石材,整理,published,V1.0
+V07_T0028,砂岩,Sandstone,,V07,材质类型 / 石材,砂岩。,,,,sandstone stone material,,砂岩,,,,,材质;石材,整理,published,V1.0
+V07_T0029,板岩,Slate,,V07,材质类型 / 石材,板岩。,,,,slate stone material,,板岩,,,,,材质;石材,整理,published,V1.0
+V07_T0030,玄武岩,Basalt,,V07,材质类型 / 石材,玄武岩。,,,,basalt stone material,,玄武岩,,,,,材质;石材,整理,published,V1.0
+V07_T0031,石灰岩,Limestone,,V07,材质类型 / 石材,石灰岩。,,,,limestone stone material,,石灰岩,,,,,材质;石材,整理,published,V1.0
+V07_T0032,水磨石,Terrazzo,,V07,材质类型 / 石材,水磨石。,,,,terrazzo stone material,,水磨石,,,,,材质;石材,整理,published,V1.0
+V07_T0033,鹅卵石,Cobblestone,,V07,材质类型 / 石材,鹅卵石。,,,,cobblestone stone material,,鹅卵石,,,,,材质;石材,整理,published,V1.0
+V07_T0034,水晶,Crystal,,V07,材质类型 / 石材,水晶。,,,,crystal stone material,,水晶,,,,,材质;石材,整理,published,V1.0
+V07_T0035,玉石,Jade,,V07,材质类型 / 石材,玉石。,,,,jade stone material,,玉石,,,,,材质;石材,整理,published,V1.0
+V07_T0036,橡木,Oak Wood,,V07,材质类型 / 木材,橡木。,,,,oak wood texture,,橡木,,,,,材质;木材,整理,published,V1.0
+V07_T0037,胡桃木,Walnut Wood,,V07,材质类型 / 木材,胡桃木。,,,,walnut wood texture,,胡桃木,,,,,材质;木材,整理,published,V1.0
+V07_T0038,松木,Pine Wood,,V07,材质类型 / 木材,松木。,,,,pine wood texture,,松木,,,,,材质;木材,整理,published,V1.0
+V07_T0039,竹,Bamboo,,V07,材质类型 / 木材,竹。,,,,bamboo texture,,竹,,,,,材质;木材,整理,published,V1.0
+V07_T0040,桃花心木,Mahogany,,V07,材质类型 / 木材,桃花心木。,,,,mahogany texture,,桃花心木,,,,,材质;木材,整理,published,V1.0
+V07_T0041,桦木,Birch Wood,,V07,材质类型 / 木材,桦木。,,,,birch wood texture,,桦木,,,,,材质;木材,整理,published,V1.0
+V07_T0042,做旧木,Weathered Wood,,V07,材质类型 / 木材,做旧木。,,,,weathered wood texture,,做旧木,,,,,材质;木材,整理,published,V1.0
+V07_T0043,炭化木,Charred Wood,,V07,材质类型 / 木材,炭化木。,,,,charred wood texture,,炭化木,,,,,材质;木材,整理,published,V1.0
+V07_T0044,胶合板,Plywood,,V07,材质类型 / 木材,胶合板。,,,,plywood texture,,胶合板,,,,,材质;木材,整理,published,V1.0
+V07_T0045,棉布,Cotton,,V07,材质类型 / 织物,棉布。,,,,cotton fabric texture,,棉布,,,,,材质;织物,整理,published,V1.0
+V07_T0046,羊毛,Wool,,V07,材质类型 / 织物,羊毛。,,,,wool fabric texture,,羊毛,,,,,材质;织物,整理,published,V1.0
+V07_T0047,丝绸,Silk,,V07,材质类型 / 织物,丝绸。,,,,silk fabric texture,,丝绸,,,,,材质;织物,整理,published,V1.0
+V07_T0048,亚麻,Linen,,V07,材质类型 / 织物,亚麻。,,,,linen fabric texture,,亚麻,,,,,材质;织物,整理,published,V1.0
+V07_T0049,天鹅绒,Velvet,,V07,材质类型 / 织物,天鹅绒。,,,,velvet fabric texture,,天鹅绒,,,,,材质;织物,整理,published,V1.0
+V07_T0050,牛仔丹宁,Denim,,V07,材质类型 / 织物,牛仔丹宁。,,,,denim fabric texture,,牛仔丹宁,,,,,材质;织物,整理,published,V1.0
+V07_T0051,灯芯绒,Corduroy,,V07,材质类型 / 织物,灯芯绒。,,,,corduroy fabric texture,,灯芯绒,,,,,材质;织物,整理,published,V1.0
+V07_T0052,雪纺,Chiffon,,V07,材质类型 / 织物,雪纺。,,,,chiffon fabric texture,,雪纺,,,,,材质;织物,整理,published,V1.0
+V07_T0053,针织,Knit,,V07,材质类型 / 织物,针织。,,,,knit fabric texture,,针织,,,,,材质;织物,整理,published,V1.0
+V07_T0054,蕾丝,Lace,,V07,材质类型 / 织物,蕾丝。,,,,lace fabric texture,,蕾丝,,,,,材质;织物,整理,published,V1.0
+V07_T0055,皮革,Leather,,V07,材质类型 / 织物,皮革。,,,,leather fabric texture,,皮革,,,,,材质;织物,整理,published,V1.0
+V07_T0056,麂皮,Suede,,V07,材质类型 / 织物,麂皮。,,,,suede fabric texture,,麂皮,,,,,材质;织物,整理,published,V1.0
+V07_T0057,毛呢,Tweed,,V07,材质类型 / 织物,毛呢。,,,,tweed fabric texture,,毛呢,,,,,材质;织物,整理,published,V1.0
+V07_T0058,透明玻璃,Clear Glass,,V07,材质类型 / 玻璃陶瓷,透明玻璃。,,,,clear glass material,,透明玻璃,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0059,磨砂玻璃,Frosted Glass,,V07,材质类型 / 玻璃陶瓷,磨砂玻璃。,,,,frosted glass material,,磨砂玻璃,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0060,彩色玻璃,Stained Glass,,V07,材质类型 / 玻璃陶瓷,彩色玻璃。,,,,stained glass material,,彩色玻璃,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0061,陶瓷,Ceramic,,V07,材质类型 / 玻璃陶瓷,陶瓷。,,,,ceramic material,,陶瓷,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0062,瓷器,Porcelain,,V07,材质类型 / 玻璃陶瓷,瓷器。,,,,porcelain material,,瓷器,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0063,釉面,Glazed,,V07,材质类型 / 玻璃陶瓷,釉面。,,,,glazed material,,釉面,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0064,赤陶,Terracotta,,V07,材质类型 / 玻璃陶瓷,赤陶。,,,,terracotta material,,赤陶,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0065,珐琅,Enamel,,V07,材质类型 / 玻璃陶瓷,珐琅。,,,,enamel material,,珐琅,,,,,材质;玻璃陶瓷,整理,published,V1.0
+V07_T0066,混凝土,Concrete,,V07,材质类型 / 合成与其他,混凝土。,,,,concrete material,,混凝土,,,,,材质;合成,整理,published,V1.0
+V07_T0067,水泥,Cement,,V07,材质类型 / 合成与其他,水泥。,,,,cement material,,水泥,,,,,材质;合成,整理,published,V1.0
+V07_T0068,塑料,Plastic,,V07,材质类型 / 合成与其他,塑料。,,,,plastic material,,塑料,,,,,材质;合成,整理,published,V1.0
+V07_T0069,亚克力,Acrylic,,V07,材质类型 / 合成与其他,亚克力。,,,,acrylic material,,亚克力,,,,,材质;合成,整理,published,V1.0
+V07_T0070,橡胶,Rubber,,V07,材质类型 / 合成与其他,橡胶。,,,,rubber material,,橡胶,,,,,材质;合成,整理,published,V1.0
+V07_T0071,硅胶,Silicone,,V07,材质类型 / 合成与其他,硅胶。,,,,silicone material,,硅胶,,,,,材质;合成,整理,published,V1.0
+V07_T0072,碳纤维,Carbon Fiber,,V07,材质类型 / 合成与其他,碳纤维。,,,,carbon fiber material,,碳纤维,,,,,材质;合成,整理,published,V1.0
+V07_T0073,纸张,Paper,,V07,材质类型 / 合成与其他,纸张。,,,,paper material,,纸张,,,,,材质;合成,整理,published,V1.0
+V07_T0074,纸板,Cardboard,,V07,材质类型 / 合成与其他,纸板。,,,,cardboard material,,纸板,,,,,材质;合成,整理,published,V1.0
+V07_T0075,泡沫,Foam,,V07,材质类型 / 合成与其他,泡沫。,,,,foam material,,泡沫,,,,,材质;合成,整理,published,V1.0
+V07_T0076,沥青,Asphalt,,V07,材质类型 / 合成与其他,沥青。,,,,asphalt material,,沥青,,,,,材质;合成,整理,published,V1.0
+V07_T0077,石膏,Plaster,,V07,材质类型 / 合成与其他,石膏。,,,,plaster material,,石膏,,,,,材质;合成,整理,published,V1.0
+V07_T0078,皮肤,Skin,,V07,材质类型 / 自然有机,皮肤。,,,,skin organic material,,皮肤,,,,,材质;自然有机,整理,published,V1.0
+V07_T0079,毛发,Fur,,V07,材质类型 / 自然有机,毛发。,,,,fur organic material,,毛发,,,,,材质;自然有机,整理,published,V1.0
+V07_T0080,鳞片,Scales,,V07,材质类型 / 自然有机,鳞片。,,,,scales organic material,,鳞片,,,,,材质;自然有机,整理,published,V1.0
+V07_T0081,羽毛,Feathers,,V07,材质类型 / 自然有机,羽毛。,,,,feathers organic material,,羽毛,,,,,材质;自然有机,整理,published,V1.0
+V07_T0082,树叶,Leaves,,V07,材质类型 / 自然有机,树叶。,,,,leaves organic material,,树叶,,,,,材质;自然有机,整理,published,V1.0
+V07_T0083,花瓣,Flower Petals,,V07,材质类型 / 自然有机,花瓣。,,,,flower petals organic material,,花瓣,,,,,材质;自然有机,整理,published,V1.0
+V07_T0084,水面,Water Surface,,V07,材质类型 / 自然有机,水面。,,,,water surface organic material,,水面,,,,,材质;自然有机,整理,published,V1.0
+V07_T0085,冰,Ice,,V07,材质类型 / 自然有机,冰。,,,,ice organic material,,冰,,,,,材质;自然有机,整理,published,V1.0
+V07_T0086,雪,Snow,,V07,材质类型 / 自然有机,雪。,,,,snow organic material,,雪,,,,,材质;自然有机,整理,published,V1.0
+V07_T0087,沙,Sand,,V07,材质类型 / 自然有机,沙。,,,,sand organic material,,沙,,,,,材质;自然有机,整理,published,V1.0
+V07_T0088,泥,Mud,,V07,材质类型 / 自然有机,泥。,,,,mud organic material,,泥,,,,,材质;自然有机,整理,published,V1.0
+V07_T0089,岩浆,Lava,,V07,材质类型 / 自然有机,岩浆。,,,,lava organic material,,岩浆,,,,,材质;自然有机,整理,published,V1.0
+V07_T0090,抛光,Polished,,V07,表面处理,抛光。,,,,polished surface finish,,抛光,,,,,材质;表面,整理,published,V1.0
+V07_T0091,拉丝,Brushed,,V07,表面处理,拉丝。,,,,brushed surface finish,,拉丝,,,,,材质;表面,整理,published,V1.0
+V07_T0092,磨砂哑光,Matte,,V07,表面处理,磨砂哑光。,,,,matte surface finish,,磨砂哑光,,,,,材质;表面,整理,published,V1.0
+V07_T0093,镜面,Mirror Glossy,,V07,表面处理,镜面。,,,,mirror glossy surface finish,,镜面,,,,,材质;表面,整理,published,V1.0
+V07_T0094,做旧风化,Weathered,,V07,表面处理,做旧风化。,,,,weathered surface finish,,做旧风化,,,,,材质;表面,整理,published,V1.0
+V07_T0095,生锈,Rusted,,V07,表面处理,生锈。,,,,rusted surface finish,,生锈,,,,,材质;表面,整理,published,V1.0
+V07_T0096,氧化,Oxidized,,V07,表面处理,氧化。,,,,oxidized surface finish,,氧化,,,,,材质;表面,整理,published,V1.0
+V07_T0097,磨损划痕,Scratched Worn,,V07,表面处理,磨损划痕。,,,,scratched worn surface finish,,磨损划痕,,,,,材质;表面,整理,published,V1.0
+V07_T0098,湿润反光,Wet Glossy,,V07,表面处理,湿润反光。,,,,wet glossy surface finish,,湿润反光,,,,,材质;表面,整理,published,V1.0
+V07_T0099,油污,Greasy,,V07,表面处理,油污。,,,,greasy surface finish,,油污,,,,,材质;表面,整理,published,V1.0
+V07_T0100,灰尘污渍,Dusty Grimy,,V07,表面处理,灰尘污渍。,,,,dusty grimy surface finish,,灰尘污渍,,,,,材质;表面,整理,published,V1.0
+V07_T0101,苔藓附着,Mossy,,V07,表面处理,苔藓附着。,,,,mossy surface finish,,苔藓附着,,,,,材质;表面,整理,published,V1.0
+V07_T0102,龟裂,Cracked,,V07,表面处理,龟裂。,,,,cracked surface finish,,龟裂,,,,,材质;表面,整理,published,V1.0
+V07_T0103,锤纹,Hammered,,V07,表面处理,锤纹。,,,,hammered surface finish,,锤纹,,,,,材质;表面,整理,published,V1.0
+V07_T0104,光线追踪,Ray Tracing,,V07,渲染算法,真实反射。,,,,ray tracing reflections,,光线追踪,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0105,路径追踪,Path Tracing,,V07,渲染算法,物理路径。,,,,path tracing,,路径追踪,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0106,全局光照,Global Illumination,,V07,渲染算法,间接弹射。,,,,global illumination GI,,全局光照,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0107,光栅化,Rasterization,,V07,渲染算法,实时。,,,,real-time rasterization,,光栅化,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0108,体积渲染,Volumetric,,V07,渲染算法,体积雾光。,,,,volumetric fog,,体积渲染,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0109,焦散,Caustics,,V07,渲染算法,聚焦光斑。,,,,caustics,,焦散,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0110,屏幕空间反射,SSR,,V07,渲染算法,屏幕反射。,,,,screen space reflections,,SSR,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0111,环境光遮蔽渲染,SSAO,,V07,渲染算法,屏幕遮蔽。,,,,SSAO,,SSAO,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0112,光子映射,Photon Mapping,,V07,渲染算法,光子GI。,,,,photon mapping,,光子映射,,,,,材质;渲染算法,整理,published,V1.0
+V07_T0113,虚幻引擎5,Unreal Engine 5,,V07,引擎与质量,实时影视级。,,,,unreal engine 5 cinematic render,,虚幻引擎5,,,,,材质;引擎,整理,published,V1.0
+V07_T0114,Octane,Octane Render,,V07,引擎与质量,GPU物理。,,,,octane render,,Octane,,,,,材质;引擎,整理,published,V1.0
+V07_T0115,Arnold,Arnold,,V07,引擎与质量,影视离线。,,,,arnold render,,Arnold,,,,,材质;引擎,整理,published,V1.0
+V07_T0116,Redshift,Redshift,,V07,引擎与质量,GPU产品级。,,,,redshift render,,Redshift,,,,,材质;引擎,整理,published,V1.0
+V07_T0117,Blender Cycles,Cycles,,V07,引擎与质量,路径追踪。,,,,blender cycles,,Cycles,,,,,材质;引擎,整理,published,V1.0
+V07_T0118,V-Ray,V-Ray,,V07,引擎与质量,建筑可视化。,,,,vray render,,V-Ray,,,,,材质;引擎,整理,published,V1.0
+V07_T0119,照片级写实,Photorealistic,,V07,引擎与质量,照片真实。,,,,photorealistic,,照片级写实,,,,,材质;引擎,整理,published,V1.0
+V07_T0120,8K高细节,8K Detail,,V07,引擎与质量,超高细节。,,,,8k highly detailed,,8K高细节,,,,,材质;引擎,整理,published,V1.0
+V07_T0121,PBR写实,PBR Realistic,,V07,引擎与质量,基于物理。,,,,physically based render,,PBR写实,,,,,材质;引擎,整理,published,V1.0

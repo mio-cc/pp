@@ -11,3 +11,10 @@ data/exports/web/
 generated/terms/
 *.egg-info/
 .env
+
+# 前端构建中间产物（源码保留，node_modules 与缓存不入库）
+frontend/node_modules/
+frontend/.npmcache/
+frontend/dist/
+frontend/.vite/
+node_modules/

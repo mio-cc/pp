@@ -20,6 +20,7 @@ GENERATED_TERMS_DIR = ROOT / "generated" / "terms"
 SCHEMA_FILES = [
     ROOT / "schema" / "001_initial_schema.sql",
     ROOT / "schema" / "002_search_indexes.sql",
+    ROOT / "schema" / "003_scale_indexes.sql",
 ]
 
 LIST_SEPARATOR = ";"
@@ -86,7 +87,34 @@ def reset_outputs() -> None:
 
 def init_schema(conn: sqlite3.Connection) -> None:
     for schema_file in SCHEMA_FILES:
-        conn.executescript(schema_file.read_text(encoding="utf-8"))
+        sql = schema_file.read_text(encoding="utf-8")
+        try:
+            conn.executescript(sql)
+        except sqlite3.OperationalError as exc:
+            # trigram 分词器在 SQLite < 3.34 不可用；逐句执行并跳过失败的虚拟表，
+            # 其余索引照常建立，保证老环境也能构建（只是中文检索退回 LIKE）。
+            if "trigram" in sql and "tokenize" in sql:
+                _exec_statements_tolerant(conn, sql)
+            else:
+                raise exc
+
+
+def _exec_statements_tolerant(conn: sqlite3.Connection, sql: str) -> None:
+    for statement in sql.split(";"):
+        stmt = statement.strip()
+        if not stmt:
+            continue
+        try:
+            conn.execute(stmt)
+        except sqlite3.OperationalError as exc:
+            print(f"  [skip] {stmt.splitlines()[0][:60]}... ({exc})")
+
+
+def trigram_available(conn: sqlite3.Connection) -> bool:
+    row = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='terms_fts_tri'"
+    ).fetchone()
+    return row is not None
 
 
 def sync_volumes(conn: sqlite3.Connection, config: dict) -> dict[str, int]:
@@ -360,6 +388,9 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
 
 def rebuild_fts(conn: sqlite3.Connection) -> None:
     conn.execute("DELETE FROM terms_fts")
+    has_tri = trigram_available(conn)
+    if has_tri:
+        conn.execute("DELETE FROM terms_fts_tri")
     rows = conn.execute(
         """
         SELECT
@@ -388,6 +419,14 @@ def rebuild_fts(conn: sqlite3.Connection) -> None:
             """,
             (row[1], row[2], row[3], row[4], row[5]),
         )
+        if has_tri:
+            conn.execute(
+                """
+                INSERT INTO terms_fts_tri (term_uid, zh_term, en_term, aliases, body)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (row[1], row[2], row[3], row[4], row[5]),
+            )
 
 
 def export_rag_jsonl(conn: sqlite3.Connection) -> int:
@@ -653,6 +692,42 @@ def export_web_json(conn: sqlite3.Connection) -> int:
         encoding="utf-8",
         newline="\n",
     )
+
+    # ---- 面向十万级的分卷导出（离线模式懒加载用）----
+    # index.json：超轻量，只含卷册 + 分类 + 计数，不含术语正文，前端首屏秒开。
+    (WEB_EXPORT_DIR / "index.json").write_text(
+        json.dumps(
+            {
+                "project": meta["project"],
+                "version": meta["version"],
+                "generated_at": meta["generated_at"],
+                "total_terms": total_terms,
+                "target_total": target_total,
+                "completion_percent": meta["completion_percent"],
+                "status_counts": status_counts,
+                "volumes": volumes,
+                "tags": tags,
+            },
+            ensure_ascii=False,
+            indent=2,
+        ),
+        encoding="utf-8",
+        newline="\n",
+    )
+    # volumes/{code}.json：每卷术语单独一个文件，点到哪卷才加载哪卷。
+    by_volume: dict[str, list] = {}
+    for t in terms:
+        by_volume.setdefault(t["volume_code"], []).append(t)
+    vol_dir = WEB_EXPORT_DIR / "volumes"
+    vol_dir.mkdir(parents=True, exist_ok=True)
+    _clear_dir_contents(vol_dir)
+    for code, vterms in by_volume.items():
+        (vol_dir / f"{code}.json").write_text(
+            json.dumps({"volume_code": code, "total": len(vterms), "items": vterms},
+                       ensure_ascii=False, indent=2),
+            encoding="utf-8",
+            newline="\n",
+        )
     return total_terms
 
 

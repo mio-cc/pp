@@ -60,6 +60,36 @@ def get_conn() -> sqlite3.Connection:
     return conn
 
 
+# 启动时探测一次 trigram FTS 是否存在（中文子串检索走索引的关键）。
+_TRIGRAM_READY: Optional[bool] = None
+
+
+def trigram_ready(conn: sqlite3.Connection) -> bool:
+    global _TRIGRAM_READY
+    if _TRIGRAM_READY is None:
+        row = conn.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='terms_fts_tri'"
+        ).fetchone()
+        _TRIGRAM_READY = row is not None
+    return _TRIGRAM_READY
+
+
+def fts_match_uids(conn: sqlite3.Connection, q: str, limit: int) -> list[str]:
+    """用 trigram FTS 取候选 term_uid（≥3字才有效，已索引，避免全表 LIKE 扫描）。
+    把查询作为带引号短语传入，trigram 会做子串匹配。"""
+    if len(q) < 3 or not trigram_ready(conn):
+        return []
+    phrase = '"' + q.replace('"', '""') + '"'
+    try:
+        rows = conn.execute(
+            "SELECT term_uid FROM terms_fts_tri WHERE terms_fts_tri MATCH ? LIMIT ?",
+            (phrase, limit),
+        ).fetchall()
+        return [r[0] for r in rows]
+    except sqlite3.Error:
+        return []
+
+
 def split_list(value: Optional[str]) -> list[str]:
     if not value:
         return []
@@ -165,17 +195,23 @@ def _volumes(conn: sqlite3.Connection) -> list[dict]:
         GROUP BY v.id ORDER BY v.sequence_no
         """
     ).fetchall()
+    # 一次性取所有分类计数，按卷分组（避免每卷一条查询的 N+1）。
+    cat_rows = conn.execute(
+        """
+        SELECT v.code AS vcode, c.name, c.sort_order, COUNT(t.id) AS c
+        FROM categories c
+        JOIN volumes v ON v.id = c.volume_id
+        LEFT JOIN terms t ON t.category_id = c.id
+        GROUP BY c.id ORDER BY v.sequence_no, c.sort_order
+        """
+    ).fetchall()
+    cats_by_vol: dict[str, list] = {}
+    for cr in cat_rows:
+        cats_by_vol.setdefault(cr["vcode"], []).append(
+            {"name": cr["name"], "term_count": cr["c"]}
+        )
     out = []
     for r in rows:
-        cats = conn.execute(
-            """
-            SELECT c.name, COUNT(t.id) AS c
-            FROM categories c LEFT JOIN terms t ON t.category_id = c.id
-            WHERE c.volume_id = (SELECT id FROM volumes WHERE code = ?)
-            GROUP BY c.id ORDER BY c.sort_order
-            """,
-            (r["code"],),
-        ).fetchall()
         target = r["target_terms"] or 0
         current = r["current_terms"] or 0
         out.append(
@@ -187,7 +223,7 @@ def _volumes(conn: sqlite3.Connection) -> list[dict]:
                 "current_terms": current,
                 "completion_percent": round(current * 100.0 / target, 2) if target else 0.0,
                 "purpose": r["purpose"] or "",
-                "categories": [{"name": c["name"], "term_count": c["c"]} for c in cats],
+                "categories": cats_by_vol.get(r["code"], []),
             }
         )
     return out
@@ -269,12 +305,22 @@ def list_terms(
             )
             params.append(tag)
         if q:
-            like = f"%{q}%"
-            where.append(
-                "(t.zh_term LIKE ? OR t.en_term LIKE ? OR t.definition_short LIKE ? "
-                "OR t.id IN (SELECT term_id FROM term_aliases WHERE alias LIKE ?))"
-            )
-            params.extend([like, like, like, like])
+            # ≥3字：用 trigram FTS 取候选 id，命中后用 IN 过滤（走索引，避免全表扫描）。
+            # <3字或无 trigram：退回 LIKE（短查询数据量影响小）。
+            uids = fts_match_uids(conn, q, 5000)
+            if uids:
+                placeholders = ",".join("?" for _ in uids)
+                where.append(
+                    f"t.term_uid IN ({placeholders})"
+                )
+                params.extend(uids)
+            else:
+                like = f"%{q}%"
+                where.append(
+                    "(t.zh_term LIKE ? OR t.en_term LIKE ? OR t.definition_short LIKE ? "
+                    "OR t.id IN (SELECT term_id FROM term_aliases WHERE alias LIKE ?))"
+                )
+                params.extend([like, like, like, like])
 
         where_sql = (" WHERE " + " AND ".join(where)) if where else ""
         total = conn.execute(
@@ -337,25 +383,25 @@ def term_detail(term_uid: str) -> dict:
 
 @app.get("/api/search")
 def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=100)) -> dict:
-    """全文搜索：FTS5 优先（强于拉丁词），LIKE 兜底（覆盖中文子串）。"""
+    """全文搜索：
+    - ≥3字：trigram FTS 子串检索（已索引，十万级也快），覆盖中英文/别名/正文。
+    - <3字或无 trigram：LIKE 兜底（短查询数据量影响小）。
+    """
     conn = get_conn()
     try:
-        uids: list[str] = []
-        seen: set[str] = set()
-        try:
-            fts = conn.execute(
-                "SELECT term_uid FROM terms_fts WHERE terms_fts MATCH ? LIMIT ?",
-                (q, limit),
+        uids = fts_match_uids(conn, q, limit)
+        if uids:
+            ph = ",".join("?" for _ in uids)
+            rows = conn.execute(
+                f"{TERM_BASE_SELECT} WHERE t.term_uid IN ({ph})", uids
             ).fetchall()
-            for r in fts:
-                if r[0] not in seen:
-                    uids.append(r[0])
-                    seen.add(r[0])
-        except sqlite3.Error:
-            pass
+            by_uid = {r["term_uid"]: r for r in rows}
+            items = [serialize_term(by_uid[u]) for u in uids if u in by_uid]
+            return {"query": q, "count": len(items), "items": items, "engine": "trigram"}
 
+        # 短查询 / 无 trigram：LIKE 兜底
         like = f"%{q}%"
-        like_rows = conn.execute(
+        rows = conn.execute(
             f"""{TERM_BASE_SELECT}
             LEFT JOIN term_aliases a ON a.term_id = t.id
             WHERE t.zh_term LIKE ? OR t.en_term LIKE ? OR a.alias LIKE ?
@@ -364,25 +410,8 @@ def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=10
             """,
             (like, like, like, like, like, like, limit),
         ).fetchall()
-
-        by_uid: dict[str, sqlite3.Row] = {}
-        for r in like_rows:
-            by_uid[r["term_uid"]] = r
-            if r["term_uid"] not in seen:
-                uids.append(r["term_uid"])
-                seen.add(r["term_uid"])
-
-        # 补齐 FTS 命中但不在 LIKE 结果里的行
-        missing = [u for u in uids if u not in by_uid]
-        if missing:
-            ph = ",".join("?" for _ in missing)
-            for r in conn.execute(
-                f"{TERM_BASE_SELECT} WHERE t.term_uid IN ({ph})", missing
-            ).fetchall():
-                by_uid[r["term_uid"]] = r
-
-        items = [serialize_term(by_uid[u]) for u in uids[:limit] if u in by_uid]
-        return {"query": q, "count": len(items), "items": items}
+        items = [serialize_term(r) for r in rows]
+        return {"query": q, "count": len(items), "items": items, "engine": "like"}
     finally:
         conn.close()
 

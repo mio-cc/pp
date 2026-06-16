@@ -247,6 +247,41 @@ build_kb() {
     return 0
 }
 
+# 构建前端 - Build Vue Frontend
+build_frontend() {
+    print_step "构建前端（Vue 3 + Vite + Arco Design）"
+
+    ensure_log_dir
+
+    if ! command -v npm >/dev/null 2>&1; then
+        print_warning "未检测到 npm/Node.js。前端已预构建并随仓库提供（web/），可直接使用。"
+        print_info "如需重新构建前端，请先安装 Node.js 18+ 后再执行 './manage.sh frontend'"
+        return 0
+    fi
+
+    if [ ! -d "${PROJECT_ROOT}/frontend" ]; then
+        print_error "前端源码目录不存在: ${PROJECT_ROOT}/frontend"
+        return 1
+    fi
+
+    cd "${PROJECT_ROOT}/frontend" || return 1
+    print_info "安装前端依赖（首次较慢）..."
+    if ! npm install --no-audit --no-fund 2>&1 | tee -a "${LOG_FILE}"; then
+        print_error "前端依赖安装失败"
+        cd "${PROJECT_ROOT}" || true
+        return 1
+    fi
+    print_info "执行 vite build，输出到 web/ ..."
+    if ! npm run build 2>&1 | tee -a "${LOG_FILE}"; then
+        print_error "前端构建失败"
+        cd "${PROJECT_ROOT}" || true
+        return 1
+    fi
+    cd "${PROJECT_ROOT}" || true
+    print_success "前端构建完成，产物已输出到 web/"
+    return 0
+}
+
 # 验证知识库 - Validate Knowledge Base
 validate_kb() {
     print_step "验证知识库"
@@ -263,6 +298,7 @@ validate_kb() {
         print_error "知识库验证失败"
         return 1
     fi
+
     print_success "知识库验证完成"
 
     return 0
@@ -659,6 +695,9 @@ main() {
             setup_venv && \
             install_dependencies && \
             build_kb
+            ;;
+        frontend)
+            build_frontend
             ;;
         validate)
             setup_venv && \

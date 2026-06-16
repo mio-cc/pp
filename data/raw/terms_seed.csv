@@ -432,96 +432,6 @@ V05_T0045,压凹凸,Emboss,,V05,印刷工艺,压印浮凸。,,,,emboss deboss te
 V05_T0046,特种纸,Textured Paper,,V05,印刷工艺,纸张质感。,,,,textured specialty paper,,特种纸,,,,,平面;印刷,互联网研究整理,published,V1.0
 V05_T0047,出血,Bleed,,V05,印刷工艺,出血边。,,,,print bleed edge,,出血,,,,,平面;印刷,互联网研究整理,published,V1.0
 V05_T0048,Riso印刷,Risograph,,V05,印刷工艺,复古孔版套色。,,,,"risograph print, retro overprint",,Riso孔版,,,,,平面;印刷,互联网研究整理,published,V1.0
-V06_T0001,1800K色温,1800K Color Temp,,V06,光度与照度 / 色温,1800K，烛光极暖。,,,,"1800K color temperature, candlelight warm 1800K",,"1800K 色温, 烛光极暖",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0002,2700K色温,2700K Color Temp,,V06,光度与照度 / 色温,2700K，暖白居家。,,,,"2700K color temperature, warm white 2700K",,"2700K 色温, 暖白居家",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0003,3200K色温,3200K Color Temp,,V06,光度与照度 / 色温,3200K，钨丝灯暖。,,,,"3200K color temperature, tungsten 3200K warm",,"3200K 色温, 钨丝灯暖",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0004,4000K色温,4000K Color Temp,,V06,光度与照度 / 色温,4000K，中性暖白。,,,,"4000K color temperature, neutral warm 4000K",,"4000K 色温, 中性暖白",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0005,5500K色温,5500K Color Temp,,V06,光度与照度 / 色温,5500K，正午日光。,,,,"5500K color temperature, daylight 5500K",,"5500K 色温, 正午日光",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0006,6500K色温,6500K Color Temp,,V06,光度与照度 / 色温,6500K，标准冷白。,,,,"6500K color temperature, cool daylight 6500K",,"6500K 色温, 标准冷白",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0007,8000K色温,8000K Color Temp,,V06,光度与照度 / 色温,8000K，阴天冷蓝。,,,,"8000K color temperature, overcast cool blue 8000K",,"8000K 色温, 阴天冷蓝",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0008,10000K色温,10000K Color Temp,,V06,光度与照度 / 色温,10000K，极冷蓝调。,,,,"10000K color temperature, deep blue 10000K",,"10000K 色温, 极冷蓝调",,,,,色彩;色温,互联网研究整理,published,V1.0
-V06_T0009,高显色CRI,High CRI,,V06,光度与照度 / 光的属性,高显色还原真实。,,,,high CRI accurate color rendering,,高显色 CRI,,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0010,光通量,Luminous Flux,,V06,光度与照度 / 光的属性,光输出总量。,,,,luminous flux brightness,,光通量,,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0011,照度,Illuminance,,V06,光度与照度 / 光的属性,表面受光强度。,,,,illuminance lux on surface,,照度,,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0012,硬光,Hard Light,,V06,光度与照度 / 光的属性,小光源锐利阴影。,,,,hard light crisp shadows,,硬光,,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0013,柔光,Soft Light,,V06,光度与照度 / 光的属性,大光源柔和。,,,,soft diffused light,,柔光,,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0014,体积光,Volumetric Light,,V06,光度与照度 / 光的属性,可见光束丁达尔。,,,,volumetric god rays light beams,,"体积光, 丁达尔",,,,,色彩;光度,互联网研究整理,published,V1.0
-V06_T0015,RGB加色,RGB Additive,,V06,色彩科学 / 色彩模型,红绿蓝加色。,,,,RGB additive color,,RGB加色,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0016,CMYK减色,CMYK Subtractive,,V06,色彩科学 / 色彩模型,印刷减色。,,,,CMYK subtractive print color,,CMYK减色,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0017,HSL色彩,HSL Model,,V06,色彩科学 / 色彩模型,色相饱和明度。,,,,HSL hue saturation lightness,,HSL,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0018,Lab色彩,Lab Color,,V06,色彩科学 / 色彩模型,设备无关色彩。,,,,Lab device independent color,,Lab色彩,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0019,色相,Hue,,V06,色彩科学 / 色彩模型,颜色种类。,,,,"hue, color family",,色相,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0020,饱和度,Saturation,,V06,色彩科学 / 色彩模型,色彩鲜艳度。,,,,"saturation, color intensity",,饱和度,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0021,明度,Brightness,,V06,色彩科学 / 色彩模型,明暗程度。,,,,brightness value,,明度,,,,,色彩;模型,互联网研究整理,published,V1.0
-V06_T0022,sRGB,sRGB,,V06,色彩科学 / 色彩空间,标准网络色域。,,,,sRGB standard gamut,,sRGB,,,,,色彩;色域,互联网研究整理,published,V1.0
-V06_T0023,Adobe RGB,Adobe RGB,,V06,色彩科学 / 色彩空间,广色域印刷。,,,,Adobe RGB wide gamut,,Adobe RGB,,,,,色彩;色域,互联网研究整理,published,V1.0
-V06_T0024,DCI-P3,DCI-P3,,V06,色彩科学 / 色彩空间,电影广色域。,,,,DCI-P3 cinema gamut,,DCI-P3,,,,,色彩;色域,互联网研究整理,published,V1.0
-V06_T0025,Rec.2020,Rec.2020,,V06,色彩科学 / 色彩空间,超广色域HDR。,,,,Rec.2020 ultra wide HDR,,Rec.2020,,,,,色彩;色域,互联网研究整理,published,V1.0
-V06_T0026,正红,Pure Red,,V06,色彩体系 / 红色系,正红，具体取色。,,,,vivid pure red color,,"正红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0027,深红,Deep Red,,V06,色彩体系 / 红色系,深红，具体取色。,,,,deep crimson red color,,"深红, 浓郁色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0028,酒红,Wine Red,,V06,色彩体系 / 红色系,酒红，具体取色。,,,,wine burgundy red color,,"酒红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0029,绯红,Scarlet,,V06,色彩体系 / 红色系,绯红，具体取色。,,,,scarlet bright red color,,"绯红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0030,砖红,Brick Red,,V06,色彩体系 / 红色系,砖红，具体取色。,,,,muted brick red color,,"砖红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0031,浅粉红,Light Pink,,V06,色彩体系 / 红色系,浅粉红，具体取色。,,,,soft light pink color,,"浅粉红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0032,玫红,Rose Red,,V06,色彩体系 / 红色系,玫红，具体取色。,,,,rose magenta red color,,"玫红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0033,珊瑚红,Coral,,V06,色彩体系 / 红色系,珊瑚红，具体取色。,,,,warm coral pink color,,"珊瑚红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0034,橙色,Orange,,V06,色彩体系 / 橙黄系,橙色，具体取色。,,,,vivid orange color,,"橙色, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0035,橘红,Orange Red,,V06,色彩体系 / 橙黄系,橘红，具体取色。,,,,orange red color,,"橘红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0036,焦糖,Caramel,,V06,色彩体系 / 橙黄系,焦糖，具体取色。,,,,warm caramel brown-orange color,,"焦糖, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0037,柠檬黄,Lemon Yellow,,V06,色彩体系 / 橙黄系,柠檬黄，具体取色。,,,,bright lemon yellow color,,"柠檬黄, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0038,金黄,Golden Yellow,,V06,色彩体系 / 橙黄系,金黄，具体取色。,,,,rich golden yellow color,,"金黄, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0039,土黄,Ochre,,V06,色彩体系 / 橙黄系,土黄，具体取色。,,,,earthy ochre yellow color,,"土黄, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0040,米黄,Cream,,V06,色彩体系 / 橙黄系,米黄，具体取色。,,,,soft cream beige color,,"米黄, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0041,芥末黄,Mustard,,V06,色彩体系 / 橙黄系,芥末黄，具体取色。,,,,muted mustard yellow color,,"芥末黄, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0042,翠绿,Emerald,,V06,色彩体系 / 绿色系,翠绿，具体取色。,,,,vivid emerald green color,,"翠绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0043,墨绿,Dark Green,,V06,色彩体系 / 绿色系,墨绿，具体取色。,,,,deep dark green color,,"墨绿, 浓郁色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0044,薄荷绿,Mint,,V06,色彩体系 / 绿色系,薄荷绿，具体取色。,,,,light mint green color,,"薄荷绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0045,橄榄绿,Olive,,V06,色彩体系 / 绿色系,橄榄绿，具体取色。,,,,muted olive green color,,"橄榄绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0046,草绿,Grass Green,,V06,色彩体系 / 绿色系,草绿，具体取色。,,,,fresh grass green color,,"草绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0047,青绿,Teal Green,,V06,色彩体系 / 绿色系,青绿，具体取色。,,,,blue-green teal color,,"青绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0048,抹茶绿,Matcha,,V06,色彩体系 / 绿色系,抹茶绿，具体取色。,,,,soft matcha green color,,"抹茶绿, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0049,天蓝,Sky Blue,,V06,色彩体系 / 蓝青系,天蓝，具体取色。,,,,light sky blue color,,"天蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0050,宝蓝,Royal Blue,,V06,色彩体系 / 蓝青系,宝蓝，具体取色。,,,,vivid royal blue color,,"宝蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0051,藏青,Navy,,V06,色彩体系 / 蓝青系,藏青，具体取色。,,,,deep navy blue color,,"藏青, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0052,普鲁士蓝,Prussian Blue,,V06,色彩体系 / 蓝青系,普鲁士蓝，具体取色。,,,,dark prussian blue color,,"普鲁士蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0053,克莱因蓝,Klein Blue,,V06,色彩体系 / 蓝青系,克莱因蓝，具体取色。,,,,intense klein blue color,,"克莱因蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0054,蒂芙尼蓝,Tiffany Blue,,V06,色彩体系 / 蓝青系,蒂芙尼蓝，具体取色。,,,,tiffany robin-egg blue color,,"蒂芙尼蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0055,浅蓝,Pale Blue,,V06,色彩体系 / 蓝青系,浅蓝，具体取色。,,,,pale soft blue color,,"浅蓝, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0056,青色,Cyan,,V06,色彩体系 / 蓝青系,青色，具体取色。,,,,bright cyan color,,"青色, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0057,紫罗兰,Violet,,V06,色彩体系 / 紫粉系,紫罗兰，具体取色。,,,,vivid violet color,,"紫罗兰, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0058,丁香紫,Lilac,,V06,色彩体系 / 紫粉系,丁香紫，具体取色。,,,,soft lilac purple color,,"丁香紫, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0059,深紫,Deep Purple,,V06,色彩体系 / 紫粉系,深紫，具体取色。,,,,deep royal purple color,,"深紫, 浓郁色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0060,薰衣草,Lavender,,V06,色彩体系 / 紫粉系,薰衣草，具体取色。,,,,pale lavender color,,"薰衣草, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0061,品红,Magenta,,V06,色彩体系 / 紫粉系,品红，具体取色。,,,,vivid magenta color,,"品红, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0062,藕粉,Dusty Pink,,V06,色彩体系 / 紫粉系,藕粉，具体取色。,,,,muted dusty pink color,,"藕粉, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0063,纯黑,Pure Black,,V06,色彩体系 / 中性系,纯黑，具体取色。,,,,pure black color,,"纯黑, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0064,纯白,Pure White,,V06,色彩体系 / 中性系,纯白，具体取色。,,,,pure white color,,"纯白, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0065,浅灰,Light Gray,,V06,色彩体系 / 中性系,浅灰，具体取色。,,,,light neutral gray color,,"浅灰, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0066,深灰,Charcoal,,V06,色彩体系 / 中性系,深灰，具体取色。,,,,dark charcoal gray color,,"深灰, 浓郁色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0067,驼色,Camel,,V06,色彩体系 / 中性系,驼色，具体取色。,,,,warm camel tan color,,"驼色, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0068,米白,Off White,,V06,色彩体系 / 中性系,米白，具体取色。,,,,warm off-white color,,"米白, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0069,大地棕,Earth Brown,,V06,色彩体系 / 中性系,大地棕，具体取色。,,,,earthy brown color,,"大地棕, 色",,,,,色彩;颜色,互联网研究整理,published,V1.0
-V06_T0070,互补色,Complementary,,V06,色彩搭配,对比强烈撞色。,,,,complementary color contrast,,互补色撞色,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0071,邻近色,Analogous,,V06,色彩搭配,和谐相邻。,,,,analogous harmonious colors,,邻近色,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0072,三角配色,Triadic,,V06,色彩搭配,三等分平衡。,,,,triadic color scheme,,三角配色,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0073,分裂互补,Split-Complementary,,V06,色彩搭配,柔和对比。,,,,split complementary scheme,,分裂互补,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0074,单色系,Monochromatic,,V06,色彩搭配,同色深浅。,,,,monochromatic shades,,单色系,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0075,同类色,Tonal,,V06,色彩搭配,同色调微差。,,,,tonal subtle palette,,同类色,,,,,色彩;搭配,互联网研究整理,published,V1.0
-V06_T0076,暖色调,Warm Tone,,V06,色调与氛围,温暖橙红黄。,,,,"warm color tone, orange red yellow",,暖色调,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0077,冷色调,Cool Tone,,V06,色调与氛围,清冷蓝青。,,,,"cool color tone, blue cyan",,冷色调,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0078,高饱和活力,High Saturation,,V06,色调与氛围,鲜艳活力。,,,,high saturation vivid vibrant,,高饱和,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0079,低饱和高级,Muted/Desaturated,,V06,色调与氛围,低饱和高级感。,,,,"muted desaturated, sophisticated",,"低饱和, 高级灰",,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0080,莫兰迪色,Morandi Palette,,V06,色调与氛围,灰调柔和。,,,,morandi muted gray palette,,莫兰迪色,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0081,马卡龙色,Macaron Pastel,,V06,色调与氛围,粉嫩马卡龙。,,,,macaron pastel soft colors,,马卡龙色,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0082,复古胶片色,Retro Film Tone,,V06,色调与氛围,怀旧暖褪色。,,,,retro faded film tone,,复古胶片色,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0083,赛博霓虹色,Cyberpunk Neon,,V06,色调与氛围,紫粉青霓虹。,,,,cyberpunk neon purple pink cyan,,赛博霓虹色,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0084,撞色,Color Blocking,,V06,色调与氛围,高对比色块。,,,,bold color blocking,,撞色,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0085,黑金奢华,Black Gold Luxe,,V06,色调与氛围,黑金高奢。,,,,black and gold luxury,,黑金奢华,,,,,色彩;色调,互联网研究整理,published,V1.0
-V06_T0086,白平衡,White Balance,,V06,色彩管理与感知,校正色温偏色。,,,,white balance correction,,白平衡,,,,,色彩;管理感知,互联网研究整理,published,V1.0
-V06_T0087,色调映射,Tone Mapping,,V06,色彩管理与感知,HDR压缩动态。,,,,HDR tone mapping,,色调映射,,,,,色彩;管理感知,互联网研究整理,published,V1.0
-V06_T0088,色彩对比,Color Contrast,,V06,色彩管理与感知,冷暖明暗对比。,,,,color contrast warm cool,,色彩对比,,,,,色彩;管理感知,互联网研究整理,published,V1.0
-V06_T0089,同时对比,Simultaneous Contrast,,V06,色彩管理与感知,相邻色相互影响。,,,,simultaneous color contrast,,同时对比,,,,,色彩;管理感知,互联网研究整理,published,V1.0
-V06_T0090,高动态范围,HDR,,V06,色彩管理与感知,明暗皆有细节。,,,,high dynamic range detail,,HDR,,,,,色彩;管理感知,互联网研究整理,published,V1.0
 V07_T0001,基础色,Albedo/Base Color,,V07,PBR材质 / 通道属性,固有色。,,,,PBR albedo base color,,基础色,,,,,材质;PBR,整理,published,V1.0
 V07_T0002,金属度,Metallic,,V07,PBR材质 / 通道属性,金属非金属。,,,,metallic workflow,,金属度,,,,,材质;PBR,整理,published,V1.0
 V07_T0003,粗糙度,Roughness,,V07,PBR材质 / 通道属性,表面光滑粗糙。,,,,roughness glossy matte,,粗糙度,,,,,材质;PBR,整理,published,V1.0
@@ -869,3 +779,213 @@ V15_T0031,科技感,Tech/Futuristic,,V15,品牌调性与媒介,未来科技。,,
 V15_T0032,年轻活力,Youthful Vibrant,,V15,品牌调性与媒介,青春活力。,,,,youthful vibrant playful,,年轻活力,,,,,风格;品牌媒介,整理,published,V1.0
 V15_T0033,拼贴混媒,Mixed Media Collage,,V15,品牌调性与媒介,拼贴混合。,,,,mixed media collage,,拼贴混媒,,,,,风格;品牌媒介,整理,published,V1.0
 V15_T0034,手绘+数字,Hand-drawn Digital,,V15,品牌调性与媒介,手绘数字结合。,,,,hand-drawn digital hybrid,,手绘数字,,,,,风格;品牌媒介,整理,published,V1.0
+V06_T0001,1800K,1800K Color Temp,,V06,光度与照度 / 色温,1800K，烛光极暖。,,,,"1800K color temperature, candlelight warm 1800K",,"1800K 色温, 烛光极暖",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0002,2200K,2200K Color Temp,,V06,光度与照度 / 色温,2200K，落日暖橙。,,,,"2200K color temperature, sunset warm 2200K",,"2200K 色温, 落日暖橙",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0003,2700K,2700K Color Temp,,V06,光度与照度 / 色温,2700K，暖白居家。,,,,"2700K color temperature, warm white 2700K",,"2700K 色温, 暖白居家",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0004,3200K,3200K Color Temp,,V06,光度与照度 / 色温,3200K，钨丝灯暖。,,,,"3200K color temperature, tungsten 3200K warm",,"3200K 色温, 钨丝灯暖",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0005,4000K,4000K Color Temp,,V06,光度与照度 / 色温,4000K，中性暖白。,,,,"4000K color temperature, neutral warm 4000K",,"4000K 色温, 中性暖白",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0006,5000K,5000K Color Temp,,V06,光度与照度 / 色温,5000K，标准白。,,,,"5000K color temperature, standard white 5000K",,"5000K 色温, 标准白",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0007,5500K,5500K Color Temp,,V06,光度与照度 / 色温,5500K，正午日光。,,,,"5500K color temperature, daylight 5500K",,"5500K 色温, 正午日光",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0008,6500K,6500K Color Temp,,V06,光度与照度 / 色温,6500K，标准冷白。,,,,"6500K color temperature, cool daylight 6500K",,"6500K 色温, 标准冷白",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0009,7500K,7500K Color Temp,,V06,光度与照度 / 色温,7500K，阴天蓝。,,,,"7500K color temperature, shade blue 7500K",,"7500K 色温, 阴天蓝",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0010,10000K,10000K Color Temp,,V06,光度与照度 / 色温,10000K，极冷蓝调。,,,,"10000K color temperature, deep blue 10000K",,"10000K 色温, 极冷蓝调",,,,,色彩;色温,互联网研究整理,published,V1.0
+V06_T0011,红色,Pure Red,,V06,色彩体系 / 红色系,红色，具体取色。,,,,vivid pure red color,,红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0012,深红色,Deep Red,,V06,色彩体系 / 红色系,深红色，具体取色。,,,,deep dark red color,,深红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0013,浅红色,Light Red,,V06,色彩体系 / 红色系,浅红色，具体取色。,,,,light pale red color,,浅红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0014,暗红色,Dark Red,,V06,色彩体系 / 红色系,暗红色，具体取色。,,,,dark muted red color,,暗红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0015,亮红色,Bright Red,,V06,色彩体系 / 红色系,亮红色，具体取色。,,,,bright vivid red color,,亮红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0016,柔红色,Soft Red,,V06,色彩体系 / 红色系,柔红色，具体取色。,,,,soft pastel red color,,柔红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0017,浓红色,Rich Red,,V06,色彩体系 / 红色系,浓红色，具体取色。,,,,rich saturated red color,,浓红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0018,灰红色,Muted Red,,V06,色彩体系 / 红色系,灰红色，具体取色。,,,,muted grayish red color,,灰红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0019,淡红色,Pale Red,,V06,色彩体系 / 红色系,淡红色，具体取色。,,,,pale washed red color,,淡红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0020,橙色,Pure Orange,,V06,色彩体系 / 橙色系,橙色，具体取色。,,,,vivid pure orange color,,橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0021,深橙色,Deep Orange,,V06,色彩体系 / 橙色系,深橙色，具体取色。,,,,deep dark orange color,,深橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0022,浅橙色,Light Orange,,V06,色彩体系 / 橙色系,浅橙色，具体取色。,,,,light pale orange color,,浅橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0023,暗橙色,Dark Orange,,V06,色彩体系 / 橙色系,暗橙色，具体取色。,,,,dark muted orange color,,暗橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0024,亮橙色,Bright Orange,,V06,色彩体系 / 橙色系,亮橙色，具体取色。,,,,bright vivid orange color,,亮橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0025,柔橙色,Soft Orange,,V06,色彩体系 / 橙色系,柔橙色，具体取色。,,,,soft pastel orange color,,柔橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0026,浓橙色,Rich Orange,,V06,色彩体系 / 橙色系,浓橙色，具体取色。,,,,rich saturated orange color,,浓橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0027,灰橙色,Muted Orange,,V06,色彩体系 / 橙色系,灰橙色，具体取色。,,,,muted grayish orange color,,灰橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0028,淡橙色,Pale Orange,,V06,色彩体系 / 橙色系,淡橙色，具体取色。,,,,pale washed orange color,,淡橙色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0029,黄色,Pure Yellow,,V06,色彩体系 / 黄色系,黄色，具体取色。,,,,vivid pure yellow color,,黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0030,深黄色,Deep Yellow,,V06,色彩体系 / 黄色系,深黄色，具体取色。,,,,deep dark yellow color,,深黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0031,浅黄色,Light Yellow,,V06,色彩体系 / 黄色系,浅黄色，具体取色。,,,,light pale yellow color,,浅黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0032,暗黄色,Dark Yellow,,V06,色彩体系 / 黄色系,暗黄色，具体取色。,,,,dark muted yellow color,,暗黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0033,亮黄色,Bright Yellow,,V06,色彩体系 / 黄色系,亮黄色，具体取色。,,,,bright vivid yellow color,,亮黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0034,柔黄色,Soft Yellow,,V06,色彩体系 / 黄色系,柔黄色，具体取色。,,,,soft pastel yellow color,,柔黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0035,浓黄色,Rich Yellow,,V06,色彩体系 / 黄色系,浓黄色，具体取色。,,,,rich saturated yellow color,,浓黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0036,灰黄色,Muted Yellow,,V06,色彩体系 / 黄色系,灰黄色，具体取色。,,,,muted grayish yellow color,,灰黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0037,淡黄色,Pale Yellow,,V06,色彩体系 / 黄色系,淡黄色，具体取色。,,,,pale washed yellow color,,淡黄色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0038,黄绿色,Pure Chartreuse,,V06,色彩体系 / 黄绿系,黄绿色，具体取色。,,,,vivid pure chartreuse color,,黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0039,深黄绿色,Deep Chartreuse,,V06,色彩体系 / 黄绿系,深黄绿色，具体取色。,,,,deep dark chartreuse color,,深黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0040,浅黄绿色,Light Chartreuse,,V06,色彩体系 / 黄绿系,浅黄绿色，具体取色。,,,,light pale chartreuse color,,浅黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0041,暗黄绿色,Dark Chartreuse,,V06,色彩体系 / 黄绿系,暗黄绿色，具体取色。,,,,dark muted chartreuse color,,暗黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0042,亮黄绿色,Bright Chartreuse,,V06,色彩体系 / 黄绿系,亮黄绿色，具体取色。,,,,bright vivid chartreuse color,,亮黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0043,柔黄绿色,Soft Chartreuse,,V06,色彩体系 / 黄绿系,柔黄绿色，具体取色。,,,,soft pastel chartreuse color,,柔黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0044,浓黄绿色,Rich Chartreuse,,V06,色彩体系 / 黄绿系,浓黄绿色，具体取色。,,,,rich saturated chartreuse color,,浓黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0045,灰黄绿色,Muted Chartreuse,,V06,色彩体系 / 黄绿系,灰黄绿色，具体取色。,,,,muted grayish chartreuse color,,灰黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0046,淡黄绿色,Pale Chartreuse,,V06,色彩体系 / 黄绿系,淡黄绿色，具体取色。,,,,pale washed chartreuse color,,淡黄绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0047,绿色,Pure Green,,V06,色彩体系 / 绿色系,绿色，具体取色。,,,,vivid pure green color,,绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0048,深绿色,Deep Green,,V06,色彩体系 / 绿色系,深绿色，具体取色。,,,,deep dark green color,,深绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0049,浅绿色,Light Green,,V06,色彩体系 / 绿色系,浅绿色，具体取色。,,,,light pale green color,,浅绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0050,暗绿色,Dark Green,,V06,色彩体系 / 绿色系,暗绿色，具体取色。,,,,dark muted green color,,暗绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0051,亮绿色,Bright Green,,V06,色彩体系 / 绿色系,亮绿色，具体取色。,,,,bright vivid green color,,亮绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0052,柔绿色,Soft Green,,V06,色彩体系 / 绿色系,柔绿色，具体取色。,,,,soft pastel green color,,柔绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0053,浓绿色,Rich Green,,V06,色彩体系 / 绿色系,浓绿色，具体取色。,,,,rich saturated green color,,浓绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0054,灰绿色,Muted Green,,V06,色彩体系 / 绿色系,灰绿色，具体取色。,,,,muted grayish green color,,灰绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0055,淡绿色,Pale Green,,V06,色彩体系 / 绿色系,淡绿色，具体取色。,,,,pale washed green color,,淡绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0056,青绿色,Pure Teal,,V06,色彩体系 / 青绿系,青绿色，具体取色。,,,,vivid pure teal color,,青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0057,深青绿色,Deep Teal,,V06,色彩体系 / 青绿系,深青绿色，具体取色。,,,,deep dark teal color,,深青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0058,浅青绿色,Light Teal,,V06,色彩体系 / 青绿系,浅青绿色，具体取色。,,,,light pale teal color,,浅青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0059,暗青绿色,Dark Teal,,V06,色彩体系 / 青绿系,暗青绿色，具体取色。,,,,dark muted teal color,,暗青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0060,亮青绿色,Bright Teal,,V06,色彩体系 / 青绿系,亮青绿色，具体取色。,,,,bright vivid teal color,,亮青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0061,柔青绿色,Soft Teal,,V06,色彩体系 / 青绿系,柔青绿色，具体取色。,,,,soft pastel teal color,,柔青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0062,浓青绿色,Rich Teal,,V06,色彩体系 / 青绿系,浓青绿色，具体取色。,,,,rich saturated teal color,,浓青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0063,灰青绿色,Muted Teal,,V06,色彩体系 / 青绿系,灰青绿色，具体取色。,,,,muted grayish teal color,,灰青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0064,淡青绿色,Pale Teal,,V06,色彩体系 / 青绿系,淡青绿色，具体取色。,,,,pale washed teal color,,淡青绿色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0065,青色,Pure Cyan,,V06,色彩体系 / 青色系,青色，具体取色。,,,,vivid pure cyan color,,青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0066,深青色,Deep Cyan,,V06,色彩体系 / 青色系,深青色，具体取色。,,,,deep dark cyan color,,深青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0067,浅青色,Light Cyan,,V06,色彩体系 / 青色系,浅青色，具体取色。,,,,light pale cyan color,,浅青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0068,暗青色,Dark Cyan,,V06,色彩体系 / 青色系,暗青色，具体取色。,,,,dark muted cyan color,,暗青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0069,亮青色,Bright Cyan,,V06,色彩体系 / 青色系,亮青色，具体取色。,,,,bright vivid cyan color,,亮青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0070,柔青色,Soft Cyan,,V06,色彩体系 / 青色系,柔青色，具体取色。,,,,soft pastel cyan color,,柔青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0071,浓青色,Rich Cyan,,V06,色彩体系 / 青色系,浓青色，具体取色。,,,,rich saturated cyan color,,浓青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0072,灰青色,Muted Cyan,,V06,色彩体系 / 青色系,灰青色，具体取色。,,,,muted grayish cyan color,,灰青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0073,淡青色,Pale Cyan,,V06,色彩体系 / 青色系,淡青色，具体取色。,,,,pale washed cyan color,,淡青色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0074,蓝色,Pure Blue,,V06,色彩体系 / 蓝色系,蓝色，具体取色。,,,,vivid pure blue color,,蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0075,深蓝色,Deep Blue,,V06,色彩体系 / 蓝色系,深蓝色，具体取色。,,,,deep dark blue color,,深蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0076,浅蓝色,Light Blue,,V06,色彩体系 / 蓝色系,浅蓝色，具体取色。,,,,light pale blue color,,浅蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0077,暗蓝色,Dark Blue,,V06,色彩体系 / 蓝色系,暗蓝色，具体取色。,,,,dark muted blue color,,暗蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0078,亮蓝色,Bright Blue,,V06,色彩体系 / 蓝色系,亮蓝色，具体取色。,,,,bright vivid blue color,,亮蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0079,柔蓝色,Soft Blue,,V06,色彩体系 / 蓝色系,柔蓝色，具体取色。,,,,soft pastel blue color,,柔蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0080,浓蓝色,Rich Blue,,V06,色彩体系 / 蓝色系,浓蓝色，具体取色。,,,,rich saturated blue color,,浓蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0081,灰蓝色,Muted Blue,,V06,色彩体系 / 蓝色系,灰蓝色，具体取色。,,,,muted grayish blue color,,灰蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0082,淡蓝色,Pale Blue,,V06,色彩体系 / 蓝色系,淡蓝色，具体取色。,,,,pale washed blue color,,淡蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0083,靛蓝色,Pure Indigo,,V06,色彩体系 / 靛蓝系,靛蓝色，具体取色。,,,,vivid pure indigo color,,靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0084,深靛蓝色,Deep Indigo,,V06,色彩体系 / 靛蓝系,深靛蓝色，具体取色。,,,,deep dark indigo color,,深靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0085,浅靛蓝色,Light Indigo,,V06,色彩体系 / 靛蓝系,浅靛蓝色，具体取色。,,,,light pale indigo color,,浅靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0086,暗靛蓝色,Dark Indigo,,V06,色彩体系 / 靛蓝系,暗靛蓝色，具体取色。,,,,dark muted indigo color,,暗靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0087,亮靛蓝色,Bright Indigo,,V06,色彩体系 / 靛蓝系,亮靛蓝色，具体取色。,,,,bright vivid indigo color,,亮靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0088,柔靛蓝色,Soft Indigo,,V06,色彩体系 / 靛蓝系,柔靛蓝色，具体取色。,,,,soft pastel indigo color,,柔靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0089,浓靛蓝色,Rich Indigo,,V06,色彩体系 / 靛蓝系,浓靛蓝色，具体取色。,,,,rich saturated indigo color,,浓靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0090,灰靛蓝色,Muted Indigo,,V06,色彩体系 / 靛蓝系,灰靛蓝色，具体取色。,,,,muted grayish indigo color,,灰靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0091,淡靛蓝色,Pale Indigo,,V06,色彩体系 / 靛蓝系,淡靛蓝色，具体取色。,,,,pale washed indigo color,,淡靛蓝色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0092,紫色,Pure Purple,,V06,色彩体系 / 紫色系,紫色，具体取色。,,,,vivid pure purple color,,紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0093,深紫色,Deep Purple,,V06,色彩体系 / 紫色系,深紫色，具体取色。,,,,deep dark purple color,,深紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0094,浅紫色,Light Purple,,V06,色彩体系 / 紫色系,浅紫色，具体取色。,,,,light pale purple color,,浅紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0095,暗紫色,Dark Purple,,V06,色彩体系 / 紫色系,暗紫色，具体取色。,,,,dark muted purple color,,暗紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0096,亮紫色,Bright Purple,,V06,色彩体系 / 紫色系,亮紫色，具体取色。,,,,bright vivid purple color,,亮紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0097,柔紫色,Soft Purple,,V06,色彩体系 / 紫色系,柔紫色，具体取色。,,,,soft pastel purple color,,柔紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0098,浓紫色,Rich Purple,,V06,色彩体系 / 紫色系,浓紫色，具体取色。,,,,rich saturated purple color,,浓紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0099,灰紫色,Muted Purple,,V06,色彩体系 / 紫色系,灰紫色，具体取色。,,,,muted grayish purple color,,灰紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0100,淡紫色,Pale Purple,,V06,色彩体系 / 紫色系,淡紫色，具体取色。,,,,pale washed purple color,,淡紫色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0101,品红色,Pure Magenta,,V06,色彩体系 / 品红系,品红色，具体取色。,,,,vivid pure magenta color,,品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0102,深品红色,Deep Magenta,,V06,色彩体系 / 品红系,深品红色，具体取色。,,,,deep dark magenta color,,深品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0103,浅品红色,Light Magenta,,V06,色彩体系 / 品红系,浅品红色，具体取色。,,,,light pale magenta color,,浅品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0104,暗品红色,Dark Magenta,,V06,色彩体系 / 品红系,暗品红色，具体取色。,,,,dark muted magenta color,,暗品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0105,亮品红色,Bright Magenta,,V06,色彩体系 / 品红系,亮品红色，具体取色。,,,,bright vivid magenta color,,亮品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0106,柔品红色,Soft Magenta,,V06,色彩体系 / 品红系,柔品红色，具体取色。,,,,soft pastel magenta color,,柔品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0107,浓品红色,Rich Magenta,,V06,色彩体系 / 品红系,浓品红色，具体取色。,,,,rich saturated magenta color,,浓品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0108,灰品红色,Muted Magenta,,V06,色彩体系 / 品红系,灰品红色，具体取色。,,,,muted grayish magenta color,,灰品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0109,淡品红色,Pale Magenta,,V06,色彩体系 / 品红系,淡品红色，具体取色。,,,,pale washed magenta color,,淡品红色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0110,粉色,Pure Pink,,V06,色彩体系 / 粉色系,粉色，具体取色。,,,,vivid pure pink color,,粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0111,深粉色,Deep Pink,,V06,色彩体系 / 粉色系,深粉色，具体取色。,,,,deep dark pink color,,深粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0112,浅粉色,Light Pink,,V06,色彩体系 / 粉色系,浅粉色，具体取色。,,,,light pale pink color,,浅粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0113,暗粉色,Dark Pink,,V06,色彩体系 / 粉色系,暗粉色，具体取色。,,,,dark muted pink color,,暗粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0114,亮粉色,Bright Pink,,V06,色彩体系 / 粉色系,亮粉色，具体取色。,,,,bright vivid pink color,,亮粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0115,柔粉色,Soft Pink,,V06,色彩体系 / 粉色系,柔粉色，具体取色。,,,,soft pastel pink color,,柔粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0116,浓粉色,Rich Pink,,V06,色彩体系 / 粉色系,浓粉色，具体取色。,,,,rich saturated pink color,,浓粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0117,灰粉色,Muted Pink,,V06,色彩体系 / 粉色系,灰粉色，具体取色。,,,,muted grayish pink color,,灰粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0118,淡粉色,Pale Pink,,V06,色彩体系 / 粉色系,淡粉色，具体取色。,,,,pale washed pink color,,淡粉色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0119,棕色,Pure Brown,,V06,色彩体系 / 棕色系,棕色，具体取色。,,,,vivid pure brown color,,棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0120,深棕色,Deep Brown,,V06,色彩体系 / 棕色系,深棕色，具体取色。,,,,deep dark brown color,,深棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0121,浅棕色,Light Brown,,V06,色彩体系 / 棕色系,浅棕色，具体取色。,,,,light pale brown color,,浅棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0122,暗棕色,Dark Brown,,V06,色彩体系 / 棕色系,暗棕色，具体取色。,,,,dark muted brown color,,暗棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0123,亮棕色,Bright Brown,,V06,色彩体系 / 棕色系,亮棕色，具体取色。,,,,bright vivid brown color,,亮棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0124,柔棕色,Soft Brown,,V06,色彩体系 / 棕色系,柔棕色，具体取色。,,,,soft pastel brown color,,柔棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0125,浓棕色,Rich Brown,,V06,色彩体系 / 棕色系,浓棕色，具体取色。,,,,rich saturated brown color,,浓棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0126,灰棕色,Muted Brown,,V06,色彩体系 / 棕色系,灰棕色，具体取色。,,,,muted grayish brown color,,灰棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0127,淡棕色,Pale Brown,,V06,色彩体系 / 棕色系,淡棕色，具体取色。,,,,pale washed brown color,,淡棕色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0128,灰色,Pure Gray,,V06,色彩体系 / 灰中性系,灰色，具体取色。,,,,vivid pure gray color,,灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0129,深灰色,Deep Gray,,V06,色彩体系 / 灰中性系,深灰色，具体取色。,,,,deep dark gray color,,深灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0130,浅灰色,Light Gray,,V06,色彩体系 / 灰中性系,浅灰色，具体取色。,,,,light pale gray color,,浅灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0131,暗灰色,Dark Gray,,V06,色彩体系 / 灰中性系,暗灰色，具体取色。,,,,dark muted gray color,,暗灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0132,亮灰色,Bright Gray,,V06,色彩体系 / 灰中性系,亮灰色，具体取色。,,,,bright vivid gray color,,亮灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0133,柔灰色,Soft Gray,,V06,色彩体系 / 灰中性系,柔灰色，具体取色。,,,,soft pastel gray color,,柔灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0134,浓灰色,Rich Gray,,V06,色彩体系 / 灰中性系,浓灰色，具体取色。,,,,rich saturated gray color,,浓灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0135,灰灰色,Muted Gray,,V06,色彩体系 / 灰中性系,灰灰色，具体取色。,,,,muted grayish gray color,,灰灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0136,淡灰色,Pale Gray,,V06,色彩体系 / 灰中性系,淡灰色，具体取色。,,,,pale washed gray color,,淡灰色,,,,,色彩;颜色,互联网研究整理,published,V1.0
+V06_T0137,克莱因蓝,Klein Blue,,V06,色彩体系 / 命名色,强烈纯净蓝。,,,,intense international klein blue,,克莱因蓝,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0138,蒂芙尼蓝,Tiffany Blue,,V06,色彩体系 / 命名色,知更鸟蛋青蓝。,,,,tiffany robin egg blue,,蒂芙尼蓝,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0139,普鲁士蓝,Prussian Blue,,V06,色彩体系 / 命名色,深邃普鲁士蓝。,,,,dark prussian blue,,普鲁士蓝,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0140,孔雀蓝,Peacock Blue,,V06,色彩体系 / 命名色,孔雀蓝绿。,,,,peacock blue-green,,孔雀蓝,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0141,藏青,Navy,,V06,色彩体系 / 命名色,深海军蓝。,,,,deep navy blue,,藏青,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0142,湖蓝,Lake Blue,,V06,色彩体系 / 命名色,清澈湖蓝。,,,,clear lake blue,,湖蓝,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0143,酒红,Burgundy,,V06,色彩体系 / 命名色,葡萄酒红。,,,,wine burgundy red,,酒红,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0144,绯红,Scarlet,,V06,色彩体系 / 命名色,鲜亮绯红。,,,,bright scarlet red,,绯红,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0145,胭脂红,Carmine,,V06,色彩体系 / 命名色,胭脂深红。,,,,carmine crimson,,胭脂红,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0146,珊瑚粉,Coral,,V06,色彩体系 / 命名色,暖珊瑚粉。,,,,warm coral pink,,珊瑚粉,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0147,藕荷色,Dusty Lilac,,V06,色彩体系 / 命名色,灰调藕荷。,,,,muted dusty lilac,,藕荷色,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0148,薰衣草紫,Lavender,,V06,色彩体系 / 命名色,柔和薰衣草。,,,,soft lavender purple,,薰衣草紫,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0149,丁香紫,Lilac,,V06,色彩体系 / 命名色,浅丁香紫。,,,,light lilac,,丁香紫,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0150,莫兰迪灰粉,Morandi Pink,,V06,色彩体系 / 命名色,灰调莫兰迪粉。,,,,morandi muted pink,,莫兰迪灰粉,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0151,祖母绿,Emerald,,V06,色彩体系 / 命名色,浓郁祖母绿。,,,,rich emerald green,,祖母绿,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0152,墨绿,Pine Green,,V06,色彩体系 / 命名色,深墨绿。,,,,deep pine green,,墨绿,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0153,橄榄绿,Olive,,V06,色彩体系 / 命名色,灰橄榄绿。,,,,muted olive green,,橄榄绿,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0154,薄荷绿,Mint,,V06,色彩体系 / 命名色,清新薄荷绿。,,,,fresh mint green,,薄荷绿,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0155,抹茶绿,Matcha,,V06,色彩体系 / 命名色,柔抹茶绿。,,,,soft matcha green,,抹茶绿,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0156,芥末黄,Mustard,,V06,色彩体系 / 命名色,复古芥末黄。,,,,retro mustard yellow,,芥末黄,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0157,姜黄,Turmeric,,V06,色彩体系 / 命名色,暖姜黄。,,,,warm turmeric yellow,,姜黄,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0158,土黄赭石,Ochre,,V06,色彩体系 / 命名色,大地赭黄。,,,,earthy ochre,,土黄赭石,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0159,驼色,Camel,,V06,色彩体系 / 命名色,暖驼色。,,,,warm camel tan,,驼色,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0160,焦糖色,Caramel,,V06,色彩体系 / 命名色,焦糖棕橙。,,,,caramel brown,,焦糖色,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0161,巧克力棕,Chocolate,,V06,色彩体系 / 命名色,深巧克力棕。,,,,dark chocolate brown,,巧克力棕,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0162,米白,Off White,,V06,色彩体系 / 命名色,暖米白。,,,,warm off-white cream,,米白,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0163,象牙白,Ivory,,V06,色彩体系 / 命名色,柔象牙白。,,,,soft ivory white,,象牙白,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0164,炭黑,Charcoal,,V06,色彩体系 / 命名色,深炭黑灰。,,,,dark charcoal,,炭黑,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0165,银灰,Silver Gray,,V06,色彩体系 / 命名色,金属银灰。,,,,metallic silver gray,,银灰,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0166,玫瑰金,Rose Gold,,V06,色彩体系 / 命名色,暖玫瑰金。,,,,rose gold,,玫瑰金,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0167,香槟金,Champagne,,V06,色彩体系 / 命名色,柔香槟金。,,,,champagne gold,,香槟金,,,,,色彩;命名色,互联网研究整理,published,V1.0
+V06_T0168,RGB加色,RGB Additive,,V06,色彩科学 / 色彩模型与空间,红绿蓝加色。,,,,RGB additive color,,RGB,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0169,CMYK减色,CMYK Subtractive,,V06,色彩科学 / 色彩模型与空间,印刷减色。,,,,CMYK subtractive print,,CMYK,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0170,HSL,HSL Model,,V06,色彩科学 / 色彩模型与空间,色相饱和明度。,,,,HSL hue saturation lightness,,HSL,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0171,Lab,Lab Color,,V06,色彩科学 / 色彩模型与空间,设备无关。,,,,Lab device independent,,Lab,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0172,色相,Hue,,V06,色彩科学 / 色彩模型与空间,颜色种类。,,,,hue color family,,色相,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0173,饱和度,Saturation,,V06,色彩科学 / 色彩模型与空间,鲜艳度。,,,,saturation intensity,,饱和度,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0174,明度,Value,,V06,色彩科学 / 色彩模型与空间,明暗。,,,,brightness value,,明度,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0175,sRGB,sRGB,,V06,色彩科学 / 色彩模型与空间,标准网络色域。,,,,sRGB gamut,,sRGB,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0176,Adobe RGB,Adobe RGB,,V06,色彩科学 / 色彩模型与空间,广色域。,,,,Adobe RGB wide gamut,,Adobe RGB,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0177,DCI-P3,DCI-P3,,V06,色彩科学 / 色彩模型与空间,电影色域。,,,,DCI-P3 cinema gamut,,DCI-P3,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0178,Rec.2020,Rec.2020,,V06,色彩科学 / 色彩模型与空间,超广HDR色域。,,,,Rec.2020 HDR gamut,,Rec.2020,,,,,色彩;模型空间,互联网研究整理,published,V1.0
+V06_T0179,互补色,Complementary,,V06,色彩搭配,对比撞色。,,,,complementary contrast,,互补色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0180,邻近色,Analogous,,V06,色彩搭配,和谐相邻。,,,,analogous harmony,,邻近色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0181,三角配色,Triadic,,V06,色彩搭配,三等分。,,,,triadic scheme,,三角配色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0182,分裂互补,Split-Complementary,,V06,色彩搭配,柔和对比。,,,,split complementary,,分裂互补,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0183,四角配色,Tetradic,,V06,色彩搭配,双互补。,,,,tetradic scheme,,四角配色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0184,单色系,Monochromatic,,V06,色彩搭配,同色深浅。,,,,monochromatic shades,,单色系,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0185,同类色,Tonal,,V06,色彩搭配,同调微差。,,,,tonal palette,,同类色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0186,无彩色,Achromatic,,V06,色彩搭配,黑白灰。,,,,achromatic black white gray,,无彩色,,,,,色彩;搭配,互联网研究整理,published,V1.0
+V06_T0187,暖色调,Warm Tone,,V06,色调与氛围,橙红黄暖。,,,,warm tone orange red,,暖色调,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0188,冷色调,Cool Tone,,V06,色调与氛围,蓝青冷。,,,,cool tone blue cyan,,冷色调,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0189,高饱和活力,High Saturation,,V06,色调与氛围,鲜艳活力。,,,,high saturation vivid,,高饱和,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0190,低饱和高级,Muted,,V06,色调与氛围,低饱和高级。,,,,muted desaturated sophisticated,,低饱和,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0191,莫兰迪色,Morandi,,V06,色调与氛围,灰调柔和。,,,,morandi muted gray palette,,莫兰迪色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0192,马卡龙色,Macaron,,V06,色调与氛围,粉嫩马卡龙。,,,,macaron pastel,,马卡龙色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0193,复古胶片色,Retro Film,,V06,色调与氛围,怀旧褪色。,,,,retro faded film tone,,复古胶片色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0194,赛博霓虹色,Cyber Neon,,V06,色调与氛围,紫粉青霓虹。,,,,cyberpunk neon palette,,赛博霓虹色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0195,撞色,Color Blocking,,V06,色调与氛围,高对比色块。,,,,bold color blocking,,撞色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0196,黑金奢华,Black Gold,,V06,色调与氛围,黑金高奢。,,,,black and gold luxury,,黑金奢华,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0197,大地色系,Earth Tone,,V06,色调与氛围,自然大地色。,,,,earth tone palette,,大地色系,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0198,糖果色,Candy Color,,V06,色调与氛围,明快糖果。,,,,bright candy colors,,糖果色,,,,,色彩;色调,互联网研究整理,published,V1.0
+V06_T0199,高显色CRI,High CRI,,V06,光度与照度 / 光的属性,高显色还原。,,,,high CRI accurate rendering,,高显色,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0200,硬光,Hard Light,,V06,光度与照度 / 光的属性,锐利阴影。,,,,hard light crisp shadows,,硬光,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0201,柔光,Soft Light,,V06,光度与照度 / 光的属性,柔和散射。,,,,soft diffused light,,柔光,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0202,体积光,Volumetric Light,,V06,光度与照度 / 光的属性,丁达尔光束。,,,,volumetric god rays,,体积光,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0203,逆光,Backlight,,V06,光度与照度 / 光的属性,轮廓逆光。,,,,backlight rim glow,,逆光,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0204,散射光,Diffused,,V06,光度与照度 / 光的属性,均匀散射。,,,,diffused even light,,散射光,,,,,色彩;光质,互联网研究整理,published,V1.0
+V06_T0205,白平衡,White Balance,,V06,色彩管理与感知,校正偏色。,,,,white balance correction,,白平衡,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V06_T0206,色调映射,Tone Mapping,,V06,色彩管理与感知,HDR压缩。,,,,HDR tone mapping,,色调映射,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V06_T0207,色彩对比,Color Contrast,,V06,色彩管理与感知,冷暖明暗对比。,,,,color contrast,,色彩对比,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V06_T0208,同时对比,Simultaneous Contrast,,V06,色彩管理与感知,相邻互影响。,,,,simultaneous contrast,,同时对比,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V06_T0209,HDR,HDR,,V06,色彩管理与感知,高动态细节。,,,,high dynamic range,,HDR,,,,,色彩;管理感知,互联网研究整理,published,V1.0
+V06_T0210,色彩恒常,Color Constancy,,V06,色彩管理与感知,知觉恒常。,,,,color constancy perception,,色彩恒常,,,,,色彩;管理感知,互联网研究整理,published,V1.0

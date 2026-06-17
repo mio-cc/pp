@@ -97,6 +97,36 @@ def main() -> int:
         for term_uid, zh_term in low_definition:
             warnings.append(f"Very short definition: {term_uid} {zh_term}")
 
+        echo_definition = conn.execute(
+            """
+            SELECT term_uid, zh_term, definition_short
+            FROM terms
+            WHERE
+                RTRIM(TRIM(COALESCE(definition_short, '')), '。.；;，, ')
+                = RTRIM(TRIM(COALESCE(zh_term, '')), '。.；;，, ')
+            """
+        ).fetchall()
+        for term_uid, zh_term, definition_short in echo_definition:
+            errors.append(
+                f"definition_short repeats zh_term: {term_uid} {zh_term} -> {definition_short}"
+            )
+
+        placeholder_definition = conn.execute(
+            """
+            SELECT term_uid, zh_term, definition_short
+            FROM terms
+            WHERE
+                definition_short LIKE '%简短定义%'
+                OR definition_short LIKE '%待补充%'
+                OR definition_short LIKE '%TODO%'
+                OR definition_short LIKE '%TBD%'
+            """
+        ).fetchall()
+        for term_uid, zh_term, definition_short in placeholder_definition:
+            errors.append(
+                f"definition_short is placeholder text: {term_uid} {zh_term} -> {definition_short}"
+            )
+
         print_section("Summary")
         print(f"Volumes: {volume_count}")
         print(f"Terms: {term_count}")
@@ -141,4 +171,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

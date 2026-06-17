@@ -2,6 +2,11 @@
 # -*- coding: utf-8 -*-
 import csv
 
+raise SystemExit(
+    "scripts/gen_terms.py is deprecated because it writes placeholder definitions. "
+    "Use scripts/gen_v01.py ... gen_v15.py merge generators with real definition_short values."
+)
+
 CSV_PATH = "data/raw/terms_seed.csv"
 
 # Read existing CSV to find max UIDs

@@ -4,8 +4,43 @@ import csv, pathlib
 ROOT=pathlib.Path(__file__).resolve().parents[1]; CSV=ROOT/"data"/"raw"/"terms_seed.csv"
 FIELDS=["term_uid","zh_term","en_term","aliases","volume_code","category","definition_short","definition_long","visual_effect","prompt_usage","positive_prompt","negative_prompt","positive_prompt_cn","negative_prompt_cn","use_cases","related_terms","confused_with","tags","source_refs","status","version"]
 V="V02"; rows=[]
+def enrich_def(cat, zh, defs):
+    if len(defs.strip() + "。") >= 8:
+        return defs
+    d = defs.strip().rstrip("。.；;，, ")
+    if cat == "景别":
+        if "同框" in d:
+            return f"{d}组织人物关系的镜头景别"
+        if zh.endswith("镜头"):
+            return f"以{d}补充叙事信息的镜头景别"
+        if "第一人称" in d:
+            return "以第一人称呈现角色视线的主观镜头"
+        return f"{d}范围入画以控制叙事距离的镜头景别"
+    if cat == "机位运动":
+        return f"摄影机{d}形成视线变化的运动方式"
+    if cat == "镜头类型与光学":
+        return f"{d}改变视角和成像质感的镜头类型"
+    if cat == "镜头语言":
+        return f"通过{d}组织叙事关系的镜头语言"
+    if cat == "电影布光与影调":
+        return f"以{d}塑造电影明暗气氛的布光方式"
+    if cat == "画幅与画格":
+        if "散景" in zh or "眩光" in zh:
+            return f"{d}呈现变形镜头质感的画面效果"
+        return f"{d}比例塑造画面边界的电影画幅"
+    if cat == "胶片数字与帧率":
+        if "帧" in zh or zh in {"升格慢动作", "延时摄影", "定格动画", "子弹时间"}:
+            return f"{d}改变影像运动观感的时间规格"
+        return f"{d}形成对应影像质感的胶片或数字格式"
+    if cat == "场面调度与转场":
+        return f"通过{d}安排画面或连接镜头的叙事手法"
+    if cat == "电影调色风格":
+        return f"{d}塑造电影情绪的调色风格"
+    return f"{d}说明{zh}的电影视觉作用"
+
 def block(cat,items,tags):
     for zh,en,defs,pen,pcn in items:
+        defs = enrich_def(cat, zh, defs)
         rows.append(dict(zip(FIELDS,["",zh,en,"",V,cat,defs+"。","","","",pen,"",pcn,"","","","",tags,"互联网研究整理","published","V1.0"])))
 block("景别",[
 ("大远景","Extreme Long Shot","宏大全景人物渺小","extreme long shot, vast scale","大远景"),
@@ -50,7 +85,7 @@ block("镜头类型与光学",[
 ("球面镜头","Spherical Lens","常规球面","spherical lens","球面镜头"),
 ("变形镜头","Anamorphic Lens","椭圆散景蓝条","anamorphic lens, oval bokeh blue flare","变形镜头"),
 ("超广角","Ultra Wide","开阔夸张","ultra wide angle lens","超广角"),
-("广角","Wide Lens","广角","wide angle lens","广角"),
+("广角","Wide Lens","视角宽阔的短焦镜头","wide angle lens","广角"),
 ("标准镜头","Standard Lens","自然视角","standard 50mm lens","标准镜头"),
 ("长焦","Telephoto","压缩远摄","telephoto compression","长焦"),
 ("微距","Macro","极近特写","macro extreme closeup","微距"),

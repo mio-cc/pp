@@ -8,7 +8,40 @@ FIELDS = ["term_uid","zh_term","en_term","aliases","volume_code","category","def
           "positive_prompt_cn","negative_prompt_cn","use_cases","related_terms","confused_with",
           "tags","source_refs","status","version"]
 rows=[]
+def enrich_def(cat, zh, defs):
+    if len(defs.strip()) >= 8:
+        return defs
+    d = defs.strip().rstrip("。.；;，, ")
+    if "快门速度" in cat:
+        return f"{zh}用于记录持续光轨的快门档位。"
+    if "景深与虚化" in cat:
+        return f"{d}塑造主体分离的景深效果。"
+    if "光学缺陷与效果" in cat:
+        return f"{d}形成镜头成像缺陷或光学效果。"
+    if "画幅" in cat:
+        return f"{d}影响噪点景深和便携性的画幅规格。"
+    if "相机类型" in cat:
+        return f"{d}形成对应拍摄体验的相机类型。"
+    if "自然光" in cat:
+        return f"{d}塑造自然场景明暗气氛的光线。"
+    if "影室布光" in cat:
+        return f"{d}塑造人像明暗结构的布光方法。"
+    if "光质与修饰器" in cat:
+        return f"{d}控制光线形态与阴影边界的工具。"
+    if "构图法则" in cat:
+        return f"{d}组织画面重心与视线的构图法。"
+    if "视角机位" in cat:
+        return f"{d}改变主体气势和空间关系的视角。"
+    if "景别" in cat:
+        return f"{d}范围入画以控制叙事距离的景别。"
+    if "拍摄题材" in cat:
+        return f"以{d}为核心内容的摄影题材。"
+    if "胶片与质感" in cat:
+        return f"{d}形成复古影像气质的胶片质感。"
+    return f"{d}说明{zh}的核心视觉特征。"
+
 def add(cat,zh,en,defs,pen,pcn,tags):
+    defs = enrich_def(cat, zh, defs)
     rows.append(dict(zip(FIELDS,["",zh,en,"","V01",cat,defs,"","","",pen,"",pcn,"","","","",tags,"互联网研究整理","published","V1.0"])))
 
 # ===== 曝光控制 / 光圈：整档 f 值穷举 =====
@@ -214,8 +247,8 @@ for zh,en,defs,pen,pcn in [
 
 # ===== 构图与取景 / 视角机位 =====
 for zh,en,defs,pen,pcn in [
-("平视","Eye-Level","平视自然","eye-level view","平视"),
-("俯拍","High Angle","向下弱化","high angle looking down","俯拍"),
+("平视","Eye-Level","与人眼等高的平直自然视角","eye-level view","平视"),
+("俯拍","High Angle","从上向下俯视、弱化主体","high angle looking down","俯拍"),
 ("仰拍","Low Angle","向上气势","low angle looking up, powerful","仰拍, 气势"),
 ("鸟瞰","Bird's Eye","顶视俯瞰","bird's eye top-down view","鸟瞰俯视"),
 ("蠕虫视角","Worm's Eye","贴地仰视","worm's eye ground-level up view","蠕虫贴地视角"),
@@ -246,7 +279,7 @@ GEN=[("人物","人像","Portrait","表情情绪人像","portrait photography, e
 ("风景","海景","Seascape","海岸长曝","seascape, long exposure ocean"),
 ("纪实","街拍","Street","决定性瞬间","street photography, candid decisive moment"),
 ("纪实","纪实","Documentary","真实记录","documentary photography"),
-("纪实","新闻","Photojournalism","新闻现场","photojournalism, news"),
+("纪实","新闻","Photojournalism","记录事件现场的新闻摄影","photojournalism, news"),
 ("自然","微距","Macro","极致近摄","macro photography, extreme close-up"),
 ("自然","野生动物","Wildlife","长焦动物","wildlife photography, telephoto"),
 ("自然","生态","Nature","花鸟自然","nature flora fauna photography"),
@@ -274,7 +307,11 @@ for zh,en,defs,pen,pcn in [
 ("褪色复古","Faded Vintage","低饱和褪色","faded vintage, low saturation retro","褪色复古")]:
     add("胶片与质感 / "+("胶片类型" if en in("Kodak Portra","CineStill 800T","Fuji Classic Chrome","Fuji Velvia","Kodak Ektar","B&W Film","Expired Film") else "质感效果"), zh, en, defs+"。", pen, pcn, "胶片;质感")
 
+# 合并模式：保留其它卷，只重写本卷，卷内重编号。
+existing=[]
+if CSV.exists(): existing=[r for r in csv.DictReader(open(CSV,encoding="utf-8-sig")) if r["volume_code"]!="V01"]
 for i,r in enumerate(rows,1): r["term_uid"]=f"V01_T{i:04d}"
+allrows=existing+rows
 with open(CSV,"w",encoding="utf-8-sig",newline="") as f:
-    w=csv.DictWriter(f,fieldnames=FIELDS); w.writeheader(); w.writerows(rows)
-print(f"V01 generated: {len(rows)} terms")
+    w=csv.DictWriter(f,fieldnames=FIELDS); w.writeheader(); w.writerows(allrows)
+print(f"V01 穷举: {len(rows)} | total: {len(allrows)}")

@@ -438,6 +438,169 @@ const loadTerms = async () => {
 
 ---
 
+---
+
+## 新增功能（v2.1）
+
+### 11. 分类路径层级筛选
+```http
+GET /api/terms?category_prefix=代表性风格/
+```
+
+**说明**：筛选分类路径以指定前缀开头的所有术语，用于树形菜单筛选。
+
+**参数**：
+- `category_prefix`: 分类路径前缀，如「代表性风格/」或「色彩体系/中国传统色」
+
+---
+
+### 12. 批量获取术语详情
+```http
+POST /api/terms/batch
+Content-Type: application/json
+
+["V06_T0211", "V02_T0120", "V08_T0127"]
+```
+
+**说明**：一次性获取多个术语的完整详情，用于篮子功能等场景。
+
+**限制**：最多50条。
+
+---
+
+### 13. 随机术语探索
+```http
+GET /api/terms/random?count=5&volume=V06
+```
+
+**参数**：
+- `count`: 返回数量（1-20）
+- `volume`: 限定卷册（可选）
+- `category`: 限定分类（可选）
+- `tag`: 限定标签（可选）
+
+---
+
+### 14. 提示词合并组合
+```http
+POST /api/prompts/combine
+Content-Type: application/json
+
+{
+  "term_uids": ["V06_T0211", "V02_T0120", "V08_T0127"],
+  "language": "both",
+  "format": "comma"
+}
+```
+
+**参数**：
+- `term_uids`: 术语UID列表（最多30条）
+- `language`: 语言选项：`en` / `cn` / `both`
+- `format`: 格式选项：`comma`（逗号分隔）/ `newline`（换行）/ `weighted`（带权重）
+
+**返回示例**：
+```json
+{
+  "combined": "zhuyin, cinematic, masterpiece, best quality",
+  "combined_en": "zhuyin, cinematic, masterpiece, best quality",
+  "combined_cn": "朱殷, 电影感, 杰作",
+  "language": "both",
+  "format": "comma",
+  "count": 3,
+  "terms": [...]
+}
+```
+
+---
+
+### 15. 相关术语推荐
+```http
+GET /api/terms/{term_uid}/related?limit=5
+```
+
+**说明**：基于同分类、同标签智能推荐相关术语。
+
+---
+
+### 16. 术语对比
+```http
+GET /api/terms/compare?a=V06_T0211&b=V06_T0145
+```
+
+**说明**：对比两个术语的异同。
+
+---
+
+### 17. 分类树状结构
+```http
+GET /api/volumes/{code}/categories/tree
+```
+
+**说明**：获取分类的树状结构，用于前端树形菜单渲染。
+
+**返回示例**：
+```json
+{
+  "volume_code": "V03",
+  "tree": {
+    "代表性风格": {
+      "_count": 20,
+      "_children": {
+        "动画导演": {
+          "_count": 2,
+          "_children": {}
+        }
+      }
+    }
+  }
+}
+```
+
+---
+
+### 18. 多标签筛选（AND/OR逻辑）
+```http
+GET /api/terms?tags=色彩,中国色&tag_logic=AND
+```
+
+**说明**：
+- 单标签筛选：`tag=色彩`
+- 多标签筛选：`tags=色彩,中国色,传统`
+- 逻辑控制：`tag_logic=AND`（默认）或 `tag_logic=OR`
+
+---
+
+### 19. 高级搜索（指定字段）
+```http
+GET /api/search/advanced?zh_term=朱殷&positive_prompt=neon
+```
+
+**参数**：
+- `zh_term`: 中文名模糊匹配
+- `en_term`: 英文名模糊匹配
+- `definition_short`: 简短定义模糊匹配
+- `positive_prompt`: 英文提示词模糊匹配
+- `category`: 分类模糊匹配
+- `volume`: 卷册精确匹配
+- `limit`: 返回数量限制
+
+---
+
+### 20. 版本说明
+
+v2.1 新增功能：
+- ✅ 分类路径层级筛选
+- ✅ 批量获取术语详情
+- ✅ 随机术语探索
+- ✅ 提示词合并组合
+- ✅ 相关术语推荐
+- ✅ 术语对比
+- ✅ 分类树状结构
+- ✅ 多标签筛选（AND/OR逻辑）
+- ✅ 高级搜索（指定字段）
+
+---
+
 ## 性能建议
 
 1. **首次加载**：调用 `/api/meta` 获取全量元数据缓存在前端
@@ -445,3 +608,6 @@ const loadTerms = async () => {
 3. **搜索防抖**：用户输入搜索关键词时加300ms防抖
 4. **术语详情**：点击时才调用 `/api/terms/{uid}`，不预加载
 5. **提示词导出**：大批量导出用 `format=text`，减少JSON解析开销
+6. **批量获取**：多术语详情时用 `/api/terms/batch`，减少请求次数
+7. **树状菜单**：用 `/api/volumes/{code}/categories/tree` 获取分类树，客户端递归渲染
+8. **标签筛选**：AND逻辑适合精确筛选，OR逻辑适合宽泛搜索

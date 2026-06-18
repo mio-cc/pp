@@ -608,9 +608,10 @@ ${GREEN}可用命令:${NC}
   ${CYAN}stop${NC}                    停止运行中的 API 服务
   ${CYAN}restart [port]${NC}          重启 API 服务
   ${CYAN}status${NC}                  显示 API 服务状态、PID、端口、术语数量
-  ${CYAN}build${NC}                   从 CSV 重新构建知识库
+  ${CYAN}build${NC}                   重建知识库（= scripts/rebuild.py，临时构建+回写，兼容受限挂载）
+  ${CYAN}frontend${NC}                构建前端（npm install + vite build，输出 web/）
   ${CYAN}validate${NC}                运行知识库验证脚本
-  ${CYAN}search <keyword>{{NC}}        在 SQLite 中快速搜索术语
+  ${CYAN}search <keyword>${NC}        在 SQLite 中快速搜索术语
   ${CYAN}update${NC}                  拉取最新代码、重建知识库、自动重启服务
   ${CYAN}logs [lines]${NC}            显示 API 日志（默认显示最后 50 行）
   ${CYAN}help${NC}                    显示此帮助信息
@@ -651,7 +652,9 @@ ${GREEN}访问服务:${NC}
 ${YELLOW}提示:${NC}
   - 首次使用请执行 'setup' 命令初始化环境
   - 服务以后台守护进程运行，使用 'stop' 命令停止
-  - 修改 CSV 数据后请执行 'update' 或 'build' 重建知识库
+  - 新增/补全术语请用注入接口（推荐）：python scripts/ingest.py add-terms <terms.json>
+    （详见 docs/ai-contributor-guide.md、docs/templates/；AI 不直接改 CSV）
+  - 手改 CSV 或拉取代码后，执行 'build' 或 'update' 重建知识库
   - 遇到问题请查看日志文件: ${LOG_FILE}
 
 EOF

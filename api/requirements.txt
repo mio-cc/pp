@@ -1,2 +1,3 @@
 fastapi>=0.110
 uvicorn[standard]>=0.27
+jsonschema>=3.2  # scripts/ingest.py 术语注入接口的格式校验所需

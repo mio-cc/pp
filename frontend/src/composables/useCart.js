@@ -2,7 +2,7 @@ import { reactive, computed } from 'vue'
 
 // 提示词篮全局状态（跨组件共享）
 const state = reactive({
-  items: [] // { term_uid, zh_term, positive_prompt, ... }
+  items: [] // { term_uid, zh_term, en_term, ... }
 })
 
 export function useCart() {
@@ -34,7 +34,7 @@ export function useCart() {
   }
   function promptText() {
     return state.items
-      .map((x) => x.positive_prompt || x.en_term || x.zh_term)
+      .map((x) => x.en_term || x.zh_term)
       .filter(Boolean)
       .join(', ')
   }

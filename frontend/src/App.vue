@@ -6,11 +6,12 @@
       </button>
       <span class="brand"><span class="mk"><i></i></span><span>视觉术语<span class="dot">·</span><span class="sub">提示词构建器</span></span></span>
       <span v-if="kb.state.mode" class="modetag">{{ kb.state.mode === 'api' ? 'API 模式' : '离线模式' }}</span>
-      <div class="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input ref="searchInput" v-model="q" placeholder="搜索术语…（Ctrl+K）" @input="onSearch" />
-      </div>
-    </header>
+        <div class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input ref="searchInput" v-model="q" placeholder="搜索术语…（Ctrl+K）" @input="onSearch" />
+        </div>
+        <button class="tool" title="随机术语" @click="loadRandom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h4l3 10h4l3-10h2"/><path d="M16 7h4l-3 10"/></svg></button>
+      </header>
 
     <div class="body">
       <aside class="side">
@@ -64,7 +65,7 @@
               <div class="chips">
                 <div v-for="t in view.terms" :key="t.term_uid" class="cchip" :class="{ sel: inCart(t.term_uid) }" @click="openDetail(t)">
                   <div class="cn">{{ t.zh_term }}</div>
-                  <div class="ce">{{ t.positive_prompt || t.en_term || '—' }}</div>
+                  <div class="ce">{{ t.en_term || t.zh_term || '—' }}</div>
                   <span class="add" @click.stop="toggleCart(t)">{{ inCart(t.term_uid) ? '✓' : '+' }}</span>
                 </div>
               </div>
@@ -84,12 +85,14 @@
           <div v-for="(seg, i) in (detailTerm.category || '').split(' / ')" :key="i" :style="{ marginLeft: (i*10)+'px' }">└ <b>{{ seg }}</b></div>
           <div :style="{ marginLeft: ((detailTerm.category||'').split(' / ').length*10)+'px' }">└ <b>{{ detailTerm.zh_term }}</b><span class="tag">术语</span></div>
         </div>
-        <h2>{{ detailTerm.zh_term }}</h2>
-        <div class="den">{{ detailTerm.en_term || detailTerm.term_uid }}</div>
-        <div v-if="detailTerm.definition_short" class="dnote">{{ detailTerm.definition_short }}</div>
-        <div class="slabel">提示词（与术语对应） <span class="lg">EN</span><span class="lg cn">中</span></div>
-        <div class="pb"><button class="cp" @click="copyText(detailEN, $event)">复制</button>{{ detailEN }}</div>
-        <div class="pb cn"><button class="cp" @click="copyText(detailCN, $event)">复制</button>{{ detailCN }}</div>
+        <h2>{{ detailTerm.zh_term }}<button class="cpname" @click="copyText(detailTerm.zh_term, $event)" title="复制中文提示词">复制</button></h2>
+        <div class="den">{{ detailTerm.en_term || detailTerm.term_uid }}<button v-if="detailTerm.en_term" class="cpname" @click="copyText(detailTerm.en_term, $event)" title="复制英文提示词">复制</button></div>
+        <div class="namehint">中文名即中文提示词 · 英文名即英文提示词</div>
+        <div v-if="detailTerm.definition_long" class="sec"><div class="slabel">详细解释</div><div class="stext">{{ detailTerm.definition_long }}</div></div>
+        <div v-if="detailTerm.visual_effect" class="sec"><div class="slabel">视觉表现</div><div class="stext">{{ detailTerm.visual_effect }}</div></div>
+        <div v-if="detailTerm.prompt_usage" class="sec"><div class="slabel">提示词用法</div><div class="stext">{{ detailTerm.prompt_usage }}</div></div>
+        <div v-if="detailTerm.use_cases && detailTerm.use_cases.length" class="sec"><div class="slabel">适用场景</div><div class="chips"><span v-for="u in detailTerm.use_cases" :key="u" class="chip">{{ u }}</span></div></div>
+        <div v-if="detailTerm.tags && detailTerm.tags.length" class="sec"><div class="slabel">标签</div><div class="chips"><span v-for="tg in detailTerm.tags" :key="tg" class="chip ctag">{{ tg }}</span></div></div>
         <button class="dbtn" :class="{ added: inCart(detailTerm.term_uid) }" @click="toggleCart(detailTerm)">{{ inCart(detailTerm.term_uid) ? '✓ 已在提示词篮' : '＋ 加入提示词篮' }}</button>
       </template>
     </div>
@@ -104,9 +107,9 @@
     </div>
 
     <!-- 提示词篮 -->
-    <div class="dock" ref="dockRef">
-      <div class="dock-top">
-        <span class="dlbl"><span class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></span>提示词篮<span class="num">{{ cart.length }}</span></span>
+      <div class="dock" ref="dockRef">
+        <div class="dock-top">
+          <span class="dlbl"><span class="icn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></span>提示词篮<span class="num">{{ cart.length }}</span></span>
         <span class="divd"></span>
         <div class="frags" :class="{ expanded: basketExpanded }">
           <span v-if="!cart.length" class="ph">点术语卡右上角 + 添加</span>
@@ -115,6 +118,8 @@
           </span>
         </div>
         <div class="acts">
+          <button class="ic" title="批量获取术语" @click="loadBatch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+          <button class="ic" title="提示词合并" @click="mergeBasket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
           <button class="ic" :class="{ on: basketExpanded }" title="展开/收起提示词篮" @click="basketExpanded = !basketExpanded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 14l5-5 5 5"/></svg></button>
           <button class="ic" :class="{ on: showPrev }" title="预览将复制的提示词" @click="showPrev = !showPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
           <button class="copy" :class="{ done: copied }" @click="copyAll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>{{ copied ? '✓ 已复制' : '复制' }}</button>
@@ -126,12 +131,23 @@
       </div>
     </div>
 
+    <div v-if="randomPanel.length" class="random-panel">
+      <div class="gh"><span class="gt">随机术语</span><span class="gline"></span><button class="mini" @click="randomPanel = []">关闭</button></div>
+      <div class="chips">
+        <div v-for="t in randomPanel" :key="t.term_uid" class="cchip" :class="{ sel: inCart(t.term_uid) }" @click="openDetail(t)">
+          <div class="cn">{{ t.zh_term }}</div>
+          <div class="ce">{{ t.en_term || t.zh_term || '—' }}</div>
+          <span class="add" @click.stop="toggleCart(t)">{{ inCart(t.term_uid) ? '✓' : '+' }}</span>
+        </div>
+      </div>
+    </div>
+
     <div class="toast" :class="{ show: !!toastMsg }">{{ toastMsg }}</div>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, reactive, computed, onMounted, onUnmounted } from 'vue'
 import { useKB } from './composables/useKB'
 
 const kb = useKB()
@@ -152,6 +168,7 @@ const copied = ref(false)
 const toastMsg = ref('')
 const dockRef = ref(null)
 const langBottom = ref(70)
+const randomPanel = ref([])
 let toastT = null
 let _ro = null
 const view = reactive({ type: 'welcome', crumb: [{ label: '全部体系' }], title: '', hint: '', cards: [], terms: [], code: '' })
@@ -188,6 +205,10 @@ function buildTree(terms) {
   }
   ;(function cnt(n) { let c = n.terms.length; n.children.forEach((ch) => (c += cnt(ch))); n.count = c; return c })(root)
   return root
+}
+function categoryPathForRow(r) {
+  if (r.type === 'vol') return ''
+  return r.path || ''
 }
 function findNode(code, path) { let n = volTrees[code]; if (!n) return null; for (const s of path.split(SEP)) { if (!n.children.has(s)) return null; n = n.children.get(s) } return n }
 async function ensureVol(code) {
@@ -234,34 +255,40 @@ async function onRowClick(r) {
     setVolExclusive(r.code)
     if (was) { for (const k of [...expanded]) if (k === r.key || k.startsWith('N|' + r.code + '|')) expanded.delete(k) }
     activeKey.value = r.key
-    showVolume(r.code)
+    await showVolume(r.code)
   } else {
     if (r.hasKids && !expanded.has(r.key)) expanded.add(r.key)
     activeKey.value = r.key
-    showNode(r.code, r.path)
+    await showNode(r.code, r.path)
   }
 }
 
 function goWelcome() { activeKey.value = ''; Object.assign(view, { type: 'welcome', crumb: [{ label: '全部体系' }], title: '', hint: '', cards: [], terms: [], code: '' }) }
-function showVolume(code) {
+async function showVolume(code) {
   const v = vols.value.find((x) => x.code === code); const root = volTrees[code]
   const cards = root ? [...root.children.values()].map((n) => ({ name: n.name, path: n.path, childCount: n.children.size, count: n.count })) : []
   Object.assign(view, { type: 'volume', title: v.title, code, crumb: [{ label: '全部体系', fn: goWelcome }, { label: v.title }], cards, terms: [], hint: cards.length + ' 个分类' })
 }
-function showNode(code, path) {
+async function showNode(code, path) {
   const v = vols.value.find((x) => x.code === code); const node = findNode(code, path); if (!node) return
   const segs = path.split(SEP)
   const crumb = [{ label: '全部体系', fn: goWelcome }, { label: v.title, fn: () => navigate(code, null) }]
   let acc = []
   segs.forEach((s, i) => { acc.push(s); const p = acc.join(SEP); crumb.push(i === segs.length - 1 ? { label: s } : { label: s, fn: () => navigate(code, p) }) })
   const kids = [...node.children.values()].map((n) => ({ name: n.name, path: n.path, childCount: n.children.size, count: n.count }))
-  Object.assign(view, { type: 'node', title: node.name, code, crumb, cards: kids, terms: node.terms, hint: node.count + ' 个术语' })
+  const terms = await kb.loadCategoryBranchTerms(code, path)
+  Object.assign(view, { type: 'node', title: node.name, code, crumb, cards: kids, terms, hint: node.count + ' 个术语' })
 }
 async function navigate(code, path) {
   await ensureVol(code)
   setVolExclusive(code)
-  if (path) { const segs = path.split(SEP); let acc = []; for (const s of segs) { acc.push(s); expanded.add('N|' + code + '|' + acc.join(SEP)) } activeKey.value = 'N|' + code + '|' + path; showNode(code, path) }
-  else { activeKey.value = 'V|' + code; showVolume(code) }
+  if (path) { const segs = path.split(SEP); let acc = []; for (const s of segs) { acc.push(s); expanded.add('N|' + code + '|' + acc.join(SEP)) } activeKey.value = 'N|' + code + '|' + path; await showNode(code, path) }
+  else { activeKey.value = 'V|' + code; await showVolume(code) }
+}
+
+function currentCategoryPath() {
+  if (!activeKey.value.startsWith('N|')) return ''
+  return activeKey.value.split('|').slice(2).join('|').replace(/\|/g, SEP)
 }
 
 let st = null
@@ -275,15 +302,68 @@ function onSearch() {
   }, 200)
 }
 
-function openDetail(t) { detailTerm.value = t }
-const detailEN = computed(() => detailTerm.value ? (detailTerm.value.positive_prompt || detailTerm.value.en_term || detailTerm.value.zh_term) : '')
-const detailCN = computed(() => detailTerm.value ? (detailTerm.value.positive_prompt_cn || detailTerm.value.zh_term) : '')
+async function loadBatch() {
+  const data = await kb.batchTerms(cart.map((c) => c.term_uid))
+  toast(data.count ? `批量获取 ${data.count} 条` : '没有可批量获取的术语')
+  if (data.items.length) {
+    Object.assign(view, {
+      type: 'search',
+      crumb: [{ label: '全部体系', fn: goWelcome }, { label: '提示词篮 · 批量获取' }],
+      title: '',
+      cards: [],
+      terms: data.items,
+      hint: data.missing_term_uids.length ? `缺失 ${data.missing_term_uids.length} 条` : '批量获取完成'
+    })
+    q.value = ''
+    randomPanel.value = []
+  }
+}
+
+async function mergeBasket() {
+  const data = await kb.combinePrompts(cart.map((c) => c.term_uid), { language: copyLang.value, format: 'comma' })
+  if (!data.combined) {
+    toast('提示词篮是空的')
+    return
+  }
+  await navigator.clipboard?.writeText(data.combined)
+  copied.value = true
+  setTimeout(() => (copied.value = false), 1200)
+  showPrev.value = true
+  toast(`已合并 ${data.count} 条`)
+}
+
+async function loadRandom() {
+  const activeVol = view.code || ''
+  const activeCat = currentCategoryPath()
+  const data = await kb.randomTerms({
+    count: 8,
+    volume: activeVol || undefined,
+    category: activeCat || undefined,
+    category_prefix: activeCat || undefined
+  })
+  randomPanel.value = data.items || []
+  Object.assign(view, {
+    type: 'search',
+    crumb: [{ label: '全部体系', fn: goWelcome }, { label: '随机术语' }],
+    title: '',
+    cards: [],
+    terms: data.items || [],
+    hint: `${data.count || 0}/${data.available || 0}`
+  })
+}
+
+async function openDetail(t) {
+  detailTerm.value = t
+  if (t && t.term_uid && t.definition_long === undefined && kb.state.mode === 'api') {
+    try { const full = await kb.termDetail(t.term_uid); if (full) detailTerm.value = full } catch (e) { /* 保底用列表项 */ }
+  }
+}
 function copyText(text, e) { navigator.clipboard && navigator.clipboard.writeText(text); const b = e.target; const o = b.textContent; b.textContent = '已复制'; setTimeout(() => (b.textContent = o), 900) }
 
 function inCart(uid) { return cart.some((c) => c.term_uid === uid) }
 function toggleCart(t) { const i = cart.findIndex((c) => c.term_uid === t.term_uid); if (i >= 0) { cart.splice(i, 1); toast('− ' + t.zh_term) } else { cart.push(t); toast('+ ' + t.zh_term) } }
 const conflictUids = computed(() => { const byp = {}; cart.forEach((c) => { (byp[c.category] = byp[c.category] || []).push(c.term_uid) }); const s = new Set(); Object.values(byp).forEach((a) => { if (a.length > 1) a.forEach((u) => s.add(u)) }); return s })
-function termText(t, lang) { const en = t.positive_prompt || t.en_term || t.zh_term; const cn = t.positive_prompt_cn || t.zh_term; return lang === 'cn' ? cn : lang === 'both' ? en + '（' + cn + '）' : en }
+function termText(t, lang) { const en = t.en_term || t.zh_term; const cn = t.zh_term; return lang === 'cn' ? cn : lang === 'both' ? en + '（' + cn + '）' : en }
 const promptText = computed(() => cart.map((c) => termText(c, copyLang.value)).filter(Boolean).join(', '))
 function setLang(l) { copyLang.value = l; showPrev.value = true; toast('复制语言：' + ({ en: '英文', cn: '中文', both: '中英' }[l]) + (cart.length ? '' : '（篮中加词后生效）')) }
 function copyAll() { if (!cart.length) { toast('提示词篮是空的'); return } navigator.clipboard && navigator.clipboard.writeText(promptText.value); showPrev.value = true; copied.value = true; setTimeout(() => (copied.value = false), 1200); toast('已复制 ' + cart.length + ' 项(' + ({ en: '英文', cn: '中文', both: '中英' }[copyLang.value]) + ')') }
@@ -309,6 +389,9 @@ window.addEventListener('resize', measureDock)
 .search input { width: 100%; height: 32px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.6); padding: 0 12px 0 32px; font-size: 12.5px; font-family: var(--font); transition: .25s; color: var(--ink); }
 .search input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(10,132,255,.12); }
 .search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--mut); }
+.tool { width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--mut); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: .2s; }
+.tool:hover { background: var(--hov); color: var(--ink2); }
+.tool svg { width: 15px; height: 15px; }
 .body { flex: 1; display: flex; min-height: 0; position: relative; }
 .side { width: var(--side-w); flex: 0 0 var(--side-w); background: var(--panel); backdrop-filter: saturate(180%) blur(20px); border-right: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; transition: width .32s cubic-bezier(.4,0,.2,1), flex-basis .32s, opacity .28s, border-color .28s; }
 .app.side-hidden .side { width: 0; flex-basis: 0; opacity: 0; border-color: transparent; pointer-events: none; }
@@ -367,6 +450,13 @@ window.addEventListener('resize', measureDock)
 .detail .lin b { color: var(--ink); } .detail .lin .tag { font-size: 9px; color: var(--mut); margin-left: 6px; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
 .detail h2 { font-size: 21px; margin-bottom: 3px; } .detail .den { font-size: 12px; color: var(--mut); font-family: var(--mono); margin-bottom: 14px; }
 .detail .dnote { font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 16px; }
+.detail .sec { margin-bottom: 14px; } .detail .stext { font-size: 13px; color: var(--ink2); line-height: 1.65; }
+.detail .namehint { font-size: 10.5px; color: var(--faint); margin: -6px 0 14px; }
+.detail .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.detail .chip { font-size: 12px; color: var(--ink2); background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 3px 9px; }
+.detail .chip.ctag { background: var(--hov); }
+.cpname { margin-left: 8px; font-size: 10px; vertical-align: middle; background: var(--hov); border: 1px solid var(--line); color: var(--mut); border-radius: 6px; padding: 1px 7px; cursor: pointer; font-family: var(--font); }
+.cpname:hover { background: var(--ink); color: #fff; }
 .slabel { font-size: 11px; font-weight: 600; color: var(--mut); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 6px; display: flex; align-items: center; gap: 6px; }
 .slabel .lg { font-size: 9px; background: var(--accent); color: #fff; border-radius: 3px; padding: 0 4px; } .slabel .lg.cn { background: #7a52cc; }
 .pb { background: #1d1d1f; color: #e8e8ea; border-radius: 12px; padding: 11px 13px; font-family: var(--mono); font-size: 12px; line-height: 1.5; word-break: break-word; margin-bottom: 8px; position: relative; } .pb.cn { background: #222033; color: #e7e3f5; }
@@ -407,5 +497,9 @@ window.addEventListener('resize', measureDock)
 .dock-prev .pl { color: var(--faint); } .dock-prev b { color: var(--accent); font-weight: 600; } .dock-prev .warn { color: var(--danger); font-weight: 600; }
 .toast { position: fixed; top: 60px; left: 50%; transform: translateX(-50%) translateY(-20px); background: var(--sel); color: #fff; padding: 8px 18px; border-radius: 10px; font-size: 12.5px; font-weight: 500; opacity: 0; pointer-events: none; z-index: 99; transition: .3s cubic-bezier(.34,1.56,.64,1); }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.random-panel { position: fixed; left: calc(var(--side-w) + 16px); right: 16px; top: 62px; background: rgba(250,250,252,.96); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow-lg); padding: 14px; z-index: 44; max-height: 250px; overflow: auto; }
+.app.side-hidden .random-panel { left: 16px; }
+.mini { border: 1px solid var(--line); background: #fff; color: var(--ink2); border-radius: 8px; height: 26px; padding: 0 10px; cursor: pointer; }
+.mini:hover { background: var(--hov); }
 @media (max-width: 880px) { .search { width: 160px; } }
 </style>

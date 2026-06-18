@@ -1,5 +1,2 @@
--- 004: 提示词中英双语
--- positive_prompt / negative_prompt 保持英文(给 AI 绘图工具直接用)
--- 新增 *_cn 中文对应版本,中英并存且语义对应
-ALTER TABLE terms ADD COLUMN positive_prompt_cn TEXT;
-ALTER TABLE terms ADD COLUMN negative_prompt_cn TEXT;
+-- 004:(已废弃) positive_prompt_cn/negative_prompt_cn 列已移除。
+-- 规范 v2：术语名即提示词（zh_term=中文, en_term=英文），不再单设提示词列。

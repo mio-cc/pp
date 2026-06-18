@@ -20,7 +20,6 @@
       <h2>{{ term.zh_term }}</h2>
       <div class="den">{{ term.en_term || term.term_uid }}</div>
 
-      <div v-if="term.definition_short" class="dnote">{{ term.definition_short }}</div>
       <div v-if="term.definition_long" class="section">
         <div class="slabel">详细解释</div>
         <div class="stext">{{ term.definition_long }}</div>
@@ -30,21 +29,13 @@
         <div class="stext">{{ term.visual_effect }}</div>
       </div>
 
-      <!-- 正向提示词 -->
-      <div v-if="term.positive_prompt" class="section">
-        <div class="slabel">正向提示词</div>
-        <div class="pb">
-          <button class="cp" @click="copy(term.positive_prompt, $event)">复制</button>
-          {{ term.positive_prompt }}
-        </div>
+      <div v-if="term.prompt_usage" class="section">
+        <div class="slabel">提示词用法</div>
+        <div class="stext">{{ term.prompt_usage }}</div>
       </div>
-      <!-- 负向提示词 -->
-      <div v-if="term.negative_prompt" class="section">
-        <div class="slabel">负向提示词</div>
-        <div class="pb neg">
-          <button class="cp" @click="copy(term.negative_prompt, $event)">复制</button>
-          {{ term.negative_prompt }}
-        </div>
+      <div v-if="term.use_cases && term.use_cases.length" class="section">
+        <div class="slabel">适用场景</div>
+        <div class="stext">{{ Array.isArray(term.use_cases) ? term.use_cases.join('、') : term.use_cases }}</div>
       </div>
 
       <!-- 标签 -->

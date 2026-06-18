@@ -46,7 +46,7 @@ LOG_FILE="${LOG_DIR}/api.log"
 ERROR_LOG="${LOG_DIR}/api.error.log"
 
 # Python 脚本路径
-BUILD_SCRIPT="${PROJECT_ROOT}/scripts/build_kb.py"
+BUILD_SCRIPT="${PROJECT_ROOT}/scripts/rebuild.py"  # rebuild.py 在临时目录构建再回写，兼容受限挂载
 VALIDATE_SCRIPT="${PROJECT_PROJECT_ROOT}/scripts/validate_kb.py"
 SEARCH_SCRIPT="${PROJECT_ROOT}/scripts/search_terms.py"
 API_SCRIPT="${PROJECT_ROOT}/api/app.py"
@@ -228,7 +228,7 @@ build_kb() {
         return 1
     fi
 
-    print_info "运行 build_kb.py..."
+    print_info "运行 rebuild.py（临时目录构建→回写主库）..."
     if ! "${PYTHON_BIN}" "${BUILD_SCRIPT}" 2>&1 | tee -a "${LOG_FILE}"; then
         print_error "知识库构建失败"
         return 1

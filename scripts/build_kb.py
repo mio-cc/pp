@@ -247,12 +247,9 @@ def build_chunk_content(row: dict, aliases: list[str], tags: list[str]) -> str:
         f"别名：{'; '.join(aliases)}",
         f"卷册：{row['volume_code']}",
         f"分类：{row['category']}",
-        f"一句话定义：{row.get('definition_short', '')}",
         f"详细解释：{row.get('definition_long', '')}",
         f"视觉表现：{row.get('visual_effect', '')}",
         f"Prompt 用法：{row.get('prompt_usage', '')}",
-        f"正向提示词：{row.get('positive_prompt', '')}",
-        f"负向提示词：{row.get('negative_prompt', '')}",
         f"适用场景：{row.get('use_cases', '')}",
         f"标签：{'; '.join(tags)}",
     ]
@@ -272,8 +269,6 @@ def insert_chunks(
         [
             f"术语：{row['zh_term']} / {row.get('en_term', '')}",
             f"Prompt 用法：{row.get('prompt_usage', '')}",
-            f"正向提示词：{row.get('positive_prompt', '')}",
-            f"负向提示词：{row.get('negative_prompt', '')}",
         ]
     )
     chunks = [
@@ -329,12 +324,10 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
                     """
                     INSERT INTO terms (
                         term_uid, zh_term, en_term, volume_id, category_id,
-                        definition_short, definition_long, visual_effect,
-                        prompt_usage, positive_prompt, negative_prompt,
-                        positive_prompt_cn, negative_prompt_cn,
+                        definition_long, visual_effect, prompt_usage,
                         use_cases, source_refs, notes, status, version
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         row["term_uid"],
@@ -342,14 +335,9 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
                         row.get("en_term", ""),
                         volume_id,
                         category_id,
-                        row.get("definition_short", ""),
                         row.get("definition_long", ""),
                         row.get("visual_effect", ""),
                         row.get("prompt_usage", ""),
-                        row.get("positive_prompt", ""),
-                        row.get("negative_prompt", ""),
-                        row.get("positive_prompt_cn", ""),
-                        row.get("negative_prompt_cn", ""),
                         row.get("use_cases", ""),
                         row.get("source_refs", ""),
                         row.get("notes", ""),
@@ -403,12 +391,9 @@ def rebuild_fts(conn: sqlite3.Connection) -> None:
             t.zh_term,
             t.en_term,
             COALESCE(GROUP_CONCAT(a.alias, '; '), '') AS aliases,
-            COALESCE(t.definition_short, '') || char(10) ||
             COALESCE(t.definition_long, '') || char(10) ||
             COALESCE(t.visual_effect, '') || char(10) ||
             COALESCE(t.prompt_usage, '') || char(10) ||
-            COALESCE(t.positive_prompt, '') || char(10) ||
-            COALESCE(t.negative_prompt, '') || char(10) ||
             COALESCE(t.use_cases, '') AS body
         FROM terms t
         LEFT JOIN term_aliases a ON a.term_id = t.id
@@ -508,7 +493,6 @@ def export_terms_catalog(conn: sqlite3.Connection) -> None:
             v.code,
             v.title,
             c.name,
-            t.definition_short,
             t.status,
             t.version
         FROM terms t
@@ -527,7 +511,6 @@ def export_terms_catalog(conn: sqlite3.Connection) -> None:
                 "volume_code",
                 "volume_title",
                 "category",
-                "definition_short",
                 "status",
                 "version",
             ]
@@ -550,14 +533,9 @@ def export_web_json(conn: sqlite3.Connection) -> int:
             v.title AS volume_title,
             v.sequence_no AS volume_sequence,
             c.name AS category,
-            t.definition_short,
             t.definition_long,
             t.visual_effect,
             t.prompt_usage,
-            t.positive_prompt,
-            t.negative_prompt,
-            t.positive_prompt_cn,
-            t.negative_prompt_cn,
             t.use_cases,
             t.source_refs,
             t.status,
@@ -595,14 +573,9 @@ def export_web_json(conn: sqlite3.Connection) -> int:
                 "volume_code": row["volume_code"],
                 "volume_title": row["volume_title"],
                 "category": row["category"] or "",
-                "definition_short": row["definition_short"] or "",
                 "definition_long": row["definition_long"] or "",
                 "visual_effect": row["visual_effect"] or "",
                 "prompt_usage": row["prompt_usage"] or "",
-                "positive_prompt": row["positive_prompt"] or "",
-                "negative_prompt": row["negative_prompt"] or "",
-                "positive_prompt_cn": row["positive_prompt_cn"] or "",
-                "negative_prompt_cn": row["negative_prompt_cn"] or "",
                 "use_cases": split_list(row["use_cases"]),
                 "aliases": split_list(row["aliases"]),
                 "tags": split_list(row["tags"]),
@@ -762,10 +735,6 @@ version: {row["version"]}
 
 # {row["zh_term"]}{f' / {row["en_term"]}' if row["en_term"] else ''}
 
-## 一句话定义
-
-{row["definition_short"] or "待补充。"}
-
 ## 详细解释
 
 {row["definition_long"] or "待补充。"}
@@ -778,18 +747,6 @@ version: {row["version"]}
 
 ```text
 {row["prompt_usage"] or "待补充。"}
-```
-
-### 正向提示词
-
-```text
-{row["positive_prompt"] or "待补充。"}
-```
-
-### 负向提示词
-
-```text
-{row["negative_prompt"] or "待补充。"}
 ```
 
 ## 适用场景
@@ -825,14 +782,9 @@ def export_markdown(conn: sqlite3.Connection) -> int:
             v.code AS volume_code,
             v.title AS volume_title,
             c.name AS category,
-            t.definition_short,
             t.definition_long,
             t.visual_effect,
             t.prompt_usage,
-            t.positive_prompt,
-            t.negative_prompt,
-            t.positive_prompt_cn,
-            t.negative_prompt_cn,
             t.use_cases,
             t.source_refs,
             t.status,

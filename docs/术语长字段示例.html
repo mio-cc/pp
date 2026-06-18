@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>术语四个长字段示例 — definition_long / visual_effect / prompt_usage / use_cases</title>
+<style>
+  :root{ color-scheme: light; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:#f4f5f7; color:#1f2329;
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,sans-serif;
+    line-height:1.7; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:32px 20px 80px; }
+  h1{ font-size:24px; margin:0 0 6px; }
+  .sub{ color:#646a73; font-size:14px; margin:0 0 28px; }
+  h2{ font-size:18px; margin:36px 0 14px; padding-left:10px; border-left:4px solid #3370ff; }
+  /* 四字段说明卡 */
+  .grid4{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+  .fcard{ background:#fff; border:1px solid #e5e6eb; border-radius:12px; padding:16px 18px;
+    border-top:4px solid var(--c); }
+  .fcard h3{ margin:0 0 4px; font-size:16px; }
+  .fcard .en{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px; color:var(--c); font-weight:600; }
+  .fcard p{ margin:8px 0 0; font-size:13.5px; color:#41464c; }
+  .fcard .meta{ margin-top:10px; font-size:12px; color:#8a9099; }
+  /* 术语卡 */
+  .term{ background:#fff; border:1px solid #e5e6eb; border-radius:14px; padding:0; overflow:hidden;
+    margin-bottom:18px; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .thead{ padding:16px 20px; background:linear-gradient(180deg,#fbfcff,#f7f9ff); border-bottom:1px solid #eceef1; }
+  .thead .name{ font-size:19px; font-weight:700; }
+  .thead .en{ color:#646a73; font-size:14px; margin-left:6px; }
+  .thead .path{ font-size:12.5px; color:#8a9099; margin-top:4px; font-family:ui-monospace,monospace;}
+  .badge{ display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px; vertical-align:middle; margin-left:8px;}
+  .b-gold{ background:#fff4e0; color:#a86a00; border:1px solid #ffd591;}
+  .b-real{ background:#eaf3ff; color:#2155c4; border:1px solid #b6d4ff;}
+  .tbody{ padding:8px 20px 18px; }
+  .row{ display:grid; grid-template-columns:148px 1fr; gap:14px; padding:9px 0; border-bottom:1px dashed #eef0f2; align-items:start;}
+  .row:last-child{ border-bottom:0; }
+  .k{ font-size:12.5px; color:#8a9099; }
+  .k .en{ display:block; font-family:ui-monospace,monospace; font-size:11px; color:#aab0b8; }
+  .v{ font-size:14px; }
+  /* 高亮四字段 */
+  .hl{ background:#fff9ef; margin:0 -12px; padding:9px 12px; border-radius:8px; border-bottom:1px dashed #f1e6cf;}
+  .hl .k{ color:#a86a00; font-weight:600; }
+  .chip{ display:inline-block; background:#f2f3f5; border:1px solid #e5e6eb; border-radius:6px;
+    padding:1px 8px; margin:0 6px 4px 0; font-size:12.5px; color:#41464c;}
+  .prompt{ font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; background:#f7f8fa;
+    border:1px solid #eceef1; border-radius:6px; padding:6px 10px; display:inline-block; }
+  .short{ color:#41464c; }
+  .legend{ font-size:12.5px; color:#8a9099; margin:10px 0 0; }
+  .legend .dot{ display:inline-block; width:10px;height:10px;border-radius:3px;background:#fff4e0;border:1px solid #ffd591;vertical-align:middle;margin-right:4px;}
+  .cmp{ background:#fff; border:1px solid #e5e6eb; border-radius:12px; padding:16px 18px; }
+  .cmp .pair{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .cmp .box{ padding:12px 14px; border-radius:8px; }
+  .cmp .b1{ background:#f7f8fa; border:1px solid #eceef1;}
+  .cmp .b2{ background:#fff9ef; border:1px solid #f1e6cf;}
+  .cmp .lbl{ font-size:12px; color:#8a9099; margin-bottom:6px;}
+  .cmp .b2 .lbl{ color:#a86a00; font-weight:600;}
+  @media (max-width:720px){ .grid4{grid-template-columns:1fr;} .cmp .pair{grid-template-columns:1fr;} .row{grid-template-columns:1fr;gap:2px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>术语里的四个「长字段」长什么样</h1>
+  <p class="sub">definition_long · visual_effect · prompt_usage · use_cases —— 它们是一条术语在「短定义 + 提示词」之外，真正承载百科深度的部分。下面先讲每个字段是什么，再用整条术语数据让你看到它们各自填的内容。</p>
+
+  <h2>① 四个字段分别是什么</h2>
+  <div class="grid4">
+    <div class="fcard" style="--c:#3370ff">
+      <h3>详细解释 <span class="en">definition_long</span></h3>
+      <p>这个术语的<strong>深入解释</strong>：原理、由来、使用场景、对画面的影响。比一句话的 definition_short 更展开。</p>
+      <p class="meta">必填 · 建议 100–200 字 · 禁止只复读短定义</p>
+    </div>
+    <div class="fcard" style="--c:#14c9c9">
+      <h3>视觉表现 <span class="en">visual_effect</span></h3>
+      <p>这个术语落到<strong>画面上呈现出的视觉效果/特征</strong>：色调、质感、光影、构图结果等。</p>
+      <p class="meta">必填 · 一句话描述「看起来是什么样」</p>
+    </div>
+    <div class="fcard" style="--c:#7548ed">
+      <h3>提示词用法 <span class="en">prompt_usage</span></h3>
+      <p>在写 AI 提示词时<strong>怎么用这个术语</strong>：用于什么场景、强调什么、配合哪些词。</p>
+      <p class="meta">必填 · 说明「在 prompt 里怎么用」</p>
+    </div>
+    <div class="fcard" style="--c:#f5a623">
+      <h3>适用场景 <span class="en">use_cases</span></h3>
+      <p>这个术语<strong>适合用在哪些场景</strong>。多个场景用英文分号 <code>;</code> 分隔（前端渲染成标签）。</p>
+      <p class="meta">必填 · 多值，<code>;</code> 分隔</p>
+    </div>
+  </div>
+
+  <h2>② 短 vs 长：以「85mm人像」为例</h2>
+  <div class="cmp">
+    <div class="pair">
+      <div class="box b1">
+        <div class="lbl">definition_short（短定义 · 一句话）</div>
+        <div>85mm 定焦，人像经典焦段。</div>
+      </div>
+      <div class="box b2">
+        <div class="lbl">definition_long（详细解释 · 展开）</div>
+        <div>85mm 定焦镜头透视压缩适中、背景虚化柔美，是人像摄影最常用焦段之一，能让主体从背景中干净分离。</div>
+      </div>
+    </div>
+    <p class="legend" style="margin-top:14px">短定义只回答「是什么」；长字段回答「为什么/怎么用/什么效果/用在哪」。</p>
+  </div>
+
+  <h2>③ 整条术语里它们各自填的内容</h2>
+  <p class="legend"><span class="dot"></span> 黄色高亮 = 本文讲的四个长字段。<span class="b-gold badge">指南标准示例</span> 字段写满该有的样子（取自供稿指南）；<span class="b-real badge">现库真实数据</span> 当前库里的实际内容。</p>
+
+  <!-- 85mm人像 gold -->
+  <div class="term">
+    <div class="thead">
+      <span class="name">85mm人像</span><span class="en">85mm Portrait Lens</span><span class="badge b-gold">指南标准示例</span>
+      <div class="path">V01 摄影体系 · 镜头与景深 / 焦距 / 定焦镜头 · tags: 焦距;定焦;85mm</div>
+    </div>
+    <div class="tbody">
+      <div class="row"><div class="k">短定义<span class="en">definition_short</span></div><div class="v short">85mm 定焦，人像经典焦段。</div></div>
+      <div class="row hl"><div class="k">详细解释<span class="en">definition_long</span></div><div class="v">85mm 定焦镜头透视压缩适中、背景虚化柔美，是人像摄影最常用焦段之一，能让主体从背景中干净分离。</div></div>
+      <div class="row hl"><div class="k">视觉表现<span class="en">visual_effect</span></div><div class="v">背景压缩、奶油散景、主体突出立体。</div></div>
+      <div class="row hl"><div class="k">提示词用法<span class="en">prompt_usage</span></div><div class="v">用于人像，强调压缩感与散景。</div></div>
+      <div class="row hl"><div class="k">适用场景<span class="en">use_cases</span></div><div class="v"><span class="chip">人像</span><span class="chip">时尚</span></div></div>
+      <div class="row"><div class="k">提示词<span class="en">positive_prompt / _cn</span></div><div class="v"><span class="prompt">85mm lens, portrait, creamy bokeh</span><br><span class="prompt">85mm镜头, 人像, 奶油散景</span></div></div>
+    </div>
+  </div>
+
+  <!-- 赛博朋克 gold -->
+  <div class="term">
+    <div class="thead">
+      <span class="name">赛博朋克</span><span class="en">Cyberpunk</span><span class="badge b-gold">指南标准示例</span>
+      <div class="path">V15 视觉风格 · 类型与审美标签 · tags: 风格;科幻;赛博</div>
+    </div>
+    <div class="tbody">
+      <div class="row"><div class="k">短定义<span class="en">definition_short</span></div><div class="v short">高科技低生活的霓虹反乌托邦风格。</div></div>
+      <div class="row hl"><div class="k">详细解释<span class="en">definition_long</span></div><div class="v">赛博朋克想象高度发达却阶级割裂的近未来：霓虹招牌、雨夜街道、全息广告、义体改造、巨型企业与贫民窟并置。</div></div>
+      <div class="row hl"><div class="k">视觉表现<span class="en">visual_effect</span></div><div class="v">霓虹紫青、雨夜反光、高对比、未来都市。</div></div>
+      <div class="row hl"><div class="k">提示词用法<span class="en">prompt_usage</span></div><div class="v">用于生成未来都市 / 角色场景。</div></div>
+      <div class="row hl"><div class="k">适用场景<span class="en">use_cases</span></div><div class="v"><span class="chip">科幻场景</span><span class="chip">角色设定</span></div></div>
+      <div class="row"><div class="k">提示词<span class="en">positive_prompt / _cn</span></div><div class="v"><span class="prompt">cyberpunk, neon high-tech dystopia, rainy night city</span><br><span class="prompt">赛博朋克, 霓虹高科技反乌托邦, 雨夜都市</span></div></div>
+    </div>
+  </div>
+
+  <!-- 群青 real -->
+  <div class="term">
+    <div class="thead">
+      <span class="name">群青</span><span class="en">Ultramarine</span><span class="badge b-real">现库真实数据</span>
+      <div class="path">V06 灯光与色彩科学 · 色彩体系 / 中国传统色 · V06_T0223 · tags: 色彩;中国色;蓝</div>
+    </div>
+    <div class="tbody">
+      <div class="row"><div class="k">短定义<span class="en">definition_short</span></div><div class="v short">矿物群青的深蓝色，国画传统蓝。</div></div>
+      <div class="row hl"><div class="k">详细解释<span class="en">definition_long</span></div><div class="v">群青，矿物群青的深蓝色，国画传统蓝。源自中国或日本传统色彩文化，具有独特的文化内涵与审美意境。</div></div>
+      <div class="row hl"><div class="k">视觉表现<span class="en">visual_effect</span></div><div class="v">深邃蓝、矿物质感。</div></div>
+      <div class="row hl"><div class="k">提示词用法<span class="en">prompt_usage</span></div><div class="v">用于国画、天空、深邃氛围。</div></div>
+      <div class="row hl"><div class="k">适用场景<span class="en">use_cases</span></div><div class="v"><span class="chip">国画</span><span class="chip">天空</span></div></div>
+      <div class="row"><div class="k">提示词<span class="en">positive_prompt / _cn</span></div><div class="v"><span class="prompt">ultramarine, deep blue</span><br><span class="prompt">群青, 深蓝</span></div></div>
+    </div>
+  </div>
+
+  <!-- 新海诚风格 real -->
+  <div class="term">
+    <div class="thead">
+      <span class="name">新海诚风格</span><span class="en">Makoto Shinkai Style</span><span class="badge b-real">现库真实数据</span>
+      <div class="path">V03 绘画与艺术流派 · 代表性风格 / 动画导演 · V03_T0118 · tags: 动画;艺术</div>
+    </div>
+    <div class="tbody">
+      <div class="row"><div class="k">短定义<span class="en">definition_short</span></div><div class="v short">新海诚的动画电影视觉风格，光影细腻唯美。</div></div>
+      <div class="row hl"><div class="k">详细解释<span class="en">definition_long</span></div><div class="v">新海诚风格，新海诚的动画电影视觉风格，光影细腻唯美。是AI图像生成与视觉创作中的高频术语。<span style="color:#c0392b;font-size:12px;">　← 实为「短定义＋套话」，未真正展开</span></div></div>
+      <div class="row hl"><div class="k">视觉表现<span class="en">visual_effect</span></div><div class="v">光影细腻、天空唯美、动画感。</div></div>
+      <div class="row hl"><div class="k">提示词用法<span class="en">prompt_usage</span></div><div class="v">用于动画、唯美、治愈场景。</div></div>
+      <div class="row hl"><div class="k">适用场景<span class="en">use_cases</span></div><div class="v"><span class="chip">动画</span><span class="chip">唯美</span></div></div>
+      <div class="row"><div class="k">提示词<span class="en">positive_prompt / _cn</span></div><div class="v"><span class="prompt">Makoto Shinkai style, anime sky</span><br><span class="prompt">新海诚风格, 动画天空</span></div></div>
+    </div>
+  </div>
+
+  <p class="legend" style="margin-top:22px">说明：现库 1611 条术语中，这四个长字段全部填写的只有 66 条；其余约 1545 条只填了核心字段（短定义＋中英提示词＋分类＋标签）。即使在已填的 66 条里，definition_long 也多为「短定义＋一句套话」，尚未达到指南建议的 100–200 字深度。</p>
+</div>
+</body>
+</html>

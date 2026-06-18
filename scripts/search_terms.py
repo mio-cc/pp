@@ -20,7 +20,7 @@ def like_query(conn: sqlite3.Connection, query: str, limit: int) -> list[sqlite3
             v.code AS volume_code,
             v.title AS volume_title,
             c.name AS category,
-            t.definition_short
+            t.definition_long
         FROM terms t
         JOIN volumes v ON v.id = t.volume_id
         LEFT JOIN categories c ON c.id = t.category_id
@@ -30,7 +30,7 @@ def like_query(conn: sqlite3.Connection, query: str, limit: int) -> list[sqlite3
             t.zh_term LIKE ?
             OR t.en_term LIKE ?
             OR a.alias LIKE ?
-            OR t.definition_short LIKE ?
+            OR t.definition_long LIKE ?
             OR t.definition_long LIKE ?
             OR t.prompt_usage LIKE ?
             OR tc.content LIKE ?
@@ -71,7 +71,7 @@ def rows_by_uids(conn: sqlite3.Connection, uids: list[str]) -> list[sqlite3.Row]
             v.code AS volume_code,
             v.title AS volume_title,
             c.name AS category,
-            t.definition_short
+            t.definition_long
         FROM terms t
         JOIN volumes v ON v.id = t.volume_id
         LEFT JOIN categories c ON c.id = t.category_id
@@ -120,7 +120,7 @@ def main() -> int:
         english = f" / {row['en_term']}" if row["en_term"] else ""
         print(f"{index}. [{row['term_uid']}] {row['zh_term']}{english}")
         print(f"   {row['volume_code']} {row['volume_title']} > {row['category'] or '未分类'}")
-        print(f"   {row['definition_short']}")
+        print(f"   {row['definition_long']}")
     return 0
 
 

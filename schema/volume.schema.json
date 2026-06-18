@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kb.local/schema/volume.schema.json",
+  "title": "VisualPromptVolume",
+  "description": "新增一个卷（体系）的接口。交 scripts/ingest.py add-volume 校验后写入 config/volumes.json。新增卷无需改任何代码。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "sequence", "title", "target_terms", "purpose", "categories"],
+  "properties": {
+    "code": {"type": "string", "pattern": "^V[0-9]{2}$", "description": "下一个唯一编号（现有到 V15，新增用 V16…）。"},
+    "sequence": {"type": "integer", "minimum": 1, "description": "下一个唯一序号。"},
+    "title": {"type": "string", "minLength": 1, "description": "卷名。"},
+    "target_terms": {"type": "integer", "minimum": 1, "description": "目标条数。"},
+    "purpose": {"type": "string", "minLength": 1, "description": "一句话说明这个卷收录什么。"},
+    "categories": {
+      "type": "array", "items": {"type": "string"}, "minItems": 1,
+      "description": "该卷的顶层分类数组（种子）。术语 category 路径首段须取自这里；更深分支自由生长。"
+    }
+  }
+}

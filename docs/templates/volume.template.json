@@ -1,0 +1,9 @@
+{
+  "_说明": "新增一个卷（体系）的填充模版。符合 schema/volume.schema.json。交 python scripts/ingest.py add-volume volume.json。code/sequence 必须唯一，不得与现有重复。",
+  "code": "V16",
+  "sequence": 16,
+  "title": "你的新卷标题",
+  "target_terms": 600,
+  "purpose": "一句话说明这个卷收录什么。",
+  "categories": ["顶层分类1", "顶层分类2", "顶层分类3"]
+}

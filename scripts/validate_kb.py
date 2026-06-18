@@ -38,94 +38,103 @@ def main() -> int:
     try:
         term_count = conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]
         volume_count = conn.execute("SELECT COUNT(*) FROM volumes").fetchone()[0]
+        declared = {v["code"]: set(v.get("categories", [])) for v in config["volumes"]}
 
-        duplicate_terms = conn.execute(
+        # 同卷中文名唯一
+        for volume_code, zh_term, count in conn.execute(
             """
             SELECT v.code, t.zh_term, COUNT(*) AS count
-            FROM terms t
-            JOIN volumes v ON v.id = t.volume_id
-            GROUP BY v.code, t.zh_term
-            HAVING COUNT(*) > 1
+            FROM terms t JOIN volumes v ON v.id = t.volume_id
+            GROUP BY v.code, t.zh_term HAVING COUNT(*) > 1
             """
-        ).fetchall()
-        for volume_code, zh_term, count in duplicate_terms:
+        ).fetchall():
             errors.append(f"Duplicate zh_term in {volume_code}: {zh_term} ({count} rows)")
 
-        missing_required = conn.execute(
-            """
-            SELECT term_uid, zh_term
-            FROM terms
-            WHERE
-                TRIM(COALESCE(term_uid, '')) = ''
-                OR TRIM(COALESCE(zh_term, '')) = ''
-                OR TRIM(COALESCE(definition_short, '')) = ''
-            """
-        ).fetchall()
-        for term_uid, zh_term in missing_required:
-            errors.append(f"Missing required field: {term_uid or '[no uid]'} {zh_term or '[no zh_term]'}")
+        # 硬必填非空（最小 1 字）：term_uid / zh_term / en_term / definition_long / version
+        for col in ("term_uid", "zh_term", "en_term", "definition_long", "version"):
+            for (term_uid,) in conn.execute(
+                f"SELECT term_uid FROM terms WHERE TRIM(COALESCE({col}, '')) = ''"
+            ).fetchall():
+                errors.append(f"Missing required field {col}: {term_uid or '[no uid]'}")
 
-        no_category = conn.execute(
-            """
-            SELECT term_uid, zh_term
-            FROM terms
-            WHERE category_id IS NULL
-            """
-        ).fetchall()
-        for term_uid, zh_term in no_category:
+        # 未挂分类（警告）
+        for term_uid, zh_term in conn.execute(
+            "SELECT term_uid, zh_term FROM terms WHERE category_id IS NULL"
+        ).fetchall():
             warnings.append(f"No category assigned: {term_uid} {zh_term}")
 
-        unresolved_relations = conn.execute(
-            """
-            SELECT COUNT(*)
-            FROM term_relations
-            WHERE target_term_id IS NULL AND target_label IS NOT NULL
-            """
+        # label-only 关系（警告）
+        unresolved = conn.execute(
+            "SELECT COUNT(*) FROM term_relations WHERE target_term_id IS NULL AND target_label IS NOT NULL"
         ).fetchone()[0]
-        if unresolved_relations:
+        if unresolved:
             warnings.append(
-                f"{unresolved_relations} term relations are label-only. "
-                "This is acceptable during drafting; resolve to term IDs later."
+                f"{unresolved} term relations are label-only. Acceptable during drafting; resolve later."
             )
 
-        low_definition = conn.execute(
+        # definition_long 不得复读术语名（错误）
+        for term_uid, zh_term, dl in conn.execute(
             """
-            SELECT term_uid, zh_term
-            FROM terms
-            WHERE LENGTH(COALESCE(definition_short, '')) < 8
-            """
-        ).fetchall()
-        for term_uid, zh_term in low_definition:
-            warnings.append(f"Very short definition: {term_uid} {zh_term}")
-
-        echo_definition = conn.execute(
-            """
-            SELECT term_uid, zh_term, definition_short
-            FROM terms
-            WHERE
-                RTRIM(TRIM(COALESCE(definition_short, '')), '。.；;，, ')
+            SELECT term_uid, zh_term, definition_long FROM terms
+            WHERE RTRIM(TRIM(COALESCE(definition_long, '')), '。.；;，, ')
                 = RTRIM(TRIM(COALESCE(zh_term, '')), '。.；;，, ')
             """
-        ).fetchall()
-        for term_uid, zh_term, definition_short in echo_definition:
-            errors.append(
-                f"definition_short repeats zh_term: {term_uid} {zh_term} -> {definition_short}"
-            )
+        ).fetchall():
+            errors.append(f"definition_long repeats zh_term: {term_uid} {zh_term} -> {dl}")
 
-        placeholder_definition = conn.execute(
+        # definition_long 不得是占位文本（错误）
+        for term_uid, zh_term, dl in conn.execute(
             """
-            SELECT term_uid, zh_term, definition_short
-            FROM terms
-            WHERE
-                definition_short LIKE '%简短定义%'
-                OR definition_short LIKE '%待补充%'
-                OR definition_short LIKE '%TODO%'
-                OR definition_short LIKE '%TBD%'
+            SELECT term_uid, zh_term, definition_long FROM terms
+            WHERE definition_long LIKE '%简短定义%' OR definition_long LIKE '%待补充%'
+               OR definition_long LIKE '%TODO%' OR definition_long LIKE '%TBD%'
             """
-        ).fetchall()
-        for term_uid, zh_term, definition_short in placeholder_definition:
-            errors.append(
-                f"definition_short is placeholder text: {term_uid} {zh_term} -> {definition_short}"
-            )
+        ).fetchall():
+            errors.append(f"definition_long is placeholder text: {term_uid} {zh_term} -> {dl}")
+
+        # term_uid 格式 V##_T####
+        for (term_uid,) in conn.execute(
+            "SELECT term_uid FROM terms WHERE term_uid NOT GLOB 'V[0-9][0-9]_T[0-9][0-9][0-9][0-9]'"
+        ).fetchall():
+            errors.append(f"term_uid format invalid: {term_uid}")
+
+        # term_uid 前缀须与所属卷一致
+        for term_uid, code in conn.execute(
+            "SELECT t.term_uid, v.code FROM terms t JOIN volumes v ON v.id = t.volume_id "
+            "WHERE substr(t.term_uid, 1, 3) != v.code"
+        ).fetchall():
+            errors.append(f"term_uid prefix does not match volume: {term_uid} (volume {code})")
+
+        # 顶层分类须 ∈ config 声明
+        for term_uid, code, name in conn.execute(
+            "SELECT t.term_uid, v.code, c.name FROM terms t "
+            "JOIN volumes v ON v.id = t.volume_id JOIN categories c ON c.id = t.category_id"
+        ).fetchall():
+            top = (name or "").split(" / ")[0].strip()
+            if declared.get(code) and top not in declared[code]:
+                errors.append(f"top category not declared in config: {term_uid} {code} -> {top}")
+
+        # status 取值合法
+        valid_status = {"draft", "review", "published", "deprecated"}
+        for (status,) in conn.execute("SELECT DISTINCT status FROM terms").fetchall():
+            if status not in valid_status:
+                errors.append(f"invalid status value: {status}")
+
+        # 每条术语至少一个 tag
+        n = conn.execute(
+            "SELECT COUNT(*) FROM terms t WHERE NOT EXISTS"
+            "(SELECT 1 FROM term_tags tt WHERE tt.term_id = t.id)"
+        ).fetchone()[0]
+        if n:
+            errors.append(f"{n} terms have no tags")
+
+        # 卡片展示字段空（警告：存量豁免；新增经 ingest 硬卡）
+        for col in ("visual_effect", "prompt_usage", "use_cases"):
+            n = conn.execute(
+                f"SELECT COUNT(*) FROM terms WHERE TRIM(COALESCE({col}, '')) = ''"
+            ).fetchone()[0]
+            if n:
+                warnings.append(f"{n} terms have empty {col} (card-displayed; backfill recommended)")
 
         print_section("Summary")
         print(f"Volumes: {volume_count}")
@@ -134,22 +143,14 @@ def main() -> int:
         print(f"Current completion: {term_count / target_total:.2%}")
 
         print_section("Volume Progress")
-        rows = conn.execute(
+        for code, title, target, current in conn.execute(
             """
-            SELECT
-                v.code,
-                v.title,
-                v.target_terms,
-                COUNT(t.id) AS current_terms
-            FROM volumes v
-            LEFT JOIN terms t ON t.volume_id = v.id
-            GROUP BY v.id
-            ORDER BY v.sequence_no
+            SELECT v.code, v.title, v.target_terms, COUNT(t.id) AS current_terms
+            FROM volumes v LEFT JOIN terms t ON t.volume_id = v.id
+            GROUP BY v.id ORDER BY v.sequence_no
             """
-        ).fetchall()
-        for code, title, target, current in rows:
+        ).fetchall():
             print(f"{code} {title}: {current}/{target}")
-
     finally:
         conn.close()
 
@@ -157,7 +158,6 @@ def main() -> int:
         print_section("Warnings")
         for warning in warnings:
             print(f"- {warning}")
-
     if errors:
         print_section("Errors")
         for error in errors:

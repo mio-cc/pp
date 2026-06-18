@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kb.local/schema/term.schema.json",
+  "title": "VisualPromptTerm",
+  "description": "一条原子术语的填充接口。AI 产出符合本 schema 的对象（数组），交 scripts/ingest.py 校验入库。核心理念：术语名即提示词——zh_term=中文提示词，en_term=英文提示词，不再单设 positive_prompt 列。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "zh_term", "en_term", "volume_code", "category",
+    "definition_long", "visual_effect", "prompt_usage", "use_cases", "tags", "status", "version"
+  ],
+  "properties": {
+    "term_uid": {
+      "type": "string",
+      "pattern": "^(V[0-9]{2}_T[0-9]{4})?$",
+      "description": "V{两位卷号}_T{四位序号}。可留空，ingest 会按该卷现有最大号+1 自动分配。"
+    },
+    "zh_term": {
+      "type": "string", "minLength": 1,
+      "description": "中文名＝中文提示词。必须是原子最小单位（如 85mm人像/深红色/暖色温3200K），不能是笼统词（焦距/颜色/色温）。"
+    },
+    "en_term": {
+      "type": "string", "minLength": 1,
+      "description": "英文名＝英文提示词，可直接粘进绘图工具。"
+    },
+    "aliases": {
+      "type": "array", "items": {"type": "string"}, "default": [],
+      "description": "别名（数组，可空）。仅供搜索，不在卡片展示。"
+    },
+    "volume_code": {
+      "type": "string", "pattern": "^V[0-9]{2}$",
+      "description": "卷册代码 V01–V15，必须已在 config/volumes.json 注册。"
+    },
+    "category": {
+      "type": "string", "minLength": 1, "pattern": "^[^/]+( / [^/]+)*$",
+      "description": "分类路径，' / '（空格-斜杠-空格）分隔，深度不限。首段必须∈该卷 config 声明顶层分类；末端是原子叶子。例：镜头与景深 / 焦距 / 定焦镜头。"
+    },
+    "definition_long": {
+      "type": "string", "minLength": 1,
+      "description": "真实详解（建议 100–200 字，硬下限 1 字）。讲含义/原理/视觉/场景。禁止复读 zh_term、禁止占位文本（待补充/TODO/简短定义）。"
+    },
+    "visual_effect": {
+      "type": "string", "minLength": 1,
+      "description": "这个术语在画面上的视觉表现（看起来是什么样）。"
+    },
+    "prompt_usage": {
+      "type": "string", "minLength": 1,
+      "description": "在提示词里怎么用、强调什么、配合哪些词。"
+    },
+    "use_cases": {
+      "type": "array", "items": {"type": "string"}, "minItems": 1,
+      "description": "适用场景（数组，至少一项）。"
+    },
+    "related_terms": {
+      "type": "array", "items": {"type": "string"}, "default": [],
+      "description": "相关术语中文名（数组，可空）。"
+    },
+    "confused_with": {
+      "type": "array", "items": {"type": "string"}, "default": [],
+      "description": "易混淆术语（数组，可空）。"
+    },
+    "tags": {
+      "type": "array", "items": {"type": "string"}, "minItems": 1,
+      "description": "标签（数组，至少一项）。"
+    },
+    "source_refs": {"type": "string", "default": "整理", "description": "来源。"},
+    "status": {
+      "type": "string", "enum": ["draft", "review", "published", "deprecated"], "default": "published"
+    },
+    "version": {"type": "string", "minLength": 1, "default": "V1.0"}
+  }
+}

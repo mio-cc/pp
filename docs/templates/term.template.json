@@ -1,0 +1,39 @@
+[
+  {
+    "_说明": "复制下面这个对象逐字段填，可一次提交多个。term_uid 留空则 ingest 自动分配。多值字段用数组，不要写分号。符合 schema/term.schema.json。",
+    "term_uid": "",
+    "zh_term": "",
+    "en_term": "",
+    "aliases": [],
+    "volume_code": "V01",
+    "category": "顶层分类 / 子分支 / 原子叶子",
+    "definition_long": "",
+    "visual_effect": "",
+    "prompt_usage": "",
+    "use_cases": [],
+    "related_terms": [],
+    "confused_with": [],
+    "tags": [],
+    "source_refs": "整理",
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "_说明": "已填好的范例（注意没有 definition_short / positive_prompt：术语名即提示词）",
+    "zh_term": "85mm人像",
+    "en_term": "85mm Portrait Lens",
+    "aliases": ["中长焦人像"],
+    "volume_code": "V01",
+    "category": "镜头与光学 / 焦距 / 定焦镜头",
+    "definition_long": "85mm 定焦镜头透视压缩适中、背景虚化柔美，是人像摄影最常用焦段之一，能让主体从背景中干净分离。",
+    "visual_effect": "背景压缩、奶油散景、主体突出立体。",
+    "prompt_usage": "用于人像，强调压缩感与散景。",
+    "use_cases": ["人像", "时尚"],
+    "related_terms": ["50mm标准", "散景"],
+    "confused_with": ["135mm长焦"],
+    "tags": ["焦距", "定焦", "85mm"],
+    "source_refs": "整理",
+    "status": "published",
+    "version": "V1.0"
+  }
+]

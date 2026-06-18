@@ -115,11 +115,6 @@ GET /api/terms?volume=V06&category=色彩体系&tag=中国色&status=published&s
       "volume_code": "V06",
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 中国传统色",
-      "definition_short": "如胭脂般浓艳的朱红色，古代贵族用色。",
-      "positive_prompt": "zhuyin, rouge red, vivid red",
-      "negative_prompt": "",
-      "positive_prompt_cn": "朱殷, 鲜艳红",
-      "negative_prompt_cn": "",
       "tags": ["色彩", "中国色", "红"],
       "status": "published"
     }
@@ -144,14 +139,9 @@ GET /api/terms/V06_T0211
   "volume_code": "V06",
   "volume_title": "灯光与色彩科学",
   "category": "色彩体系 / 中国传统色",
-  "definition_short": "如胭脂般浓艳的朱红色，古代贵族用色。",
   "definition_long": "朱殷，如胭脂般浓艳的朱红色，古代贵族用色。源自中国或日本传统色彩文化，具有独特的文化内涵与审美意境。",
   "visual_effect": "鲜艳娇媚、明亮红。",
   "prompt_usage": "用于传统美人、古装场景。",
-  "positive_prompt": "zhuyin, rouge red, vivid red",
-  "negative_prompt": "",
-  "positive_prompt_cn": "朱殷, 鲜艳红",
-  "negative_prompt_cn": "",
   "use_cases": ["古装", "人像"],
   "aliases": ["胭脂朱"],
   "related_terms": [],
@@ -195,9 +185,6 @@ GET /api/search?q=电影感&limit=20
       "volume_code": "V02",
       "volume_title": "电影摄影体系",
       "category": "电影风格",
-      "definition_short": "具有电影质感的画面氛围与叙事性。",
-      "positive_prompt": "cinematic, movie quality",
-      "positive_prompt_cn": "电影感, 电影质感",
       "tags": ["电影", "质感"],
       "status": "published"
     }
@@ -288,8 +275,8 @@ GET /api/export/prompts?volume=V08&tag=质量&format=json
       "zh_term": "杰作",
       "en_term": "Masterpiece",
       "volume_code": "V08",
-      "positive_prompt": "masterpiece, best quality",
-      "negative_prompt": ""
+      "prompt_en": "Masterpiece",
+      "prompt_cn": "杰作"
     }
   ]
 }
@@ -411,7 +398,7 @@ const loadTerms = async () => {
 
     <ul>
       <li v-for="term in terms" :key="term.term_uid">
-        {{ term.zh_term }} - {{ term.definition_short }}
+        {{ term.zh_term }} - {{ term.en_term }}
       </li>
     </ul>
   </div>
@@ -572,14 +559,13 @@ GET /api/terms?tags=色彩,中国色&tag_logic=AND
 
 ### 19. 高级搜索（指定字段）
 ```http
-GET /api/search/advanced?zh_term=朱殷&positive_prompt=neon
+GET /api/search/advanced?zh_term=朱殷&definition=红色
 ```
 
 **参数**：
 - `zh_term`: 中文名模糊匹配
 - `en_term`: 英文名模糊匹配
-- `definition_short`: 简短定义模糊匹配
-- `positive_prompt`: 英文提示词模糊匹配
+- `definition`: 详细解释模糊匹配
 - `category`: 分类模糊匹配
 - `volume`: 卷册精确匹配
 - `limit`: 返回数量限制

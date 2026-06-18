@@ -155,11 +155,6 @@ def serialize_term(row: sqlite3.Row, full: bool = False) -> dict:
         "volume_code": row["volume_code"],
         "volume_title": row["volume_title"],
         "category": row["category"] or "",
-        "definition_short": row["definition_short"] or "",
-        "positive_prompt": row["positive_prompt"] or "",
-        "negative_prompt": row["negative_prompt"] or "",
-        "positive_prompt_cn": (row["positive_prompt_cn"] or "") if "positive_prompt_cn" in row.keys() else "",
-        "negative_prompt_cn": (row["negative_prompt_cn"] or "") if "negative_prompt_cn" in row.keys() else "",
         "tags": split_list(row["tags"] if "tags" in row.keys() else ""),
         "status": row["status"],
     }
@@ -180,31 +175,13 @@ def serialize_term(row: sqlite3.Row, full: bool = False) -> dict:
     return data
 
 
-_CN_READY = None
-
-
-def cn_ready(conn: sqlite3.Connection) -> bool:
-    """检测 terms 是否有双语列；旧库(未跑 schema 004)缺列时优雅降级，避免 500。"""
-    global _CN_READY
-    if _CN_READY is None:
-        cols = [r[1] for r in conn.execute("PRAGMA table_info(terms)").fetchall()]
-        _CN_READY = "positive_prompt_cn" in cols
-    return _CN_READY
-
-
-def _cn_select(conn: sqlite3.Connection) -> str:
-    return ("t.positive_prompt_cn, t.negative_prompt_cn" if cn_ready(conn)
-            else "'' AS positive_prompt_cn, '' AS negative_prompt_cn")
-
-
 def term_base_select(conn: sqlite3.Connection) -> str:
     return f"""
     SELECT
         t.id, t.term_uid, t.zh_term, t.en_term,
         v.code AS volume_code, v.title AS volume_title, v.sequence_no,
         c.name AS category,
-        t.definition_short, t.positive_prompt, t.negative_prompt,
-        {_cn_select(conn)}, t.status,
+        t.status,
         COALESCE((SELECT GROUP_CONCAT(tags.name, ';')
                   FROM term_tags JOIN tags ON tags.id = term_tags.tag_id
                   WHERE term_tags.term_id = t.id), '') AS tags
@@ -220,9 +197,7 @@ def term_detail_select(conn: sqlite3.Connection) -> str:
             t.id, t.term_uid, t.zh_term, t.en_term,
             v.code AS volume_code, v.title AS volume_title,
             c.name AS category,
-            t.definition_short, t.definition_long, t.visual_effect,
-            t.prompt_usage, t.positive_prompt, t.negative_prompt,
-            {_cn_select(conn)},
+            t.definition_long, t.visual_effect, t.prompt_usage,
             t.use_cases, t.source_refs, t.status, t.version,
             COALESCE((SELECT GROUP_CONCAT(alias, ';') FROM term_aliases WHERE term_id = t.id), '') AS aliases,
             COALESCE((SELECT GROUP_CONCAT(tags.name, ';') FROM term_tags
@@ -422,7 +397,6 @@ def list_terms(
                             "JOIN tags ON tags.id = term_tags.tag_id WHERE tags.name = ?)"
                         )
                         params.append(tag_name)
-            params.append(tag)
         if q:
             # ≥3字：用 trigram FTS 取候选 id，命中后用 IN 过滤（走索引，避免全表扫描）。
             # <3字或无 trigram：退回 LIKE（短查询数据量影响小）。
@@ -436,7 +410,7 @@ def list_terms(
             else:
                 like = f"%{q}%"
                 where.append(
-                    "(t.zh_term LIKE ? OR t.en_term LIKE ? OR t.definition_short LIKE ? "
+                    "(t.zh_term LIKE ? OR t.en_term LIKE ? OR t.definition_long LIKE ? "
                     "OR t.id IN (SELECT term_id FROM term_aliases WHERE alias LIKE ?))"
                 )
                 params.extend([like, like, like, like])
@@ -490,10 +464,10 @@ def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=10
             f"""{term_base_select(conn)}
             LEFT JOIN term_aliases a ON a.term_id = t.id
             WHERE t.zh_term LIKE ? OR t.en_term LIKE ? OR a.alias LIKE ?
-               OR t.definition_short LIKE ? OR t.definition_long LIKE ? OR t.prompt_usage LIKE ?
+               OR t.definition_long LIKE ? OR t.prompt_usage LIKE ?
             GROUP BY t.id ORDER BY v.sequence_no, t.term_uid LIMIT ?
             """,
-            (like, like, like, like, like, like, limit),
+            (like, like, like, like, like, limit),
         ).fetchall()
         items = [serialize_term(r) for r in rows]
         return {"query": q, "count": len(items), "items": items, "engine": "like"}
@@ -531,7 +505,7 @@ def export_prompts(
     """按筛选导出纯提示词清单，给提示词工程批量取用。"""
     conn = get_conn()
     try:
-        where = ["t.positive_prompt IS NOT NULL AND t.positive_prompt != ''"]
+        where = ["t.en_term IS NOT NULL AND t.en_term != ''"]
         params: list = []
         if volume:
             where.append("v.code = ?")
@@ -545,8 +519,7 @@ def export_prompts(
         where_sql = " WHERE " + " AND ".join(where)
         rows = conn.execute(
             f"""
-            SELECT t.term_uid, t.zh_term, t.en_term, v.code AS volume_code,
-                   t.positive_prompt, t.negative_prompt
+            SELECT t.term_uid, t.zh_term, t.en_term, v.code AS volume_code
             FROM terms t JOIN volumes v ON v.id = t.volume_id{where_sql}
             ORDER BY v.sequence_no, t.term_uid
             """,
@@ -559,9 +532,8 @@ def export_prompts(
         lines = []
         for r in rows:
             lines.append(f"# {r['zh_term']} / {r['en_term']} [{r['term_uid']}]")
-            lines.append(f"+ {r['positive_prompt']}")
-            if r["negative_prompt"]:
-                lines.append(f"- {r['negative_prompt']}")
+            lines.append(f"+ {r['en_term']}")
+            lines.append(f"+ {r['zh_term']}")
             lines.append("")
         return PlainTextResponse("\n".join(lines))
 
@@ -574,8 +546,8 @@ def export_prompts(
                     "zh_term": r["zh_term"],
                     "en_term": r["en_term"] or "",
                     "volume_code": r["volume_code"],
-                    "positive_prompt": r["positive_prompt"] or "",
-                    "negative_prompt": r["negative_prompt"] or "",
+                    "prompt_en": r["en_term"] or "",
+                    "prompt_cn": r["zh_term"],
                 }
                 for r in rows
             ],
@@ -684,8 +656,7 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
         placeholders = ",".join("?" for _ in term_uids)
         rows = conn.execute(
             f"""
-            SELECT t.term_uid, t.zh_term, t.positive_prompt,
-                   {_cn_select(conn).split(',')[0]} AS positive_prompt_cn
+            SELECT t.term_uid, t.zh_term, t.en_term
             FROM terms t
             WHERE t.term_uid IN ({placeholders})
             """,
@@ -698,16 +669,18 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
         prompts_cn = []
 
         for r in ordered_rows:
+            en = r["en_term"] or r["zh_term"]
+            cn = r["zh_term"]
             terms_data.append({
                 "term_uid": r["term_uid"],
                 "zh_term": r["zh_term"],
-                "positive_prompt": r["positive_prompt"] or "",
-                "positive_prompt_cn": r["positive_prompt_cn"] or "",
+                "prompt_en": en,
+                "prompt_cn": cn,
             })
-            if r["positive_prompt"]:
-                prompts_en.append(r["positive_prompt"])
-            if r["positive_prompt_cn"]:
-                prompts_cn.append(r["positive_prompt_cn"])
+            if en:
+                prompts_en.append(en)
+            if cn:
+                prompts_cn.append(cn)
 
         # 组合提示词
         if format == "comma":
@@ -742,6 +715,48 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
             "requested_count": len(term_uids),
             "missing_term_uids": missing_term_uids,
             "terms": terms_data,
+        }
+    finally:
+        conn.close()
+
+
+@app.get("/api/terms/compare")
+def compare_terms(a: str, b: str) -> dict:
+    """对比两个术语的异同。"""
+    conn = get_conn()
+    try:
+        row_a = conn.execute(
+            f"{term_detail_select(conn)} WHERE t.term_uid = ?",
+            (a,),
+        ).fetchone()
+        row_b = conn.execute(
+            f"{term_detail_select(conn)} WHERE t.term_uid = ?",
+            (b,),
+        ).fetchone()
+
+        if not row_a:
+            raise HTTPException(status_code=404, detail=f"未找到术语 {a}")
+        if not row_b:
+            raise HTTPException(status_code=404, detail=f"未找到术语 {b}")
+
+        term_a = serialize_term(row_a, full=True)
+        term_b = serialize_term(row_b, full=True)
+
+        # 计算异同
+        same_volume = term_a["volume_code"] == term_b["volume_code"]
+        same_category = term_a["category"] == term_b["category"]
+        same_tags = set(term_a["tags"]) & set(term_b["tags"])
+
+        return {
+            "term_a": term_a,
+            "term_b": term_b,
+            "comparison": {
+                "same_volume": same_volume,
+                "same_category": same_category,
+                "common_tags": list(same_tags),
+                "tag_count_a": len(term_a["tags"]),
+                "tag_count_b": len(term_b["tags"]),
+            }
         }
     finally:
         conn.close()
@@ -798,48 +813,6 @@ def related_terms(term_uid: str, limit: int = Query(5, ge=1, le=10)) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/compare")
-def compare_terms(a: str, b: str) -> dict:
-    """对比两个术语的异同。"""
-    conn = get_conn()
-    try:
-        row_a = conn.execute(
-            f"{term_detail_select(conn)} WHERE t.term_uid = ?",
-            (a,),
-        ).fetchone()
-        row_b = conn.execute(
-            f"{term_detail_select(conn)} WHERE t.term_uid = ?",
-            (b,),
-        ).fetchone()
-
-        if not row_a:
-            raise HTTPException(status_code=404, detail=f"未找到术语 {a}")
-        if not row_b:
-            raise HTTPException(status_code=404, detail=f"未找到术语 {b}")
-
-        term_a = serialize_term(row_a, full=True)
-        term_b = serialize_term(row_b, full=True)
-
-        # 计算异同
-        same_volume = term_a["volume_code"] == term_b["volume_code"]
-        same_category = term_a["category"] == term_b["category"]
-        same_tags = set(term_a["tags"]) & set(term_b["tags"])
-
-        return {
-            "term_a": term_a,
-            "term_b": term_b,
-            "comparison": {
-                "same_volume": same_volume,
-                "same_category": same_category,
-                "common_tags": list(same_tags),
-                "tag_count_a": len(term_a["tags"]),
-                "tag_count_b": len(term_b["tags"]),
-            }
-        }
-    finally:
-        conn.close()
-
-
 @app.get("/api/volumes/{code}/categories/tree")
 def category_tree(code: str) -> dict:
     """获取分类的树状结构。"""
@@ -883,8 +856,7 @@ def category_tree(code: str) -> dict:
 def advanced_search(
     zh_term: Optional[str] = Query(None),
     en_term: Optional[str] = Query(None),
-    definition_short: Optional[str] = Query(None),
-    positive_prompt: Optional[str] = Query(None),
+    definition: Optional[str] = Query(None),
     category: Optional[str] = Query(None),
     volume: Optional[str] = Query(None),
     limit: int = Query(20, ge=1, le=100),
@@ -901,12 +873,9 @@ def advanced_search(
         if en_term:
             where.append("t.en_term LIKE ?")
             params.append(f"%{en_term}%")
-        if definition_short:
-            where.append("t.definition_short LIKE ?")
-            params.append(f"%{definition_short}%")
-        if positive_prompt:
-            where.append("t.positive_prompt LIKE ?")
-            params.append(f"%{positive_prompt}%")
+        if definition:
+            where.append("t.definition_long LIKE ?")
+            params.append(f"%{definition}%")
         if category:
             where.append("c.name LIKE ?")
             params.append(f"%{category}%")

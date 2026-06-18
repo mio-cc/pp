@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>术语卡片规范 v2 — 精简版</title>
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#ececf0; --bg2:#e4e4ea; --panel-solid:#fbfbfd;
+    --ink:#1d1d1f; --ink2:#4b4b50; --mut:#8e8e93; --faint:#b8b8bd;
+    --line:rgba(0,0,0,.08); --hov:rgba(0,0,0,.045); --sel:#1d1d1f; --accent:#0a84ff;
+    --shadow-lg:0 8px 40px rgba(0,0,0,.16);
+    --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ font-family:var(--font); color:var(--ink);
+    background:radial-gradient(1200px 600px at 80% -10%,rgba(120,140,255,.07),transparent 60%),
+      radial-gradient(900px 500px at -10% 110%,rgba(255,160,180,.06),transparent 55%),
+      linear-gradient(180deg,var(--bg),var(--bg2)); background-attachment:fixed; }
+  .page{ max-width:1060px; margin:0 auto; padding:34px 22px 90px; }
+  h1{ font-size:23px; margin-bottom:6px; }
+  .sub{ color:var(--mut); font-size:13.5px; line-height:1.7; margin-bottom:8px; max-width:780px; }
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:start; margin-top:24px; }
+  .colhd{ font-size:13px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .pill{ font-size:11px; font-weight:600; padding:2px 9px; border-radius:20px; }
+  .pill-bad{ background:#fdecec; color:#c0392b; border:1px solid #f5c6c6; }
+  .pill-good{ background:#e8f6ec; color:#1e7e34; border:1px solid #b6e0c2; }
+  .pill-keep{ background:var(--accent); color:#fff; font-size:9px; padding:1px 6px; border-radius:4px; margin-left:7px; vertical-align:middle;}
+
+  /* === 1:1 复用项目 .detail 卡片样式（仅定位改为静态）=== */
+  .detail{ position:relative; width:100%; background:var(--panel-solid); border:1px solid var(--line);
+    border-radius:18px; box-shadow:var(--shadow-lg); padding:20px; }
+  .detail .x{ position:absolute; top:14px; right:14px; width:26px; height:26px; border-radius:50%;
+    border:none; background:rgba(0,0,0,.05); color:var(--ink2); font-size:14px; cursor:pointer; }
+  .detail .lin{ font-size:11px; color:var(--mut); line-height:1.8; background:var(--bg);
+    border-radius:12px; padding:11px 13px; margin-bottom:16px; }
+  .detail .lin b{ color:var(--ink); }
+  .detail .lin .tag{ font-size:9px; color:var(--mut); margin-left:6px; border:1px solid var(--line);
+    border-radius:4px; padding:0 4px; }
+  .detail h2{ font-size:21px; margin-bottom:3px; letter-spacing:-.01em; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .detail .den{ font-size:12px; color:var(--mut); font-family:var(--mono); margin-bottom:14px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .detail .dnote{ font-size:13px; color:var(--ink2); line-height:1.6; margin-bottom:16px; }
+  .detail .section{ margin-bottom:14px; }
+  .slabel{ font-size:11px; font-weight:600; color:var(--mut); text-transform:uppercase;
+    letter-spacing:.04em; margin:0 0 6px; display:flex; align-items:center; gap:6px; }
+  .stext{ font-size:13px; color:var(--ink2); line-height:1.6; }
+  .pb{ background:#1d1d1f; color:#e8e8ea; border-radius:12px; padding:11px 13px; font-family:var(--mono);
+    font-size:12px; line-height:1.5; word-break:break-word; margin-bottom:8px; position:relative; }
+  .pb.cn{ background:#222033; color:#e7e3f5; }
+  .pb .cp{ position:absolute; top:7px; right:7px; background:rgba(255,255,255,.12); border:none; color:#fff;
+    border-radius:6px; padding:2px 8px; font-size:10px; cursor:pointer; }
+  .slabel .lg{ font-size:9px; background:var(--accent); color:#fff; border-radius:3px; padding:0 4px; }
+  .slabel .lg.cn{ background:#7a52cc; }
+  .chips{ display:flex; flex-wrap:wrap; gap:6px; }
+  .chip{ font-size:12px; color:var(--ink2); background:#fff; border:1px solid var(--line);
+    border-radius:8px; padding:3px 9px; }
+  .chip.tag{ background:var(--hov); }
+  .cpmini{ font-size:10px; font-family:var(--font); color:var(--mut); background:var(--hov);
+    border:1px solid var(--line); border-radius:6px; padding:1px 7px; cursor:pointer; }
+  .prole{ font-size:10px; font-weight:600; color:#fff; background:var(--accent); border-radius:4px; padding:1px 5px; }
+  .prole.cn{ background:#7a52cc; }
+  .dbtn{ width:100%; background:var(--sel); color:#fff; border:none; border-radius:12px; padding:12px;
+    font-size:13px; font-weight:550; cursor:pointer; margin-top:6px; }
+  .strike{ position:relative; opacity:.5; }
+  .strike::after{ content:"已从规范移除"; position:absolute; inset:0; display:flex; align-items:center;
+    justify-content:center; font:600 11px var(--font); color:#c0392b; background:rgba(253,236,236,.78);
+    border:1px dashed #e3a9a9; border-radius:10px; }
+
+  .spec{ margin-top:38px; background:var(--panel-solid); border:1px solid var(--line);
+    border-radius:16px; padding:8px 4px; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  table{ width:100%; border-collapse:collapse; font-size:13px; }
+  th,td{ text-align:left; padding:9px 14px; border-bottom:1px solid #eef0f2; vertical-align:top; }
+  th{ font-size:11px; color:var(--mut); text-transform:uppercase; letter-spacing:.04em; }
+  td code{ font-family:var(--mono); font-size:12px; color:#2155c4; }
+  tr:last-child td{ border-bottom:0; }
+  .req{ color:#1e7e34; font-weight:600; } .opt{ color:var(--mut); }
+  .rm{ color:#c0392b; font-weight:600; }
+  .rowdim{ opacity:.55; }
+  @media(max-width:820px){ .cols{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>术语卡片规范 <span style="font-size:13px;color:var(--mut);font-weight:400">v2 · 精简版</span></h1>
+  <p class="sub">核心理念：<b>原子化术语的名字本身就是提示词</b>——中文名 = 中文提示词，英文名 = 英文提示词。所以卡片不再设独立「提示词」栏；详细解释已涵盖含义，也不再要「一句话定义」。卡片只保留：<b>层级路径 · 中/英文名(=双语提示词) · 详细解释 · 视觉表现 · 提示词用法 · 适用场景 · 标签</b>。</p>
+
+  <div class="cols">
+    <!-- ============ 现状 ============ -->
+    <div>
+      <div class="colhd"><span class="pill pill-bad">现状</span> 旧卡片：有冗余的短定义 + 独立提示词栏</div>
+      <div class="detail">
+        <button class="x">✕</button>
+        <div class="lin">
+          <div><b>电影摄影体系</b><span class="tag">体系 V02</span></div>
+          <div style="margin-left:0px">└ <b>电影调色风格</b></div>
+          <div style="margin-left:10px">└ <b>漂白旁路</b><span class="tag">术语</span></div>
+        </div>
+        <h2>漂白旁路</h2>
+        <div class="den">Bleach Bypass</div>
+        <div class="dnote strike">高反差去饱和。</div>
+        <div class="slabel" style="margin-top:6px">提示词（与术语对应） <span class="lg">EN</span><span class="lg cn">中</span></div>
+        <div class="pb strike"><button class="cp">复制</button>bleach bypass desaturated</div>
+        <div class="pb cn strike"><button class="cp">复制</button>漂白旁路</div>
+        <button class="dbtn">＋ 加入提示词篮</button>
+      </div>
+      <p class="sub" style="font-size:12px;margin-top:10px">红框两处即将去掉：短定义（被详细解释取代）、独立提示词块（名字即提示词）。</p>
+    </div>
+
+    <!-- ============ 规范 v2 ============ -->
+    <div>
+      <div class="colhd"><span class="pill pill-good">规范 v2</span> 名字即提示词，补齐四个百科字段</div>
+      <div class="detail">
+        <button class="x">✕</button>
+        <div class="lin">
+          <div><b>摄影体系</b><span class="tag">体系 V01</span></div>
+          <div style="margin-left:0px">└ <b>镜头与景深</b></div>
+          <div style="margin-left:10px">└ <b>焦距</b></div>
+          <div style="margin-left:20px">└ <b>定焦镜头</b></div>
+          <div style="margin-left:30px">└ <b>85mm人像</b><span class="tag">术语</span></div>
+        </div>
+        <h2>85mm人像 <span class="prole cn">中文提示词</span> <button class="cpmini">复制</button></h2>
+        <div class="den">85mm Portrait Lens <span class="prole">英文提示词</span> <button class="cpmini">复制</button> · V01_T0024</div>
+
+        <div class="section">
+          <div class="slabel">详细解释 <span class="pill-keep">保留</span></div>
+          <div class="stext">85mm 定焦镜头透视压缩适中、背景虚化柔美，是人像摄影最常用焦段之一，能让主体从背景中干净分离。</div>
+        </div>
+        <div class="section">
+          <div class="slabel">视觉表现 <span class="pill-keep">保留</span></div>
+          <div class="stext">背景压缩、奶油散景、主体突出立体。</div>
+        </div>
+        <div class="section">
+          <div class="slabel">提示词用法 <span class="pill-keep">保留</span></div>
+          <div class="stext">用于人像，强调压缩感与散景。</div>
+        </div>
+        <div class="section">
+          <div class="slabel">适用场景 <span class="pill-keep">保留</span></div>
+          <div class="chips"><span class="chip">人像</span><span class="chip">时尚</span></div>
+        </div>
+        <div class="section">
+          <div class="slabel">标签 <span class="pill-keep">保留</span></div>
+          <div class="chips"><span class="chip tag">焦距</span><span class="chip tag">定焦</span><span class="chip tag">85mm</span></div>
+        </div>
+
+        <button class="dbtn">＋ 加入提示词篮</button>
+      </div>
+      <p class="sub" style="font-size:12px;margin-top:10px">中/英文名右侧的「复制」即复制对应语种提示词；「加入提示词篮」沿用原行为。</p>
+    </div>
+  </div>
+
+  <!-- ============ 字段规范清单 ============ -->
+  <div class="spec">
+    <table>
+      <thead><tr><th style="width:42px">序</th><th>卡片区块</th><th>对应 CSV 列</th><th style="width:80px">必填</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>层级路径</td><td><code>volume_code · category</code></td><td class="req">必填</td><td>体系 → 分类路径 → 术语</td></tr>
+        <tr><td>2</td><td>中文名（= 中文提示词）</td><td><code>zh_term</code></td><td class="req">必填</td><td>标题即中文提示词，可一键复制</td></tr>
+        <tr><td>3</td><td>英文名（= 英文提示词）· UID</td><td><code>en_term · term_uid</code></td><td class="req">必填</td><td>副标题即英文提示词，可一键复制</td></tr>
+        <tr><td>4</td><td>详细解释</td><td><code>definition_long</code></td><td class="req">必填</td><td>建议 100–200 字，讲原理/场景/影响</td></tr>
+        <tr><td>5</td><td>视觉表现</td><td><code>visual_effect</code></td><td class="req">必填</td><td>画面上看起来是什么样</td></tr>
+        <tr><td>6</td><td>提示词用法</td><td><code>prompt_usage</code></td><td class="req">必填</td><td>怎么用、强调什么、配合什么</td></tr>
+        <tr><td>7</td><td>适用场景</td><td><code>use_cases</code>（<code>;</code>）</td><td class="req">必填</td><td>标签形式，多值分号分隔</td></tr>
+        <tr><td>8</td><td>标签</td><td><code>tags</code>（<code>;</code>）</td><td class="req">必填</td><td>标签形式，多值分号分隔</td></tr>
+        <tr class="rowdim"><td>—</td><td>一句话定义</td><td><code>definition_short</code></td><td class="rm">移除</td><td>已被「详细解释」取代，退出卡片</td></tr>
+        <tr class="rowdim"><td>—</td><td>独立提示词栏</td><td><code>positive_prompt · positive_prompt_cn</code></td><td class="rm">移除</td><td>术语名即提示词，不再单设栏</td></tr>
+        <tr class="rowdim"><td>—</td><td>相关 / 易混淆</td><td><code>related_terms · confused_with</code></td><td class="rm">移除</td><td>不在卡片展示</td></tr>
+        <tr class="rowdim"><td>—</td><td>别名 / 负向</td><td><code>aliases · negative_prompt(_cn)</code></td><td class="opt">不展示</td><td>别名仅供搜索；负向本就留空</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub" style="margin-top:16px">待你确认后可落地的连带改动：① 把右侧区块接进 <code>frontend/src/App.vue</code> 的 <code>.detail</code>；② 数据契约/供稿指南据此调整——<b>definition_long/visual_effect/prompt_usage/use_cases/tags 转为硬必填</b>，definition_short 与 positive_prompt(_cn) 因不展示可考虑降级或废列（属 21 列结构调整，需单独决定）。</p>
+</div>
+</body>
+</html>

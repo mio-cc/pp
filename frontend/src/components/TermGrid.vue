@@ -22,7 +22,7 @@
             @mousemove="onMove"
           >
             <div class="cn">{{ t.zh_term }}</div>
-            <div class="ce">{{ t.positive_prompt || t.en_term || '—' }}</div>
+            <div class="ce">{{ t.en_term || t.zh_term || '—' }}</div>
             <span class="add" @click.stop="onAdd(t)">{{ cart.has(t.term_uid) ? '✓' : '+' }}</span>
           </div>
         </transition-group>

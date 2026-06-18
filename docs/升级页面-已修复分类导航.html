@@ -1,12 +1,12 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<title>视觉术语 · 提示词构建器（升级后真实页面 · 离线自包含）</title><style>.app[data-v-492c2b6c]{height:100vh;display:flex;flex-direction:column;overflow:hidden}.topbar[data-v-492c2b6c]{height:48px;flex:0 0 48px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--panel);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);position:relative;z-index:30}.toggle[data-v-492c2b6c]{width:30px;height:30px;border-radius:8px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:.2s}.toggle[data-v-492c2b6c]:hover{background:var(--hov);transform:scale(1.05)}.toggle svg[data-v-492c2b6c]{width:17px;height:17px;transition:transform .3s}.app.side-hidden .toggle svg[data-v-492c2b6c]{transform:scaleX(-1)}.brand[data-v-492c2b6c]{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px}.brand .mk[data-v-492c2b6c]{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ink);position:relative;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}.brand .mk i[data-v-492c2b6c]{position:absolute;top:5px;right:5px;bottom:5px;left:5px;border-radius:50%;background:var(--ink)}.brand:hover .mk[data-v-492c2b6c]{transform:rotate(90deg)}.brand .dot[data-v-492c2b6c]{color:var(--mut);margin:0 6px}.brand .sub[data-v-492c2b6c]{color:var(--mut);font-weight:400;font-size:12px}.modetag[data-v-492c2b6c]{font-size:10.5px;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px;font-weight:500}.search[data-v-492c2b6c]{margin-left:auto;position:relative;width:280px;max-width:40vw}.search input[data-v-492c2b6c]{width:100%;height:32px;border:1px solid var(--line);border-radius:8px;background:#fff9;padding:0 12px 0 32px;font-size:12.5px;font-family:var(--font);transition:.25s;color:var(--ink)}.search input[data-v-492c2b6c]:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px #0a84ff1f}.search svg[data-v-492c2b6c]{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--mut)}.tool[data-v-492c2b6c]{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--mut);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}.tool[data-v-492c2b6c]:hover{background:var(--hov);color:var(--ink2)}.tool svg[data-v-492c2b6c]{width:15px;height:15px}.body[data-v-492c2b6c]{flex:1;display:flex;min-height:0;position:relative}.side[data-v-492c2b6c]{width:var(--side-w);flex:0 0 var(--side-w);background:var(--panel);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:width .32s cubic-bezier(.4,0,.2,1),flex-basis .32s,opacity .28s,border-color .28s}.app.side-hidden .side[data-v-492c2b6c]{width:0;flex-basis:0;opacity:0;border-color:transparent;pointer-events:none}.side-hd[data-v-492c2b6c]{padding:12px 14px 8px;font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;display:flex;justify-content:space-between}.side-hd .cnt[data-v-492c2b6c]{font-weight:400;color:var(--faint)}.tree[data-v-492c2b6c]{flex:1;overflow-y:auto;padding:2px 8px 90px}.trow[data-v-492c2b6c]{display:flex;align-items:stretch;gap:6px;padding:6px 8px;cursor:pointer;border-radius:8px;margin:1px 0;transition:background .15s,color .15s;min-height:30px}.trow[data-v-492c2b6c]>*{align-self:center}.trow[data-v-492c2b6c]:hover{background:var(--hov)}.trow.on[data-v-492c2b6c]{background:var(--sel);color:#fff}.trow.on .tc[data-v-492c2b6c]{color:#ffffff8c}.guide-cell[data-v-492c2b6c]{align-self:stretch;width:14px;flex:0 0 14px;border-left:1px solid rgba(0,0,0,.09)}.trow.on .guide-cell[data-v-492c2b6c]{border-color:#ffffff2e}.tw[data-v-492c2b6c]{width:13px;flex:0 0 13px;text-align:center;color:var(--faint);font-size:9px;transition:transform .25s}.trow.open>.tw[data-v-492c2b6c]{transform:rotate(90deg)}.ico[data-v-492c2b6c]{width:14px;flex:0 0 14px;color:var(--mut);font-size:11px}.tn[data-v-492c2b6c]{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trow.lv1 .tn[data-v-492c2b6c]{font-weight:550}.trow.sub .tn[data-v-492c2b6c]{color:var(--ink2);font-size:12.5px}.trow.on .tn[data-v-492c2b6c],.trow.on .ico[data-v-492c2b6c]{color:#fff}.tc[data-v-492c2b6c]{font-size:10.5px;color:var(--faint)}.main[data-v-492c2b6c]{flex:1;overflow-y:auto;padding:18px 22px 130px;min-width:0}.center-state[data-v-492c2b6c]{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:14px;color:var(--mut)}.center-state .big[data-v-492c2b6c]{font-size:34px;opacity:.5}.center-state.err .big[data-v-492c2b6c]{color:#e06c5e}.center-state pre[data-v-492c2b6c]{font-family:var(--font);font-size:13px;line-height:1.8;text-align:center;white-space:pre-wrap}.spinner[data-v-492c2b6c]{width:26px;height:26px;border:2.5px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin-492c2b6c .7s linear infinite}@keyframes spin-492c2b6c{to{transform:rotate(360deg)}}.crumb[data-v-492c2b6c]{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:18px;font-size:12px;min-height:22px}.crumb .seg[data-v-492c2b6c]{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;background:#fff9;border:1px solid var(--line);color:var(--ink2);cursor:pointer;transition:.18s}.crumb .seg[data-v-492c2b6c]:hover{background:#fff;color:var(--ink);transform:translateY(-1px);box-shadow:0 2px 8px #0000000f}.crumb .seg.cur[data-v-492c2b6c]{background:var(--sel);color:#fff;border-color:var(--sel);cursor:default}.crumb .seg.cur[data-v-492c2b6c]:hover{transform:none;box-shadow:none}.crumb .arr[data-v-492c2b6c]{color:var(--faint)}.crumb .hint[data-v-492c2b6c]{color:var(--mut);margin-left:8px}.secgrp[data-v-492c2b6c]{margin-bottom:22px}.gh[data-v-492c2b6c]{display:flex;align-items:center;gap:9px;margin-bottom:11px}.gh .gt[data-v-492c2b6c]{font-size:13px;font-weight:600}.gh .gline[data-v-492c2b6c]{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}.gh .gn[data-v-492c2b6c]{font-size:11px;color:var(--faint);background:#0000000a;padding:1px 8px;border-radius:10px}.vq-grid[data-v-492c2b6c]{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.vq[data-v-492c2b6c]{background:var(--panel-solid);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;font-size:12.5px;font-weight:500;color:var(--ink2);display:flex;justify-content:space-between;align-items:center;gap:4px;transition:.18s;text-align:left}.vq span[data-v-492c2b6c]{font-size:10.5px;color:var(--faint);background:#0000000a;padding:1px 7px;border-radius:9px}.vq[data-v-492c2b6c]:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#00000024;color:var(--ink)}.chips[data-v-492c2b6c]{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}.cchip[data-v-492c2b6c]{background:var(--panel-solid);border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;position:relative;overflow:hidden;transition:.2s}.cchip[data-v-492c2b6c]:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#00000024}.cchip[data-v-492c2b6c]:active{transform:translateY(0) scale(.98)}.cchip .cn[data-v-492c2b6c]{font-size:12.5px;font-weight:550;margin-bottom:2px}.cchip .ce[data-v-492c2b6c]{font-size:10.5px;color:var(--mut);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cchip.sel[data-v-492c2b6c]{background:var(--sel);border-color:var(--sel)}.cchip.sel .cn[data-v-492c2b6c]{color:#fff}.cchip.sel .ce[data-v-492c2b6c]{color:#fff9}.cchip .add[data-v-492c2b6c]{position:absolute;top:7px;right:7px;width:19px;height:19px;border-radius:50%;background:var(--sel);color:#fff;font-size:13px;line-height:19px;text-align:center;opacity:0;transform:scale(.7);transition:.2s cubic-bezier(.34,1.56,.64,1)}.cchip:hover .add[data-v-492c2b6c]{opacity:1;transform:scale(1)}.cchip.sel .add[data-v-492c2b6c]{opacity:1;background:#fff;color:var(--sel)}.welcome[data-v-492c2b6c]{display:flex;justify-content:center;padding-top:40px}.welcome-card[data-v-492c2b6c]{text-align:center;max-width:640px}.welcome-card .big[data-v-492c2b6c]{font-size:40px;opacity:.4;margin-bottom:10px}.welcome-card h3[data-v-492c2b6c]{font-size:17px;margin-bottom:6px}.welcome-card p[data-v-492c2b6c]{color:var(--mut);font-size:13px;margin-bottom:22px}.detail[data-v-492c2b6c]{position:fixed;right:14px;top:62px;bottom:128px;width:338px;background:var(--panel-solid);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);padding:20px;overflow:auto;transform:translate(calc(100% + 24px));opacity:0;transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .28s;z-index:46}.detail.open[data-v-492c2b6c]{transform:none;opacity:1}.detail .x[data-v-492c2b6c]{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;border:none;background:#0000000d;cursor:pointer;color:var(--ink2);font-size:14px;transition:.2s}.detail .x[data-v-492c2b6c]:hover{background:#0000001a;transform:rotate(90deg)}.detail .lin[data-v-492c2b6c]{font-size:11px;color:var(--mut);line-height:1.8;background:var(--bg);border-radius:12px;padding:11px 13px;margin-bottom:16px}.detail .lin b[data-v-492c2b6c]{color:var(--ink)}.detail .lin .tag[data-v-492c2b6c]{font-size:9px;color:var(--mut);margin-left:6px;border:1px solid var(--line);border-radius:4px;padding:0 4px}.detail h2[data-v-492c2b6c]{font-size:21px;margin-bottom:3px}.detail .den[data-v-492c2b6c]{font-size:12px;color:var(--mut);font-family:var(--mono);margin-bottom:14px}.detail .dnote[data-v-492c2b6c]{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:16px}.detail .sec[data-v-492c2b6c]{margin-bottom:14px}.detail .stext[data-v-492c2b6c]{font-size:13px;color:var(--ink2);line-height:1.65}.detail .namehint[data-v-492c2b6c]{font-size:10.5px;color:var(--faint);margin:-6px 0 14px}.detail .chips[data-v-492c2b6c]{display:flex;flex-wrap:wrap;gap:6px}.detail .chip[data-v-492c2b6c]{font-size:12px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 9px}.detail .chip.ctag[data-v-492c2b6c]{background:var(--hov)}.cpname[data-v-492c2b6c]{margin-left:8px;font-size:10px;vertical-align:middle;background:var(--hov);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:1px 7px;cursor:pointer;font-family:var(--font)}.cpname[data-v-492c2b6c]:hover{background:var(--ink);color:#fff}.slabel[data-v-492c2b6c]{font-size:11px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px;display:flex;align-items:center;gap:6px}.slabel .lg[data-v-492c2b6c]{font-size:9px;background:var(--accent);color:#fff;border-radius:3px;padding:0 4px}.slabel .lg.cn[data-v-492c2b6c]{background:#7a52cc}.pb[data-v-492c2b6c]{background:#1d1d1f;color:#e8e8ea;border-radius:12px;padding:11px 13px;font-family:var(--mono);font-size:12px;line-height:1.5;word-break:break-word;margin-bottom:8px;position:relative}.pb.cn[data-v-492c2b6c]{background:#222033;color:#e7e3f5}.pb .cp[data-v-492c2b6c]{position:absolute;top:7px;right:7px;background:#ffffff1f;border:none;color:#fff;border-radius:6px;padding:2px 8px;font-size:10px;cursor:pointer}.pb .cp[data-v-492c2b6c]:hover{background:#ffffff38}.dbtn[data-v-492c2b6c]{width:100%;background:var(--sel);color:#fff;border:none;border-radius:12px;padding:12px;font-size:13px;font-weight:550;cursor:pointer;transition:.2s;margin-top:6px}.dbtn[data-v-492c2b6c]:hover{background:#000;transform:translateY(-1px)}.dbtn.added[data-v-492c2b6c]{background:#28a745}.dock[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 16px);right:16px;bottom:16px;background:#fafafcd9;-webkit-backdrop-filter:saturate(180%) blur(30px);backdrop-filter:saturate(180%) blur(30px);border:1px solid rgba(0,0,0,.07);border-radius:18px;box-shadow:0 1px 1px #0000000a,0 10px 34px #0000001a,inset 0 1px #ffffffb3;padding:9px 11px;z-index:45;transition:left .32s cubic-bezier(.4,0,.2,1)}.app.side-hidden .dock[data-v-492c2b6c]{left:16px}.langfloat[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 17px);z-index:47;transition:left .32s cubic-bezier(.4,0,.2,1)}.app.side-hidden .langfloat[data-v-492c2b6c]{left:17px}.seg-ctl[data-v-492c2b6c]{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#ffffffeb;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 2px 8px #0000001a}.seg-ctl button[data-v-492c2b6c]{border:none;background:transparent;font-size:11px;padding:4px 10px;cursor:pointer;color:var(--mut);font-weight:600;transition:.15s}.seg-ctl button.on[data-v-492c2b6c]{background:var(--ink);color:#fff}.dock-top[data-v-492c2b6c]{display:flex;align-items:center;gap:10px}.dlbl[data-v-492c2b6c]{font-size:12px;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}.dlbl .icn[data-v-492c2b6c]{width:26px;height:26px;border-radius:8px;background:#fff;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center}.dlbl .icn svg[data-v-492c2b6c]{width:13px;height:13px;color:var(--ink2)}.dlbl .num[data-v-492c2b6c]{background:#ededf0;color:var(--ink2);font-size:10.5px;min-width:18px;height:18px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px;font-weight:600}.divd[data-v-492c2b6c]{width:1px;height:22px;background:var(--line)}.frags[data-v-492c2b6c]{flex:1;display:flex;gap:6px;overflow-x:auto;min-height:34px;align-items:center}.frags[data-v-492c2b6c]::-webkit-scrollbar{display:none}.frags.expanded[data-v-492c2b6c]{flex-wrap:wrap;max-height:160px;overflow-y:auto;align-items:flex-start;padding:2px 0}.frags .ph[data-v-492c2b6c]{color:var(--mut);font-size:12px;white-space:nowrap;padding-left:2px}.frag[data-v-492c2b6c]{background:#fff;border:1px solid var(--line);color:var(--ink2);border-radius:8px;padding:5px 6px 5px 8px;font-size:12px;display:flex;gap:6px;align-items:center;white-space:nowrap;box-shadow:0 1px 1.5px #0000000a}.frag.conflict[data-v-492c2b6c]{border-color:var(--danger);background:#fff1f0;color:var(--danger)}.frag .fdot[data-v-492c2b6c]{width:6px;height:6px;border-radius:50%;background:var(--danger);flex:0 0 6px}.frag x[data-v-492c2b6c]{cursor:pointer;color:var(--faint);font-size:12px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s}.frag.conflict x[data-v-492c2b6c]{color:var(--danger)}.frag x[data-v-492c2b6c]:hover{color:#fff;background:#1d1d1f}.acts[data-v-492c2b6c]{display:flex;gap:6px;align-items:center}.ic[data-v-492c2b6c]{width:31px;height:31px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--mut);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s}.ic[data-v-492c2b6c]:hover{background:var(--hov);color:var(--ink2)}.ic.on[data-v-492c2b6c]{background:var(--ink);color:#fff;border-color:var(--ink)}.ic svg[data-v-492c2b6c]{width:15px;height:15px}.copy[data-v-492c2b6c]{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:0 14px;height:31px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;box-shadow:0 1px 3px #0003;white-space:nowrap}.copy[data-v-492c2b6c]:hover{background:#000;transform:translateY(-1px)}.copy.done[data-v-492c2b6c]{background:#28c840}.dock-prev[data-v-492c2b6c]{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--ink2);line-height:1.55;word-break:break-word;max-height:0;opacity:0;overflow:hidden;transition:max-height .3s cubic-bezier(.4,0,.2,1),opacity .25s,margin-top .3s,padding-top .3s}.dock-prev.show[data-v-492c2b6c]{max-height:96px;opacity:1;overflow:auto}.dock-prev .pl[data-v-492c2b6c]{color:var(--faint)}.dock-prev b[data-v-492c2b6c]{color:var(--accent);font-weight:600}.dock-prev .warn[data-v-492c2b6c]{color:var(--danger);font-weight:600}.toast[data-v-492c2b6c]{position:fixed;top:60px;left:50%;transform:translate(-50%) translateY(-20px);background:var(--sel);color:#fff;padding:8px 18px;border-radius:10px;font-size:12.5px;font-weight:500;opacity:0;pointer-events:none;z-index:99;transition:.3s cubic-bezier(.34,1.56,.64,1)}.toast.show[data-v-492c2b6c]{opacity:1;transform:translate(-50%) translateY(0)}.random-panel[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 16px);right:16px;top:62px;background:#fafafcf5;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:14px;z-index:44;max-height:250px;overflow:auto}.app.side-hidden .random-panel[data-v-492c2b6c]{left:16px}.mini[data-v-492c2b6c]{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:8px;height:26px;padding:0 10px;cursor:pointer}.mini[data-v-492c2b6c]:hover{background:var(--hov)}@media(max-width:880px){.search[data-v-492c2b6c]{width:160px}}:root{color-scheme:light;--bg: #ececf0;--bg2: #e4e4ea;--panel: rgba(255, 255, 255, .72);--panel-solid: #fbfbfd;--ink: #1d1d1f;--ink2: #4b4b50;--mut: #8e8e93;--faint: #b8b8bd;--line: rgba(0, 0, 0, .08);--hov: rgba(0, 0, 0, .045);--sel: #1d1d1f;--accent: #0a84ff;--r: 12px;--r-sm: 8px;--r-lg: 18px;--shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 6px 20px rgba(0, 0, 0, .06);--shadow-lg: 0 8px 40px rgba(0, 0, 0, .16);--side-w: 268px;--font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body,#app{height:100%}body{font-family:var(--font);font-size:13px;color:var(--ink);background:radial-gradient(1200px 600px at 80% -10%,rgba(120,140,255,.07),transparent 60%),radial-gradient(900px 500px at -10% 110%,rgba(255,160,180,.06),transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow:hidden}.arco-btn-primary{background-color:var(--sel)!important}.arco-btn-primary:hover{background-color:#000!important}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#00000024;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#0000003d}::-webkit-scrollbar-track{background:transparent}.fade-enter-active,.fade-leave-active{transition:opacity .25s ease}.fade-enter-from,.fade-leave-to{opacity:0}:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}*:focus:not(:focus-visible){outline:none}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}@media(pointer:coarse){button,.trow,.cchip{min-height:36px}}@media(max-width:880px){:root{--side-w: 208px}}@media(max-width:560px){:root{--side-w: 176px}}
+<title>视觉术语 · 提示词构建器（升级后真实页面 · 已修分类导航 · 离线自包含）</title><style>.app[data-v-492c2b6c]{height:100vh;display:flex;flex-direction:column;overflow:hidden}.topbar[data-v-492c2b6c]{height:48px;flex:0 0 48px;display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--panel);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line);position:relative;z-index:30}.toggle[data-v-492c2b6c]{width:30px;height:30px;border-radius:8px;border:none;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink2);transition:.2s}.toggle[data-v-492c2b6c]:hover{background:var(--hov);transform:scale(1.05)}.toggle svg[data-v-492c2b6c]{width:17px;height:17px;transition:transform .3s}.app.side-hidden .toggle svg[data-v-492c2b6c]{transform:scaleX(-1)}.brand[data-v-492c2b6c]{font-size:13px;font-weight:600;display:inline-flex;align-items:center;gap:8px}.brand .mk[data-v-492c2b6c]{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--ink);position:relative;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}.brand .mk i[data-v-492c2b6c]{position:absolute;top:5px;right:5px;bottom:5px;left:5px;border-radius:50%;background:var(--ink)}.brand:hover .mk[data-v-492c2b6c]{transform:rotate(90deg)}.brand .dot[data-v-492c2b6c]{color:var(--mut);margin:0 6px}.brand .sub[data-v-492c2b6c]{color:var(--mut);font-weight:400;font-size:12px}.modetag[data-v-492c2b6c]{font-size:10.5px;color:#fff;background:var(--accent);border-radius:6px;padding:2px 8px;font-weight:500}.search[data-v-492c2b6c]{margin-left:auto;position:relative;width:280px;max-width:40vw}.search input[data-v-492c2b6c]{width:100%;height:32px;border:1px solid var(--line);border-radius:8px;background:#fff9;padding:0 12px 0 32px;font-size:12.5px;font-family:var(--font);transition:.25s;color:var(--ink)}.search input[data-v-492c2b6c]:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px #0a84ff1f}.search svg[data-v-492c2b6c]{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;color:var(--mut)}.tool[data-v-492c2b6c]{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--mut);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s}.tool[data-v-492c2b6c]:hover{background:var(--hov);color:var(--ink2)}.tool svg[data-v-492c2b6c]{width:15px;height:15px}.body[data-v-492c2b6c]{flex:1;display:flex;min-height:0;position:relative}.side[data-v-492c2b6c]{width:var(--side-w);flex:0 0 var(--side-w);background:var(--panel);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-right:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:width .32s cubic-bezier(.4,0,.2,1),flex-basis .32s,opacity .28s,border-color .28s}.app.side-hidden .side[data-v-492c2b6c]{width:0;flex-basis:0;opacity:0;border-color:transparent;pointer-events:none}.side-hd[data-v-492c2b6c]{padding:12px 14px 8px;font-size:11px;font-weight:600;letter-spacing:.05em;color:var(--mut);text-transform:uppercase;display:flex;justify-content:space-between}.side-hd .cnt[data-v-492c2b6c]{font-weight:400;color:var(--faint)}.tree[data-v-492c2b6c]{flex:1;overflow-y:auto;padding:2px 8px 90px}.trow[data-v-492c2b6c]{display:flex;align-items:stretch;gap:6px;padding:6px 8px;cursor:pointer;border-radius:8px;margin:1px 0;transition:background .15s,color .15s;min-height:30px}.trow[data-v-492c2b6c]>*{align-self:center}.trow[data-v-492c2b6c]:hover{background:var(--hov)}.trow.on[data-v-492c2b6c]{background:var(--sel);color:#fff}.trow.on .tc[data-v-492c2b6c]{color:#ffffff8c}.guide-cell[data-v-492c2b6c]{align-self:stretch;width:14px;flex:0 0 14px;border-left:1px solid rgba(0,0,0,.09)}.trow.on .guide-cell[data-v-492c2b6c]{border-color:#ffffff2e}.tw[data-v-492c2b6c]{width:13px;flex:0 0 13px;text-align:center;color:var(--faint);font-size:9px;transition:transform .25s}.trow.open>.tw[data-v-492c2b6c]{transform:rotate(90deg)}.ico[data-v-492c2b6c]{width:14px;flex:0 0 14px;color:var(--mut);font-size:11px}.tn[data-v-492c2b6c]{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trow.lv1 .tn[data-v-492c2b6c]{font-weight:550}.trow.sub .tn[data-v-492c2b6c]{color:var(--ink2);font-size:12.5px}.trow.on .tn[data-v-492c2b6c],.trow.on .ico[data-v-492c2b6c]{color:#fff}.tc[data-v-492c2b6c]{font-size:10.5px;color:var(--faint)}.main[data-v-492c2b6c]{flex:1;overflow-y:auto;padding:18px 22px 130px;min-width:0}.center-state[data-v-492c2b6c]{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;gap:14px;color:var(--mut)}.center-state .big[data-v-492c2b6c]{font-size:34px;opacity:.5}.center-state.err .big[data-v-492c2b6c]{color:#e06c5e}.center-state pre[data-v-492c2b6c]{font-family:var(--font);font-size:13px;line-height:1.8;text-align:center;white-space:pre-wrap}.spinner[data-v-492c2b6c]{width:26px;height:26px;border:2.5px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin-492c2b6c .7s linear infinite}@keyframes spin-492c2b6c{to{transform:rotate(360deg)}}.crumb[data-v-492c2b6c]{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:18px;font-size:12px;min-height:22px}.crumb .seg[data-v-492c2b6c]{display:inline-flex;align-items:center;padding:3px 10px;border-radius:20px;background:#fff9;border:1px solid var(--line);color:var(--ink2);cursor:pointer;transition:.18s}.crumb .seg[data-v-492c2b6c]:hover{background:#fff;color:var(--ink);transform:translateY(-1px);box-shadow:0 2px 8px #0000000f}.crumb .seg.cur[data-v-492c2b6c]{background:var(--sel);color:#fff;border-color:var(--sel);cursor:default}.crumb .seg.cur[data-v-492c2b6c]:hover{transform:none;box-shadow:none}.crumb .arr[data-v-492c2b6c]{color:var(--faint)}.crumb .hint[data-v-492c2b6c]{color:var(--mut);margin-left:8px}.secgrp[data-v-492c2b6c]{margin-bottom:22px}.gh[data-v-492c2b6c]{display:flex;align-items:center;gap:9px;margin-bottom:11px}.gh .gt[data-v-492c2b6c]{font-size:13px;font-weight:600}.gh .gline[data-v-492c2b6c]{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}.gh .gn[data-v-492c2b6c]{font-size:11px;color:var(--faint);background:#0000000a;padding:1px 8px;border-radius:10px}.vq-grid[data-v-492c2b6c]{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}.vq[data-v-492c2b6c]{background:var(--panel-solid);border:1px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;font-size:12.5px;font-weight:500;color:var(--ink2);display:flex;justify-content:space-between;align-items:center;gap:4px;transition:.18s;text-align:left}.vq span[data-v-492c2b6c]{font-size:10.5px;color:var(--faint);background:#0000000a;padding:1px 7px;border-radius:9px}.vq[data-v-492c2b6c]:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#00000024;color:var(--ink)}.chips[data-v-492c2b6c]{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:8px}.cchip[data-v-492c2b6c]{background:var(--panel-solid);border:1px solid var(--line);border-radius:10px;padding:9px 11px;cursor:pointer;position:relative;overflow:hidden;transition:.2s}.cchip[data-v-492c2b6c]:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:#00000024}.cchip[data-v-492c2b6c]:active{transform:translateY(0) scale(.98)}.cchip .cn[data-v-492c2b6c]{font-size:12.5px;font-weight:550;margin-bottom:2px}.cchip .ce[data-v-492c2b6c]{font-size:10.5px;color:var(--mut);font-family:var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cchip.sel[data-v-492c2b6c]{background:var(--sel);border-color:var(--sel)}.cchip.sel .cn[data-v-492c2b6c]{color:#fff}.cchip.sel .ce[data-v-492c2b6c]{color:#fff9}.cchip .add[data-v-492c2b6c]{position:absolute;top:7px;right:7px;width:19px;height:19px;border-radius:50%;background:var(--sel);color:#fff;font-size:13px;line-height:19px;text-align:center;opacity:0;transform:scale(.7);transition:.2s cubic-bezier(.34,1.56,.64,1)}.cchip:hover .add[data-v-492c2b6c]{opacity:1;transform:scale(1)}.cchip.sel .add[data-v-492c2b6c]{opacity:1;background:#fff;color:var(--sel)}.welcome[data-v-492c2b6c]{display:flex;justify-content:center;padding-top:40px}.welcome-card[data-v-492c2b6c]{text-align:center;max-width:640px}.welcome-card .big[data-v-492c2b6c]{font-size:40px;opacity:.4;margin-bottom:10px}.welcome-card h3[data-v-492c2b6c]{font-size:17px;margin-bottom:6px}.welcome-card p[data-v-492c2b6c]{color:var(--mut);font-size:13px;margin-bottom:22px}.detail[data-v-492c2b6c]{position:fixed;right:14px;top:62px;bottom:128px;width:338px;background:var(--panel-solid);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-lg);padding:20px;overflow:auto;transform:translate(calc(100% + 24px));opacity:0;transition:transform .35s cubic-bezier(.32,.72,0,1),opacity .28s;z-index:46}.detail.open[data-v-492c2b6c]{transform:none;opacity:1}.detail .x[data-v-492c2b6c]{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;border:none;background:#0000000d;cursor:pointer;color:var(--ink2);font-size:14px;transition:.2s}.detail .x[data-v-492c2b6c]:hover{background:#0000001a;transform:rotate(90deg)}.detail .lin[data-v-492c2b6c]{font-size:11px;color:var(--mut);line-height:1.8;background:var(--bg);border-radius:12px;padding:11px 13px;margin-bottom:16px}.detail .lin b[data-v-492c2b6c]{color:var(--ink)}.detail .lin .tag[data-v-492c2b6c]{font-size:9px;color:var(--mut);margin-left:6px;border:1px solid var(--line);border-radius:4px;padding:0 4px}.detail h2[data-v-492c2b6c]{font-size:21px;margin-bottom:3px}.detail .den[data-v-492c2b6c]{font-size:12px;color:var(--mut);font-family:var(--mono);margin-bottom:14px}.detail .dnote[data-v-492c2b6c]{font-size:13px;color:var(--ink2);line-height:1.6;margin-bottom:16px}.detail .sec[data-v-492c2b6c]{margin-bottom:14px}.detail .stext[data-v-492c2b6c]{font-size:13px;color:var(--ink2);line-height:1.65}.detail .namehint[data-v-492c2b6c]{font-size:10.5px;color:var(--faint);margin:-6px 0 14px}.detail .chips[data-v-492c2b6c]{display:flex;flex-wrap:wrap;gap:6px}.detail .chip[data-v-492c2b6c]{font-size:12px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 9px}.detail .chip.ctag[data-v-492c2b6c]{background:var(--hov)}.cpname[data-v-492c2b6c]{margin-left:8px;font-size:10px;vertical-align:middle;background:var(--hov);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:1px 7px;cursor:pointer;font-family:var(--font)}.cpname[data-v-492c2b6c]:hover{background:var(--ink);color:#fff}.slabel[data-v-492c2b6c]{font-size:11px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;margin:0 0 6px;display:flex;align-items:center;gap:6px}.slabel .lg[data-v-492c2b6c]{font-size:9px;background:var(--accent);color:#fff;border-radius:3px;padding:0 4px}.slabel .lg.cn[data-v-492c2b6c]{background:#7a52cc}.pb[data-v-492c2b6c]{background:#1d1d1f;color:#e8e8ea;border-radius:12px;padding:11px 13px;font-family:var(--mono);font-size:12px;line-height:1.5;word-break:break-word;margin-bottom:8px;position:relative}.pb.cn[data-v-492c2b6c]{background:#222033;color:#e7e3f5}.pb .cp[data-v-492c2b6c]{position:absolute;top:7px;right:7px;background:#ffffff1f;border:none;color:#fff;border-radius:6px;padding:2px 8px;font-size:10px;cursor:pointer}.pb .cp[data-v-492c2b6c]:hover{background:#ffffff38}.dbtn[data-v-492c2b6c]{width:100%;background:var(--sel);color:#fff;border:none;border-radius:12px;padding:12px;font-size:13px;font-weight:550;cursor:pointer;transition:.2s;margin-top:6px}.dbtn[data-v-492c2b6c]:hover{background:#000;transform:translateY(-1px)}.dbtn.added[data-v-492c2b6c]{background:#28a745}.dock[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 16px);right:16px;bottom:16px;background:#fafafcd9;-webkit-backdrop-filter:saturate(180%) blur(30px);backdrop-filter:saturate(180%) blur(30px);border:1px solid rgba(0,0,0,.07);border-radius:18px;box-shadow:0 1px 1px #0000000a,0 10px 34px #0000001a,inset 0 1px #ffffffb3;padding:9px 11px;z-index:45;transition:left .32s cubic-bezier(.4,0,.2,1)}.app.side-hidden .dock[data-v-492c2b6c]{left:16px}.langfloat[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 17px);z-index:47;transition:left .32s cubic-bezier(.4,0,.2,1)}.app.side-hidden .langfloat[data-v-492c2b6c]{left:17px}.seg-ctl[data-v-492c2b6c]{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#ffffffeb;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 2px 8px #0000001a}.seg-ctl button[data-v-492c2b6c]{border:none;background:transparent;font-size:11px;padding:4px 10px;cursor:pointer;color:var(--mut);font-weight:600;transition:.15s}.seg-ctl button.on[data-v-492c2b6c]{background:var(--ink);color:#fff}.dock-top[data-v-492c2b6c]{display:flex;align-items:center;gap:10px}.dlbl[data-v-492c2b6c]{font-size:12px;color:var(--ink);font-weight:600;display:flex;align-items:center;gap:7px;white-space:nowrap}.dlbl .icn[data-v-492c2b6c]{width:26px;height:26px;border-radius:8px;background:#fff;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center}.dlbl .icn svg[data-v-492c2b6c]{width:13px;height:13px;color:var(--ink2)}.dlbl .num[data-v-492c2b6c]{background:#ededf0;color:var(--ink2);font-size:10.5px;min-width:18px;height:18px;border-radius:9px;display:inline-flex;align-items:center;justify-content:center;padding:0 5px;font-weight:600}.divd[data-v-492c2b6c]{width:1px;height:22px;background:var(--line)}.frags[data-v-492c2b6c]{flex:1;display:flex;gap:6px;overflow-x:auto;min-height:34px;align-items:center}.frags[data-v-492c2b6c]::-webkit-scrollbar{display:none}.frags.expanded[data-v-492c2b6c]{flex-wrap:wrap;max-height:160px;overflow-y:auto;align-items:flex-start;padding:2px 0}.frags .ph[data-v-492c2b6c]{color:var(--mut);font-size:12px;white-space:nowrap;padding-left:2px}.frag[data-v-492c2b6c]{background:#fff;border:1px solid var(--line);color:var(--ink2);border-radius:8px;padding:5px 6px 5px 8px;font-size:12px;display:flex;gap:6px;align-items:center;white-space:nowrap;box-shadow:0 1px 1.5px #0000000a}.frag.conflict[data-v-492c2b6c]{border-color:var(--danger);background:#fff1f0;color:var(--danger)}.frag .fdot[data-v-492c2b6c]{width:6px;height:6px;border-radius:50%;background:var(--danger);flex:0 0 6px}.frag x[data-v-492c2b6c]{cursor:pointer;color:var(--faint);font-size:12px;width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.15s}.frag.conflict x[data-v-492c2b6c]{color:var(--danger)}.frag x[data-v-492c2b6c]:hover{color:#fff;background:#1d1d1f}.acts[data-v-492c2b6c]{display:flex;gap:6px;align-items:center}.ic[data-v-492c2b6c]{width:31px;height:31px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--mut);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.18s}.ic[data-v-492c2b6c]:hover{background:var(--hov);color:var(--ink2)}.ic.on[data-v-492c2b6c]{background:var(--ink);color:#fff;border-color:var(--ink)}.ic svg[data-v-492c2b6c]{width:15px;height:15px}.copy[data-v-492c2b6c]{background:var(--ink);color:#fff;border:none;border-radius:8px;padding:0 14px;height:31px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;box-shadow:0 1px 3px #0003;white-space:nowrap}.copy[data-v-492c2b6c]:hover{background:#000;transform:translateY(-1px)}.copy.done[data-v-492c2b6c]{background:#28c840}.dock-prev[data-v-492c2b6c]{margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--ink2);line-height:1.55;word-break:break-word;max-height:0;opacity:0;overflow:hidden;transition:max-height .3s cubic-bezier(.4,0,.2,1),opacity .25s,margin-top .3s,padding-top .3s}.dock-prev.show[data-v-492c2b6c]{max-height:96px;opacity:1;overflow:auto}.dock-prev .pl[data-v-492c2b6c]{color:var(--faint)}.dock-prev b[data-v-492c2b6c]{color:var(--accent);font-weight:600}.dock-prev .warn[data-v-492c2b6c]{color:var(--danger);font-weight:600}.toast[data-v-492c2b6c]{position:fixed;top:60px;left:50%;transform:translate(-50%) translateY(-20px);background:var(--sel);color:#fff;padding:8px 18px;border-radius:10px;font-size:12.5px;font-weight:500;opacity:0;pointer-events:none;z-index:99;transition:.3s cubic-bezier(.34,1.56,.64,1)}.toast.show[data-v-492c2b6c]{opacity:1;transform:translate(-50%) translateY(0)}.random-panel[data-v-492c2b6c]{position:fixed;left:calc(var(--side-w) + 16px);right:16px;top:62px;background:#fafafcf5;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-lg);padding:14px;z-index:44;max-height:250px;overflow:auto}.app.side-hidden .random-panel[data-v-492c2b6c]{left:16px}.mini[data-v-492c2b6c]{border:1px solid var(--line);background:#fff;color:var(--ink2);border-radius:8px;height:26px;padding:0 10px;cursor:pointer}.mini[data-v-492c2b6c]:hover{background:var(--hov)}@media(max-width:880px){.search[data-v-492c2b6c]{width:160px}}:root{color-scheme:light;--bg: #ececf0;--bg2: #e4e4ea;--panel: rgba(255, 255, 255, .72);--panel-solid: #fbfbfd;--ink: #1d1d1f;--ink2: #4b4b50;--mut: #8e8e93;--faint: #b8b8bd;--line: rgba(0, 0, 0, .08);--hov: rgba(0, 0, 0, .045);--sel: #1d1d1f;--accent: #0a84ff;--r: 12px;--r-sm: 8px;--r-lg: 18px;--shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 6px 20px rgba(0, 0, 0, .06);--shadow-lg: 0 8px 40px rgba(0, 0, 0, .16);--side-w: 268px;--font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;--mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace}*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}html,body,#app{height:100%}body{font-family:var(--font);font-size:13px;color:var(--ink);background:radial-gradient(1200px 600px at 80% -10%,rgba(120,140,255,.07),transparent 60%),radial-gradient(900px 500px at -10% 110%,rgba(255,160,180,.06),transparent 55%),linear-gradient(180deg,var(--bg),var(--bg2));background-attachment:fixed;-webkit-font-smoothing:antialiased;overflow:hidden}.arco-btn-primary{background-color:var(--sel)!important}.arco-btn-primary:hover{background-color:#000!important}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-thumb{background:#00000024;border-radius:4px}::-webkit-scrollbar-thumb:hover{background:#0000003d}::-webkit-scrollbar-track{background:transparent}.fade-enter-active,.fade-leave-active{transition:opacity .25s ease}.fade-enter-from,.fade-leave-to{opacity:0}:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}*:focus:not(:focus-visible){outline:none}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}@media(pointer:coarse){button,.trow,.cchip{min-height:36px}}@media(max-width:880px){:root{--side-w: 208px}}@media(max-width:560px){:root{--side-w: 176px}}
 </style></head>
 <body><div id="app"></div>
 <script type="application/json" id="kb-data-index">{
   "project": "AI视觉设计与提示词工程百科",
   "version": "V1.0",
-  "generated_at": "2026-06-18T04:14:28+00:00",
+  "generated_at": "2026-06-18T04:34:20+00:00",
   "total_terms": 1611,
   "target_total": 10000,
   "completion_percent": 16.11,
@@ -15594,9 +15594,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的红调、标准色相。",
+      "prompt_usage": "表现纯正红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15616,9 +15619,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "深红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的红调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15638,9 +15644,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "浅红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的红调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15660,9 +15669,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "暗红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的红调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15682,9 +15694,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "亮红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的红调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15704,9 +15719,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "柔红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的红调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15726,9 +15744,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "浓红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的红调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15748,9 +15769,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "灰红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的红调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15770,9 +15794,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 红色系",
       "definition_long": "淡红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的红调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅红调时使用。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15792,9 +15819,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的橙调、标准色相。",
+      "prompt_usage": "表现纯正橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15814,9 +15844,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "深橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的橙调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15836,9 +15869,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "浅橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的橙调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15858,9 +15894,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "暗橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的橙调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15880,9 +15919,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "亮橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的橙调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15902,9 +15944,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "柔橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的橙调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15924,9 +15969,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "浓橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的橙调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15946,9 +15994,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "灰橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的橙调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15968,9 +16019,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 橙色系",
       "definition_long": "淡橙色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的橙调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅橙调时使用。",
+      "use_cases": [
+        "活力",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -15990,9 +16044,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的黄调、标准色相。",
+      "prompt_usage": "表现纯正黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16012,9 +16069,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "深黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的黄调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16034,9 +16094,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "浅黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的黄调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16056,9 +16119,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "暗黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的黄调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16078,9 +16144,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "亮黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的黄调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16100,9 +16169,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "柔黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的黄调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16122,9 +16194,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "浓黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的黄调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16144,9 +16219,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "灰黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的黄调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16166,9 +16244,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄色系",
       "definition_long": "淡黄色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的黄调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅黄调时使用。",
+      "use_cases": [
+        "明快",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16188,9 +16269,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的黄绿调、标准色相。",
+      "prompt_usage": "表现纯正黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16210,9 +16294,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "深黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的黄绿调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16232,9 +16319,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "浅黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的黄绿调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16254,9 +16344,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "暗黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的黄绿调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16276,9 +16369,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "亮黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的黄绿调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16298,9 +16394,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "柔黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的黄绿调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16320,9 +16419,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "浓黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的黄绿调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16342,9 +16444,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "灰黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的黄绿调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16364,9 +16469,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 黄绿系",
       "definition_long": "淡黄绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的黄绿调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅黄绿调时使用。",
+      "use_cases": [
+        "清新",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16386,9 +16494,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的绿调、标准色相。",
+      "prompt_usage": "表现纯正绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16408,9 +16519,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "深绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的绿调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16430,9 +16544,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "浅绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的绿调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16452,9 +16569,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "暗绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的绿调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16474,9 +16594,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "亮绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的绿调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16496,9 +16619,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "柔绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的绿调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16518,9 +16644,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "浓绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的绿调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16540,9 +16669,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "灰绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的绿调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16562,9 +16694,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 绿色系",
       "definition_long": "淡绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的绿调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅绿调时使用。",
+      "use_cases": [
+        "自然",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16584,9 +16719,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的青绿调、标准色相。",
+      "prompt_usage": "表现纯正青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16606,9 +16744,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "深青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的青绿调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16628,9 +16769,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "浅青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的青绿调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16650,9 +16794,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "暗青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的青绿调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16672,9 +16819,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "亮青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的青绿调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16694,9 +16844,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "柔青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的青绿调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16716,9 +16869,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "浓青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的青绿调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16738,9 +16894,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "灰青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的青绿调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16760,9 +16919,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青绿系",
       "definition_long": "淡青绿色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的青绿调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅青绿调时使用。",
+      "use_cases": [
+        "清爽",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16782,9 +16944,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的青调、标准色相。",
+      "prompt_usage": "表现纯正青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16804,9 +16969,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "深青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的青调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16826,9 +16994,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "浅青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的青调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16848,9 +17019,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "暗青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的青调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16870,9 +17044,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "亮青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的青调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16892,9 +17069,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "柔青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的青调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16914,9 +17094,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "浓青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的青调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16936,9 +17119,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "灰青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的青调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16958,9 +17144,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 青色系",
       "definition_long": "淡青色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的青调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅青调时使用。",
+      "use_cases": [
+        "清凉",
+        "科技"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -16980,9 +17169,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的蓝调、标准色相。",
+      "prompt_usage": "表现纯正蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17002,9 +17194,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "深蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的蓝调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17024,9 +17219,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "浅蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的蓝调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17046,9 +17244,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "暗蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的蓝调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17068,9 +17269,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "亮蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的蓝调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17090,9 +17294,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "柔蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的蓝调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17112,9 +17319,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "浓蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的蓝调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17134,9 +17344,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "灰蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的蓝调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17156,9 +17369,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 蓝色系",
       "definition_long": "淡蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的蓝调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅蓝调时使用。",
+      "use_cases": [
+        "科技",
+        "冷静"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17178,9 +17394,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的靛蓝调、标准色相。",
+      "prompt_usage": "表现纯正靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17200,9 +17419,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "深靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的靛蓝调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17222,9 +17444,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "浅靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的靛蓝调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17244,9 +17469,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "暗靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的靛蓝调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17266,9 +17494,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "亮靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的靛蓝调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17288,9 +17519,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "柔靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的靛蓝调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17310,9 +17544,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "浓靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的靛蓝调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17332,9 +17569,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "灰靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的靛蓝调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17354,9 +17594,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 靛蓝系",
       "definition_long": "淡靛蓝色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的靛蓝调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅靛蓝调时使用。",
+      "use_cases": [
+        "深邃",
+        "冷调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17376,9 +17619,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的紫调、标准色相。",
+      "prompt_usage": "表现纯正紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17398,9 +17644,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "深紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的紫调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17420,9 +17669,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "浅紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的紫调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17442,9 +17694,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "暗紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的紫调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17464,9 +17719,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "亮紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的紫调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17486,9 +17744,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "柔紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的紫调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17508,9 +17769,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "浓紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的紫调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17530,9 +17794,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "灰紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的紫调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17552,9 +17819,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 紫色系",
       "definition_long": "淡紫色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的紫调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅紫调时使用。",
+      "use_cases": [
+        "神秘",
+        "浪漫"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17574,9 +17844,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的品红调、标准色相。",
+      "prompt_usage": "表现纯正品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17596,9 +17869,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "深品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的品红调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17618,9 +17894,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "浅品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的品红调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17640,9 +17919,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "暗品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的品红调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17662,9 +17944,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "亮品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的品红调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17684,9 +17969,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "柔品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的品红调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17706,9 +17994,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "浓品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的品红调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17728,9 +18019,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "灰品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的品红调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17750,9 +18044,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 品红系",
       "definition_long": "淡品红色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的品红调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅品红调时使用。",
+      "use_cases": [
+        "时尚",
+        "醒目"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17772,9 +18069,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的粉调、标准色相。",
+      "prompt_usage": "表现纯正粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17794,9 +18094,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "深粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的粉调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17816,9 +18119,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "浅粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的粉调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17838,9 +18144,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "暗粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的粉调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17860,9 +18169,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "亮粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的粉调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17882,9 +18194,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "柔粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的粉调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17904,9 +18219,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "浓粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的粉调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17926,9 +18244,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "灰粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的粉调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17948,9 +18269,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 粉色系",
       "definition_long": "淡粉色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的粉调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅粉调时使用。",
+      "use_cases": [
+        "甜美",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17970,9 +18294,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "纯正的棕调、标准色相。",
+      "prompt_usage": "表现纯正棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -17992,9 +18319,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "深棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的棕调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18014,9 +18344,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "浅棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的棕调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18036,9 +18369,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "暗棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的棕调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18058,9 +18394,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "亮棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的棕调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18080,9 +18419,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "柔棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的棕调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18102,9 +18444,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "浓棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的棕调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18124,9 +18469,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "灰棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的棕调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18146,9 +18494,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 棕色系",
       "definition_long": "淡棕色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的棕调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅棕调时使用。",
+      "use_cases": [
+        "复古",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18168,9 +18519,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的灰调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18190,9 +18544,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "深灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的灰调、低明度、厚重。",
+      "prompt_usage": "表现深沉厚重灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18212,9 +18569,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "浅灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮柔和的灰调、高明度、清淡。",
+      "prompt_usage": "表现清淡柔和灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18234,9 +18594,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "暗灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暗沉低调的灰调、低明度、内敛。",
+      "prompt_usage": "表现暗沉内敛灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18256,9 +18619,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "亮灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜艳明亮的灰调、高饱和、抢眼。",
+      "prompt_usage": "表现鲜艳抢眼灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18278,9 +18644,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "柔灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的灰调、降饱和、温和。",
+      "prompt_usage": "表现柔和温和灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18300,9 +18669,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "浓灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓烈饱满的灰调、高饱和、浓郁。",
+      "prompt_usage": "表现浓烈饱满灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18322,9 +18694,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "灰灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰调的灰调、低饱和、显高级。",
+      "prompt_usage": "表现灰调高级灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18344,9 +18719,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 灰中性系",
       "definition_long": "淡灰色，具体取色。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅的灰调、高明度、淡雅。",
+      "prompt_usage": "表现清浅淡雅灰调时使用。",
+      "use_cases": [
+        "中性",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18366,9 +18744,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "克莱因蓝的冷静色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "极纯极深的国际克莱因蓝、强烈纯净。",
+      "prompt_usage": "需要标志性纯蓝、艺术张力时用。",
+      "use_cases": [
+        "艺术",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18388,9 +18769,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "蒂芙尼蓝的冷静色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明快的知更鸟蛋蓝绿、清新高级。",
+      "prompt_usage": "高级、清新、品牌感画面。",
+      "use_cases": [
+        "高级感",
+        "品牌"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18410,9 +18794,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "普鲁士蓝的冷静色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉偏绿的暗蓝、沉稳古典。",
+      "prompt_usage": "古典、深邃、版画感蓝调。",
+      "use_cases": [
+        "古典",
+        "深邃"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18432,9 +18819,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "孔雀蓝的冷静色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "饱和的蓝绿、华丽鲜明。",
+      "prompt_usage": "华丽、东方、艳丽蓝绿调。",
+      "use_cases": [
+        "华丽",
+        "东方"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18454,9 +18844,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "藏青的清新色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深暗的蓝、沉稳内敛。",
+      "prompt_usage": "沉稳、正式、传统深蓝。",
+      "use_cases": [
+        "正式",
+        "沉稳"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18476,9 +18869,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "湖蓝的冷静色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清澈明亮的湖水蓝、通透。",
+      "prompt_usage": "清澈、夏日、通透蓝调。",
+      "use_cases": [
+        "清新",
+        "夏日"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18498,9 +18894,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "酒红的暖调色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深暗带紫的红、醇厚高级。",
+      "prompt_usage": "醇厚、复古、高级红调。",
+      "use_cases": [
+        "高级感",
+        "复古"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18520,9 +18919,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "绯红的暖调色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "鲜明热烈的红、明艳抢眼。",
+      "prompt_usage": "热烈、明艳、抢眼红调。",
+      "use_cases": [
+        "氛围",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18542,9 +18944,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "胭脂红的暖调色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带粉的浓艳红、娇媚古典。",
+      "prompt_usage": "古典、娇媚、传统红调。",
+      "use_cases": [
+        "古装",
+        "氛围"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18564,9 +18969,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "暖珊瑚粉。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暖调的橙粉、温柔活泼。",
+      "prompt_usage": "温柔、活泼、夏日暖粉。",
+      "use_cases": [
+        "甜美",
+        "夏日"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18586,9 +18994,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "灰调藕荷。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰的浅紫粉、淡雅温柔。",
+      "prompt_usage": "淡雅、温柔、东方浅紫。",
+      "use_cases": [
+        "柔和",
+        "东方"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18608,9 +19019,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "薰衣草紫的神秘色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的浅紫、浪漫舒缓。",
+      "prompt_usage": "浪漫、治愈、田园紫调。",
+      "use_cases": [
+        "浪漫",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18630,9 +19044,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "丁香紫的神秘色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和带粉的浅紫、清新优雅。",
+      "prompt_usage": "清新、优雅、春日紫调。",
+      "use_cases": [
+        "优雅",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18652,9 +19069,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "灰调莫兰迪粉。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带灰的低饱和粉、宁静高级。",
+      "prompt_usage": "宁静、高级、性冷淡粉。",
+      "use_cases": [
+        "高级感",
+        "柔和"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18674,9 +19094,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "祖母绿的自然生机色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "浓郁明丽的蓝绿、珠宝感华贵。",
+      "prompt_usage": "华贵、珠宝、浓绿主体。",
+      "use_cases": [
+        "华丽",
+        "主体"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18696,9 +19119,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "墨绿的自然生机色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深暗沉稳的绿、厚重古典。",
+      "prompt_usage": "厚重、古典、沉稳绿调。",
+      "use_cases": [
+        "古典",
+        "沉稳"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18718,9 +19144,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "橄榄绿的自然生机色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带黄灰的暗绿、自然军事感。",
+      "prompt_usage": "自然、军事、复古绿调。",
+      "use_cases": [
+        "自然",
+        "复古"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18740,9 +19169,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "薄荷绿的自然生机色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "清浅明快的蓝绿、清凉。",
+      "prompt_usage": "清凉、清新、夏日浅绿。",
+      "use_cases": [
+        "清新",
+        "夏日"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18762,9 +19194,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "抹茶绿的自然生机色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带黄的柔和绿、自然温润。",
+      "prompt_usage": "自然、日系、温润绿调。",
+      "use_cases": [
+        "日系",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18784,9 +19219,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "芥末黄的明快色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带绿的暗黄、复古沉稳。",
+      "prompt_usage": "复古、文艺、暗黄调。",
+      "use_cases": [
+        "复古",
+        "文艺"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18806,9 +19244,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "姜黄的明快色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "温暖浓郁的黄橙、辛香感。",
+      "prompt_usage": "温暖、民族、浓黄调。",
+      "use_cases": [
+        "民族",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18828,9 +19269,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "土黄赭石的明快色彩。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带棕的暗黄、质朴大地感。",
+      "prompt_usage": "质朴、自然、大地黄调。",
+      "use_cases": [
+        "自然",
+        "复古"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18850,9 +19294,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "暖驼色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "温暖的浅棕、高级温厚。",
+      "prompt_usage": "高级、温暖、秋冬驼调。",
+      "use_cases": [
+        "高级感",
+        "秋冬"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18872,9 +19319,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "焦糖棕橙。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "暖甜的红棕、温润浓郁。",
+      "prompt_usage": "温润、复古、暖棕调。",
+      "use_cases": [
+        "复古",
+        "暖调"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18894,9 +19344,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "深巧克力棕。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "深沉浓郁的红棕、厚重醇香。",
+      "prompt_usage": "厚重、醇香、深棕调。",
+      "use_cases": [
+        "复古",
+        "厚重"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18916,9 +19369,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "暖米白。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带暖的柔白、温柔素净。",
+      "prompt_usage": "素净、温柔、自然白调。",
+      "use_cases": [
+        "素净",
+        "自然"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18938,9 +19394,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "柔象牙白。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带暖黄的柔白、温润高级。",
+      "prompt_usage": "高级、温润、优雅白调。",
+      "use_cases": [
+        "高级感",
+        "优雅"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18960,9 +19419,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "深炭黑灰。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "略带灰的深黑、低调质感。",
+      "prompt_usage": "低调、质感、深黑背景。",
+      "use_cases": [
+        "背景",
+        "质感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -18982,9 +19444,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "金属银灰。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带金属感的浅灰、冷静现代。",
+      "prompt_usage": "现代、科技、金属灰调。",
+      "use_cases": [
+        "科技",
+        "中性"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19004,9 +19469,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "暖玫瑰金。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "带粉的暖金、轻奢柔美。",
+      "prompt_usage": "轻奢、柔美、时尚金调。",
+      "use_cases": [
+        "轻奢",
+        "时尚"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19026,9 +19494,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩体系 / 命名色",
       "definition_long": "柔香槟金。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "柔和的浅金、优雅低调奢华。",
+      "prompt_usage": "优雅、奢华、高端金调。",
+      "use_cases": [
+        "奢华",
+        "高端"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19048,9 +19519,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "红绿蓝加色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "光三原色相加成色、屏幕发光、越叠越亮。",
+      "prompt_usage": "描述屏幕/光源发光成色。",
+      "use_cases": [
+        "屏幕",
+        "数字"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19070,9 +19544,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "CMYK减色的色温氛围，用于特定照明场景。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "颜料四色相减成色、印刷、越叠越暗。",
+      "prompt_usage": "描述印刷品成色。",
+      "use_cases": [
+        "印刷",
+        "出版"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19092,9 +19569,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "色相饱和明度。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "按色相/饱和度/明度描述颜色、直观。",
+      "prompt_usage": "直观调色与取色时引用。",
+      "use_cases": [
+        "调色",
+        "取色"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19114,9 +19594,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "设备无关。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "设备无关、覆盖人眼可见色域最广。",
+      "prompt_usage": "跨设备精准色彩管理时引用。",
+      "use_cases": [
+        "色彩管理",
+        "印刷"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19136,9 +19619,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "颜色种类。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "颜色的相貌(红橙黄绿…)、色环位置。",
+      "prompt_usage": "指定颜色的基本相貌。",
+      "use_cases": [
+        "调色",
+        "取色"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19158,9 +19644,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "鲜艳度。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "颜色的鲜艳与灰度、越高越纯。",
+      "prompt_usage": "控制颜色鲜艳程度。",
+      "use_cases": [
+        "调色",
+        "氛围"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19180,9 +19669,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "明度的视觉特征与应用方式。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "颜色的明暗、越高越亮。",
+      "prompt_usage": "控制颜色明暗层次。",
+      "use_cases": [
+        "调色",
+        "层次"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19202,9 +19694,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "标准网络色域。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "网络/屏幕标准色域、覆盖较窄。",
+      "prompt_usage": "网络发布、通用屏幕色彩基准。",
+      "use_cases": [
+        "网络",
+        "屏幕"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19224,9 +19719,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "广色域。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "比 sRGB 更广、绿青更饱和。",
+      "prompt_usage": "印刷与专业摄影的更广色域。",
+      "use_cases": [
+        "印刷",
+        "摄影"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19246,9 +19744,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "电影色域。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "影院/新屏标准、红绿更鲜艳。",
+      "prompt_usage": "影视与现代显示的宽色域。",
+      "use_cases": [
+        "影视",
+        "显示"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19268,9 +19769,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩科学 / 色彩模型与空间",
       "definition_long": "超广HDR色域。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "超宽色域、面向 4K/8K HDR。",
+      "prompt_usage": "超高清 HDR 宽色域制作。",
+      "use_cases": [
+        "HDR",
+        "超高清"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19290,9 +19794,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "对比撞色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "对比强烈、相互衬托、画面张力足。",
+      "prompt_usage": "需要强对比、抢眼主体的配色时用。",
+      "use_cases": [
+        "海报",
+        "强对比"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19312,9 +19819,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "和谐相邻。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "和谐统一、色相过渡自然、温和。",
+      "prompt_usage": "营造协调统一氛围的配色。",
+      "use_cases": [
+        "和谐",
+        "氛围"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19334,9 +19844,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "三等分。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "三色鼎立、活泼又均衡、色彩丰富。",
+      "prompt_usage": "需要活泼又平衡的多彩配色。",
+      "use_cases": [
+        "插画",
+        "活泼"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19356,9 +19869,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "柔和对比。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "有对比但比互补柔和、层次更丰富。",
+      "prompt_usage": "想要对比又不过冲时用。",
+      "use_cases": [
+        "插画",
+        "配色"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19378,9 +19894,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "双互补。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "双组对比、色彩热闹、画面饱满。",
+      "prompt_usage": "多彩复杂场景的配色。",
+      "use_cases": [
+        "插画",
+        "多彩"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19400,9 +19919,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "同色深浅。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "同一色相明暗变化、统一而高级。",
+      "prompt_usage": "极简统一、高级感配色。",
+      "use_cases": [
+        "极简",
+        "高级感"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19422,9 +19944,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "同调微差。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "近似色相、低对比、柔和耐看。",
+      "prompt_usage": "柔和统一、低对比的配色。",
+      "use_cases": [
+        "柔和",
+        "统一"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19444,9 +19969,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩搭配",
       "definition_long": "黑白灰。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "黑白灰、无色相、冷静克制。",
+      "prompt_usage": "黑白灰极简、冷静氛围。",
+      "use_cases": [
+        "极简",
+        "黑白"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19466,9 +19994,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "橙红黄暖。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "红橙黄主导、温暖亲近、有前进感。",
+      "prompt_usage": "营造温暖、亲密、复古的氛围。",
+      "use_cases": [
+        "氛围",
+        "人像"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19488,9 +20019,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "蓝青冷。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "蓝青紫主导、冷静疏离、有后退感。",
+      "prompt_usage": "营造冷静、科技、清冷氛围。",
+      "use_cases": [
+        "科技",
+        "清冷"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19510,9 +20044,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "鲜艳活力。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "色彩浓烈鲜艳、张扬有活力。",
+      "prompt_usage": "活力、潮流、吸睛画面。",
+      "use_cases": [
+        "潮流",
+        "活力"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19532,9 +20069,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "降低饱和度营造高级感与克制氛围。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "颜色发灰柔和、克制而高级。",
+      "prompt_usage": "高级、柔和、文艺质感画面。",
+      "use_cases": [
+        "高级感",
+        "文艺"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19554,9 +20094,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "灰调柔和。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "灰调柔和、低饱和、宁静雅致。",
+      "prompt_usage": "宁静高级、性冷淡风配色。",
+      "use_cases": [
+        "高级感",
+        "静物"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19576,9 +20119,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "粉嫩马卡龙。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "高明度低饱和、甜美柔嫩。",
+      "prompt_usage": "甜美、少女、清新画面。",
+      "use_cases": [
+        "甜美",
+        "清新"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19598,9 +20144,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "怀旧褪色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "偏黄褪色、颗粒感、怀旧。",
+      "prompt_usage": "营造胶片复古怀旧氛围。",
+      "use_cases": [
+        "复古",
+        "胶片"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19620,9 +20169,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "紫粉青霓虹。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "紫青霓虹、高对比、夜感未来。",
+      "prompt_usage": "赛博朋克、夜景霓虹氛围。",
+      "use_cases": [
+        "赛博朋克",
+        "夜景"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19642,9 +20194,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "高对比色块。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "大面积对比色并置、强烈醒目。",
+      "prompt_usage": "时尚潮流的大胆撞色。",
+      "use_cases": [
+        "时尚",
+        "潮流"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19664,9 +20219,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "黑金高奢。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "黑底配金、奢华厚重、高级。",
+      "prompt_usage": "高端、奢侈品、商务质感。",
+      "use_cases": [
+        "奢华",
+        "高端"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19686,9 +20244,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "自然大地色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "棕褐米驼等自然色、温厚朴实。",
+      "prompt_usage": "自然、复古、温暖的大地色。",
+      "use_cases": [
+        "自然",
+        "复古"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19708,9 +20269,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色调与氛围",
       "definition_long": "明快糖果。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明亮多彩高饱和、活泼可爱。",
+      "prompt_usage": "童趣、活泼、缤纷画面。",
+      "use_cases": [
+        "童趣",
+        "活泼"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19880,9 +20444,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "校正偏色。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "中性白还原、整体冷暖校正。",
+      "prompt_usage": "校正画面整体偏色、定冷暖基调。",
+      "use_cases": [
+        "校色",
+        "摄影"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19902,9 +20469,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "HDR压缩。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "高动态压缩进可显范围、明暗细节保留。",
+      "prompt_usage": "HDR 转 SDR、保高光暗部细节。",
+      "use_cases": [
+        "HDR",
+        "后期"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19924,9 +20494,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "冷暖明暗对比。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "色相/明度/饱和差异带来的视觉区分。",
+      "prompt_usage": "增强主体与背景的区分度。",
+      "use_cases": [
+        "构图",
+        "主体突出"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19946,9 +20519,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "相邻互影响。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "相邻色相互影响、边界对比增强。",
+      "prompt_usage": "利用邻色相互衬托。",
+      "use_cases": [
+        "配色",
+        "视觉"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19968,9 +20544,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "高动态细节。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "明暗细节同时丰富、通透有层次。",
+      "prompt_usage": "强调宽动态、明暗细节通透。",
+      "use_cases": [
+        "风光",
+        "通透"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -19990,9 +20569,12 @@
       "volume_title": "灯光与色彩科学",
       "category": "色彩管理与感知",
       "definition_long": "知觉恒常。在V6体系中的应用。",
-      "visual_effect": "",
-      "prompt_usage": "",
-      "use_cases": [],
+      "visual_effect": "不同光照下对颜色的感知趋于稳定。",
+      "prompt_usage": "解释人眼对光照变化的色彩适应。",
+      "use_cases": [
+        "感知",
+        "理论"
+      ],
       "aliases": [],
       "tags": [
         "色彩",
@@ -37456,5 +38038,4 @@ return orig?orig.apply(this,arguments):bad(404);};})();</script>
 3. 访问 http://服务器IP:8000/app/`,Q}async function Es(e){const t=e.includes("?")?"&":"?";let s=1,n=[];for(;;){const i=await kt(`${e}${t}page=${s}&page_size=200`);if(n=n.concat(i.items),s>=(i.total_pages||1))break;s+=1}return n}async function Os(e){if(Ws.has(e))return Ws.get(e);let t=[];if(Q.mode==="api")t=await Es(`${location.origin}/api/terms?volume=${encodeURIComponent(e)}`);else{const s=await ar([`${Q._base}/volumes/${e}.json`]);t=s?s.items:[]}return Ws.set(e,t),t}async function Ul(e,t){const s=`${e}::${t}`;if(At.has(s))return At.get(s);let n;return Q.mode==="api"?n=await Es(`${location.origin}/api/terms?volume=${encodeURIComponent(e)}&category=${encodeURIComponent(t)}`):n=(await Os(e)).filter(r=>(r.category||"未分类")===t),At.set(s,n),n}async function Wl(e,t){const s=`${e}::branch::${t}`;if(At.has(s))return At.get(s);let n;return Q.mode==="api"?n=await Es(`${location.origin}/api/terms?volume=${encodeURIComponent(e)}&category_prefix=${encodeURIComponent(t)}`):n=(await Os(e)).filter(r=>{const o=r.category||"未分类";return o===t||o.startsWith(`${t} / `)}),At.set(s,n),n}async function As(){if(Dt)return Dt;if(Q.mode==="api")Dt=await Es(location.origin+"/api/terms");else{const e=[];for(const t of Q.index.volumes)e.push(...await Os(t.code));Dt=e}return Dt}async function zl(e){return Q.mode==="api"?kt(`${location.origin}/api/terms/${encodeURIComponent(e)}`):(await As()).find(s=>s.term_uid===e)||null}async function ql(e,t=50){if(e=(e||"").trim(),!e)return[];if(Q.mode==="api")return(await kt(`${location.origin}/api/search?q=${encodeURIComponent(e)}&limit=${t}`)).items;const s=await As(),n=e.toLowerCase(),i=[];for(const r of s)if((r.zh_term.toLowerCase().includes(n)||(r.en_term||"").toLowerCase().includes(n)||(r.definition_long||"").toLowerCase().includes(n))&&(i.push(r),i.length>=t))break;return i}async function dr(e){const t=(e||[]).map(o=>o&&o.trim()).filter(Boolean);if(!t.length)return{count:0,requested_count:0,missing_term_uids:[],items:[]};if(Q.mode==="api")return fr(`${location.origin}/api/terms/batch`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({term_uids:t})});const s=await As(),n=new Map(s.map(o=>[o.term_uid,o])),i=t.map(o=>n.get(o)).filter(Boolean),r=t.filter(o=>!n.has(o));return{count:i.length,requested_count:t.length,missing_term_uids:r,items:i}}async function Jl(e,t={}){const s=(e||[]).map(S=>S&&S.trim()).filter(Boolean),n=t.language||"en",i=t.format||"comma";if(!s.length)return{combined:"",combined_en:"",combined_cn:"",language:n,format:i,count:0,requested_count:0,missing_term_uids:[],terms:[]};if(Q.mode==="api")return fr(`${location.origin}/api/prompts/combine`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({term_uids:s,language:n,format:i})});const r=await dr(s);let o=r.items.map(S=>S.en_term||S.zh_term||"").filter(Boolean),l=r.items.map(S=>S.zh_term||"").filter(Boolean),f=", ";i==="newline"&&(f=`
 `),i==="weighted"&&(o=o.map(S=>`(${S}:1.1)`),l=l.map(S=>`(${S}:1.1)`));const g=o.join(f),p=l.join(f);return{combined:n==="en"?g:n==="cn"?p:g&&p?`${g}
 ${p}`:g||p,combined_en:g,combined_cn:p,language:n,format:i,count:r.items.length,requested_count:s.length,missing_term_uids:r.missing_term_uids||[],terms:r.items.map(S=>({term_uid:S.term_uid,zh_term:S.zh_term,prompt_en:S.en_term||S.zh_term||"",prompt_cn:S.zh_term||""}))}}async function Gl(e={}){const t=new URLSearchParams;if(e.count&&t.set("count",String(e.count)),e.volume&&t.set("volume",e.volume),e.category&&t.set("category",e.category),e.category_prefix&&t.set("category_prefix",e.category_prefix),e.tag&&t.set("tag",e.tag),Q.mode==="api")return kt(`${location.origin}/api/terms/random?${t.toString()}`);let s=await As();e.volume&&(s=s.filter(r=>r.volume_code===e.volume)),e.category&&(s=s.filter(r=>(r.category||"")===e.category)),e.category_prefix&&(s=s.filter(r=>{const o=r.category||"";return o===e.category_prefix||o.startsWith(`${e.category_prefix} / `)})),e.tag&&(s=s.filter(r=>(r.tags||[]).includes(e.tag)));const n=[...s];for(let r=n.length-1;r>0;r-=1){const o=Math.floor(Math.random()*(r+1));[n[r],n[o]]=[n[o],n[r]]}const i=Number(e.count||5);return{count:Math.min(i,n.length),available:n.length,items:n.slice(0,i)}}function Yl(){return{state:Q,init:Vl,loadVolumeTerms:Os,loadCategoryTerms:Ul,loadCategoryBranchTerms:Wl,search:ql,batchTerms:dr,combinePrompts:Jl,randomTerms:Gl,termDetail:zl}}const Xl=(e,t)=>{const s=e.__vccOpts||e;for(const[n,i]of t)s[n]=i;return s},Zl={class:"topbar"},Ql={key:0,class:"modetag"},ec={class:"search"},tc={class:"body"},sc={class:"side"},nc={class:"side-hd"},ic={class:"cnt"},rc={class:"tree"},oc=["onClick"],lc=["onClick"],cc={key:0,class:"ico"},uc={class:"tn"},fc={key:1,class:"tc"},ac={key:2,class:"tc"},dc={class:"main"},hc={key:0,class:"center-state"},pc={key:1,class:"center-state err"},gc={class:"crumb"},mc=["onClick"],_c={key:0,class:"arr"},vc={class:"hint"},bc={key:0,class:"welcome"},yc={class:"welcome-card"},xc={class:"vq-grid"},wc=["onClick"],Cc={key:0,class:"secgrp"},Sc={class:"gh"},Tc={class:"gt"},Ec={class:"gn"},Oc={class:"vq-grid"},Ac=["onClick"],Mc={key:0,style:{color:"var(--accent)"}},Pc={key:1,class:"secgrp"},kc={class:"gh"},$c={class:"gt"},Rc={class:"gn"},Ic={class:"chips"},jc=["onClick"],Fc={class:"cn"},Nc={class:"ce"},Dc=["onClick"],Lc={key:2,class:"center-state"},Hc={class:"lin"},Kc={class:"tag"},Bc={class:"den"},Vc={key:0,class:"sec"},Uc={class:"stext"},Wc={key:1,class:"sec"},zc={class:"stext"},qc={key:2,class:"sec"},Jc={class:"stext"},Gc={key:3,class:"sec"},Yc={class:"chips"},Xc={key:4,class:"sec"},Zc={class:"chips"},Qc={class:"seg-ctl"},eu={class:"dock-top"},tu={class:"dlbl"},su={class:"num"},nu={key:0,class:"ph"},iu=["title"],ru={key:0,class:"fdot"},ou={class:"acts"},lu={key:0,class:"warn"},cu={key:1},uu={key:1,class:"pl"},fu={key:0,class:"random-panel"},au={class:"gh"},du={class:"chips"},hu=["onClick"],pu={class:"cn"},gu={class:"ce"},mu=["onClick"],We=" / ",_u={__name:"App",setup(e){const t=Yl(),s=be(!1),n=be(""),i=be(null),r=Ge(new Set),o=Ge({}),l=Ge(new Set),f=be(""),g=Ge([]),p=be("en"),m=be(null),S=be(!1),O=be(!1),H=be(!1),$=be(""),X=be(null),q=be(70),D=be([]);let W=null,P=null;const I=Ge({type:"welcome",crumb:[{label:"全部体系"}],title:"",hint:"",cards:[],terms:[],code:""});Hi(()=>{t.init(),window.addEventListener("keydown",nt),y(),window.ResizeObserver&&X.value&&(P=new ResizeObserver(()=>y()),P.observe(X.value))}),vn(()=>{window.removeEventListener("keydown",nt),P&&P.disconnect()});const ce=wt(()=>t.state.index?t.state.index.volumes:[]),_e=wt(()=>t.state.index?t.state.index.total_terms:0);function re(d){$.value=d,clearTimeout(W),W=setTimeout(()=>$.value="",1600)}function nt(d){(d.metaKey||d.ctrlKey)&&d.key==="k"&&(d.preventDefault(),i.value&&i.value.focus()),(d.metaKey||d.ctrlKey)&&d.key==="\\"&&(d.preventDefault(),s.value=!s.value),d.key==="Escape"&&(m.value=null)}function Ve(d){const c={name:"",path:"",children:new Map,terms:[],count:0};for(const _ of d){const a=(_.category||"未分类").split(We).map(E=>E.trim()).filter(Boolean);let C=c,T=[];for(const E of a)T.push(E),C.children.has(E)||C.children.set(E,{name:E,path:T.join(We),children:new Map,terms:[],count:0}),C=C.children.get(E);C.terms.push(_)}return(function _(a){let C=a.terms.length;return a.children.forEach(T=>C+=_(T)),a.count=C,C})(c),c}function it(d,c){let _=o[d];if(!_)return null;for(const a of c.split(We)){if(!_.children.has(a))return null;_=_.children.get(a)}return _}async function rt(d){if(o[d])return o[d];l.add(d);try{const c=await t.loadVolumeTerms(d);o[d]=Ve(c)}finally{l.delete(d)}return o[d]}const mt=wt(()=>{const d=[];for(const c of ce.value){const _="V|"+c.code,a=r.has(_);d.push({type:"vol",key:_,code:c.code,title:c.title,count:c.current_terms,depth:0,hasKids:!0,open:a}),a&&o[c.code]&&_t(o[c.code].children,1,c.code,d)}return d});function _t(d,c,_,a){for(const C of d.values()){const T="N|"+_+"|"+C.path,E=C.children.size>0,A=r.has(T);a.push({type:"node",key:T,code:_,path:C.path,title:C.name,count:C.count,depth:c,hasKids:E,open:A}),A&&E&&_t(C.children,c+1,_,a)}}function $t(d){for(const c of[...r])c!=="V|"+d&&(c.startsWith("N|"+d+"|")||r.delete(c));r.add("V|"+d)}function oe(d){if(d.hasKids){if(d.type==="vol"){G(d);return}if(r.has(d.key))for(const c of[...r])(c===d.key||c.startsWith(d.key+We))&&r.delete(c);else r.add(d.key)}}async function G(d){if(d.type==="vol"){await rt(d.code);const c=r.has(d.key);if($t(d.code),c)for(const _ of[...r])(_===d.key||_.startsWith("N|"+d.code+"|"))&&r.delete(_);f.value=d.key,await ke(d.code)}else d.hasKids&&!r.has(d.key)&&r.add(d.key),f.value=d.key,await ot(d.code,d.path)}function K(){f.value="",Object.assign(I,{type:"welcome",crumb:[{label:"全部体系"}],title:"",hint:"",cards:[],terms:[],code:""})}async function ke(d){const c=ce.value.find(C=>C.code===d),_=o[d],a=_?[..._.children.values()].map(C=>({name:C.name,path:C.path,childCount:C.children.size,count:C.count})):[];Object.assign(I,{type:"volume",title:c.title,code:d,crumb:[{label:"全部体系",fn:K},{label:c.title}],cards:a,terms:[],hint:a.length+" 个分类"})}async function ot(d,c){const _=ce.value.find(N=>N.code===d),a=it(d,c);if(!a)return;const C=c.split(We),T=[{label:"全部体系",fn:K},{label:_.title,fn:()=>Ce(d,null)}];let E=[];C.forEach((N,ee)=>{E.push(N);const ne=E.join(We);T.push(ee===C.length-1?{label:N}:{label:N,fn:()=>Ce(d,ne)})});const A=[...a.children.values()].map(N=>({name:N.name,path:N.path,childCount:N.children.size,count:N.count})),L=A.length?[]:await t.loadCategoryTerms(d,c),U=[A.length?A.length+" 个子类":"",L.length?L.length+" 个术语":""].filter(Boolean).join(" · ")||"空";Object.assign(I,{type:"node",title:a.name,code:d,crumb:T,cards:A,terms:L,hint:U})}async function Ce(d,c){if(await rt(d),$t(d),c){const _=c.split(We);let a=[];for(const C of _)a.push(C),r.add("N|"+d+"|"+a.join(We));f.value="N|"+d+"|"+c,await ot(d,c)}else f.value="V|"+d,await ke(d)}function Se(){return f.value.startsWith("N|")?f.value.split("|").slice(2).join("|").replace(/\|/g,We):""}let Rt=null;function Ms(){clearTimeout(Rt);const d=n.value.trim();if(!d){K();return}Rt=setTimeout(async()=>{const c=await t.search(d,80);f.value="",Object.assign(I,{type:"search",crumb:[{label:"全部体系",fn:K},{label:"搜索 “"+d+"”"}],title:"",cards:[],terms:c,hint:c.length+" 条结果"})},200)}async function Ps(){const d=await t.batchTerms(g.map(c=>c.term_uid));re(d.count?`批量获取 ${d.count} 条`:"没有可批量获取的术语"),d.items.length&&(Object.assign(I,{type:"search",crumb:[{label:"全部体系",fn:K},{label:"提示词篮 · 批量获取"}],title:"",cards:[],terms:d.items,hint:d.missing_term_uids.length?`缺失 ${d.missing_term_uids.length} 条`:"批量获取完成"}),n.value="",D.value=[])}async function lt(){var c;const d=await t.combinePrompts(g.map(_=>_.term_uid),{language:p.value,format:"comma"});if(!d.combined){re("提示词篮是空的");return}await((c=navigator.clipboard)==null?void 0:c.writeText(d.combined)),H.value=!0,setTimeout(()=>H.value=!1,1200),S.value=!0,re(`已合并 ${d.count} 条`)}async function vt(){const d=I.code||"",c=Se(),_=await t.randomTerms({count:8,volume:d||void 0,category:c||void 0,category_prefix:c||void 0});D.value=_.items||[],Object.assign(I,{type:"search",crumb:[{label:"全部体系",fn:K},{label:"随机术语"}],title:"",cards:[],terms:_.items||[],hint:`${_.count||0}/${_.available||0}`})}async function bt(d){if(m.value=d,d&&d.term_uid&&d.definition_long===void 0&&t.state.mode==="api")try{const c=await t.termDetail(d.term_uid);c&&(m.value=c)}catch{}}function It(d,c){navigator.clipboard&&navigator.clipboard.writeText(d);const _=c.target,a=_.textContent;_.textContent="已复制",setTimeout(()=>_.textContent=a,900)}function Te(d){return g.some(c=>c.term_uid===d)}function ss(d){const c=g.findIndex(_=>_.term_uid===d.term_uid);c>=0?(g.splice(c,1),re("− "+d.zh_term)):(g.push(d),re("+ "+d.zh_term))}const u=wt(()=>{const d={};g.forEach(_=>{(d[_.category]=d[_.category]||[]).push(_.term_uid)});const c=new Set;return Object.values(d).forEach(_=>{_.length>1&&_.forEach(a=>c.add(a))}),c});function h(d,c){const _=d.en_term||d.zh_term,a=d.zh_term;return c==="cn"?a:c==="both"?_+"（"+a+"）":_}const v=wt(()=>g.map(d=>h(d,p.value)).filter(Boolean).join(", "));function w(d){p.value=d,S.value=!0,re("复制语言："+{en:"英文",cn:"中文",both:"中英"}[d]+(g.length?"":"（篮中加词后生效）"))}function x(){if(!g.length){re("提示词篮是空的");return}navigator.clipboard&&navigator.clipboard.writeText(v.value),S.value=!0,H.value=!0,setTimeout(()=>H.value=!1,1200),re("已复制 "+g.length+" 项("+{en:"英文",cn:"中文",both:"中英"}[p.value]+")")}function y(){const d=X.value;d&&(q.value=d.getBoundingClientRect().height+16+1)}return window.addEventListener("resize",y),(d,c)=>{const _=wo("x");return M(),k("div",{class:se(["app",{"side-hidden":s.value}])},[b("header",Zl,[b("button",{class:"toggle",title:"折叠/展开侧栏 (Ctrl+\\)",onClick:c[0]||(c[0]=a=>s.value=!s.value)},[...c[12]||(c[12]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"1.8"},[b("rect",{x:"3",y:"4",width:"18",height:"16",rx:"2"}),b("line",{x1:"9",y1:"4",x2:"9",y2:"20"})],-1)])]),c[15]||(c[15]=b("span",{class:"brand"},[b("span",{class:"mk"},[b("i")]),b("span",null,[ye("视觉术语"),b("span",{class:"dot"},"·"),b("span",{class:"sub"},"提示词构建器")])],-1)),ft(t).state.mode?(M(),k("span",Ql,j(ft(t).state.mode==="api"?"API 模式":"离线模式"),1)):ie("",!0),b("div",ec,[c[13]||(c[13]=b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("circle",{cx:"11",cy:"11",r:"7"}),b("path",{d:"m21 21-4.3-4.3"})],-1)),so(b("input",{ref_key:"searchInput",ref:i,"onUpdate:modelValue":c[1]||(c[1]=a=>n.value=a),placeholder:"搜索术语…（Ctrl+K）",onInput:Ms},null,544),[[Il,n.value]])]),b("button",{class:"tool",title:"随机术语",onClick:vt},[...c[14]||(c[14]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M4 7h4l3 10h4l3-10h2"}),b("path",{d:"M16 7h4l-3 10"})],-1)])])]),b("div",tc,[b("aside",sc,[b("div",nc,[c[16]||(c[16]=b("span",null,"体系 / 分类",-1)),b("span",ic,j(_e.value)+" 词",1)]),b("div",rc,[(M(!0),k(Z,null,Oe(mt.value,a=>(M(),k("div",{key:a.key,class:se(["trow",[a.depth===0?"lv1":"sub",{on:a.key===f.value,open:a.open}]]),onClick:C=>G(a)},[(M(!0),k(Z,null,Oe(a.depth,C=>(M(),k("span",{key:C,class:"guide-cell"}))),128)),b("span",{class:"tw",style:dt({visibility:a.hasKids?"visible":"hidden"}),onClick:Us(C=>oe(a),["stop"])},"▶",12,lc),a.depth===0?(M(),k("span",cc,"◆")):ie("",!0),b("span",uc,j(a.title),1),l.has(a.code)&&a.type==="vol"?(M(),k("span",fc,"…")):(M(),k("span",ac,j(a.count),1))],10,oc))),128))])]),b("main",dc,[!ft(t).state.ready&&!ft(t).state.error?(M(),k("div",hc,[...c[17]||(c[17]=[b("div",{class:"spinner"},null,-1),b("div",null,"加载知识库…",-1)])])):ft(t).state.error?(M(),k("div",pc,[c[18]||(c[18]=b("div",{class:"big"},"!",-1)),b("pre",null,j(ft(t).state.error),1)])):(M(),k(Z,{key:2},[b("div",gc,[(M(!0),k(Z,null,Oe(I.crumb,(a,C)=>(M(),k(Z,{key:C},[b("span",{class:se(["seg",{cur:!a.fn}]),onClick:T=>a.fn&&a.fn()},j(a.label),11,mc),C<I.crumb.length-1?(M(),k("span",_c,"›")):ie("",!0)],64))),128)),b("span",vc,j(I.hint),1)]),I.type==="welcome"?(M(),k("div",bc,[b("div",yc,[c[19]||(c[19]=b("div",{class:"big"},"⌘",-1)),c[20]||(c[20]=b("h3",null,"选择一个体系开始构建提示词",-1)),b("p",null,"共 "+j(ce.value.length)+" 卷 · "+j(_e.value)+" 个术语 · 分类任意深度",1),b("div",xc,[(M(!0),k(Z,null,Oe(ce.value,a=>(M(),k("button",{key:a.code,class:"vq",onClick:C=>Ce(a.code,null)},[ye(j(a.title),1),b("span",null,j(a.current_terms),1)],8,wc))),128))])])])):(M(),k(Z,{key:1},[I.cards.length?(M(),k("div",Cc,[b("div",Sc,[b("span",Tc,j(I.title),1),c[21]||(c[21]=b("span",{class:"gline"},null,-1)),b("span",Ec,j(I.cards.length)+" "+j(I.type==="volume"?"分类":"子类"),1)]),b("div",Oc,[(M(!0),k(Z,null,Oe(I.cards,a=>(M(),k("button",{key:a.path,class:"vq",onClick:C=>Ce(I.code,a.path)},[ye(j(a.name),1),a.childCount?(M(),k("span",Mc,"›"+j(a.childCount),1)):ie("",!0),b("span",null,j(a.count),1)],8,Ac))),128))])])):ie("",!0),I.terms.length?(M(),k("div",Pc,[b("div",kc,[b("span",$c,j(I.type==="search"?"命中结果":I.title+" · 术语"),1),c[22]||(c[22]=b("span",{class:"gline"},null,-1)),b("span",Rc,j(I.terms.length),1)]),b("div",Ic,[(M(!0),k(Z,null,Oe(I.terms,a=>(M(),k("div",{key:a.term_uid,class:se(["cchip",{sel:Te(a.term_uid)}]),onClick:C=>bt(a)},[b("div",Fc,j(a.zh_term),1),b("div",Nc,j(a.en_term||a.zh_term||"—"),1),b("span",{class:"add",onClick:Us(C=>ss(a),["stop"])},j(Te(a.term_uid)?"✓":"+"),9,Dc)],10,jc))),128))])])):ie("",!0),!I.cards.length&&!I.terms.length?(M(),k("div",Lc,[...c[23]||(c[23]=[b("div",{class:"big"},"∅",-1),b("div",null,"该分类暂无术语",-1)])])):ie("",!0)],64))],64))])]),b("div",{class:se(["detail",{open:!!m.value}])},[m.value?(M(),k(Z,{key:0},[b("button",{class:"x",onClick:c[2]||(c[2]=a=>m.value=null)},"✕"),b("div",Hc,[b("div",null,[b("b",null,j(m.value.volume_title),1),b("span",Kc,"体系 "+j(m.value.volume_code),1)]),(M(!0),k(Z,null,Oe((m.value.category||"").split(" / "),(a,C)=>(M(),k("div",{key:C,style:dt({marginLeft:C*10+"px"})},[c[24]||(c[24]=ye("└ ",-1)),b("b",null,j(a),1)],4))),128)),b("div",{style:dt({marginLeft:(m.value.category||"").split(" / ").length*10+"px"})},[c[25]||(c[25]=ye("└ ",-1)),b("b",null,j(m.value.zh_term),1),c[26]||(c[26]=b("span",{class:"tag"},"术语",-1))],4)]),b("h2",null,[ye(j(m.value.zh_term),1),b("button",{class:"cpname",onClick:c[3]||(c[3]=a=>It(m.value.zh_term,a)),title:"复制中文提示词"},"复制")]),b("div",Bc,[ye(j(m.value.en_term||m.value.term_uid),1),m.value.en_term?(M(),k("button",{key:0,class:"cpname",onClick:c[4]||(c[4]=a=>It(m.value.en_term,a)),title:"复制英文提示词"},"复制")):ie("",!0)]),c[32]||(c[32]=b("div",{class:"namehint"},"中文名即中文提示词 · 英文名即英文提示词",-1)),m.value.definition_long?(M(),k("div",Vc,[c[27]||(c[27]=b("div",{class:"slabel"},"详细解释",-1)),b("div",Uc,j(m.value.definition_long),1)])):ie("",!0),m.value.visual_effect?(M(),k("div",Wc,[c[28]||(c[28]=b("div",{class:"slabel"},"视觉表现",-1)),b("div",zc,j(m.value.visual_effect),1)])):ie("",!0),m.value.prompt_usage?(M(),k("div",qc,[c[29]||(c[29]=b("div",{class:"slabel"},"提示词用法",-1)),b("div",Jc,j(m.value.prompt_usage),1)])):ie("",!0),m.value.use_cases&&m.value.use_cases.length?(M(),k("div",Gc,[c[30]||(c[30]=b("div",{class:"slabel"},"适用场景",-1)),b("div",Yc,[(M(!0),k(Z,null,Oe(m.value.use_cases,a=>(M(),k("span",{key:a,class:"chip"},j(a),1))),128))])])):ie("",!0),m.value.tags&&m.value.tags.length?(M(),k("div",Xc,[c[31]||(c[31]=b("div",{class:"slabel"},"标签",-1)),b("div",Zc,[(M(!0),k(Z,null,Oe(m.value.tags,a=>(M(),k("span",{key:a,class:"chip ctag"},j(a),1))),128))])])):ie("",!0),b("button",{class:se(["dbtn",{added:Te(m.value.term_uid)}]),onClick:c[5]||(c[5]=a=>ss(m.value))},j(Te(m.value.term_uid)?"✓ 已在提示词篮":"＋ 加入提示词篮"),3)],64)):ie("",!0)],2),b("div",{class:"langfloat",style:dt({bottom:q.value+"px"})},[b("div",Qc,[b("button",{class:se({on:p.value==="en"}),onClick:c[6]||(c[6]=a=>w("en"))},"EN",2),b("button",{class:se({on:p.value==="cn"}),onClick:c[7]||(c[7]=a=>w("cn"))},"中",2),b("button",{class:se({on:p.value==="both"}),onClick:c[8]||(c[8]=a=>w("both"))},"中英",2)])],4),b("div",{class:"dock",ref_key:"dockRef",ref:X},[b("div",eu,[b("span",tu,[c[33]||(c[33]=b("span",{class:"icn"},[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"})])],-1)),c[34]||(c[34]=ye("提示词篮",-1)),b("span",su,j(g.length),1)]),c[41]||(c[41]=b("span",{class:"divd"},null,-1)),b("div",{class:se(["frags",{expanded:O.value}])},[g.length?ie("",!0):(M(),k("span",nu,"点术语卡右上角 + 添加")),(M(!0),k(Z,null,Oe(g,(a,C)=>(M(),k("span",{key:a.term_uid,class:se(["frag",{conflict:u.value.has(a.term_uid)}]),title:a.category},[u.value.has(a.term_uid)?(M(),k("span",ru)):ie("",!0),ye(j(a.zh_term),1),Ke(_,{onClick:T=>g.splice(C,1)},{default:Ii(()=>[...c[35]||(c[35]=[ye("✕",-1)])]),_:1},8,["onClick"])],10,iu))),128))],2),b("div",ou,[b("button",{class:"ic",title:"批量获取术语",onClick:Ps},[...c[36]||(c[36]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M4 7h16M4 12h16M4 17h10"})],-1)])]),b("button",{class:"ic",title:"提示词合并",onClick:lt},[...c[37]||(c[37]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M4 6h16M4 12h16M4 18h10"})],-1)])]),b("button",{class:se(["ic",{on:O.value}]),title:"展开/收起提示词篮",onClick:c[9]||(c[9]=a=>O.value=!O.value)},[...c[38]||(c[38]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M7 14l5-5 5 5"})],-1)])],2),b("button",{class:se(["ic",{on:S.value}]),title:"预览将复制的提示词",onClick:c[10]||(c[10]=a=>S.value=!S.value)},[...c[39]||(c[39]=[b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2"},[b("path",{d:"M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"}),b("circle",{cx:"12",cy:"12",r:"3"})],-1)])],2),b("button",{class:se(["copy",{done:H.value}]),onClick:x},[c[40]||(c[40]=b("svg",{viewBox:"0 0 24 24",fill:"none",stroke:"currentColor","stroke-width":"2",width:"14",height:"14"},[b("rect",{x:"9",y:"9",width:"11",height:"11",rx:"2"}),b("path",{d:"M5 15V5a2 2 0 0 1 2-2h10"})],-1)),ye(j(H.value?"✓ 已复制":"复制"),1)],2)])]),b("div",{class:se(["dock-prev",{show:S.value}])},[g.length?(M(),k(Z,{key:0},[u.value.size?(M(),k("span",lu,"⚠ 同分支冲突 "+j(u.value.size)+" 项(已标红，仍可复制)",1)):ie("",!0),u.value.size?(M(),k("br",cu)):ie("",!0),c[42]||(c[42]=b("b",null,"将复制：",-1)),ye(j(v.value),1)],64)):(M(),k("span",uu,"空。复制内容随语言开关变化(EN/中/中英)，不影响可复制"))],2)],512),D.value.length?(M(),k("div",fu,[b("div",au,[c[43]||(c[43]=b("span",{class:"gt"},"随机术语",-1)),c[44]||(c[44]=b("span",{class:"gline"},null,-1)),b("button",{class:"mini",onClick:c[11]||(c[11]=a=>D.value=[])},"关闭")]),b("div",du,[(M(!0),k(Z,null,Oe(D.value,a=>(M(),k("div",{key:a.term_uid,class:se(["cchip",{sel:Te(a.term_uid)}]),onClick:C=>bt(a)},[b("div",pu,j(a.zh_term),1),b("div",gu,j(a.en_term||a.zh_term||"—"),1),b("span",{class:"add",onClick:Us(C=>ss(a),["stop"])},j(Te(a.term_uid)?"✓":"+"),9,mu)],10,hu))),128))])])):ie("",!0),b("div",{class:se(["toast",{show:!!$.value}])},j($.value),3)],2)}}},vu=Xl(_u,[["__scopeId","data-v-492c2b6c"]]);Ll(vu).mount("#app");
-</script>
-</body></html>
+</script></body></html>

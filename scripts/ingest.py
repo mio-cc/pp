@@ -255,8 +255,58 @@ def cmd_volume(path):
     print("✓ 完成：新卷已注册。现在可以用 add-terms 给它填术语了。")
 
 
+def cmd_update(path):
+    """按 term_uid 更新已有术语的字段（用于回填 visual_effect/prompt_usage/use_cases 等）。"""
+    UPDATABLE = ["zh_term", "en_term", "aliases", "category", "definition_long", "visual_effect",
+                 "prompt_usage", "use_cases", "related_terms", "confused_with", "tags",
+                 "source_refs", "status", "version"]
+    objs = load_json(path)
+    if not isinstance(objs, list):
+        fail("update JSON 顶层必须是数组 [ {term_uid, 要改的字段...} ]")
+    rows = read_csv_rows()
+    by_uid = {r.get("term_uid"): r for r in rows}
+    errors, touched = [], 0
+    for i, obj in enumerate(objs):
+        uid = (obj.get("term_uid") or "").strip()
+        tag = f"[第{i+1}条 {uid or '?'}]"
+        if not uid:
+            errors.append(f"{tag} 缺 term_uid"); continue
+        if uid not in by_uid:
+            errors.append(f"{tag} term_uid 不存在，无法更新（update 只改已有术语，新增请用 add-terms）"); continue
+        row = by_uid[uid]
+        for k, v in obj.items():
+            if k == "term_uid":
+                continue
+            if k not in UPDATABLE:
+                errors.append(f"{tag} 不可更新字段 {k}"); continue
+            if k in ARRAY_FIELDS:
+                row[k] = ";".join(x.strip() for x in (v or []) if x.strip())
+            else:
+                row[k] = (v or "").strip()
+        if "definition_long" in obj:
+            if norm(row["definition_long"]) == norm(row["zh_term"]):
+                errors.append(f"{tag} definition_long 不能复读术语名")
+            if PLACEHOLDER_PAT.search(row["definition_long"]):
+                errors.append(f"{tag} definition_long 含占位词")
+        touched += 1
+    if errors:
+        print(f"\n✗ 更新校验未通过，{len(errors)} 个错误，未写入：")
+        for e in errors:
+            print(f"  - {e}")
+        sys.exit(1)
+    with CSV_PATH.open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=CSV_FIELDS, extrasaction="ignore")
+        w.writeheader(); w.writerows(rows)
+    print(f"\n✓ 已更新 {touched} 条术语。重建中…")
+    if run([sys.executable, "-B", "scripts/rebuild.py"]) != 0:
+        fail("重建失败")
+    if run([sys.executable, "-B", "scripts/validate_kb.py"]) != 0:
+        fail("重建后校验未通过")
+    print("\n✓ 完成：字段已更新并通过校验。")
+
+
 def main():
-    if len(sys.argv) < 3 or sys.argv[1] not in {"check", "add-terms", "add-volume"}:
+    if len(sys.argv) < 3 or sys.argv[1] not in {"check", "add-terms", "add-volume", "update-terms"}:
         print(__doc__)
         sys.exit(0 if len(sys.argv) <= 1 else 2)
     cmd, path = sys.argv[1], sys.argv[2]
@@ -266,6 +316,8 @@ def main():
         cmd_terms(path, write=True)
     elif cmd == "add-volume":
         cmd_volume(path)
+    elif cmd == "update-terms":
+        cmd_update(path)
 
 
 if __name__ == "__main__":

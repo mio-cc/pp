@@ -276,8 +276,10 @@ async function showNode(code, path) {
   let acc = []
   segs.forEach((s, i) => { acc.push(s); const p = acc.join(SEP); crumb.push(i === segs.length - 1 ? { label: s } : { label: s, fn: () => navigate(code, p) }) })
   const kids = [...node.children.values()].map((n) => ({ name: n.name, path: n.path, childCount: n.children.size, count: n.count }))
-  const terms = await kb.loadCategoryBranchTerms(code, path)
-  Object.assign(view, { type: 'node', title: node.name, code, crumb, cards: kids, terms, hint: node.count + ' 个术语' })
+  // 只取「直属本层」的术语；有子分类的分支节点不再把子孙术语铺到上层（点进子类才看到术语）
+  const terms = kids.length ? [] : await kb.loadCategoryTerms(code, path)
+  const hint = [kids.length ? kids.length + ' 个子类' : '', terms.length ? terms.length + ' 个术语' : ''].filter(Boolean).join(' · ') || '空'
+  Object.assign(view, { type: 'node', title: node.name, code, crumb, cards: kids, terms, hint })
 }
 async function navigate(code, path) {
   await ensureVol(code)

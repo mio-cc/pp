@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>本次升级效果 · 真实数据卡片</title><style>
+:root{color-scheme:light;--bg:#ececf0;--bg2:#e4e4ea;--panel:#fbfbfd;--ink:#1d1d1f;--ink2:#4b4b50;--mut:#8e8e93;--faint:#b8b8bd;--line:rgba(0,0,0,.08);--hov:rgba(0,0,0,.045);--sel:#1d1d1f;--mono:ui-monospace,Menlo,Consolas,monospace;--font:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font);color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2));padding:30px 18px 70px}
+.wrap{max-width:1100px;margin:0 auto}h1{font-size:22px;margin-bottom:4px}.sub{color:var(--mut);font-size:13px;margin-bottom:22px;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;align-items:start}
+.detail{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:0 8px 40px rgba(0,0,0,.10);padding:20px}
+.detail .x{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;border:none;background:rgba(0,0,0,.05);color:var(--ink2);font-size:14px}
+.lin{font-size:11px;color:var(--mut);line-height:1.8;background:var(--bg);border-radius:12px;padding:11px 13px;margin-bottom:16px}.lin b{color:var(--ink)}.lin .tag{font-size:9px;color:var(--mut);margin-left:6px;border:1px solid var(--line);border-radius:4px;padding:0 4px}
+h2{font-size:21px;margin-bottom:3px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.den{font-size:12px;color:var(--mut);font-family:var(--mono);margin-bottom:6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.nh{font-size:10.5px;color:var(--faint);margin-bottom:14px}.nh .ft{color:#a86a00}
+.sec{margin-bottom:13px}.sl{font-size:11px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;margin-bottom:5px}.st{font-size:13px;color:var(--ink2);line-height:1.65}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:12px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:8px;padding:3px 9px}.chip.ct{background:var(--hov)}
+.cpn{font-size:10px;background:var(--hov);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:1px 7px;cursor:pointer;font-family:var(--font)}
+.dbtn{width:100%;background:var(--sel);color:#fff;border:none;border-radius:12px;padding:12px;font-size:13px;font-weight:550;margin-top:6px}
+</style></head><body><div class="wrap">
+<h1>本次升级效果 · 术语卡片（真实数据，经升级后的 API / 16 列结构）</h1>
+<p class="sub">数据直接取自重建后的主库（1611 条）。卡片为 v2：标题=中文提示词、副标题=英文提示词（各带复制），展示 详细解释 / 视觉表现 / 提示词用法 / 适用场景 / 标签；已删除旧的「一句话定义」与独立提示词块。<br>下面前 3 张是字段完整的术语，后 2 张是存量「精简」术语——空的长字段被自动隐藏，不再显示空块。</p>
+<div class="grid"><div class="detail"><button class="x">✕</button>
+<div class="lin"><div><b>动画、分镜与动态设计</b><span class="tag">体系 V12</span></div><div style="margin-left:0px">└ <b>动画基础</b></div><div style="margin-left:10px">└ <b>帧率</b></div><div style="margin-left:20px">└ <b>24帧动画</b><span class="tag">术语</span></div></div>
+<h2>24帧动画<button class="cpn">复制</button></h2>
+<div class="den">24fps Animation<button class="cpn">复制</button> · V12_T0053</div>
+<div class="nh">中文名即中文提示词 · 英文名即英文提示词　<span class="ft">[完整]</span></div>
+<div class="sec"><div class="sl">详细解释</div><div class="st">24帧动画，电影标准帧率，流畅且有电影质感。在动画制作中用于控制运动流畅度、视觉风格和观看体验。</div></div><div class="sec"><div class="sl">视觉表现</div><div class="st">流畅自然、电影感。</div></div><div class="sec"><div class="sl">提示词用法</div><div class="st">用于电影级动画项目。</div></div><div class="sec"><div class="sl">适用场景</div><div class="chips"><span class="chip">电影动画</span><span class="chip">流畅</span></div></div><div class="sec"><div class="sl">标签</div><div class="chips"><span class="chip ct">30帧动画</span><span class="chip ct">12帧动画</span></div></div>
+<button class="dbtn">＋ 加入提示词篮</button></div>
+<div class="detail"><button class="x">✕</button>
+<div class="lin"><div><b>灯光与色彩科学</b><span class="tag">体系 V06</span></div><div style="margin-left:0px">└ <b>色彩体系</b></div><div style="margin-left:10px">└ <b>中国传统色</b></div><div style="margin-left:20px">└ <b>群青</b><span class="tag">术语</span></div></div>
+<h2>群青<button class="cpn">复制</button></h2>
+<div class="den">Ultramarine<button class="cpn">复制</button> · V06_T0223</div>
+<div class="nh">中文名即中文提示词 · 英文名即英文提示词　<span class="ft">[完整]</span></div>
+<div class="sec"><div class="sl">详细解释</div><div class="st">群青，矿物群青的深蓝色，国画传统蓝。源自中国或日本传统色彩文化，具有独特的文化内涵与审美意境。</div></div><div class="sec"><div class="sl">视觉表现</div><div class="st">深邃蓝、矿物质感。</div></div><div class="sec"><div class="sl">提示词用法</div><div class="st">用于国画、天空、深邃氛围。</div></div><div class="sec"><div class="sl">适用场景</div><div class="chips"><span class="chip">国画</span><span class="chip">天空</span></div></div><div class="sec"><div class="sl">标签</div><div class="chips"><span class="chip ct">色彩</span><span class="chip ct">中国色</span><span class="chip ct">蓝</span></div></div>
+<button class="dbtn">＋ 加入提示词篮</button></div>
+<div class="detail"><button class="x">✕</button>
+<div class="lin"><div><b>绘画与艺术流派</b><span class="tag">体系 V03</span></div><div style="margin-left:0px">└ <b>代表性风格</b></div><div style="margin-left:10px">└ <b>动画导演</b></div><div style="margin-left:20px">└ <b>新海诚风格</b><span class="tag">术语</span></div></div>
+<h2>新海诚风格<button class="cpn">复制</button></h2>
+<div class="den">Makoto Shinkai Style<button class="cpn">复制</button> · V03_T0118</div>
+<div class="nh">中文名即中文提示词 · 英文名即英文提示词　<span class="ft">[完整]</span></div>
+<div class="sec"><div class="sl">详细解释</div><div class="st">新海诚风格，新海诚的动画电影视觉风格，光影细腻唯美。是AI图像生成与视觉创作中的高频术语。</div></div><div class="sec"><div class="sl">视觉表现</div><div class="st">光影细腻、天空唯美、动画感。</div></div><div class="sec"><div class="sl">提示词用法</div><div class="st">用于动画、唯美、治愈场景。</div></div><div class="sec"><div class="sl">适用场景</div><div class="chips"><span class="chip">动画</span><span class="chip">唯美</span></div></div><div class="sec"><div class="sl">标签</div><div class="chips"><span class="chip ct">动画</span><span class="chip ct">艺术</span></div></div>
+<button class="dbtn">＋ 加入提示词篮</button></div>
+<div class="detail"><button class="x">✕</button>
+<div class="lin"><div><b>摄影体系</b><span class="tag">体系 V01</span></div><div style="margin-left:0px">└ <b>曝光控制</b></div><div style="margin-left:10px">└ <b>光圈</b></div><div style="margin-left:20px">└ <b>f/1.0 光圈</b><span class="tag">术语</span></div></div>
+<h2>f/1.0 光圈<button class="cpn">复制</button></h2>
+<div class="den">f/1.0 Aperture<button class="cpn">复制</button> · V01_T0001</div>
+<div class="nh">中文名即中文提示词 · 英文名即英文提示词　<span class="ft">[精简(存量长字段未填,自动隐藏空区块)]</span></div>
+<div class="sec"><div class="sl">详细解释</div><div class="st">f/1.0，焦平面极薄、梦幻虚化。</div></div><div class="sec"><div class="sl">标签</div><div class="chips"><span class="chip ct">曝光</span><span class="chip ct">光圈</span></div></div>
+<button class="dbtn">＋ 加入提示词篮</button></div>
+<div class="detail"><button class="x">✕</button>
+<div class="lin"><div><b>灯光与色彩科学</b><span class="tag">体系 V06</span></div><div style="margin-left:0px">└ <b>色彩体系</b></div><div style="margin-left:10px">└ <b>红色系</b></div><div style="margin-left:20px">└ <b>深红色</b><span class="tag">术语</span></div></div>
+<h2>深红色<button class="cpn">复制</button></h2>
+<div class="den">Deep Red<button class="cpn">复制</button> · V06_T0012</div>
+<div class="nh">中文名即中文提示词 · 英文名即英文提示词　<span class="ft">[精简(存量长字段未填,自动隐藏空区块)]</span></div>
+<div class="sec"><div class="sl">详细解释</div><div class="st">深红色，具体取色。</div></div><div class="sec"><div class="sl">标签</div><div class="chips"><span class="chip ct">色彩</span><span class="chip ct">颜色</span></div></div>
+<button class="dbtn">＋ 加入提示词篮</button></div></div></div></body></html>

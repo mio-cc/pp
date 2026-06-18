@@ -26,6 +26,7 @@
 python scripts/ingest.py check      你的术语.json     # 第一步：只校验不写库，看有没有错
 python scripts/ingest.py add-terms  你的术语.json     # 校验全过 → 写入 → 重建 → 再校验
 python scripts/ingest.py add-volume 新卷.json         # 新增一个卷（体系）
+python scripts/ingest.py update-terms 改动.json       # 回填/修改已有术语字段（按 term_uid，仅改给出的字段）
 ```
 
 - `你的术语.json`：**对象数组**，每个对象是一条术语，字段见第三节，模版见 `docs/templates/term.template.json`，机器规范见 `schema/term.schema.json`。

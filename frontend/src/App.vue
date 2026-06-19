@@ -118,8 +118,6 @@
           </span>
         </div>
         <div class="acts">
-          <button class="ic" title="批量获取术语" @click="loadBatch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
-          <button class="ic" title="提示词合并" @click="mergeBasket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
           <button class="ic" :class="{ on: basketExpanded }" title="展开/收起提示词篮" @click="basketExpanded = !basketExpanded"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 14l5-5 5 5"/></svg></button>
           <button class="ic" :class="{ on: showPrev }" title="预览将复制的提示词" @click="showPrev = !showPrev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
           <button class="copy" :class="{ done: copied }" @click="copyAll"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>{{ copied ? '✓ 已复制' : '复制' }}</button>
@@ -302,36 +300,6 @@ function onSearch() {
     activeKey.value = ''
     Object.assign(view, { type: 'search', crumb: [{ label: '全部体系', fn: goWelcome }, { label: '搜索 “' + s + '”' }], title: '', cards: [], terms: hits, hint: hits.length + ' 条结果' })
   }, 200)
-}
-
-async function loadBatch() {
-  const data = await kb.batchTerms(cart.map((c) => c.term_uid))
-  toast(data.count ? `批量获取 ${data.count} 条` : '没有可批量获取的术语')
-  if (data.items.length) {
-    Object.assign(view, {
-      type: 'search',
-      crumb: [{ label: '全部体系', fn: goWelcome }, { label: '提示词篮 · 批量获取' }],
-      title: '',
-      cards: [],
-      terms: data.items,
-      hint: data.missing_term_uids.length ? `缺失 ${data.missing_term_uids.length} 条` : '批量获取完成'
-    })
-    q.value = ''
-    randomPanel.value = []
-  }
-}
-
-async function mergeBasket() {
-  const data = await kb.combinePrompts(cart.map((c) => c.term_uid), { language: copyLang.value, format: 'comma' })
-  if (!data.combined) {
-    toast('提示词篮是空的')
-    return
-  }
-  await navigator.clipboard?.writeText(data.combined)
-  copied.value = true
-  setTimeout(() => (copied.value = false), 1200)
-  showPrev.value = true
-  toast(`已合并 ${data.count} 条`)
 }
 
 async function loadRandom() {

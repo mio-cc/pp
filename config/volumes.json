@@ -2,7 +2,7 @@
   "project": {
     "name": "AI视觉设计与提示词工程百科",
     "version": "V1.0",
-    "target_total_terms": 10000,
+    "target_total_terms": 14050,
     "language": "zh-CN",
     "source_of_truth": "data/kb/visual_prompt_terms.sqlite"
   },
@@ -242,6 +242,70 @@
         "品牌调性与媒介",
         "视觉风格"
       ]
+    },
+    {
+      "code": "V16",
+      "sequence": 16,
+      "title": "AI视频与动态生成",
+      "target_terms": 600,
+      "purpose": "覆盖AI视频生成模型、文生视频/图生视频、运镜与镜头控制、时序一致性、关键帧与时长控制等动态生成术语。",
+      "categories": []
+    },
+    {
+      "code": "V17",
+      "sequence": 17,
+      "title": "3D建模与数字雕刻",
+      "target_terms": 600,
+      "purpose": "覆盖多边形建模、数字雕刻、拓扑与UV、硬表面与曲面、数字造型与CAD等三维建模流程术语。",
+      "categories": []
+    },
+    {
+      "code": "V18",
+      "sequence": 18,
+      "title": "UI/UX与界面设计",
+      "target_terms": 550,
+      "purpose": "覆盖界面布局、交互模式、设计系统与组件、可用性与无障碍、原型与状态等数字产品界面术语。",
+      "categories": []
+    },
+    {
+      "code": "V19",
+      "sequence": 19,
+      "title": "数据可视化与信息图形",
+      "target_terms": 450,
+      "purpose": "覆盖图表类型、信息图、科学与统计可视化、视觉编码、图例与坐标等数据呈现术语。",
+      "categories": []
+    },
+    {
+      "code": "V20",
+      "sequence": 20,
+      "title": "插画与商业插画",
+      "target_terms": 500,
+      "purpose": "覆盖编辑插画、绘本与儿童插画、矢量插画、角色插画与商业风格等插画门类术语。",
+      "categories": []
+    },
+    {
+      "code": "V21",
+      "sequence": 21,
+      "title": "漫画、动漫与连环画",
+      "target_terms": 500,
+      "purpose": "覆盖分格与版面、网点与线条、日漫/美漫/韩漫风格、连环叙事与分镜表现等连环画术语。",
+      "categories": []
+    },
+    {
+      "code": "V22",
+      "sequence": 22,
+      "title": "标志、图标与符号设计",
+      "target_terms": 400,
+      "purpose": "覆盖标志与字标、图标系统、象形与符号、栅格与造型规范、品牌标识应用等符号设计术语。",
+      "categories": []
+    },
+    {
+      "code": "V23",
+      "sequence": 23,
+      "title": "包装与产品/工业设计",
+      "target_terms": 450,
+      "purpose": "覆盖包装结构与材质工艺、产品造型与CMF、样机mockup、人因与功能形态等产品与包装设计术语。",
+      "categories": []
     }
   ],
   "relation_types": [

@@ -2,7 +2,7 @@
   "project": {
     "name": "AI视觉设计与提示词工程百科",
     "version": "V1.0",
-    "target_total_terms": 14050,
+    "target_total_terms": 18850,
     "language": "zh-CN",
     "source_of_truth": "data/kb/visual_prompt_terms.sqlite"
   },
@@ -305,6 +305,102 @@
       "title": "包装与产品/工业设计",
       "target_terms": 450,
       "purpose": "覆盖包装结构与材质工艺、产品造型与CMF、样机mockup、人因与功能形态等产品与包装设计术语。",
+      "categories": []
+    },
+    {
+      "code": "V24",
+      "sequence": 24,
+      "title": "纹样、图案与装饰艺术",
+      "target_terms": 450,
+      "purpose": "覆盖几何纹样、植物缠枝、民族与地域图案、二方/四方连续、装饰风格(新艺术/装饰艺术等)与纹饰肌理术语。",
+      "categories": []
+    },
+    {
+      "code": "V25",
+      "sequence": 25,
+      "title": "东方美学与传统视觉",
+      "target_terms": 500,
+      "purpose": "覆盖水墨写意、工笔重彩、浮世绘、唐卡年画、和风禅意、传统色与东方构图等东方传统视觉术语。",
+      "categories": []
+    },
+    {
+      "code": "V26",
+      "sequence": 26,
+      "title": "自然、植物与科学插画",
+      "target_terms": 450,
+      "purpose": "覆盖植物科学绘图、解剖与生物插画、博物志风格、自然标本与古典科学版画等自然科学视觉术语。",
+      "categories": []
+    },
+    {
+      "code": "V27",
+      "sequence": 27,
+      "title": "字体设计、文字艺术与书法",
+      "target_terms": 450,
+      "purpose": "覆盖字体造型与分类、字母解剖、手写与花体、东西方书法、字体设计与文字艺术等字形术语。",
+      "categories": []
+    },
+    {
+      "code": "V28",
+      "sequence": 28,
+      "title": "特效化妆、道具与实景美术",
+      "target_terms": 400,
+      "purpose": "覆盖特效化妆与假体、生物造型、实拍道具、布景搭建与置景绘景等实景美术与现场特效术语。",
+      "categories": []
+    },
+    {
+      "code": "V29",
+      "sequence": 29,
+      "title": "纹身与人体艺术",
+      "target_terms": 350,
+      "purpose": "覆盖纹身风格流派(传统/日式刺青/黑工/写实等)、人体彩绘与身体艺术的造型与技法术语。",
+      "categories": []
+    },
+    {
+      "code": "V30",
+      "sequence": 30,
+      "title": "食物造型与美食视觉",
+      "target_terms": 350,
+      "purpose": "覆盖美食造型、餐桌布景、菜品摆盘、食材质感与美食摄影风格等食物视觉表现术语。",
+      "categories": []
+    },
+    {
+      "code": "V31",
+      "sequence": 31,
+      "title": "车辆与交通工具设计",
+      "target_terms": 400,
+      "purpose": "覆盖汽车与交通工具造型语言、概念车设计、CMF、比例姿态与运输工具视觉表达术语。",
+      "categories": []
+    },
+    {
+      "code": "V32",
+      "sequence": 32,
+      "title": "像素艺术与复古数字美术",
+      "target_terms": 350,
+      "purpose": "覆盖像素艺术、抖动与调色板限制、体素、8/16位复古风、demoscene与复古数字美术术语。",
+      "categories": []
+    },
+    {
+      "code": "V33",
+      "sequence": 33,
+      "title": "生成艺术与新媒体艺术",
+      "target_terms": 400,
+      "purpose": "覆盖生成与算法艺术、分形、故障艺术、数据生成图形、投影映射与交互新媒体装置术语。",
+      "categories": []
+    },
+    {
+      "code": "V34",
+      "sequence": 34,
+      "title": "舞台、场景与演出视觉",
+      "target_terms": 350,
+      "purpose": "覆盖舞台与场景设计、演出灯光、舞美置景、演唱会视觉、VJ与投影演出等现场演出视觉术语。",
+      "categories": []
+    },
+    {
+      "code": "V35",
+      "sequence": 35,
+      "title": "街头艺术与涂鸦文化",
+      "target_terms": 350,
+      "purpose": "覆盖涂鸦字体与风格、壁画、模板/贴纸/街贴、城市公共艺术等街头艺术与涂鸦文化术语。",
       "categories": []
     }
   ],

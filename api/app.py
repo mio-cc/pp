@@ -38,7 +38,7 @@ VALID_SORTS = {
 app = FastAPI(
     title="AI视觉设计与提示词工程百科 API",
     description="只读知识库接口：术语筛选、全文搜索、卷册/分类/标签元数据、提示词导出。",
-    version="2.0",
+    version="2.1",
 )
 
 app.add_middleware(
@@ -221,7 +221,7 @@ def health() -> dict:
         n = conn.execute("SELECT COUNT(*) FROM terms").fetchone()[0]
     finally:
         conn.close()
-    return {"status": "ok", "terms": n, "version": "2.0"}
+    return {"status": "ok", "terms": n, "version": "2.1"}
 
 
 @app.get("/api/meta")

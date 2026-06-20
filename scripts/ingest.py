@@ -118,6 +118,7 @@ def validate_terms(objs, config, existing):
         segs = [s.strip() for s in obj["category"].split(" / ")]
         if any(not s for s in segs):
             errors.append(f"{tag} category 含空段：{obj['category']!r}。用 ' / ' 分隔，不能有空层。")
+            continue
         top = segs[0]
         if top not in declared[vol]:
             errors.append(f"{tag} 顶层分类 {top!r} 不在 {vol} 的 config 声明里。"
@@ -158,6 +159,9 @@ def validate_terms(objs, config, existing):
         if not (obj.get("term_uid") or "").strip():
             vol = obj["volume_code"]
             next_no[vol] = next_no.get(vol, 0) + 1
+            if next_no[vol] > 9999:
+                errors.append(f"[{obj.get('zh_term','?')}] 卷 {vol} 的 term_uid 序号已达上限 9999，无法自动分配。")
+                continue
             obj["term_uid"] = f"{vol}_T{next_no[vol]:04d}"
     return errors, warnings, prepared
 
@@ -195,6 +199,19 @@ def existing_index(rows):
     return {"uids": uids, "zh_by_vol": zh_by_vol, "max_no": max_no}
 
 
+def write_and_build(rows):
+    """原子写入：备份 CSV → 写 → 重建+校验；任一步失败则回滚 CSV 与主库到改动前。"""
+    backup = CSV_PATH.read_bytes()
+    with CSV_PATH.open("w", encoding="utf-8-sig", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=CSV_FIELDS, extrasaction="ignore")
+        w.writeheader(); w.writerows(rows)
+    if run([sys.executable, "-B", "scripts/rebuild.py"]) != 0 or \
+       run([sys.executable, "-B", "scripts/validate_kb.py"]) != 0:
+        CSV_PATH.write_bytes(backup)
+        run([sys.executable, "-B", "scripts/rebuild.py"])
+        fail("重建/校验失败，已回滚 CSV 与主库到改动前。")
+
+
 def cmd_terms(path, write):
     config = load_json(CONFIG_PATH)
     objs = load_json(path)
@@ -216,15 +233,8 @@ def cmd_terms(path, write):
         return
 
     new_rows = rows + [to_csv_row(o) for o in prepared]
-    with CSV_PATH.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=CSV_FIELDS, extrasaction="ignore")
-        w.writeheader()
-        w.writerows(new_rows)
-    print(f"\n✓ 已写入 CSV（{len(rows)} → {len(new_rows)} 行）。重建中…")
-    if run([sys.executable, "-B", "scripts/rebuild.py"]) != 0:
-        fail("重建失败，请检查。")
-    if run([sys.executable, "-B", "scripts/validate_kb.py"]) != 0:
-        fail("重建后校验未通过，请检查。")
+    print(f"\n✓ 写入 CSV（{len(rows)} → {len(new_rows)} 行）。重建中…")
+    write_and_build(new_rows)
     print("\n✓ 完成：术语已入库并通过校验。")
 
 
@@ -263,6 +273,8 @@ def cmd_update(path):
     objs = load_json(path)
     if not isinstance(objs, list):
         fail("update JSON 顶层必须是数组 [ {term_uid, 要改的字段...} ]")
+    config = load_json(CONFIG_PATH)
+    declared = {v["code"]: set(v.get("categories", [])) for v in config["volumes"]}
     rows = read_csv_rows()
     by_uid = {r.get("term_uid"): r for r in rows}
     errors, touched = [], 0
@@ -288,20 +300,25 @@ def cmd_update(path):
                 errors.append(f"{tag} definition_long 不能复读术语名")
             if PLACEHOLDER_PAT.search(row["definition_long"]):
                 errors.append(f"{tag} definition_long 含占位词")
+        vol = (row.get("volume_code") or "").strip()
+        if "category" in obj:
+            segs = [x.strip() for x in (row["category"] or "").split(" / ")]
+            if any(not x for x in segs):
+                errors.append(f"{tag} category 含空段")
+            elif declared.get(vol) and segs[0] not in declared[vol]:
+                errors.append(f"{tag} 顶层分类 {segs[0]!r} 不在 {vol} 的 config 声明里")
+        if "zh_term" in obj and any(
+                r2 is not row and (r2.get("volume_code") or "").strip() == vol
+                and (r2.get("zh_term") or "").strip() == row["zh_term"] for r2 in rows):
+            errors.append(f"{tag} 同卷已存在中文名 {row['zh_term']!r}")
         touched += 1
     if errors:
         print(f"\n✗ 更新校验未通过，{len(errors)} 个错误，未写入：")
         for e in errors:
             print(f"  - {e}")
         sys.exit(1)
-    with CSV_PATH.open("w", encoding="utf-8-sig", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=CSV_FIELDS, extrasaction="ignore")
-        w.writeheader(); w.writerows(rows)
-    print(f"\n✓ 已更新 {touched} 条术语。重建中…")
-    if run([sys.executable, "-B", "scripts/rebuild.py"]) != 0:
-        fail("重建失败")
-    if run([sys.executable, "-B", "scripts/validate_kb.py"]) != 0:
-        fail("重建后校验未通过")
+    print(f"\n✓ 更新 {touched} 条术语。重建中…")
+    write_and_build(rows)
     print("\n✓ 完成：字段已更新并通过校验。")
 
 

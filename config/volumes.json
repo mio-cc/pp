@@ -2,7 +2,7 @@
   "project": {
     "name": "AI视觉设计与提示词工程百科",
     "version": "V1.0",
-    "target_total_terms": 18850,
+    "target_total_terms": 20700,
     "language": "zh-CN",
     "source_of_truth": "data/kb/visual_prompt_terms.sqlite"
   },
@@ -401,6 +401,30 @@
       "title": "街头艺术与涂鸦文化",
       "target_terms": 350,
       "purpose": "覆盖涂鸦字体与风格、壁画、模板/贴纸/街贴、城市公共艺术等街头艺术与涂鸦文化术语。",
+      "categories": []
+    },
+    {
+      "code": "V36",
+      "sequence": 36,
+      "title": "人物外貌与人体特征",
+      "target_terms": 800,
+      "purpose": "覆盖人物的发型、脸型五官、体型身材、年龄性别、肤色与人种特征、表情情绪、姿态手势与妆容等外貌与人体描述术语。",
+      "categories": []
+    },
+    {
+      "code": "V37",
+      "sequence": 37,
+      "title": "动物与生物主体",
+      "target_terms": 600,
+      "purpose": "覆盖哺乳/鸟类/水生/昆虫/爬行等真实动物与宠物、野生动物主体的外形、品类与神态描述术语(区别于V04奇幻生物设计)。",
+      "categories": []
+    },
+    {
+      "code": "V38",
+      "sequence": 38,
+      "title": "植物、花卉与园艺",
+      "target_terms": 450,
+      "purpose": "覆盖花卉、树木、草本与多肉、菌菇及园艺植物等植物主体的形态、品类与意象描述术语(区别于V26科学插画风格)。",
       "categories": []
     }
   ],

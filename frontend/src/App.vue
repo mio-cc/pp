@@ -10,7 +10,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           <input ref="searchInput" v-model="q" placeholder="搜索术语…（Ctrl+K）" @input="onSearch" />
         </div>
-        <button class="tool" title="随机术语" @click="loadRandom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h4l3 10h4l3-10h2"/><path d="M16 7h4l-3 10"/></svg></button>
+        <button class="tool" title="随机术语" :disabled="randomLoading" @click="loadRandom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h4l3 10h4l3-10h2"/><path d="M16 7h4l-3 10"/></svg></button>
       </header>
 
     <div class="body">
@@ -167,6 +167,7 @@ const toastMsg = ref('')
 const dockRef = ref(null)
 const langBottom = ref(70)
 const randomPanel = ref([])
+const randomLoading = ref(false)
 let toastT = null
 let _ro = null
 const view = reactive({ type: 'welcome', crumb: [{ label: '全部体系' }], title: '', hint: '', cards: [], terms: [], code: '' })
@@ -303,23 +304,29 @@ function onSearch() {
 }
 
 async function loadRandom() {
-  const activeVol = view.code || ''
-  const activeCat = currentCategoryPath()
-  const data = await kb.randomTerms({
-    count: 8,
-    volume: activeVol || undefined,
-    category: activeCat || undefined,
-    category_prefix: activeCat || undefined
-  })
-  randomPanel.value = data.items || []
-  Object.assign(view, {
-    type: 'search',
-    crumb: [{ label: '全部体系', fn: goWelcome }, { label: '随机术语' }],
-    title: '',
-    cards: [],
-    terms: data.items || [],
-    hint: `${data.count || 0}/${data.available || 0}`
-  })
+  if (randomLoading.value) return // 请求进行中则忽略连点，避免一次操作连发多次相同请求
+  randomLoading.value = true
+  try {
+    const activeVol = view.code || ''
+    const activeCat = currentCategoryPath()
+    const data = await kb.randomTerms({
+      count: 8,
+      volume: activeVol || undefined,
+      category: activeCat || undefined,
+      category_prefix: activeCat || undefined
+    })
+    randomPanel.value = data.items || []
+    Object.assign(view, {
+      type: 'search',
+      crumb: [{ label: '全部体系', fn: goWelcome }, { label: '随机术语' }],
+      title: '',
+      cards: [],
+      terms: data.items || [],
+      hint: `${data.count || 0}/${data.available || 0}`
+    })
+  } finally {
+    randomLoading.value = false
+  }
 }
 
 async function openDetail(t) {
@@ -361,6 +368,7 @@ window.addEventListener('resize', measureDock)
 .search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; color: var(--mut); }
 .tool { width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--line); background: #fff; color: var(--mut); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: .2s; }
 .tool:hover { background: var(--hov); color: var(--ink2); }
+.tool:disabled { opacity: .5; cursor: progress; pointer-events: none; }
 .tool svg { width: 15px; height: 15px; }
 .body { flex: 1; display: flex; min-height: 0; position: relative; }
 .side { width: var(--side-w); flex: 0 0 var(--side-w); background: var(--panel); backdrop-filter: saturate(180%) blur(20px); border-right: 1px solid var(--line); display: flex; flex-direction: column; overflow: hidden; transition: width .32s cubic-bezier(.4,0,.2,1), flex-basis .32s, opacity .28s, border-color .28s; }

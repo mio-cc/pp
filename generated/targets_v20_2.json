@@ -1,0 +1,428 @@
+[
+  {
+    "term_uid": "",
+    "zh_term": "社论漫画式插画",
+    "en_term": "Political Cartoon Style",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 政治漫画",
+    "definition_long": "政治漫画式插画以夸张变形与讽刺符号评论政治人物与事件，线条粗黑、造型 caricature，依附时事而非纯新闻再现。",
+    "visual_effect": "夸张变形、讽刺符号、粗黑线条。",
+    "prompt_usage": "用于以变形讽刺评论时事政治的社论漫画式插画。",
+    "use_cases": [
+      "编辑插画",
+      "政治"
+    ],
+    "related_terms": [
+      "社论插画"
+    ],
+    "confused_with": [
+      "新闻插画"
+    ],
+    "tags": [
+      "政治",
+      "讽刺",
+      "漫画"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "生活方式插画",
+    "en_term": "Lifestyle Illustration",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 生活方式",
+    "definition_long": "生活方式插画呈现日常家居饮食旅行的柔和场景，色调温柔、构图亲切，常见杂志生活方式专栏与品牌内容营销。",
+    "visual_effect": "温柔日常、亲切构图、生活方式专栏。",
+    "prompt_usage": "用于杂志生活方式专栏与品牌内容营销的柔和场景。",
+    "use_cases": [
+      "编辑插画",
+      "生活方式"
+    ],
+    "tags": [
+      "生活方式",
+      "柔和",
+      "专栏"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "科普插画",
+    "en_term": "Popular Science Illustration",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 科普绘本",
+    "definition_long": "科普插画以儿童可读画面讲解科学原理与自然现象，造型简化但比例可信、配文字说明，常见少儿百科与博物杂志。",
+    "visual_effect": "简化可信、配文说明、少儿百科。",
+    "prompt_usage": "用于儿童科普读物与博物杂志的简化科普画面。",
+    "use_cases": [
+      "绘本",
+      "科普"
+    ],
+    "tags": [
+      "科普",
+      "儿童",
+      "博物"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "立体翻翻书",
+    "en_term": "Lift-the-Flap Book",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 立体书",
+    "definition_long": "立体翻翻书带可翻折立体结构的互动绘本插画，画面设计需考虑翻折机关与多层遮挡，强调触觉互动与惊喜机制。",
+    "visual_effect": "翻折机关、多层遮挡、触觉互动。",
+    "prompt_usage": "用于带翻折机关与多层遮挡的儿童立体互动绘本。",
+    "use_cases": [
+      "绘本",
+      "互动"
+    ],
+    "tags": [
+      "立体书",
+      "互动",
+      "机关"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "纸芝居插画",
+    "en_term": "Kamishibai Illustration",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 纸芝居",
+    "definition_long": "纸芝居插画是日本纸戏剧的连续画面叙事形式，画面顺序讲述故事、表演者抽换画片配讲，是现代绘本与幻灯叙事的鼻祖。",
+    "visual_effect": "画片顺序、叙事连贯、抽换表演。",
+    "prompt_usage": "用于纸戏剧连续画片叙事与表演的儿童插画。",
+    "use_cases": [
+      "绘本",
+      "纸芝居"
+    ],
+    "tags": [
+      "纸芝居",
+      "叙事",
+      "表演"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "描边插画",
+    "en_term": "Stroke Outline Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 描边扁平",
+    "definition_long": "描边插画在扁平色块外加统一粗细描边的扁平变体，比纯扁平更有造型边界与卡通感，是App引导图与品牌主插画的常用风。",
+    "visual_effect": "色块加描边、粗细统一、卡通造型。",
+    "prompt_usage": "用于App引导图与品牌主插画的描边扁平风。",
+    "use_cases": [
+      "矢量",
+      "App"
+    ],
+    "tags": [
+      "描边",
+      "扁平",
+      "App"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "抽象插画",
+    "en_term": "Abstract Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 抽象插画",
+    "definition_long": "抽象插画以几何形与色块表达概念情绪而非具象再现，依赖色彩心理与构图节奏，常见科技品牌与企业年报主视觉。",
+    "visual_effect": "几何抽象、色彩心理、节奏构图。",
+    "prompt_usage": "用于科技品牌年报的几何抽象概念插画。",
+    "use_cases": [
+      "矢量",
+      "抽象"
+    ],
+    "tags": [
+      "抽象",
+      "几何",
+      "品牌"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "手绘扁平",
+    "en_term": "Hand-drawn Flat",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 手绘扁平",
+    "definition_long": "手绘扁平是带笔触纹理感的手绘式扁平插画，色块边缘略带抖动不机械，比纯矢量扁平更具温度与人文气息。",
+    "visual_effect": "手绘笔触、边缘抖动、温度人文。",
+    "prompt_usage": "用于带笔触温度的手绘式扁平插画。",
+    "use_cases": [
+      "矢量",
+      "手绘"
+    ],
+    "tags": [
+      "手绘",
+      "扁平",
+      "笔触"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "mascot设计",
+    "en_term": "Mascot Design",
+    "volume_code": "V20",
+    "category": "角色插画 / 吉祥物",
+    "definition_long": "吉祥物设计是为品牌赛事创作拟人化角色形象，需造型简洁可复用、表情系统化、多姿势扩展，常作 IP 长期视觉资产。",
+    "visual_effect": "简洁可复用、表情系统、多姿势。",
+    "prompt_usage": "用于品牌赛事的拟人化吉祥物长期IP形象。",
+    "use_cases": [
+      "角色插画",
+      "IP"
+    ],
+    "tags": [
+      "吉祥物",
+      "IP",
+      "拟人"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "Live2D立绘",
+    "en_term": "Live2D Illustration",
+    "volume_code": "V20",
+    "category": "角色插画 / Live2D",
+    "definition_long": "Live2D立绘是分层绘制后由Live2D驱动微动的角色立绘，需按骨骼分层绘制各部件，赋予角色呼吸眨眼与微表情动态感。",
+    "visual_effect": "分层绘制、骨骼驱动、呼吸微动。",
+    "prompt_usage": "用于Live2D分层驱动微动的角色立绘插画。",
+    "use_cases": [
+      "角色插画",
+      "Live2D"
+    ],
+    "tags": [
+      "Live2D",
+      "立绘",
+      "分层"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "魔幻角色",
+    "en_term": "Fantasy Character",
+    "volume_code": "V20",
+    "category": "角色插画 / 魔幻角色",
+    "definition_long": "魔幻角色是奇幻设定的非现实角色插画，含精灵兽人机甲等造型，重装备细节与世界观设定，常见游戏卡牌与小说封面。",
+    "visual_effect": "奇幻设定、装备细节、世界观强。",
+    "prompt_usage": "用于奇幻游戏卡牌与小说封面的非现实角色插画。",
+    "use_cases": [
+      "角色插画",
+      "魔幻"
+    ],
+    "tags": [
+      "魔幻",
+      "角色",
+      "卡牌"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "古风角色",
+    "en_term": "Ancient Style Character",
+    "volume_code": "V20",
+    "category": "角色插画 / 古风角色",
+    "definition_long": "古风角色是以中国古代服饰发髻为造型的国风人物插画，重衣袂线条与纹样配饰，常见汉服IP网文封面与古风手游。",
+    "visual_effect": "古代服饰、衣袂线条、纹样配饰。",
+    "prompt_usage": "用于汉服IP与古风手游的中国古代人物插画。",
+    "use_cases": [
+      "角色插画",
+      "古风"
+    ],
+    "tags": [
+      "古风",
+      "汉服",
+      "国风"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "电影海报插画",
+    "en_term": "Movie Poster Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 电影海报",
+    "definition_long": "电影海报插画是用于电影宣传的主视觉插画，需呼应剧情悬念与人物关系，构图中心化为电影感，常见手绘风复古风。",
+    "visual_effect": "剧情悬念、人物关系、电影构图。",
+    "prompt_usage": "用于电影宣传主视觉与剧情悬念的电影海报插画。",
+    "use_cases": [
+      "商业插画",
+      "电影"
+    ],
+    "tags": [
+      "海报",
+      "电影",
+      "宣传"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "潮流盲盒插画",
+    "en_term": "Blind Box Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 盲盒插画",
+    "definition_long": "盲盒插画是潮玩盲盒 IP 的视觉化角色设计，造型圆润可爱、系列化主题配色、隐藏款配色作彩蛋，重在收藏抽奖惊喜感。",
+    "visual_effect": "圆润可爱、系列配色、隐藏彩蛋。",
+    "prompt_usage": "用于潮玩盲盒IP的系列化角色视觉设计。",
+    "use_cases": [
+      "商业插画",
+      "潮玩"
+    ],
+    "tags": [
+      "盲盒",
+      "潮玩",
+      "IP"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "时装插画",
+    "en_term": "Fashion Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 时装插画",
+    "definition_long": "时装插画是以艺术化笔触表现服装设计与穿着氛围的插画，重面料质感与人体动态、笔触洒脱，常见时尚杂志与品牌lookbook。",
+    "visual_effect": "面料质感、人体动态、笔触洒脱。",
+    "prompt_usage": "用于时尚杂志与品牌lookbook的服装设计插画。",
+    "use_cases": [
+      "商业插画",
+      "时尚"
+    ],
+    "tags": [
+      "时装",
+      "面料",
+      "杂志"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "墙绘插画",
+    "en_term": "Mural Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 墙绘",
+    "definition_long": "墙绘插画是直接绘制于实体墙面的大尺度商业插画，需考虑空间尺度、透视适配与远观视觉冲击，常见门店与公共空间。",
+    "visual_effect": "大尺度墙面、透视适配、远观冲击。",
+    "prompt_usage": "用于门店与公共空间大尺度墙面绘制的商业插画。",
+    "use_cases": [
+      "商业插画",
+      "空间"
+    ],
+    "tags": [
+      "墙绘",
+      "大尺度",
+      "空间"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "唱片封面插画",
+    "en_term": "Album Cover Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 唱片封面",
+    "definition_long": "唱片封面插画是音乐专辑封面的主视觉插画，需呼应音乐风格与歌手形象，构图正方形适配黑胶CD与流媒体缩略图。",
+    "visual_effect": "音乐风格、正方构图、流媒体缩略。",
+    "prompt_usage": "用于音乐专辑正方形主视觉与流媒体缩略的封面插画。",
+    "use_cases": [
+      "商业插画",
+      "音乐"
+    ],
+    "tags": [
+      "唱片",
+      "封面",
+      "音乐"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "吉祥物贴纸",
+    "en_term": "Mascot Sticker",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 吉祥物周边",
+    "definition_long": "吉祥物贴纸是品牌吉祥物衍生的实体周边插画，需多表情姿势与场景适配、印刷模切与背胶工艺，重收集性与品牌识别。",
+    "visual_effect": "多表情姿势、模切背胶、收集识别。",
+    "prompt_usage": "用于品牌吉祥物衍生的多表情周边贴纸。",
+    "use_cases": [
+      "商业插画",
+      "周边"
+    ],
+    "tags": [
+      "贴纸",
+      "周边",
+      "吉祥物"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "复古旅行海报",
+    "en_term": "Vintage Travel Poster",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 旅行海报",
+    "definition_long": "复古旅行海报是20世纪中叶铁路航空旅行宣传的插画风格，色块平涂、构图对称、字母排版突出，传达怀旧旅行黄金时代感。",
+    "visual_effect": "色块平涂、对称构图、字母突出。",
+    "prompt_usage": "用于复刻20世纪中叶旅行宣传的怀旧海报插画。",
+    "use_cases": [
+      "商业插画",
+      "复古"
+    ],
+    "tags": [
+      "旅行",
+      "复古",
+      "海报"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "产品说明插画",
+    "en_term": "Product Manual Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 说明插画",
+    "definition_long": "产品说明插画是用于说明产品结构与使用步骤的功能性插画，需步骤拆解与爆炸图视角、线条简洁准确，常见说明书与官网。",
+    "visual_effect": "步骤拆解、爆炸视角、线条准确。",
+    "prompt_usage": "用于说明产品结构与使用步骤的功能性爆炸图插画。",
+    "use_cases": [
+      "商业插画",
+      "说明"
+    ],
+    "tags": [
+      "说明",
+      "爆炸图",
+      "步骤"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  }
+]

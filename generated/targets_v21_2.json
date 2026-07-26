@@ -1,0 +1,422 @@
+[
+  {
+    "term_uid": "",
+    "zh_term": "分镜脚本",
+    "en_term": "Storyboard Script",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 分镜",
+    "definition_long": "分镜脚本是漫画与动画的前期脚本，以格为单位标注画面内容、机位、台词与动作，是文字到画面的关键转译文档。",
+    "visual_effect": "格为脚本、机位标注、文字到画面。",
+    "prompt_usage": "用于漫画连环画前期分镜脚本的格内画面规划。",
+    "use_cases": [
+      "分镜",
+      "脚本"
+    ],
+    "tags": [
+      "分镜",
+      "脚本",
+      "规划"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "量感线",
+    "en_term": "Weight Line",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 表现线",
+    "definition_long": "量感线是表达物体重量与冲击的密集短排线，集中于受力点与切面背光处，让漫画造型有体积与重力感而非飘浮。",
+    "visual_effect": "密集短排、受力集中、体积重力。",
+    "prompt_usage": "用于漫画造型受力点与体积重量感的短排量感线。",
+    "use_cases": [
+      "分镜",
+      "量感线"
+    ],
+    "tags": [
+      "量感线",
+      "排线",
+      "体积"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "速度线",
+    "en_term": "Speed Line",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 表现线",
+    "definition_long": "速度线是日漫表现高速运动与瞬间冲击的放射或平行排线，集中于主体周围强化运动方向与爆发瞬间，是日漫标志。",
+    "visual_effect": "放射排线、运动方向、爆发瞬间。",
+    "prompt_usage": "用于日漫高速运动与爆发瞬间的放射速度线表现。",
+    "use_cases": [
+      "分镜",
+      "速度线"
+    ],
+    "tags": [
+      "速度线",
+      "运动",
+      "日漫"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "集中线",
+    "en_term": "Focus Line",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 表现线",
+    "definition_long": "集中线是从画面四周向主体放射的聚焦排线，牵引视线至焦点并制造戏剧凝视感，常用于美漫与日漫的对峙瞬间。",
+    "visual_effect": "四周放射、聚焦视线、戏剧凝视。",
+    "prompt_usage": "用于聚焦视线至主体并制造戏剧凝视感的放射集中线。",
+    "use_cases": [
+      "分镜",
+      "集中线"
+    ],
+    "tags": [
+      "集中线",
+      "聚焦",
+      "戏剧"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "效果线",
+    "en_term": "Effect Line",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 表现线",
+    "definition_long": "效果线是表达风、火、爆炸、冲击等非具象能量的抽象排线，由手绘曲线与放射排线组合，是漫画氛围动作的语言。",
+    "visual_effect": "抽象排线、风火冲击、氛围动作。",
+    "prompt_usage": "用于漫画风火爆炸冲击的能量抽象效果线表现。",
+    "use_cases": [
+      "分镜",
+      "效果线"
+    ],
+    "tags": [
+      "效果线",
+      "氛围",
+      "动作"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "漫符号",
+    "en_term": "Manga Symbol",
+    "volume_code": "V21",
+    "category": "连环叙事与分镜表现 / 漫符号",
+    "definition_long": "漫符号是日漫约定俗成的情绪与状态图形符号（青筋、汗滴、十字路口、爆青），快速传达情绪比表情更高效是日漫特色。",
+    "visual_effect": "情绪图形、约定符号、速表情绪。",
+    "prompt_usage": "用于日漫约定情绪符号青筋汗滴爆青的速表画面。",
+    "use_cases": [
+      "分镜",
+      "符号"
+    ],
+    "tags": [
+      "符号",
+      "情绪",
+      "日漫"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "无框格",
+    "en_term": "Borderless Panel",
+    "volume_code": "V21",
+    "category": "分格与版面 / 无框格",
+    "definition_long": "无框格是去除边框让画面融入页面留白的分格手法，弱化格界增强画面延展感，常作情绪独白与记忆闪回瞬间。",
+    "visual_effect": "无框延展、融入留白、情绪独白。",
+    "prompt_usage": "用于情绪独白与记忆闪回瞬间的无框分格延展画面。",
+    "use_cases": [
+      "分格",
+      "无框"
+    ],
+    "tags": [
+      "无框",
+      "留白",
+      "情绪"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "叠格",
+    "en_term": "Overlapping Panel",
+    "volume_code": "V21",
+    "category": "分格与版面 / 叠格",
+    "definition_long": "叠格是后格压在前格之上的分格手法，制造时间交错与焦点关系，常作反应镜头叠在主动作格之上呈现内外情绪。",
+    "visual_effect": "格压叠、时间交错、内外叠呼。",
+    "prompt_usage": "用于反应镜头叠于主动作格之上的叠格表现。",
+    "use_cases": [
+      "分格",
+      "叠格"
+    ],
+    "tags": [
+      "叠格",
+      "时间",
+      "反应"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "斜切格",
+    "en_term": "Diagonal Panel",
+    "volume_code": "V21",
+    "category": "分格与版面 / 斜切格",
+    "definition_long": "斜切格是斜切边框打破横竖网格的分格手法，制造不安与动态张力，常作动作爆发与精神错乱瞬间的版面打破。",
+    "visual_effect": "斜切破网、动态张力、爆发错乱。",
+    "prompt_usage": "用于动作爆发与精神错乱瞬间的斜切破格版面。",
+    "use_cases": [
+      "分格",
+      "斜切"
+    ],
+    "tags": [
+      "斜切",
+      "张力",
+      "爆发"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "出血格",
+    "en_term": "Bleed Panel",
+    "volume_code": "V21",
+    "category": "分格与版面 / 出血格",
+    "definition_long": "出血格是画面延伸到页面裁切边之外的满版分格，无页边距、视觉无界冲击，常作章末与高潮瞬间拉满阅读沉浸感。",
+    "visual_effect": "满版无界、裁切出血、沉浸冲击。",
+    "prompt_usage": "用于章末高潮瞬间的满版出血格拉满沉浸冲击。",
+    "use_cases": [
+      "分格",
+      "出血"
+    ],
+    "tags": [
+      "出血",
+      "满版",
+      "沉浸"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "手绘网点",
+    "en_term": "Hand-drawn Tone",
+    "volume_code": "V21",
+    "category": "网点与线条 / 手绘网点",
+    "definition_long": "手绘网点是以钢笔排线手绘模拟网点灰阶的纯手工技法，比贴网点更松更随意、有人文笔迹感，常见独立漫画与素描风。",
+    "visual_effect": "手工排线、笔迹人文、松散随意。",
+    "prompt_usage": "用于以钢笔手绘排线模拟灰阶的人文感网点。",
+    "use_cases": [
+      "网点",
+      "手绘"
+    ],
+    "tags": [
+      "手绘",
+      "排线",
+      "人文"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "刮网",
+    "en_term": "Tone Scraping",
+    "volume_code": "V21",
+    "category": "网点与线条 / 刮网",
+    "definition_long": "刮网是用刀刮去已贴网点制造高光与亮部的技法，让暗部网层显出形状白与渐变光斑，是日漫高光与体积光的关键手法。",
+    "visual_effect": "刮白高光、渐变光斑、网层显形。",
+    "prompt_usage": "用于刮去已贴网点制造高光与体积光的日漫技法。",
+    "use_cases": [
+      "网点",
+      "刮网"
+    ],
+    "tags": [
+      "刮网",
+      "高光",
+      "光斑"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "重叠网点",
+    "en_term": "Layered Tone",
+    "volume_code": "V21",
+    "category": "网点与线条 / 重叠网点",
+    "definition_long": "重叠网点是以两层或多层不同角度网点叠加产生的新灰阶与材质纹理，常用于制造金属反光与复杂材质而非单层平网。",
+    "visual_effect": "多层叠网、新阶新纹、金属反光。",
+    "prompt_usage": "用于多层网点叠加制造复杂材质与反光的技法。",
+    "use_cases": [
+      "网点",
+      "重叠"
+    ],
+    "tags": [
+      "重叠",
+      "材质",
+      "金属"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "素描线稿",
+    "en_term": "Pencil Sketch",
+    "volume_code": "V21",
+    "category": "网点与线条 / 素描线稿",
+    "definition_long": "素描线稿是保留铅笔素描感的漫画线稿风格，未上墨线仅有铅痕、笔触松散有未完成感，常作独立漫画与概念速写风。",
+    "visual_effect": "铅笔素描、未上墨线、松散未完成。",
+    "prompt_usage": "用于保留铅笔素描感的独立漫画素描线稿风格。",
+    "use_cases": [
+      "线条",
+      "素描"
+    ],
+    "tags": [
+      "素描",
+      "铅笔",
+      "概念"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "抖笔线",
+    "en_term": "Wobbly Line",
+    "volume_code": "V21",
+    "category": "网点与线条 / 抖笔线",
+    "definition_long": "抖笔线是刻意抖动手绘产生的不平整线条，传达手作温度与神经性紧张感，常见独立漫画、童书与情绪化叙事画面。",
+    "visual_effect": "手作温度、神经紧张、抖动不平。",
+    "prompt_usage": "用于刻意手抖传达温度与紧张感的抖笔线条。",
+    "use_cases": [
+      "线条",
+      "抖笔"
+    ],
+    "tags": [
+      "抖笔",
+      "手作",
+      "紧张"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "四格漫画",
+    "en_term": "4-koma Manga",
+    "volume_code": "V21",
+    "category": "韩漫与其他风格 / 四格",
+    "definition_long": "四格漫画是以四格竖排讲一个完整起承转合小笑话的日漫形式，节奏固定、造型一致、爆点在末格反转，是经典短漫形式。",
+    "visual_effect": "四格竖排、起承转合、末格反转。",
+    "prompt_usage": "用于四格竖排讲起承转合小笑话的经典短漫形式。",
+    "use_cases": [
+      "四格",
+      "短漫"
+    ],
+    "tags": [
+      "四格",
+      "短漫",
+      "反转"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "连环画风",
+    "en_term": "Chinese Lianhuanhua",
+    "volume_code": "V21",
+    "category": "韩漫与其他风格 / 连环画",
+    "definition_long": "连环画风是中国20世纪中叶小人书的传统叙事连环画风格，线描单色、图配文、64开小开本、题材含历史故事与革命题材。",
+    "visual_effect": "线描单色、图配文、64开小人书。",
+    "prompt_usage": "用于复刻中国20世纪中叶小人书连环画线描风格。",
+    "use_cases": [
+      "连环画",
+      "小人书"
+    ],
+    "tags": [
+      "连环画",
+      "小人书",
+      "复古"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "欧漫风",
+    "en_term": "European Comic",
+    "volume_code": "V21",
+    "category": "韩漫与其他风格 / 欧漫",
+    "definition_long": "欧漫风是欧洲漫画的写实细腻画风总称，融合法漫的精装写实与意大利漫画的电影分镜，色彩厚重造型精微、注重艺术性。",
+    "visual_effect": "写实细腻、电影分镜、厚重艺术。",
+    "prompt_usage": "用于欧洲写实细腻厚重艺术感的欧漫风格画面。",
+    "use_cases": [
+      "欧漫",
+      "写实"
+    ],
+    "tags": [
+      "欧漫",
+      "写实",
+      "电影"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "Q版漫画",
+    "en_term": "Chibi Manga",
+    "volume_code": "V21",
+    "category": "韩漫与其他风格 / Q版漫画",
+    "definition_long": "Q版漫画是以2-3头身萌系造型讲日常的Q版漫画形式，造型圆润可爱、表情夸张情绪化，常见泡面番与四格衍生短漫。",
+    "visual_effect": "2-3头身、萌系造型、泡面番适用。",
+    "prompt_usage": "用于2-3头身萌系造型的Q版泡面番短漫。",
+    "use_cases": [
+      "Q版",
+      "短漫"
+    ],
+    "tags": [
+      "Q版",
+      "萌",
+      "泡面番"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "像素漫画",
+    "en_term": "Pixel Comic",
+    "volume_code": "V21",
+    "category": "韩漫与其他风格 / 像素漫画",
+    "definition_long": "像素漫画是以像素艺术风格绘制的漫画形式，画面由像素点构成、调色板受限、复古8-16位机感强，常见复古游戏题材衍生。",
+    "visual_effect": "像素点构成、调色板限、16位机感。",
+    "prompt_usage": "用于像素艺术风格的复古8-16位机感漫画。",
+    "use_cases": [
+      "像素",
+      "复古漫画"
+    ],
+    "tags": [
+      "像素",
+      "复古",
+      "16位"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  }
+]

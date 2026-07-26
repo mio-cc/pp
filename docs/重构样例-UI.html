@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>视觉术语库 · UI 重构样例</title>
+<style>
+/* ==========================================================
+   奶油暖白 + 琥珀 · 三栏重设计
+   结构：左栏（品牌+搜索+树） / 主区（页头+内容） / 右栏（详情） / 底部提示词栏
+   Lucide 图标 / 无表情符号 / 无渐变
+   ========================================================== */
+:root {
+  --bg: #f4f4f5;            /* 主画布：浅灰 */
+  --bg-side: #ededee;       /* 侧栏：略深一档 */
+  --surface: #ffffff;       /* 卡片白 */
+  --surface-2: #f0f0f1;     /* 悬停 */
+  --surface-3: #f8f8f9;     /* 表头/次级面 */
+  --ink: #1b1b1d;           /* 近黑 */
+  --ink-2: #56565c;         /* 中灰 */
+  --ink-3: #96969d;         /* 弱文字 */
+  --line: #e5e5e8;
+  --line-2: #d3d3d8;
+  --accent: #1b1b1d;        /* 强调色 = 墨黑 */
+  --accent-deep: #000000;
+  --accent-tint: #ebebed;   /* 选中浅灰 */
+  --ok: #5d8f66; --review: #8a94ad; --gray: #a0a0a6;
+  --danger: #bf4b3a;
+  --r-lg: 12px; --r: 8px; --r-sm: 6px;
+  --sh-sm: 0 1px 2px rgba(20, 20, 22, .05);
+  --sh-md: 0 1px 3px rgba(20, 20, 22, .05), 0 10px 28px -14px rgba(20, 20, 22, .16);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --serif: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", SimSun, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font: 13.5px/1.6 var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+button, a, tr.row, .tnode, .bcard, .vcard { transition: background-color .16s ease, color .16s ease, border-color .16s ease, box-shadow .16s ease; }
+svg.ic { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; display: block; flex: 0 0 auto; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+::selection { background: var(--accent-tint); }
+/* 滚动条全局隐藏（仍可滚动） */
+* { scrollbar-width: none; }
+::-webkit-scrollbar { display: none; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ============ 整体骨架：无顶栏，三栏 + 底栏 ============ */
+.frame { flex: 1; display: flex; min-height: 0; }
+
+/* ============ 左栏：品牌 + 搜索 + 树 ============ */
+.side {
+  width: 284px; flex: 0 0 284px; display: flex; flex-direction: column; min-height: 0;
+  background: var(--bg-side);
+}
+.side .brand { display: flex; align-items: center; gap: 11px; padding: 18px 18px 14px; }
+.logo {
+  width: 34px; height: 34px; border-radius: 9px; background: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 34px;
+}
+.logo svg.ic { width: 18px; height: 18px; }
+.brand .bt { line-height: 1.3; }
+.brand .bt .n { font-weight: 700; font-size: 14px; }
+.brand .bt .s { font-size: 11px; color: var(--ink-3); }
+.side .searchbox { padding: 0 14px 12px; position: relative; }
+.side .searchbox input {
+  width: 100%; height: 34px; padding: 0 12px 0 34px;
+  border: 1px solid var(--line-2); border-radius: var(--r);
+  background: var(--surface); color: var(--ink);
+  font: 12.5px var(--sans);
+  transition: border-color .16s, box-shadow .16s;
+}
+.side .searchbox input::placeholder { color: var(--ink-3); }
+.side .searchbox input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-tint); }
+.side .searchbox svg { position: absolute; left: 26px; top: 10px; color: var(--ink-3); width: 14px; height: 14px; }
+.side .progress { padding: 2px 18px 14px; }
+.side .progress .pline { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--ink-3); font-family: var(--mono); margin-bottom: 5px; }
+.side .progress .pline b { color: var(--ink-2); font-weight: 550; }
+.pbar { height: 4px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.pbar i { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+
+.treewrap { flex: 1; overflow-y: auto; padding: 10px 10px 24px; }
+.treewrap .hd {
+  padding: 4px 10px 8px; font-size: 10.5px; font-weight: 650; color: var(--ink-3);
+  letter-spacing: .1em; display: flex; justify-content: space-between; align-items: baseline;
+}
+.tnode {
+  display: flex; align-items: center; gap: 6px; width: 100%;
+  padding: 6px 9px; border-radius: var(--r-sm); text-align: left; margin: 1px 0;
+  color: var(--ink-2);
+}
+.tnode:hover { background: rgba(255, 253, 249, .8); }
+.tnode.on { background: var(--surface); box-shadow: var(--sh-sm); color: var(--accent-deep); }
+.tnode.on .tname { font-weight: 650; }
+.tnode .caret { width: 14px; flex: 0 0 14px; color: var(--ink-3); display: flex; align-items: center; justify-content: center; }
+.tnode .caret svg { width: 12px; height: 12px; transition: transform .18s ease; }
+.tnode .caret.open svg { transform: rotate(90deg); }
+.tnode.on .caret { color: var(--accent); }
+.tnode .tname { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tnode.vol .tname { font-weight: 600; color: var(--ink); }
+.tnode.on.vol .tname { color: var(--accent-deep); }
+.tnode .tcount { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+.tnode .tcount.zero { color: var(--line-2); }
+
+/* ============ 主区：页头 + 内容 ============ */
+.main { flex: 1; min-width: 0; overflow-y: auto; }
+.main .inner { max-width: 880px; padding: 26px 34px 48px; }
+.crumb {
+  display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+  font-size: 12px; margin-bottom: 10px;
+}
+.crumb a { color: var(--ink-3); text-decoration: none; cursor: pointer; }
+.crumb a:hover { color: var(--accent-deep); }
+.crumb .sep { color: var(--line-2); display: flex; }
+.crumb .sep svg { width: 12px; height: 12px; }
+.crumb .cur { color: var(--ink-2); }
+.pagehead { margin-bottom: 22px; }
+.pagehead h1 { font-size: 25px; font-weight: 700; letter-spacing: .01em; line-height: 1.3; }
+.pagehead .desc { color: var(--ink-2); font-size: 13px; margin-top: 6px; max-width: 620px; }
+.pagehead .metas { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.mchip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; color: var(--ink-2);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px;
+}
+.mchip b { color: var(--accent-deep); font-weight: 650; font-family: var(--mono); font-size: 11px; }
+.mchip svg.ic { width: 12px; height: 12px; color: var(--ink-3); }
+
+/* 体系总览卡片 */
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.vcard {
+  background: var(--surface); border-radius: var(--r-lg);
+  padding: 16px 16px 14px; text-align: left; display: block; width: 100%;
+}
+.vcard:hover { box-shadow: var(--sh-sm); }
+.vcard .vc-top { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.vcard .vc-code { font-family: var(--mono); font-size: 10.5px; color: var(--accent-deep); background: var(--accent-tint); border-radius: var(--r-sm); padding: 2px 8px; }
+.vcard .vc-title { font-weight: 650; font-size: 14px; flex: 1; }
+.vcard .vc-nums { font-family: var(--mono); font-size: 11px; color: var(--ink-3); margin-bottom: 8px; }
+.vcard .vc-nums b { color: var(--ink-2); font-weight: 550; }
+
+/* 分支卡片网格 */
+.bgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.bcard {
+  display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+  background: var(--surface); border-radius: var(--r-lg);
+  padding: 14px 16px;
+}
+.bcard:hover { box-shadow: var(--sh-sm); }
+.bcard .bi {
+  width: 34px; height: 34px; flex: 0 0 34px; border-radius: var(--r);
+  background: var(--accent-tint); color: var(--accent-deep);
+  display: flex; align-items: center; justify-content: center;
+}
+.bcard .bi svg.ic { width: 16px; height: 16px; }
+.bcard .bx { flex: 1; min-width: 0; }
+.bcard .bn { font-weight: 650; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bcard .bs { font-size: 11.5px; color: var(--ink-3); margin-top: 1px; }
+.bcard .arr { color: var(--line-2); }
+.bcard:hover .arr { color: var(--accent); }
+
+/* 术语表：双行层次 */
+.card { background: none; }
+table.grid { width: 100%; border-collapse: collapse; }
+table.grid th {
+  text-align: left; font-size: 10.5px; font-weight: 650; color: var(--ink-3);
+  letter-spacing: .08em; padding: 8px 12px;
+  border-bottom: 1px solid var(--line-2);
+}
+table.grid td { padding: 11px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+table.grid tr.row { cursor: pointer; }
+table.grid tr.row:hover td { background: var(--surface-2); }
+table.grid tr.row.sel td { background: var(--accent-tint); }
+table.grid tr.row.sel td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
+.tzh { font-weight: 650; font-size: 13.5px; }
+.ten { font-family: var(--mono); font-size: 11.5px; color: var(--ink-3); margin-top: 2px; }
+td.c-uid { font-family: var(--mono); font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+.st { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--ink-2); white-space: nowrap; }
+.st i { width: 6px; height: 6px; border-radius: 50%; flex: 0 0 6px; }
+.st.published i { background: var(--ok); } .st.review i { background: var(--review); } .st.draft i { background: var(--gray); }
+.addbtn {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 550; padding: 4px 12px; border-radius: 999px;
+  border: 1px solid var(--line-2); color: var(--ink-2); background: var(--surface); white-space: nowrap;
+}
+.addbtn svg.ic { width: 12px; height: 12px; }
+.addbtn:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-tint); }
+.addbtn.in { border-color: transparent; color: #fff; background: var(--accent); }
+.empty { padding: 60px 24px; color: var(--ink-3); text-align: center; font-size: 13px; line-height: 2.1; }
+.empty .eicon {
+  width: 42px; height: 42px; margin: 0 auto 12px; border-radius: 999px;
+  background: var(--surface-2); color: var(--ink-3);
+  display: flex; align-items: center; justify-content: center;
+}
+.empty .eicon svg.ic { width: 19px; height: 19px; }
+.empty code {
+  font-family: var(--mono); font-size: 11.5px; color: var(--ink-2);
+  background: var(--surface-2); border-radius: var(--r-sm); padding: 2px 8px;
+}
+
+/* ============ 右栏：详情 ============ */
+.detail { width: 336px; flex: 0 0 336px; overflow-y: auto; padding: 30px 26px 48px 6px; }
+.dcard { background: none; }
+.dcard .path {
+  padding: 0 0 12px; border-bottom: 1px solid var(--line);
+  font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); line-height: 1.9;
+  word-break: break-all;
+}
+.dcard .path b { color: var(--ink-2); font-weight: 550; padding: 0 2px; }
+.dcard .body { padding: 16px 0 26px; }
+.headword {
+  font-family: var(--serif); font-size: 24px; font-weight: 700; line-height: 1.3;
+  display: flex; align-items: baseline; gap: 10px;
+}
+.enline {
+  display: flex; align-items: center; gap: 8px; margin: 6px 0 2px;
+  font-family: var(--mono); font-size: 13px; color: var(--ink-2); word-break: break-all;
+}
+.namehint { font-size: 10.5px; color: var(--ink-3); margin: 4px 0 6px; }
+.metaline { font-size: 11px; color: var(--ink-3); font-family: var(--mono); margin: 6px 0 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.copy1 {
+  display: inline-flex; align-items: center; gap: 5px; flex: 0 0 auto;
+  font-size: 10.5px; padding: 1px 8px;
+  border: 1px solid var(--line-2); color: var(--ink-3); background: var(--surface);
+  border-radius: 3px; font-family: var(--sans); font-weight: 400;
+}
+.copy1 svg.ic { width: 11px; height: 11px; }
+.copy1:hover { color: var(--ink); border-color: var(--ink); }
+.sect { margin-top: 15px; }
+.sect .lbl {
+  font-size: 10.5px; font-weight: 700; color: var(--ink-3); letter-spacing: .08em;
+  margin-bottom: 4px;
+}
+.sect .txt { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.plainlist { display: flex; flex-wrap: wrap; gap: 0 4px; font-size: 12.5px; color: var(--ink-2); }
+.plainlist span + span::before { content: "、"; color: var(--ink-3); }
+.reflink { color: var(--ink); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--line-2); }
+.reflink:hover { text-decoration-color: var(--ink); }
+.d-add {
+  margin-top: 22px; width: 100%; padding: 9px 0;
+  background: none; border: 1px solid var(--ink); border-radius: var(--r-sm);
+  color: var(--ink); font-weight: 600; font-size: 13px;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.d-add:hover { background: var(--ink); color: #fff; }
+.d-add.in { border-color: var(--line-2); color: var(--ink-3); }
+.d-add.in:hover { background: var(--surface-2); color: var(--ink-2); }
+
+/* ============ 底栏：提示词栏 ============ */
+.bar { flex: 0 0 auto; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -4px 18px -12px rgba(92, 72, 40, .22); }
+.bar .row1 { display: flex; align-items: center; gap: 12px; padding: 9px 20px; }
+.bar .blbl { font-weight: 650; white-space: nowrap; font-size: 13px; display: flex; align-items: center; gap: 8px; }
+.bar .blbl svg.ic { color: var(--ink-3); }
+.bar .bnum {
+  font-family: var(--mono); font-size: 11px; color: var(--accent-deep);
+  background: var(--accent-tint); border-radius: 999px; min-width: 22px; height: 20px;
+  display: inline-flex; align-items: center; justify-content: center; padding: 0 7px;
+}
+.chips { flex: 1; display: flex; gap: 7px; overflow-x: auto; min-height: 30px; align-items: center; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip {
+  background: var(--surface-2); border: 1px solid transparent; border-radius: 999px;
+  padding: 3px 6px 3px 12px; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--ink-2);
+}
+.chip.conflict { border-color: var(--danger); color: var(--danger); background: #f9ece7; }
+.chip button { display: flex; color: var(--ink-3); padding: 3px; border-radius: 999px; }
+.chip button svg.ic { width: 11px; height: 11px; }
+.chip button:hover { color: var(--ink); background: var(--line); }
+.chip.conflict button { color: var(--danger); }
+.chips .ph { color: var(--ink-3); font-size: 12px; }
+.langs { display: flex; background: var(--surface-2); border-radius: var(--r); padding: 2px; }
+.langs button { padding: 4px 12px; font-size: 11.5px; font-weight: 550; color: var(--ink-3); border-radius: var(--r-sm); }
+.langs button.on { background: var(--surface); color: var(--ink); box-shadow: var(--sh-sm); }
+.copyall {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--accent); color: #fff; border-radius: var(--r);
+  padding: 7px 18px; font-weight: 600; font-size: 12.5px; white-space: nowrap;
+}
+.copyall svg.ic { width: 13px; height: 13px; }
+.copyall:hover { background: var(--accent-deep); }
+.bar .preview {
+  border-top: 1px solid var(--line); padding: 7px 20px; background: var(--surface-3);
+  font-family: var(--mono); font-size: 11px; color: var(--ink-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.bar .preview .cw { color: var(--danger); font-weight: 600; }
+
+@media (max-width: 1100px) { .detail { display: none; } }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <aside class="side">
+    <div class="brand">
+      <span class="logo"><svg class="ic" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
+      <span class="bt"><span class="n">AI 视觉术语库</span><br><span class="s">提示词构建器 · 重构样例</span></span>
+    </div>
+    <div class="searchbox">
+      <svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="筛选当前视图" autocomplete="off">
+    </div>
+    <div class="progress">
+      <div class="pline"><span>收录进度</span><b id="progText"></b></div>
+      <div class="pbar"><i id="progBar"></i></div>
+    </div>
+    <div class="treewrap">
+      <div class="hd"><span>体系 / 分类</span><a href="#" id="goRoot" style="color:var(--accent-deep);text-decoration:none;font-weight:550;letter-spacing:0">总览</a></div>
+      <div id="tree"></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="inner">
+      <div class="crumb" id="crumb"></div>
+      <div class="pagehead" id="pagehead"></div>
+      <div id="list"></div>
+    </div>
+  </main>
+
+  <aside class="detail" id="detail" aria-label="术语详情"></aside>
+</div>
+
+<footer class="bar">
+  <div class="row1">
+    <span class="blbl"><svg class="ic" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>提示词栏<span class="bnum" id="cartNum">0</span></span>
+    <div class="chips" id="chips"></div>
+    <div class="langs" id="langs">
+      <button data-l="en" class="on">EN</button><button data-l="cn">中</button><button data-l="both">双语</button>
+    </div>
+    <button class="copyall" id="copyAll"><svg class="ic" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg><span id="copyLbl">复制提示词</span></button>
+  </div>
+  <div class="preview" id="preview"></div>
+</footer>
+
+<script>
+/* ================= Lucide 图标（内联，无表情符号） ================= */
+const IC = {
+  plus: '<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></svg>',
+  check: '<svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>',
+  x: '<svg class="ic" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>',
+  copy: '<svg class="ic" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>',
+  chevR: '<svg class="ic" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>',
+  dot: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>',
+  folder: '<svg class="ic" viewBox="0 0 24 24"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>',
+  folderTree: '<svg class="ic" viewBox="0 0 24 24"><path d="M20 10a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2A1 1 0 0 0 15 3h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M20 21a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1h-2.5a1 1 0 0 1-.8-.4l-.9-1.2a1 1 0 0 0-.8-.4h-2a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1Z"/><path d="M3 5a2 2 0 0 0 2 2h3"/><path d="M3 3v13a2 2 0 0 0 2 2h3"/></svg>',
+  inbox: '<svg class="ic" viewBox="0 0 24 24"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>',
+  tag: '<svg class="ic" viewBox="0 0 24 24"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>',
+  layers: '<svg class="ic" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>',
+};
+
+/* ================= 示例数据（结构与 /api 返回同构） ================= */
+const SEP = ' / ';
+const STATUS_ZH = { published: '已发布', review: '审核中', draft: '草稿' };
+const T = (zh, en, path, def, vis, usage, cases, tags, st, rel, conf) =>
+  ({ zh, en, path, def, vis, usage, cases, tags, status: st || 'published', rel: rel || [], conf: conf || [] });
+
+const TERMS = [
+  T('f/1.0 光圈','f/1.0 Aperture','曝光控制 / 光圈','f/1.0 是量产镜头中的极限大光圈，焦平面极薄，仅睫毛清晰而眼窝已虚化，进光量是 f/2.8 的八倍。','超大光圈、景深极浅、奶油散景、暗光可手持。','夜景与人像的极浅景深表达，配合中长焦更明显。',['人像','夜景'],['曝光','光圈'],'published',['f/1.4 光圈'],['f/1.2 光圈']),
+  T('f/1.4 光圈','f/1.4 Aperture','曝光控制 / 光圈','f/1.4 是大光圈定焦的经典规格，虚化强烈而画质仍可控，是弱光人像的常用起点。','景深浅、背景大幅虚化、主体分离干净。','人像特写、静物近摄时强调主体分离。',['人像','静物'],['曝光','光圈']),
+  T('f/1.8 光圈','f/1.8 Aperture','曝光控制 / 光圈','f/1.8 兼顾虚化与锐度，价格与体积友好，是入门定焦的标配光圈。','明显虚化、光斑圆润、中心锐利。','日常人像与美食题材的默认大光圈。',['人像','美食'],['曝光','光圈']),
+  T('f/2.8 光圈','f/2.8 Aperture','曝光控制 / 光圈','f/2.8 是恒定光圈变焦的上限，虚化适中，环境信息仍可辨认，纪实感强。','中等景深、背景可辨、层次自然。','环境人像、纪实街拍中保留背景叙事。',['纪实','环境人像'],['曝光','光圈']),
+  T('f/8 光圈','f/8 Aperture','曝光控制 / 光圈','f/8 处于多数镜头的最佳画质区间，景深充足，风光与建筑的默认工作光圈。','全域清晰、细节扎实、无明显虚化。','风光、建筑、合影等需要大景深的场景。',['风光','建筑'],['曝光','光圈']),
+  T('f/16 光圈','f/16 Aperture','曝光控制 / 光圈','f/16 小光圈带来极大景深，点光源经叶片衍射形成星芒，但需警惕衍射导致的画质下降。','前后全清、点光源现星芒、进光量低。','需要星芒的夜景灯光与逆光太阳。',['夜景','逆光'],['曝光','光圈'],'review',['星芒效果']),
+  T('1/8000秒 高速快门','1/8000s High-Speed Shutter','曝光控制 / 快门速度','1/8000 秒是机械快门的常见上限，可凝固飞溅水滴与挥拍瞬间，配合大光圈在烈日下拍摄。','运动完全凝固、水滴悬停、无拖影。','体育、水花、鸟类等高速瞬间的定格。',['体育','水花'],['曝光','快门']),
+  T('1/1000秒 快门','1/1000s Shutter','曝光控制 / 快门速度','1/1000 秒可凝固奔跑与骑行等常规运动，是运动题材的安全快门起点。','动作清晰锐利、轻微动态仍被冻结。','跑步、骑行、儿童抓拍。',['运动','抓拍'],['曝光','快门']),
+  T('1秒 长曝光','1s Long Exposure','曝光控制 / 快门速度','1 秒曝光让流水拉丝、人流虚化，需三脚架稳定，是慢门创作的入门时长。','流水成雾、移动物拖影、静物清晰。','溪流、车流、夜景慢门。',['风光','夜景'],['曝光','快门','慢门']),
+  T('30秒 星轨曝光','30s Star Trail Exposure','曝光控制 / 快门速度','30 秒接近多数相机内置上限，星点开始拖线，是星空与星轨间的临界时长。','星点微拖、地景压暗、噪点上升。','星空、星轨叠加素材。',['星空','夜景'],['曝光','快门','慢门'],'draft'),
+  T('ISO 100 细腻画质','ISO 100 Fine Grain','曝光控制 / 感光度','ISO 100 是多数传感器的原生最低感光度，噪点最少、动态范围最大。','画面纯净、暗部干净、色彩过渡细腻。','光线充足或上架拍摄时的画质优先选择。',['风光','商业'],['曝光','感光度']),
+  T('ISO 3200 高感噪点','ISO 3200 High-ISO Grain','曝光控制 / 感光度','ISO 3200 在弱光下保住快门速度，噪点开始可见，可作胶片颗粒感的替代表达。','细密噪点、暗部偏灰、略降锐度。','弱光纪实、演出现场，或刻意的粗颗粒质感。',['纪实','演出'],['曝光','感光度','颗粒']),
+  T('ISO 12800 极限高感','ISO 12800 Extreme ISO','曝光控制 / 感光度','ISO 12800 属应急感光度，噪点明显、色彩滑落，换取暗环境的可用画面。','强噪点、色彩钝化、细节涂抹。','近乎无光环境的记录性拍摄。',['应急','夜景'],['曝光','感光度'],'review'),
+  T('35mm 人文','35mm Documentary','镜头与光学 / 焦距 / 定焦镜头','35mm 视角接近单眼注视范围，能在主体与环境间取得平衡，是人文纪实的经典焦段。','带环境的人物、透视自然、亲历感强。','街拍、纪实、环境人像的默认焦段。',['街拍','纪实'],['焦距','定焦','35mm']),
+  T('50mm 标准','50mm Standard','镜头与光学 / 焦距 / 定焦镜头','50mm 透视与人眼相近，无广角夸张也无长焦压缩，被称为标准镜头。','所见即所得的自然透视。','通用题材、人像半身、日常记录。',['人像','日常'],['焦距','定焦','50mm']),
+  T('85mm 人像','85mm Portrait','镜头与光学 / 焦距 / 定焦镜头','85mm 透视压缩适中、散景柔美，能让五官比例最讨喜，是人像摄影最常用焦段之一。','背景压缩、奶油散景、主体立体分离。','人像特写与半身，配合大光圈强调分离。',['人像','时尚'],['焦距','定焦','85mm'],'published',['50mm 标准','f/1.4 光圈'],['135mm 长焦']),
+  T('135mm 长焦','135mm Telephoto','镜头与光学 / 焦距 / 定焦镜头','135mm 强化压缩与虚化，拍摄距离拉远，适合安静不打扰的特写。','强压缩、背景成色块、空间被拍扁。','远距人像特写、舞台、体育边缘。',['人像','舞台'],['焦距','定焦','135mm']),
+  T('星芒效果','Sunstar','镜头与光学 / 光学缺陷与效果','小光圈下点光源经光圈叶片衍射形成放射状星芒，叶片数决定芒线数量。','点光源化为放射状星芒、画面通透。','夜景灯光、逆光太阳，配合 f/11–f/16。',['夜景','逆光'],['光学','星芒'],'published',['f/16 光圈'],['眩光']),
+  T('桶形畸变','Barrel Distortion','镜头与光学 / 光学缺陷与效果','广角端常见的畸变，直线向外弯曲呈桶状，建筑边缘外鼓。','画面边缘直线外弯、中心放大感。','刻意的鱼眼观感或需后期矫正的建筑摄影。',['建筑','广角'],['光学','畸变']),
+  T('枕形畸变','Pincushion Distortion','镜头与光学 / 光学缺陷与效果','长焦端常见的畸变，直线向内凹陷如枕头，边缘被拉伸。','边缘直线内凹、四角轻微拉伸。','需要矫正的长焦建筑与产品图。',['产品','长焦'],['光学','畸变']),
+  T('紫边色散','Purple Fringing','镜头与光学 / 光学缺陷与效果','高反差边缘因轴向色差出现的紫色镶边，逆光树枝与金属高光处最明显。','高光边缘一圈紫色光晕。','复古镜头质感的模拟，或作为需修复的瑕疵描述。',['逆光','复古'],['光学','色散'],'draft'),
+  T('三分法构图','Rule of Thirds','构图与取景 / 构图法则','将画面按三等分线分割，主体置于交点处，是最通用的均衡构图法。','主体偏置、画面稳定而不呆板。','各类题材的默认构图起点。',['通用'],['构图']),
+  T('中心对称构图','Central Symmetry','构图与取景 / 构图法则','主体置于正中、左右镜像，营造秩序感与仪式感，韦斯·安德森式画面的核心。','强对称、静态庄重、几何秩序。','建筑、仪式感场景、平面感画面。',['建筑','仪式'],['构图','对称']),
+  T('引导线构图','Leading Lines','构图与取景 / 构图法则','利用道路、栏杆等线条把视线引向主体，增强纵深与方向感。','视线沿线条汇聚、空间纵深强。','公路、桥梁、走廊等带线性元素的场景。',['风光','街拍'],['构图','引导线']),
+  T('框式构图','Frame within a Frame','构图与取景 / 构图法则','用门窗、拱洞等元素在画面内再造一层边框，包裹并强调主体。','画中画、视线聚焦、层次加深。','窗景、门洞、树枝间隙取景。',['人文','风光'],['构图','框架']),
+  T('负空间构图','Negative Space','构图与取景 / 构图法则','大面积留白衬托小主体，以空旷表达孤独、克制或高级感。','大留白、主体极小、呼吸感强。','极简海报、情绪人像、产品图。',['极简','海报'],['构图','留白']),
+];
+TERMS.forEach((t, i) => { t.uid = 'V01_T' + String(i + 1).padStart(4, '0'); t.vol = 'V01'; });
+
+const V01_TREE = [
+  { name: '曝光控制', children: [{ name: '光圈' }, { name: '快门速度' }, { name: '感光度' }] },
+  { name: '镜头与光学', children: [
+    { name: '焦距', children: [{ name: '定焦镜头' }, { name: '变焦镜头' }] },
+    { name: '光学缺陷与效果' },
+  ]},
+  { name: '构图与取景', children: [{ name: '构图法则' }] },
+];
+const VOLUMES = [
+  { code: 'V01', title: '摄影体系', target: 500, tree: V01_TREE, purpose: '建立摄影语言、器材、曝光、镜头和拍摄类型的基础词汇。' },
+  { code: 'V02', title: '电影摄影体系', target: 800, count: 214, purpose: '镜头语言、运动、影调与电影画面风格。' },
+  { code: 'V06', title: '灯光与色彩科学', target: 800, count: 233, purpose: '光度、色彩模型、色彩管理与布光。' },
+  { code: 'V08', title: 'Prompt工程学', target: 1000, count: 259, purpose: '提示词结构、修饰符、参数与多模态控制。' },
+  { code: 'V36', title: '人物外貌与人体特征', target: 700, count: 0, purpose: '发型、五官、体型、表情等主体描述词。' },
+];
+const TARGET_TOTAL = 20700;
+
+/* ================= 状态 ================= */
+const state = {
+  vol: 'V01',
+  path: '镜头与光学 / 焦距 / 定焦镜头',
+  sel: 'V01_T0016',
+  cart: [],
+  lang: 'en',
+  q: '',
+  open: new Set(['V01', 'V01|镜头与光学', 'V01|镜头与光学 / 焦距']),
+};
+['V01_T0016', 'V01_T0002', 'V01_T0021'].forEach(uid => state.cart.push(TERMS.find(t => t.uid === uid)));
+
+const byUid = uid => TERMS.find(t => t.uid === uid);
+const under = p => TERMS.filter(t => t.path === p || t.path.startsWith(p + SEP));
+const at = p => TERMS.filter(t => t.path === p);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const stTag = st => '<span class="st ' + st + '"><i></i>' + STATUS_ZH[st] + '</span>';
+const volCount = v => v.tree ? TERMS.length : (v.count || 0);
+const totalAll = VOLUMES.reduce((s, v) => s + volCount(v), 0);
+
+/* ================= 侧栏：进度 + 树 ================= */
+document.getElementById('progText').textContent = totalAll.toLocaleString() + ' / ' + TARGET_TOTAL.toLocaleString();
+document.getElementById('progBar').style.width = Math.max(1.5, totalAll * 100 / TARGET_TOTAL) + '%';
+document.getElementById('goRoot').addEventListener('click', e => { e.preventDefault(); state.vol = null; state.path = null; renderAll(); });
+
+function renderTree() {
+  const el = document.getElementById('tree');
+  let h = '';
+  for (const v of VOLUMES) {
+    const isOpen = state.open.has(v.code);
+    const on = state.vol === v.code && !state.path;
+    h += row(0, v.code, v.code + ' · ' + v.title, volCount(v), !!v.tree, isOpen, on, 'vol');
+    if (v.tree && isOpen) h += walk(v.tree, '', 1, v.code);
+  }
+  el.innerHTML = h;
+  el.querySelectorAll('.tnode').forEach(n => {
+    n.addEventListener('click', () => {
+      const { vol, path, kids } = n.dataset;
+      const key = path ? vol + '|' + path : vol;
+      if (kids === '1') state.open.has(key) ? state.open.delete(key) : state.open.add(key);
+      state.vol = vol; state.path = path || null; state.q = '';
+      document.getElementById('q').value = '';
+      renderAll();
+    });
+  });
+}
+function walk(nodes, prefix, depth, vol) {
+  let h = '';
+  for (const nd of nodes) {
+    const p = prefix ? prefix + SEP + nd.name : nd.name;
+    const key = vol + '|' + p;
+    const kids = nd.children && nd.children.length;
+    const n = under(p).length;
+    h += row(depth, key, nd.name, n, !!kids, state.open.has(key), state.vol === vol && state.path === p, '', vol, p);
+    if (kids && state.open.has(key)) h += walk(nd.children, p, depth + 1, vol);
+  }
+  return h;
+}
+function row(depth, key, name, count, hasKids, open, on, cls, vol, path) {
+  return '<button class="tnode ' + cls + (on ? ' on' : '') + '" style="padding-left:' + (9 + depth * 16) + 'px"'
+    + ' data-vol="' + (vol || key) + '"' + (path ? ' data-path="' + esc(path) + '"' : '') + ' data-kids="' + (hasKids ? 1 : 0) + '">'
+    + '<span class="caret' + (open ? ' open' : '') + '">' + (hasKids ? IC.chevR : IC.dot) + '</span>'
+    + '<span class="tname">' + esc(name) + '</span>'
+    + '<span class="tcount' + (count ? '' : ' zero') + '">' + count + '</span></button>';
+}
+
+/* ================= 主区 ================= */
+function renderMain() {
+  const crumb = document.getElementById('crumb');
+  const head = document.getElementById('pagehead');
+  const list = document.getElementById('list');
+  const sepIc = '<span class="sep">' + IC.chevR + '</span>';
+  const mchip = (ic, txt, num) => '<span class="mchip">' + ic + txt + (num !== undefined ? ' <b>' + num + '</b>' : '') + '</span>';
+
+  /* ---- 总览 ---- */
+  if (!state.vol) {
+    crumb.innerHTML = '<span class="cur">全部体系</span>';
+    head.innerHTML = '<h1>全部体系</h1><div class="desc">' + VOLUMES.length + ' 个体系收录中，层级不限深度：体系 → 分支 → 术语。点击进入任意体系浏览分类树。</div>'
+      + '<div class="metas">' + mchip(IC.layers, '体系', VOLUMES.length) + mchip(IC.tag, '已收录', totalAll.toLocaleString()) + mchip(IC.folderTree, '目标', TARGET_TOTAL.toLocaleString()) + '</div>';
+    list.innerHTML = '<div class="vgrid">' + VOLUMES.map(v => {
+      const n = volCount(v), pct = Math.round(n * 100 / v.target);
+      return '<button class="vcard" data-vol="' + v.code + '">'
+        + '<span class="vc-top"><span class="vc-code">' + v.code + '</span><span class="vc-title">' + esc(v.title) + '</span></span>'
+        + '<div class="vc-nums"><b>' + n + '</b> / ' + v.target + ' · ' + pct + '%</div>'
+        + '<div class="pbar"><i style="width:' + Math.max(1.5, pct) + '%"></i></div>'
+        + '</button>';
+    }).join('') + '</div>';
+    list.querySelectorAll('[data-vol]').forEach(b => b.addEventListener('click', () => { state.vol = b.dataset.vol; state.path = null; state.open.add(b.dataset.vol); renderAll(); }));
+    return;
+  }
+
+  const v = VOLUMES.find(x => x.code === state.vol);
+  const segs = state.path ? state.path.split(SEP) : [];
+
+  let c = '<a data-nav="root">全部体系</a>' + sepIc
+        + (segs.length ? '<a data-nav="vol">' + esc(v.code + ' ' + v.title) + '</a>' : '<span class="cur">' + esc(v.code + ' ' + v.title) + '</span>');
+  segs.forEach((s, i) => {
+    const p = segs.slice(0, i + 1).join(SEP);
+    c += sepIc + (i === segs.length - 1
+      ? '<span class="cur">' + esc(s) + '</span>'
+      : '<a data-nav="path" data-path="' + esc(p) + '">' + esc(s) + '</a>');
+  });
+  crumb.innerHTML = c;
+  bindCrumb();
+
+  /* ---- 样例外体系 ---- */
+  if (!v.tree) {
+    head.innerHTML = '<h1>' + esc(v.title) + '</h1><div class="desc">' + esc(v.purpose || '') + '</div>'
+      + '<div class="metas">' + mchip(IC.tag, '已收录', v.count || 0) + mchip(IC.folderTree, '目标', v.target) + '</div>';
+    list.innerHTML = '<div class="card"><div class="empty"><span class="eicon">' + IC.folder + '</span>样例仅内置 V01 数据。此卷在真实系统中通过<br><code>GET /api/volumes/' + v.code + '/categories/tree</code> 懒加载结构。</div></div>';
+    return;
+  }
+
+  const node = state.path ? findNode(v.tree, segs) : { children: v.tree };
+
+  /* ---- 分支视图：卡片网格 ---- */
+  if (node && node.children && node.children.length) {
+    const title = segs.length ? segs[segs.length - 1] : v.title;
+    const total = state.path ? under(state.path).length : TERMS.length;
+    head.innerHTML = '<h1>' + esc(title) + '</h1>'
+      + (segs.length ? '' : '<div class="desc">' + esc(v.purpose || '') + '</div>')
+      + '<div class="metas">' + mchip(IC.folderTree, '分支', node.children.length) + mchip(IC.tag, '术语', total) + (segs.length ? '' : mchip(IC.layers, '目标', v.target)) + '</div>';
+    list.innerHTML = '<div class="bgrid">' + node.children.map(nd => {
+      const p = (state.path ? state.path + SEP : '') + nd.name;
+      const n = under(p).length, kids = nd.children ? nd.children.length : 0;
+      return '<button class="bcard" data-goto="' + esc(p) + '">'
+        + '<span class="bi">' + (kids ? IC.folderTree : IC.tag) + '</span>'
+        + '<span class="bx"><span class="bn">' + esc(nd.name) + '</span><span class="bs" style="display:block">'
+        + (kids ? kids + ' 个子分支 · ' : '') + n + ' 词' + (n ? '' : ' · 待填充') + '</span></span>'
+        + '<span class="arr">' + IC.chevR + '</span></button>';
+    }).join('') + '</div>';
+    list.querySelectorAll('[data-goto]').forEach(b => b.addEventListener('click', () => { state.path = b.dataset.goto; openPathInTree(); renderAll(); }));
+    return;
+  }
+
+  /* ---- 叶子视图：术语表 ---- */
+  let terms = at(state.path);
+  if (state.q) { const q = state.q.toLowerCase(); terms = terms.filter(t => t.zh.toLowerCase().includes(q) || t.en.toLowerCase().includes(q) || t.uid.toLowerCase().includes(q)); }
+  head.innerHTML = '<h1>' + esc(segs[segs.length - 1] || v.title) + '</h1>'
+    + '<div class="metas">' + mchip(IC.tag, '术语', terms.length) + mchip(IC.layers, '同叶互斥', '') + '</div>';
+  if (!terms.length) {
+    list.innerHTML = '<div class="card"><div class="empty"><span class="eicon">' + IC.inbox + '</span>该分支暂无术语。<br>可由 AI 按 <code>GET /api/contract</code> 契约生成，经 <code>ingest.py check → add-terms</code> 填充。</div></div>';
+    return;
+  }
+  const rows = terms.map(t =>
+    '<tr class="row' + (t.uid === state.sel ? ' sel' : '') + '" data-uid="' + t.uid + '">'
+    + '<td><div class="tzh">' + esc(t.zh) + '</div><div class="ten">' + esc(t.en) + '</div></td>'
+    + '<td class="c-uid">' + t.uid + '</td>'
+    + '<td>' + stTag(t.status) + '</td>'
+    + '<td style="text-align:right"><button class="addbtn' + (inCart(t.uid) ? ' in' : '') + '" data-add="' + t.uid + '">' + (inCart(t.uid) ? IC.check + '已选' : IC.plus + '加入') + '</button></td></tr>'
+  ).join('');
+  list.innerHTML = '<div class="card"><table class="grid"><thead><tr><th>术语（名字即提示词）</th><th style="width:110px">UID</th><th style="width:96px">状态</th><th style="width:96px"></th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  list.querySelectorAll('tr.row[data-uid]').forEach(r => r.addEventListener('click', () => { state.sel = r.dataset.uid; renderMain(); renderDetail(); }));
+  list.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', e => { e.stopPropagation(); toggleCart(b.dataset.add); }));
+}
+function findNode(nodes, segs) {
+  let cur = { children: nodes };
+  for (const s of segs) {
+    if (!cur.children) return null;
+    cur = cur.children.find(n => n.name === s);
+    if (!cur) return null;
+  }
+  return cur;
+}
+function openPathInTree() {
+  const segs = state.path.split(SEP);
+  state.open.add(state.vol);
+  segs.forEach((_, i) => state.open.add(state.vol + '|' + segs.slice(0, i + 1).join(SEP)));
+}
+function bindCrumb() {
+  document.querySelectorAll('#crumb a').forEach(a => a.addEventListener('click', () => {
+    if (a.dataset.nav === 'root') { state.vol = null; state.path = null; }
+    else if (a.dataset.nav === 'vol') state.path = null;
+    else state.path = a.dataset.path;
+    renderAll();
+  }));
+}
+
+/* ================= 右栏详情 ================= */
+function renderDetail() {
+  const el = document.getElementById('detail');
+  const t = byUid(state.sel);
+  if (!t) { el.innerHTML = '<div class="dcard"><div class="empty"><span class="eicon">' + IC.tag + '</span>从列表选择一个术语</div></div>'; return; }
+  const seg = (lbl, txt) => txt ? '<div class="sect"><div class="lbl">' + lbl + '</div><div class="txt">' + esc(txt) + '</div></div>' : '';
+  const lst = (lbl, arr, link) => arr && arr.length
+    ? '<div class="sect"><div class="lbl">' + lbl + '</div><div class="plainlist">'
+      + arr.map(x => '<span' + (link ? ' class="reflink" data-ref="' + esc(x) + '"' : '') + '>' + esc(x) + '</span>').join('') + '</div></div>' : '';
+  const pathHtml = [t.vol + ' 摄影体系'].concat(t.path.split(SEP)).concat([t.zh]).map(esc).join(' <b>/</b> ');
+  el.innerHTML =
+    '<div class="dcard">'
+    + '<div class="path">' + pathHtml + '</div>'
+    + '<div class="body">'
+    + '<div class="headword">' + esc(t.zh) + '<button class="copy1" data-copy="' + esc(t.zh) + '">复制</button></div>'
+    + '<div class="enline">' + esc(t.en) + '<button class="copy1" data-copy="' + esc(t.en) + '">复制</button></div>'
+    + '<div class="namehint">中文名即中文提示词 · 英文名即英文提示词</div>'
+    + '<div class="metaline"><span>' + t.uid + '</span>' + stTag(t.status) + '<span>V1.0</span></div>'
+    + seg('释义', t.def) + seg('视觉表现', t.vis) + seg('提示词用法', t.usage)
+    + lst('适用场景', t.cases) + lst('标签', t.tags)
+    + lst('相关术语', t.rel, true) + lst('易混淆', t.conf, true)
+    + '<button class="d-add' + (inCart(t.uid) ? ' in' : '') + '" data-add="' + t.uid + '">'
+    + (inCart(t.uid) ? IC.check + '已在提示词栏 · 点击移除' : IC.plus + '加入提示词栏') + '</button>'
+    + '</div></div>';
+  el.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => copyText(b.dataset.copy, b)));
+  el.querySelectorAll('[data-add]').forEach(b => b.addEventListener('click', () => toggleCart(b.dataset.add)));
+  el.querySelectorAll('[data-ref]').forEach(s => s.addEventListener('click', () => {
+    const hit = TERMS.find(x => x.zh === s.dataset.ref);
+    if (hit) { state.sel = hit.uid; state.path = hit.path; state.vol = hit.vol; openPathInTree(); renderAll(); }
+  }));
+}
+
+/* ================= 底栏 ================= */
+function inCart(uid) { return state.cart.some(t => t.uid === uid); }
+function toggleCart(uid) {
+  const i = state.cart.findIndex(t => t.uid === uid);
+  i >= 0 ? state.cart.splice(i, 1) : state.cart.push(byUid(uid));
+  renderMain(); renderDetail(); renderBar();
+}
+function conflicts() {
+  const g = {}; state.cart.forEach(t => (g[t.path] = g[t.path] || []).push(t.uid));
+  const s = new Set(); Object.values(g).forEach(a => { if (a.length > 1) a.forEach(u => s.add(u)); });
+  return s;
+}
+function promptText() {
+  return state.cart.map(t => state.lang === 'cn' ? t.zh : state.lang === 'both' ? t.en + '（' + t.zh + '）' : t.en).join(', ');
+}
+function renderBar() {
+  const conf = conflicts();
+  document.getElementById('cartNum').textContent = state.cart.length;
+  document.getElementById('chips').innerHTML = state.cart.length
+    ? state.cart.map(t => '<span class="chip' + (conf.has(t.uid) ? ' conflict' : '') + '" title="' + esc(t.path) + '">'
+        + esc(t.zh) + '<button data-rm="' + t.uid + '" aria-label="移除">' + IC.x + '</button></span>').join('')
+    : '<span class="ph">在列表或详情中「加入」术语，组合成提示词</span>';
+  document.getElementById('preview').innerHTML = state.cart.length
+    ? (conf.size ? '<span class="cw">同叶互斥 ' + conf.size + ' 项（已标红，仍可复制） </span>' : '') + esc(promptText())
+    : '提示词预览 — 空';
+  document.querySelectorAll('#chips [data-rm]').forEach(b => b.addEventListener('click', () => toggleCart(b.dataset.rm)));
+}
+function copyText(txt, btn) {
+  (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => {
+    const lbl = btn.querySelector('#copyLbl');
+    if (lbl) { const o = lbl.textContent; lbl.textContent = '已复制'; setTimeout(() => lbl.textContent = o, 900); }
+    else { const o = btn.innerHTML; btn.innerHTML = IC.check + '已复制'; setTimeout(() => btn.innerHTML = o, 900); }
+  }).catch(() => {});
+}
+document.getElementById('copyAll').addEventListener('click', function () { if (state.cart.length) copyText(promptText(), this); });
+document.getElementById('langs').addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  state.lang = b.dataset.l;
+  document.querySelectorAll('#langs button').forEach(x => x.classList.toggle('on', x === b));
+  renderBar();
+});
+document.getElementById('q').addEventListener('input', e => { state.q = e.target.value.trim(); renderMain(); });
+
+/* ================= 启动 ================= */
+function renderAll() { renderTree(); renderMain(); renderDetail(); renderBar(); }
+renderAll();
+</script>
+</body>
+</html>

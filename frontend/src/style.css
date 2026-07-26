@@ -1,73 +1,72 @@
+/* ==========================================================
+   设计令牌 — 黑白灰 · 融合布局（与 docs/重构样例-UI.html 同源）
+   原则：无渐变、无毛玻璃、无表情符号；分隔靠背景色差与发丝线；
+   滚动条全局隐藏；交互仅颜色过渡。
+   ========================================================== */
 :root {
   color-scheme: light;
-  --bg: #ececf0;
-  --bg2: #e4e4ea;
-  --panel: rgba(255, 255, 255, 0.72);
-  --panel-solid: #fbfbfd;
-  --ink: #1d1d1f;
-  --ink2: #4b4b50;
-  --mut: #8e8e93;
-  --faint: #b8b8bd;
-  --line: rgba(0, 0, 0, 0.08);
-  --hov: rgba(0, 0, 0, 0.045);
-  --sel: #1d1d1f;
-  --accent: #0a84ff;
-  --r: 12px;
-  --r-sm: 8px;
-  --r-lg: 18px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 6px 20px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.16);
-  --side-w: 268px;
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --bg: #f4f4f5;            /* 主画布：浅灰 */
+  --bg-side: #ededee;       /* 侧栏：略深一档 */
+  --surface: #ffffff;       /* 白面 */
+  --surface-2: #f0f0f1;     /* 悬停 */
+  --surface-3: #f8f8f9;     /* 次级面 */
+  --ink: #1b1b1d;           /* 近黑 */
+  --ink-2: #56565c;         /* 中灰 */
+  --ink-3: #96969d;         /* 弱文字 */
+  --line: #e5e5e8;
+  --line-2: #d3d3d8;
+  --accent: #1b1b1d;        /* 强调色 = 墨黑 */
+  --accent-deep: #000000;
+  --accent-tint: #ebebed;   /* 选中浅灰 */
+  --ok: #5d8f66; --review: #8a94ad; --gray: #a0a0a6;
+  --danger: #bf4b3a;
+  --seal: #a34433;          /* 朱砂：仅用于印章语义（品牌印、词条朱划），不参与交互配色 */
+  --r-lg: 12px; --r: 8px; --r-sm: 6px;
+  --sh-sm: 0 1px 2px rgba(20, 20, 22, .05);
+  --sh-md: 0 1px 3px rgba(20, 20, 22, .05), 0 10px 28px -14px rgba(20, 20, 22, .16);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --serif: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", SimSun, Georgia, serif;
+  --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-}
-
-html, body, #app {
-  height: 100%;
-}
-
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body, #app { height: 100%; }
 body {
-  font-family: var(--font);
-  font-size: 13px;
+  font: 13.5px/1.6 var(--sans);
   color: var(--ink);
-  background:
-    radial-gradient(1200px 600px at 80% -10%, rgba(120, 140, 255, 0.07), transparent 60%),
-    radial-gradient(900px 500px at -10% 110%, rgba(255, 160, 180, 0.06), transparent 55%),
-    linear-gradient(180deg, var(--bg), var(--bg2));
-  background-attachment: fixed;
-  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-.arco-btn-primary { background-color: var(--sel) !important; }
-.arco-btn-primary:hover { background-color: #000 !important; }
-
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.14); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.24); }
-::-webkit-scrollbar-track { background: transparent; }
-
-.fade-enter-active, .fade-leave-active { transition: opacity 0.25s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
-
-/* ===== 质量底线（frontend-design 技能规范）===== */
-
-/* 1) 可见的键盘焦点环 —— 仅键盘导航时出现 */
-:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 4px;
+/* 纸面颗粒：全屏极淡的单色噪点（SVG 湍流，非渐变），给灰度界面一层纸的肌理 */
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 200;
+  pointer-events: none;
+  opacity: .028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+button { font: inherit; color: inherit; background: none; border: none; cursor: pointer; }
+
+/* Lucide 内联图标基线 */
+svg.ic {
+  width: 15px; height: 15px; stroke: currentColor; fill: none;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+  display: block; flex: 0 0 auto;
+}
+
+/* 滚动条全局隐藏（仍可滚动） */
+* { scrollbar-width: none; }
+::-webkit-scrollbar { display: none; }
+
+::selection { background: var(--accent-tint); }
+
+/* 可见键盘焦点环 —— 仅键盘导航时出现 */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
 *:focus:not(:focus-visible) { outline: none; }
 
-/* 2) 尊重「减少动态效果」系统偏好 */
+/* 尊重「减少动态效果」系统偏好 */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
@@ -77,11 +76,7 @@ body {
   }
 }
 
-/* 3) 触摸目标最小尺寸（移动端可达性） */
+/* 触摸目标最小尺寸（移动端可达性） */
 @media (pointer: coarse) {
-  button, .trow, .cchip { min-height: 36px; }
+  button, .tnode, tr.row { min-height: 36px; }
 }
-
-/* 窄屏：仅收窄侧栏宽度（侧栏保持在文档流，始终可点；Dock 由 --side-w 自动避让，不重叠） */
-@media (max-width: 880px) { :root { --side-w: 208px; } }
-@media (max-width: 560px) { :root { --side-w: 176px; } }

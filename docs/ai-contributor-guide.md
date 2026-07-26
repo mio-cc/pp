@@ -29,6 +29,9 @@ python scripts/ingest.py add-volume 新卷.json         # 新增一个卷（体�
 python scripts/ingest.py update-terms 改动.json       # 回填/修改已有术语字段（按 term_uid，仅改给出的字段）
 ```
 
+API 服务在线时，可全程走 HTTP 自查（无需读仓库文件）：
+`GET /api/tree` 找空分支与未达标卷 → `GET /api/contract` 拿字段规则与顶层白名单 → 生成 JSON → `POST /api/ingest/check` 在线 dry-run 校验（不写入）→ 全过后本地 `add-terms` 落库。
+
 - `你的术语.json`：**对象数组**，每个对象是一条术语，字段见第三节，模版见 `docs/templates/term.template.json`，机器规范见 `schema/term.schema.json`。
 - 多值字段（aliases / use_cases / related_terms / confused_with / tags）一律写**数组** `["a","b"]`，**不要写分号**（接口会自动转成 CSV 的 `;`）。
 - `term_uid` 可以**留空**（写 `""` 或不写该键），接口会按该卷现有最大号 +1 自动分配。

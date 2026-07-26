@@ -47,7 +47,7 @@ ERROR_LOG="${LOG_DIR}/api.error.log"
 
 # Python 脚本路径
 BUILD_SCRIPT="${PROJECT_ROOT}/scripts/rebuild.py"  # rebuild.py 在临时目录构建再回写，兼容受限挂载
-VALIDATE_SCRIPT="${PROJECT_PROJECT_ROOT}/scripts/validate_kb.py"
+VALIDATE_SCRIPT="${PROJECT_ROOT}/scripts/validate_kb.py"
 SEARCH_SCRIPT="${PROJECT_ROOT}/scripts/search_terms.py"
 API_SCRIPT="${PROJECT_ROOT}/api/app.py"
 

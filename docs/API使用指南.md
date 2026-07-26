@@ -587,6 +587,66 @@ v2.1 新增功能：
 
 ---
 
+## 新增功能（v2.2）
+
+### 1. 全库骨架 `GET /api/tree`
+
+一次返回全部卷 + 全部分类路径 + 每路径术语计数（无正文，体积小）。前端首屏与 AI 探索共用；AI 供稿前先看这里找空分支（`term_count=0`）或未达标的卷。
+
+```bash
+curl http://localhost:8000/api/tree
+```
+
+```json
+{
+  "separator": " / ",
+  "volumes": [
+    { "code": "V01", "title": "摄影体系", "target_terms": 500, "current_terms": 191,
+      "categories": [ { "path": "曝光控制 / 光圈", "term_count": 14 } ] }
+  ]
+}
+```
+
+### 2. 供稿契约 `GET /api/contract`
+
+机器可读的供稿规则：`term.schema.json` 全文 + 各卷允许的顶层分类白名单 + 分类路径规则 + 提交流程。AI 供稿前 GET 一次即可自查，不再依赖读仓库文件。
+
+### 3. 在线校验 `POST /api/ingest/check`
+
+术语 JSON 数组的 dry-run 校验，复用 `scripts/ingest.py` 的全部规则（Schema、顶层白名单、复读/占位检测、同卷查重、近似查重警告），**不写入任何数据**（单次上限 500 条）。
+
+```bash
+curl -X POST http://localhost:8000/api/ingest/check \
+  -H "Content-Type: application/json" \
+  -d '[{ "zh_term": "…", "en_term": "…", "volume_code": "V01", "category": "曝光控制 / 光圈", … }]'
+```
+
+响应：`{ "ok": true/false, "errors": [...], "warnings": [...], "assigned_uids": [...] }`。校验通过后仍需在本地执行 `python scripts/ingest.py add-terms` 落库——API 保持只读边界。
+
+### 4. 行为修正
+
+- `/api/terms` 的 `category_prefix` 改为带 ` / ` 边界的前缀匹配（与 `/api/terms/random` 一致），`布光` 不再误中 `布光与用光`。
+
+---
+
+## 新增功能（v2.3 · 向量层与关系图谱）
+
+向量由 `scripts/build_vectors.py` 生成（哈希字符 n-gram TF-IDF，零依赖离线可复现），
+`rebuild.py` 会自动调用。质量特性：近重复检测可靠（换名重复能抓到）；
+名字无字面重叠的纯语义联想偏弱——需要更强语义时替换 `textvec.vectorize` 为真实 embedding 即可，接口不变。
+
+| 端点 | 说明 |
+|------|------|
+| `GET /api/search/semantic?q=&limit=` | 向量模糊检索，返回带 `score` 的术语列表 |
+| `GET /api/terms/{uid}/similar?limit=` | 相似术语；`score≥0.6` 多为近重复候选 |
+| `GET /api/terms/{uid}/graph` | 1 跳关系图：`nodes` + `edges`（build_kb 已把可解析的 related/confused 绑定为真实术语边，未解析的以 `label_nodes` 返回） |
+| `POST /api/ingest/check` | 响应新增 `semantic_dups`：与库内术语向量相似度 ≥0.55 的近重警告（不阻断） |
+| `POST /api/prompts/combine` | 新增 `dialect`（`generic`/`sd` → `(term:1.1)`，`mj` → `term::1.1`）与 `suffix`（原样追加，如 `--ar 16:9 --v 6`） |
+
+配套脚本：`python scripts/fill_queue.py` 输出各卷缺口榜；`--order V37 --count 30` 生成可直接投喂 AI 的供稿工单（含白名单、避重词表、契约摘要）。
+
+---
+
 ## 性能建议
 
 1. **首次加载**：调用 `/api/meta` 获取全量元数据缓存在前端

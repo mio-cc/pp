@@ -33,6 +33,13 @@ def main() -> int:
             print("❌ build_kb 失败，未回写。", file=sys.stderr)
             return proc.returncode
 
+        # 构建术语向量（语义近重/模糊检索用）；失败不阻断主库回写
+        vec = subprocess.run(
+            [sys.executable, "-B", "scripts/build_vectors.py"], cwd=str(tmp)
+        )
+        if vec.returncode != 0:
+            print("⚠ build_vectors 失败（不影响主库），可稍后单独重跑。", file=sys.stderr)
+
         # 回写主库（整体覆盖写）
         db_src = tmp / "data" / "kb" / "visual_prompt_terms.sqlite"
         db_dst = ROOT / "data" / "kb" / "visual_prompt_terms.sqlite"

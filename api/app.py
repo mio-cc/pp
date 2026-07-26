@@ -14,6 +14,9 @@ AI视觉设计与提示词工程百科 —— 只读 API 服务层（FastAPI）
 """
 from __future__ import annotations
 
+import array
+import importlib.util
+import json
 import sqlite3
 from pathlib import Path
 from typing import Literal, Optional
@@ -105,6 +108,10 @@ class TermUidListPayload(BaseModel):
 class CombinePromptsPayload(TermUidListPayload):
     language: Literal["en", "cn", "both"] = "en"
     format: Literal["comma", "newline", "weighted"] = "comma"
+    # 平台方言：generic 通用；sd → 权重写作 (term:1.1)；mj → 权重写作 term::1.1
+    dialect: Literal["generic", "sd", "mj"] = "generic"
+    # 追加在结果末尾的平台参数（原样拼接），如 " --ar 16:9 --v 6"
+    suffix: str = ""
 
 
 def extract_term_uids(payload: list[str] | TermUidListPayload) -> list[str]:
@@ -365,12 +372,8 @@ def list_terms(
         if volume:
             where.append("v.code = ?")
             params.append(volume)
-        if category:
-            where.append("c.name = ?")
-            params.append(category)
-        if category_prefix:
-            where.append("c.name LIKE ?")
-            params.append(f"{category_prefix}%")
+        # 分类过滤统一走带 " / " 边界的前缀匹配，避免「布光」误中「布光与用光」
+        add_category_filters(where, params, category, category_prefix)
         if status:
             where.append("t.status = ?")
             params.append(status)
@@ -438,6 +441,328 @@ def list_terms(
         }
     finally:
         conn.close()
+
+
+@app.get("/api/tree")
+def tree() -> dict:
+    """全库骨架一次拉取：卷 + 全部分类路径 + 计数（无正文，约几十 KB）。
+
+    前端首屏与 AI 探索共用：AI 供稿前先看这里找空分支（term_count=0）与未达标的卷。
+    """
+    conn = get_conn()
+    try:
+        vol_rows = conn.execute(
+            """
+            SELECT v.code, v.title, v.sequence_no, v.target_terms, v.purpose,
+                   COUNT(t.id) AS current_terms
+            FROM volumes v LEFT JOIN terms t ON t.volume_id = v.id
+            GROUP BY v.id ORDER BY v.sequence_no
+            """
+        ).fetchall()
+        cat_rows = conn.execute(
+            """
+            SELECT v.code AS vcode, c.name, COUNT(t.id) AS n
+            FROM categories c
+            JOIN volumes v ON v.id = c.volume_id
+            LEFT JOIN terms t ON t.category_id = c.id
+            GROUP BY c.id ORDER BY v.sequence_no, c.sort_order
+            """
+        ).fetchall()
+    finally:
+        conn.close()
+    cats_by_vol: dict[str, list] = {}
+    for r in cat_rows:
+        cats_by_vol.setdefault(r["vcode"], []).append(
+            {"path": r["name"], "term_count": r["n"]}
+        )
+    return {
+        "separator": CATEGORY_SEPARATOR,
+        "volumes": [
+            {
+                "code": r["code"],
+                "title": r["title"],
+                "target_terms": r["target_terms"] or 0,
+                "current_terms": r["current_terms"] or 0,
+                "purpose": r["purpose"] or "",
+                "categories": cats_by_vol.get(r["code"], []),
+            }
+            for r in vol_rows
+        ],
+    }
+
+
+@app.get("/api/contract")
+def contract() -> dict:
+    """机器可读供稿契约：term JSON Schema + 各卷顶层分类白名单 + 提交流程。
+
+    AI 供稿前 GET 一次即可自查全部规则，不再依赖读仓库文件。
+    """
+    schema_path = ROOT / "schema" / "term.schema.json"
+    config_path = ROOT / "config" / "volumes.json"
+    if not schema_path.exists() or not config_path.exists():
+        raise HTTPException(status_code=503, detail="schema/term.schema.json 或 config/volumes.json 缺失")
+    term_schema = json.loads(schema_path.read_text(encoding="utf-8"))
+    config = json.loads(config_path.read_text(encoding="utf-8"))
+    return {
+        "term_schema": term_schema,
+        "volumes": [
+            {
+                "code": v["code"],
+                "title": v["title"],
+                "target_terms": v.get("target_terms", 0),
+                "allowed_top_categories": v.get("categories", []),
+            }
+            for v in config.get("volumes", [])
+        ],
+        "category_rule": (
+            "category 为完整分类路径，用 ' / ' 分隔，深度不限；"
+            "首段必须在该卷 allowed_top_categories 内，其后自由分支；"
+            "术语挂在路径末端，名字本身即提示词（zh_term=中文提示词，en_term=英文提示词）。"
+        ),
+        "workflow": [
+            "1. GET /api/tree 查看结构，找空分支（term_count=0）或未达标的卷",
+            "2. GET /api/contract 获取本契约与字段规则",
+            "3. 生成 terms.json（对象数组，多值字段用数组）",
+            "4. POST /api/ingest/check 在线 dry-run 校验，报错则修",
+            "5. python scripts/ingest.py add-terms terms.json 写入（唯一落库通道）",
+        ],
+    }
+
+
+_SCRIPT_MODS: dict = {}
+
+
+def _script(name: str):
+    """按需加载 scripts/{name}.py（顶层仅常量与函数定义，加载安全）。"""
+    if name not in _SCRIPT_MODS:
+        spec = importlib.util.spec_from_file_location(f"kb_{name}", ROOT / "scripts" / f"{name}.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        _SCRIPT_MODS[name] = mod
+    return _SCRIPT_MODS[name]
+
+
+def _ingest_module():
+    return _script("ingest")
+
+
+# ---------------------------------------------------------------- 向量层
+# term_vectors 由 scripts/build_vectors.py 生成（哈希字符 n-gram TF-IDF，零依赖）。
+# 2 千条内存 ~5MB、查询 <200ms；十万级时换 sqlite-vec/numpy，本接口不变。
+_VEC: dict = {"stamp": None, "ids": [], "vecs": [], "idf": None}
+
+
+def _vectors(conn: sqlite3.Connection) -> dict:
+    row = conn.execute(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='term_vectors'"
+    ).fetchone()
+    if not row:
+        raise HTTPException(status_code=503, detail="向量表不存在，请运行 python scripts/build_vectors.py")
+    stamp = conn.execute("SELECT COUNT(*) FROM term_vectors").fetchone()[0]
+    if _VEC["stamp"] != stamp:
+        idf_row = conn.execute("SELECT value FROM vector_meta WHERE key='idf'").fetchone()
+        rows = conn.execute("SELECT term_id, vec FROM term_vectors").fetchall()
+        _VEC.update(
+            stamp=stamp,
+            ids=[r[0] for r in rows],
+            vecs=[array.array("f", r[1]) for r in rows],
+            idf=json.loads(idf_row[0]) if idf_row else None,
+        )
+    return _VEC
+
+
+def _query_vec(text: str, idf) -> list[float]:
+    tv = _script("textvec")
+    return tv.finalize(tv.raw_counts(text), idf)
+
+
+def _top_similar(conn: sqlite3.Connection, qvec, limit: int, exclude_id: int | None = None):
+    vec_state = _vectors(conn)
+    scored = []
+    for tid, v in zip(vec_state["ids"], vec_state["vecs"]):
+        if tid == exclude_id:
+            continue
+        s = 0.0
+        for a, b in zip(qvec, v):
+            s += a * b
+        if s > 0.05:
+            scored.append((s, tid))
+    scored.sort(reverse=True)
+    return scored[:limit]
+
+
+def _rows_by_ids(conn: sqlite3.Connection, ids: list[int]) -> dict:
+    if not ids:
+        return {}
+    ph = ",".join("?" for _ in ids)
+    rows = conn.execute(f"{term_base_select(conn)} WHERE t.id IN ({ph})", ids).fetchall()
+    return {r["id"]: r for r in rows}
+
+
+@app.get("/api/search/semantic")
+def search_semantic(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=100)) -> dict:
+    """模糊/语义检索：字符 n-gram 向量余弦，比 LIKE 更能容忍换词与描述式查询。
+
+    与 /api/search（字面精确）互补，前端可双路合并。
+    """
+    conn = get_conn()
+    try:
+        vec_state = _vectors(conn)
+        qvec = _query_vec(q, vec_state["idf"])
+        top = _top_similar(conn, qvec, limit)
+        by_id = _rows_by_ids(conn, [tid for _, tid in top])
+        items = []
+        for score, tid in top:
+            if tid in by_id:
+                item = serialize_term(by_id[tid])
+                item["score"] = round(score, 4)
+                items.append(item)
+        return {"query": q, "count": len(items), "items": items, "engine": "ngram-tfidf"}
+    finally:
+        conn.close()
+
+
+@app.get("/api/terms/{term_uid}/similar")
+def similar_terms(term_uid: str, limit: int = Query(10, ge=1, le=50)) -> dict:
+    """基于向量的相似术语（查重视角：分数≥0.6 通常是近重复候选）。"""
+    conn = get_conn()
+    try:
+        row = conn.execute("SELECT id FROM terms WHERE term_uid = ?", (term_uid,)).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail=f"未找到术语 {term_uid}")
+        vec_row = conn.execute(
+            "SELECT vec FROM term_vectors WHERE term_id = ?", (row["id"],)
+        ).fetchone()
+        if not vec_row:
+            raise HTTPException(status_code=503, detail="该术语无向量，请重跑 build_vectors.py")
+        _vectors(conn)  # 确保缓存加载
+        qvec = array.array("f", vec_row[0])
+        top = _top_similar(conn, qvec, limit, exclude_id=row["id"])
+        by_id = _rows_by_ids(conn, [tid for _, tid in top])
+        items = []
+        for score, tid in top:
+            if tid in by_id:
+                item = serialize_term(by_id[tid])
+                item["score"] = round(score, 4)
+                items.append(item)
+        return {"term_uid": term_uid, "count": len(items), "items": items}
+    finally:
+        conn.close()
+
+
+@app.get("/api/terms/{term_uid}/graph")
+def term_graph(term_uid: str) -> dict:
+    """术语 1 跳关系图：related / confused_with 的出边与入边。
+
+    build_kb 已把可解析的中文名绑定为真实 target_term_id；
+    未解析的以 label 节点返回（前端可按名搜索跳转）。
+    """
+    conn = get_conn()
+    try:
+        row = conn.execute(
+            f"{term_base_select(conn)} WHERE t.term_uid = ?", (term_uid,)
+        ).fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail=f"未找到术语 {term_uid}")
+        center_id = row["id"]
+        edges_rows = conn.execute(
+            """
+            SELECT r.source_term_id, r.target_term_id, r.target_label, r.relation_type,
+                   ts.term_uid AS source_uid, tt.term_uid AS target_uid
+            FROM term_relations r
+            JOIN terms ts ON ts.id = r.source_term_id
+            LEFT JOIN terms tt ON tt.id = r.target_term_id
+            WHERE r.source_term_id = ? OR r.target_term_id = ?
+            """,
+            (center_id, center_id),
+        ).fetchall()
+        node_ids = {center_id}
+        edges = []
+        label_nodes = []
+        for e in edges_rows:
+            if e["target_term_id"]:
+                node_ids.add(e["source_term_id"])
+                node_ids.add(e["target_term_id"])
+                edges.append({
+                    "source": e["source_uid"], "target": e["target_uid"],
+                    "type": e["relation_type"], "resolved": True,
+                })
+            elif e["source_term_id"] == center_id:
+                label_nodes.append(e["target_label"])
+                edges.append({
+                    "source": e["source_uid"], "target_label": e["target_label"],
+                    "type": e["relation_type"], "resolved": False,
+                })
+        by_id = _rows_by_ids(conn, list(node_ids))
+        return {
+            "center": term_uid,
+            "nodes": [serialize_term(r) for r in by_id.values()],
+            "label_nodes": sorted(set(label_nodes)),
+            "edges": edges,
+        }
+    finally:
+        conn.close()
+
+
+@app.post("/api/ingest/check")
+def ingest_check(payload: list[dict] = Body(...)) -> dict:
+    """只读 dry-run 校验：复用 scripts/ingest.py 的全部规则，不写入任何数据。
+
+    Body: 术语对象数组（同 ingest.py check 的输入）。
+    写入仍只能走本地 `python scripts/ingest.py add-terms`，API 保持只读边界。
+    """
+    if not payload:
+        raise HTTPException(status_code=400, detail="请求体必须是非空数组，每个元素是一条术语对象")
+    if len(payload) > 500:
+        raise HTTPException(status_code=400, detail="单次最多校验 500 条")
+    ing = _ingest_module()
+    config = json.loads((ROOT / "config" / "volumes.json").read_text(encoding="utf-8"))
+    rows = ing.read_csv_rows()
+    errors, warnings, prepared = ing.validate_terms(payload, config, ing.existing_index(rows))
+
+    # 语义近重（向量余弦）：字符级 SequenceMatcher 抓不到的「换词重复」在这里补上。
+    # 仅警告不阻断；向量表缺失时静默跳过。
+    semantic_dups = []
+    try:
+        conn = get_conn()
+        try:
+            vec_state = _vectors(conn)
+            tv = _script("textvec")
+            for obj in prepared:
+                qvec = tv.finalize(
+                    tv.raw_counts(tv.term_text(
+                        obj.get("zh_term", ""), obj.get("en_term", ""), obj.get("definition_long", "")
+                    )),
+                    vec_state["idf"],
+                )
+                top = _top_similar(conn, qvec, 3)
+                hits = [(s, tid) for s, tid in top if s >= 0.55]
+                if hits:
+                    by_id = _rows_by_ids(conn, [tid for _, tid in hits])
+                    for s, tid in hits:
+                        if tid in by_id:
+                            semantic_dups.append({
+                                "zh_term": obj.get("zh_term", ""),
+                                "similar_to": by_id[tid]["zh_term"],
+                                "term_uid": by_id[tid]["term_uid"],
+                                "score": round(s, 3),
+                            })
+        finally:
+            conn.close()
+    except HTTPException:
+        pass  # 向量表未构建：跳过语义查重
+
+    return {
+        "ok": not errors,
+        "checked": len(payload),
+        "errors": errors,
+        "warnings": warnings,
+        "semantic_dups": semantic_dups,
+        "prepared_count": len(prepared),
+        "assigned_uids": [o.get("term_uid", "") for o in prepared],
+        "note": "dry-run：未写入任何数据。UID 为预演分配，实际以 ingest.py add-terms 入库结果为准。"
+                "semantic_dups 为向量近重警告（≥0.55），请人工确认是否重复。",
+    }
 
 
 @app.get("/api/search")
@@ -682,18 +1007,25 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
             if cn:
                 prompts_cn.append(cn)
 
-        # 组合提示词
+        # 组合提示词（weighted 的写法随平台方言变化）
         if format == "comma":
             sep = ", "
         elif format == "newline":
             sep = "\n"
         else:  # weighted
             sep = ", "
-            prompts_en = [f"({p}:1.1)" for p in prompts_en]
-            prompts_cn = [f"({p}:1.1)" for p in prompts_cn]
+            if payload.dialect == "mj":
+                prompts_en = [f"{p}::1.1" for p in prompts_en]
+                prompts_cn = [f"{p}::1.1" for p in prompts_cn]
+            else:  # generic / sd 均用 SD 风格括号权重
+                prompts_en = [f"({p}:1.1)" for p in prompts_en]
+                prompts_cn = [f"({p}:1.1)" for p in prompts_cn]
 
         combined_en = sep.join(prompts_en)
         combined_cn = sep.join(prompts_cn)
+        if payload.suffix:
+            combined_en = (combined_en + " " + payload.suffix.strip()).strip()
+            combined_cn = (combined_cn + " " + payload.suffix.strip()).strip()
         combined = ""
         if language == "en":
             combined = combined_en
@@ -711,6 +1043,7 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
             "combined_cn": combined_cn,
             "language": language,
             "format": format,
+            "dialect": payload.dialect,
             "count": len(terms_data),
             "requested_count": len(term_uids),
             "missing_term_uids": missing_term_uids,
@@ -902,11 +1235,15 @@ def root() -> dict:
         "docs": "/docs",
         "web": "/app/" if (WEB_DIR / "index.html").exists() else None,
         "endpoints": [
-            "/api/health", "/api/meta", "/api/volumes", "/api/tags",
+            "/api/health", "/api/meta", "/api/tree", "/api/contract",
+            "/api/volumes", "/api/tags",
             "/api/terms", "/api/terms/{term_uid}", "/api/terms/batch",
             "/api/terms/random", "/api/terms/{term_uid}/related",
             "/api/terms/compare", "/api/search", "/api/search/advanced",
+            "/api/search/semantic", "/api/terms/{term_uid}/similar",
+            "/api/terms/{term_uid}/graph",
             "/api/stats", "/api/export/prompts", "/api/prompts/combine",
+            "/api/ingest/check",
             "/api/volumes/{code}/categories", "/api/volumes/{code}/categories/tree",
         ],
     }

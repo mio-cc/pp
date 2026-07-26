@@ -1,0 +1,437 @@
+[
+  {
+    "term_uid": "",
+    "zh_term": "社论插画",
+    "en_term": "Editorial Illustration",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 社论插画",
+    "definition_long": "社论插画是配合报纸杂志社论与专栏的叙事插画，以隐喻视觉传达观点与情绪，依附于文字而非独立表达。",
+    "visual_effect": "隐喻叙事、概念象征、纸媒构图。",
+    "prompt_usage": "用于报刊社论专栏的观点叙事插画。",
+    "use_cases": [
+      "编辑插画",
+      "社论"
+    ],
+    "related_terms": [
+      "概念插画"
+    ],
+    "confused_with": [
+      "新闻插画"
+    ],
+    "tags": [
+      "社论",
+      "叙事",
+      "隐喻"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "新闻插画",
+    "en_term": "News Illustration",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 新闻插画",
+    "definition_long": "新闻插画是配合新闻报道再现事件现场的纪实性插画，需忠于事实不虚构，常配合突发或深度报道刊出。",
+    "visual_effect": "现场纪实、事件还原、新闻配图。",
+    "prompt_usage": "用于新闻报道与突发事件的现场纪实插画。",
+    "use_cases": [
+      "编辑插画",
+      "新闻"
+    ],
+    "related_terms": [
+      "社论插画"
+    ],
+    "tags": [
+      "新闻",
+      "纪实",
+      "现场"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "概念插画",
+    "en_term": "Conceptual Illustration",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 概念插画",
+    "definition_long": "概念插画是把抽象观念具象为单一隐喻图像的插画手法，用一个象征物承载整篇论述，常见杂志封面与评论配图。",
+    "visual_effect": "单象征物、观念具象、视觉隐喻。",
+    "prompt_usage": "用于以单一象征物表达抽象观念的杂志封面插画。",
+    "use_cases": [
+      "编辑插画",
+      "概念"
+    ],
+    "related_terms": [
+      "社论插画"
+    ],
+    "tags": [
+      "概念",
+      "隐喻",
+      "象征"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "信息图插画",
+    "en_term": "Infographic Illustration",
+    "volume_code": "V20",
+    "category": "编辑与新闻插画 / 信息图插画",
+    "definition_long": "信息图插画是以插画方式可视化数据与流程的混合体裁，兼具信息密度与画面感，常见年报科普与生活方式专栏。",
+    "visual_effect": "插画+数据、流程可视化、信息密度。",
+    "prompt_usage": "用于以插画方式呈现数据与流程的混合信息图。",
+    "use_cases": [
+      "编辑插画",
+      "信息图"
+    ],
+    "related_terms": [
+      "社论插画"
+    ],
+    "tags": [
+      "信息图",
+      "数据",
+      "科普"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "童话绘本",
+    "en_term": "Fairy Tale Picture Book",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 童话绘本",
+    "definition_long": "童话绘本是以连续画面讲述童话故事的儿童书籍插画门类，画面叙事性强、角色造型可爱、色彩明快温暖适合低幼阅读。",
+    "visual_effect": "连续叙事、角色可爱、明快温暖。",
+    "prompt_usage": "用于儿童童话故事的连续叙事绘本画面。",
+    "use_cases": [
+      "绘本",
+      "儿童"
+    ],
+    "tags": [
+      "童话",
+      "叙事",
+      "儿童"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "睡前故事插画",
+    "en_term": "Bedtime Story Illustration",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 童话绘本",
+    "definition_long": "睡前故事插画是配合短篇睡前读物的舒缓画面，色调偏冷暗、笔触柔和、构图简洁，营造困倦宁静的入眠氛围。",
+    "visual_effect": "冷暗色调、柔触困倦、宁静入眠。",
+    "prompt_usage": "用于营造入眠氛围的睡前读物柔和画面。",
+    "use_cases": [
+      "绘本",
+      "儿童"
+    ],
+    "tags": [
+      "睡前",
+      "柔光",
+      "儿童"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "动物角色绘本",
+    "en_term": "Animal Character Picture Book",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 动物绘本",
+    "definition_long": "动物角色绘本是拟人化动物为主角的儿童绘本，动物造型圆润拟人化穿人服装，传递童趣与寓言式教育主题。",
+    "visual_effect": "拟人动物、圆润造型、童趣寓言。",
+    "prompt_usage": "用于拟人动物主角的儿童寓言绘本画面。",
+    "use_cases": [
+      "绘本",
+      "动物"
+    ],
+    "tags": [
+      "动物",
+      "拟人",
+      "寓言"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "无字绘本",
+    "en_term": "Wordless Picture Book",
+    "volume_code": "V20",
+    "category": "绘本与儿童插画 / 无字绘本",
+    "definition_long": "无字绘本是纯靠画面连续分镜讲故事的绘本门类，无文字也需让幼儿跟随构图与时间顺序理解叙事，画面信息密度高。",
+    "visual_effect": "分镜叙事、无文连续、画面高密度。",
+    "prompt_usage": "用于纯画面分镜叙事无文字的儿童绘本。",
+    "use_cases": [
+      "绘本",
+      "儿童"
+    ],
+    "tags": [
+      "无字",
+      "分镜",
+      "叙事"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "矢量插画",
+    "en_term": "Vector Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 矢量插画",
+    "definition_long": "矢量插画是用路径与公式描述图形的数字插画技法，无限放大不糊、色块平整边缘锐利，适合标志式图形与印刷输出。",
+    "visual_effect": "无限缩放、色块平整、边缘锐利。",
+    "prompt_usage": "用于需无限缩放与平整色块的数字/印刷插画。",
+    "use_cases": [
+      "矢量",
+      "印刷"
+    ],
+    "tags": [
+      "矢量",
+      "色块",
+      "印刷"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "扁平插画",
+    "en_term": "Flat Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 扁平插画",
+    "definition_long": "扁平插画是去除三维光影与纹理的纯色块插画风格，色块平涂、无渐变、用色阶暗示空间层次，是当下商业插画主流。",
+    "visual_effect": "纯色平涂、无光影纹理、色阶空间。",
+    "prompt_usage": "用于去除光影以色块平涂的现代商业插画。",
+    "use_cases": [
+      "矢量",
+      "商业"
+    ],
+    "tags": [
+      "扁平",
+      "色块",
+      "商业"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "等距插画",
+    "en_term": "Isometric Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 等距插画",
+    "definition_long": "等距插画是以30度等距投影呈现立体场景的矢量插画手法，无透视消失点、各方向比例一致，适合做产品功能与流程示意。",
+    "visual_effect": "30度投影、无消失点、立体示意。",
+    "prompt_usage": "用于产品功能与流程的等距立体示意插画。",
+    "use_cases": [
+      "矢量",
+      "示意"
+    ],
+    "tags": [
+      "等距",
+      "投影",
+      "示意"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "渐变插画",
+    "en_term": "Gradient Illustration",
+    "volume_code": "V20",
+    "category": "矢量与扁平插画 / 渐变插画",
+    "definition_long": "渐变插画是以双色或多色线性/径向渐变填充色块的现代扁平变体，比纯扁平更有空气感与光感，是当下科技品牌常用风。",
+    "visual_effect": "双色渐变、空气光感、科技现代。",
+    "prompt_usage": "用于带渐变光感的科技品牌现代扁平插画。",
+    "use_cases": [
+      "矢量",
+      "商业"
+    ],
+    "tags": [
+      "渐变",
+      "扁平",
+      "科技"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "角色立绘",
+    "en_term": "Character Illustration",
+    "volume_code": "V20",
+    "category": "角色插画 / 角色立绘",
+    "definition_long": "角色立绘是单角色全身或多角度的独立插画，重点是造型完整、姿态个性与道具特征，常作 IP 形象与卡牌游戏的视觉资产。",
+    "visual_effect": "全身造型、姿态个性、独立资产。",
+    "prompt_usage": "用于单角色全身立绘作 IP 与卡牌视觉资产。",
+    "use_cases": [
+      "角色插画",
+      "IP"
+    ],
+    "tags": [
+      "角色",
+      "立绘",
+      "IP"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "表情包插画",
+    "en_term": "Sticker Illustration",
+    "volume_code": "V20",
+    "category": "角色插画 / 表情包插画",
+    "definition_long": "表情包插画是社交平台用的小尺寸角色表情卡组，一套内角色造型一致、表情夸张情绪化，强调互动性与即时使用。",
+    "visual_effect": "小卡组、造型一致、表情夸张。",
+    "prompt_usage": "用于社交媒体的角色表情卡组插画。",
+    "use_cases": [
+      "角色插画",
+      "社交"
+    ],
+    "tags": [
+      "表情包",
+      "角色",
+      "社交"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "头像插画",
+    "en_term": "Avatar Illustration",
+    "volume_code": "V20",
+    "category": "角色插画 / 头像插画",
+    "definition_long": "头像插画是社交账号个人形象的小尺寸人物插画，重点在面部表情、风格辨识度与遮挡圆角适配，多为胸像或卡通风。",
+    "visual_effect": "小尺寸胸像、辨识度高、圆角适配。",
+    "prompt_usage": "用于社交账号个人形象的卡通头像插画。",
+    "use_cases": [
+      "角色插画",
+      "社交"
+    ],
+    "tags": [
+      "头像",
+      "角色",
+      "社交"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "Q版角色",
+    "en_term": "Chibi Character",
+    "volume_code": "V20",
+    "category": "角色插画 / Q版角色",
+    "definition_long": "Q版角色是头大身小比例夸张为2-3头身的可爱化角色造型，源自日本「ちび」概念，强调萌感圆润、表情夸张情绪化。",
+    "visual_effect": "2-3头身、头大身小、萌感夸张。",
+    "prompt_usage": "用于2-3头身比例的萌系可爱角色插画。",
+    "use_cases": [
+      "角色插画",
+      "Q版"
+    ],
+    "tags": [
+      "Q版",
+      "萌",
+      "比例"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "广告插画",
+    "en_term": "Advertising Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 广告插画",
+    "definition_long": "广告插画是配合品牌广告campaign的视觉插画，需高辨识度、品牌一致性与产品突出，常作户外海报与社媒传播主视觉。",
+    "visual_effect": "高辨识度、品牌一致、主视觉级。",
+    "prompt_usage": "用于品牌广告campaign高辨识度的主视觉插画。",
+    "use_cases": [
+      "商业插画",
+      "广告"
+    ],
+    "tags": [
+      "广告",
+      "品牌",
+      "主视觉"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "包装插画",
+    "en_term": "Packaging Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 包装插画",
+    "definition_long": "包装插画是直接印在产品包装上的视觉插画，需考虑承印材质、版型模切与货架视觉冲击，常作食品日化与文化衍生包装。",
+    "visual_effect": "模切适配、高货架冲击、材质再现。",
+    "prompt_usage": "用于产品包装模切版型与货架冲击的插画。",
+    "use_cases": [
+      "商业插画",
+      "包装"
+    ],
+    "tags": [
+      "包装",
+      "模切",
+      "货架"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "科技插画",
+    "en_term": "Tech Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 科技插画",
+    "definition_long": "科技插画是面向科技公司品牌的现代插画风格，常用渐变色、几何抽象与发光元素，传达未来感AI感与产品智能属性。",
+    "visual_effect": "渐变几何、发光未来、智能科技。",
+    "prompt_usage": "用于科技公司品牌的渐变未来感插画。",
+    "use_cases": [
+      "商业插画",
+      "科技"
+    ],
+    "tags": [
+      "科技",
+      "渐变",
+      "未来"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  },
+  {
+    "term_uid": "",
+    "zh_term": "书籍封面插画",
+    "en_term": "Book Cover Illustration",
+    "volume_code": "V20",
+    "category": "商业风格插画 / 书籍封面插画",
+    "definition_long": "书籍封面插画是占据书籍封面主体的插画，需呼应内容、吸引读者并与书脊封底字版一体化设计，是出版物视觉门面。",
+    "visual_effect": "呼应内容、吸引读者、字版一体。",
+    "prompt_usage": "用于书籍封面主体与字版一体化的门面插画。",
+    "use_cases": [
+      "商业插画",
+      "书籍"
+    ],
+    "tags": [
+      "封面",
+      "书籍",
+      "出版"
+    ],
+    "status": "published",
+    "version": "V1.0"
+  }
+]

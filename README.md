@@ -38,7 +38,7 @@ web/                     前端构建产物（FastAPI 挂到 /app/，已随仓�
 数据层  SQLite 主库 + FTS5/trigram 全文索引（唯一权威源）
   │            ├──> API 服务层  api/app.py（FastAPI，只读，分页 + trigram 搜索）
   │            └──> 前端静态 JSON  data/exports/web/（index.json + volumes/*.json）
-表现层  Vue 3 + Arco（frontend/ 源码 → web/ 构建产物，双模式：连 API / 离线 JSON）
+表现层  Vue 3 组件化前端（frontend/ 源码 → web/ 构建产物，双模式：连 API / 离线 JSON，hash 路由可深链）
 ```
 
 详见 `docs/upgrade-architecture.md`。
@@ -95,13 +95,20 @@ python scripts/run_api.py --port 8000
 | --- | --- |
 | `/api/health` | 健康检查 |
 | `/api/meta` | 卷册/标签/统计元数据（前端初始化用） |
+| `/api/tree` | 全库骨架一次拉取：卷 + 全部分类路径 + 计数（AI 找空分支用） |
+| `/api/contract` | 机器可读供稿契约：term Schema + 各卷顶层白名单 + 提交流程 |
+| `POST /api/ingest/check` | 术语 JSON 在线 dry-run 校验（只校验不写入） |
 | `/api/volumes`、`/api/volumes/{code}/categories` | 卷册与分类 |
 | `/api/tags` | 标签云 |
-| `/api/terms` | 术语列表（筛选 `q/volume/category/tag/status` + 分页 + 排序） |
+| `/api/terms` | 术语列表（筛选 `q/volume/category/category_prefix/tag/status` + 分页 + 排序） |
 | `/api/terms/{term_uid}` | 术语详情 |
+| `/api/terms/{term_uid}/similar` | 向量相似术语（查重/联想） |
+| `/api/terms/{term_uid}/graph` | 1 跳关系图（related/confused 真实边） |
 | `/api/search` | 全文搜索（FTS5 + LIKE 兜底） |
+| `/api/search/semantic` | 向量模糊检索（字符 n-gram TF-IDF，零依赖） |
 | `/api/stats` | 全局统计 |
 | `/api/export/prompts` | 按筛选导出纯提示词清单（`format=json\|text`） |
+| `POST /api/prompts/combine` | 组合提示词（`dialect=generic\|sd\|mj` + `suffix` 平台参数） |
 
 ## Linux 一键运维
 
@@ -125,7 +132,23 @@ chmod +x manage.sh
 
 本项目支持通过 AI 模型批量填充术语。详见 `docs/ai-contributor-guide.md`。
 
-简要流程：读取 CSV 格式 → 按 term_uid 编号规则追加新行 → 运行 build_kb.py 构建。
+标准回路（全程机器可读）：
+
+```text
+python scripts/fill_queue.py            缺口榜；--order V37 --count 30 生成供稿工单
+GET /api/tree            看结构，找空分支（term_count=0）或未达标的卷
+GET /api/contract        拿字段规则 + 该卷顶层分类白名单
+生成 terms.json           （对象数组，字段照契约）
+POST /api/ingest/check   在线 dry-run 校验（含向量语义近重警告），报错则修
+python scripts/ingest.py add-terms terms.json   写入（唯一落库通道，自动重建+校验+向量）
+```
+
+## MCP Server（把术语库变成 AI 工具）
+
+项目根目录已带 `.mcp.json`，Claude Code / Claude Desktop 等 MCP 客户端打开本项目即可使用
+`visual-terms-kb` 服务器的 8 个工具：`search_terms`（字面/语义）、`get_term`、`get_tree`、
+`similar_terms`、`combine_prompts`（SD/MJ 方言）、`get_contract`、`check_terms`、`fill_queue`。
+直读 SQLite（只读），无需先启动 FastAPI；写入仍只能走本地 `ingest.py`。
 
 ## 推荐编辑方式
 

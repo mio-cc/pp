@@ -222,6 +222,39 @@ def insert_aliases(conn: sqlite3.Connection, term_id: int, aliases: list[str]) -
         )
 
 
+def resolve_relation_targets(conn: sqlite3.Connection) -> int:
+    """把 related/confused 的中文名标签解析为真实 target_term_id。
+
+    规则：同卷同名优先；否则全库唯一同名才解析（多义不猜）。
+    未命中的保留 target_label 纯文本（前端仍可按名搜索跳转）。
+    """
+    conn.execute(
+        """
+        UPDATE term_relations SET target_term_id = (
+            SELECT t2.id FROM terms t2
+            JOIN terms t1 ON t1.id = term_relations.source_term_id
+            WHERE t2.zh_term = term_relations.target_label
+              AND t2.volume_id = t1.volume_id
+        )
+        WHERE target_term_id IS NULL AND target_label IS NOT NULL
+        """
+    )
+    conn.execute(
+        """
+        UPDATE term_relations SET target_term_id = (
+            SELECT t2.id FROM terms t2 WHERE t2.zh_term = term_relations.target_label
+        )
+        WHERE target_term_id IS NULL AND target_label IS NOT NULL
+          AND (SELECT COUNT(*) FROM terms t2
+               WHERE t2.zh_term = term_relations.target_label) = 1
+        """
+    )
+    row = conn.execute(
+        "SELECT COUNT(*) FROM term_relations WHERE target_term_id IS NOT NULL"
+    ).fetchone()
+    return int(row[0])
+
+
 def insert_label_relations(
     conn: sqlite3.Connection,
     term_id: int,
@@ -358,6 +391,9 @@ def import_csv_files(conn: sqlite3.Connection, volume_ids: dict[str, int]) -> tu
                 )
                 insert_chunks(conn, term_id, row["term_uid"], row, aliases, tags)
                 rows_imported += 1
+
+    resolved = resolve_relation_targets(conn)
+    print(f"  关系解析：{resolved} 条 related/confused 已绑定到真实术语")
 
     conn.execute(
         """

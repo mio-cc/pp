@@ -23,7 +23,7 @@ from typing import Literal, Optional
 
 from fastapi import Body, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, PlainTextResponse
+from fastapi.responses import JSONResponse, PlainTextResponse, RedirectResponse
 from pydantic import BaseModel, Field
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1227,8 +1227,16 @@ def advanced_search(
         conn.close()
 
 
-@app.get("/", summary="服务信息")
-def root() -> dict:
+@app.get("/", include_in_schema=False)
+def root():
+    """根路径直达前端页面；无前端产物时回退到 API 索引。"""
+    if (WEB_DIR / "index.html").exists():
+        return RedirectResponse(url="/app/", status_code=307)
+    return api_index()
+
+
+@app.get("/api", summary="API 端点索引")
+def api_index() -> dict:
     return {
         "name": "AI视觉设计与提示词工程百科 API",
         "version": "2.1",

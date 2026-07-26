@@ -14,6 +14,9 @@
       <div class="langs" title="平台方言：通用纯词 / SD 括号权重 / MJ 双冒号权重">
         <button v-for="d in DIALECTS" :key="d.k" :class="{ on: dialect === d.k }" @click="dialect = d.k">{{ d.label }}</button>
       </div>
+      <button v-if="cart.items.length" class="share clearbtn" title="清空提示词篮" @click="clearAll">
+        <Icon name="trash" /><span class="sh-t">清空</span>
+      </button>
       <button class="share" title="复制分享链接（打开即还原整篮）" @click="shareBasket">
         <Icon :name="shared === 'ok' ? 'check' : shared === 'fail' ? 'x' : 'tag'" />
         <span class="sh-t">{{ shared === 'ok' ? '已复制链接' : shared === 'fail' ? '复制失败' : '分享' }}</span>
@@ -111,6 +114,9 @@ async function copyAll() {
   clearTimeout(copyTimer)
   copyTimer = setTimeout(() => (copied.value = ''), 1300)
 }
+function clearAll() {
+  cart.clear()
+}
 let shareTimer = null
 async function shareBasket() {
   if (!cart.items.length) return
@@ -162,19 +168,21 @@ async function shareBasket() {
 .chip button:hover { color: var(--ink); background: var(--line); }
 .chip.conflict button { color: var(--danger); }
 
-.langs { display: flex; background: var(--surface-2); border-radius: var(--r); padding: 2px; }
-.langs button { padding: 4px 12px; font-size: 11.5px; font-weight: 550; color: var(--ink-3); border-radius: var(--r-sm); transition: background-color .15s, color .15s; }
+/* 分段控件：整体禁缩禁换行，避免窄宽度下按钮文字被竖排 */
+.langs { display: flex; flex-shrink: 0; background: var(--surface-2); border-radius: var(--r); padding: 2px; }
+.langs button { padding: 4px 12px; font-size: 11.5px; font-weight: 550; color: var(--ink-3); border-radius: var(--r-sm); white-space: nowrap; transition: background-color .15s, color .15s; }
 .langs button.on { background: var(--surface); color: var(--ink); box-shadow: var(--sh-sm); }
 .share {
-  display: inline-flex; align-items: center; gap: 6px;
+  display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
   border: 1px solid var(--line-2); border-radius: var(--r); color: var(--ink-2);
   padding: 6px 12px; font-weight: 550; font-size: 12px; white-space: nowrap;
   transition: border-color .15s, color .15s;
 }
+.clearbtn:hover { border-color: var(--danger); color: var(--danger); }
 .share :deep(svg.ic) { width: 12px; height: 12px; }
 .share:hover { border-color: var(--ink); color: var(--ink); }
 .copyall {
-  display: inline-flex; align-items: center; gap: 7px;
+  display: inline-flex; align-items: center; gap: 7px; flex-shrink: 0;
   background: var(--accent); color: #fff; border-radius: var(--r);
   padding: 7px 18px; font-weight: 600; font-size: 12.5px; white-space: nowrap;
   transition: background-color .15s;

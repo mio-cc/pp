@@ -49,7 +49,7 @@
 
       <button class="d-add" :class="{ in: cart.has(term.term_uid) }" @click="$emit('toggle', term)">
         <Icon :name="cart.has(term.term_uid) ? 'check' : 'plus'" />
-        {{ cart.has(term.term_uid) ? '已在提示词栏 · 点击移除' : '加入提示词栏' }}
+        {{ cart.has(term.term_uid) ? '已在提示词篮 · 点击移除' : '加入提示词篮' }}
       </button>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <footer class="bar">
     <div class="row1">
-      <span class="blbl"><Icon name="grid" />提示词栏<span class="bnum">{{ cart.count.value }}</span></span>
+      <span class="blbl"><Icon name="grid" />提示词篮<span class="bnum">{{ cart.count.value }}</span></span>
       <div class="chips">
         <span v-if="!cart.items.length" class="ph">在列表或详情中「加入」术语；按 主体→风格→光影→构图→参数 槽位自动排序</span>
         <span
@@ -31,11 +31,8 @@
         {{ copied === 'ok' ? '已复制' : copied === 'fail' ? '复制失败' : '复制提示词' }}
       </button>
     </div>
-    <div class="preview">
-      <template v-if="cart.items.length">
-        <span v-if="conflictUids.size" class="cw">同叶互斥 {{ conflictUids.size }} 项（已标红，仍可复制） </span>{{ promptText }}
-      </template>
-      <template v-else>提示词预览 — 空</template>
+    <div v-if="cart.items.length" class="preview">
+      <span v-if="conflictUids.size" class="cw">同叶互斥 {{ conflictUids.size }} 项（已标红，仍可复制） </span>{{ promptText }}
     </div>
   </footer>
 </template>
@@ -124,7 +121,7 @@ async function shareBasket() {
 
 <style scoped>
 .bar { flex: 0 0 auto; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -4px 18px -12px rgba(20, 20, 22, .18); }
-.row1 { display: flex; align-items: center; gap: 10px; padding: 9px 20px; }
+.row1 { display: flex; align-items: center; gap: 10px; padding: 0 20px; min-height: 46px; }
 .blbl { font-weight: 650; white-space: nowrap; font-size: 13px; display: flex; align-items: center; gap: 8px; }
 .blbl :deep(svg.ic) { color: var(--ink-3); }
 .bnum {
@@ -177,7 +174,7 @@ async function shareBasket() {
 
 /* 窄屏：词条行独占一行在上，控件行在下换行排布 */
 @media (max-width: 880px) {
-  .row1 { flex-wrap: wrap; row-gap: 8px; padding: 8px 12px; }
+  .row1 { flex-wrap: wrap; row-gap: 8px; padding: 8px 12px; min-height: 0; }
   .chips { order: -1; flex-basis: 100%; }
   .blbl { font-size: 12.5px; }
   .langs button { padding: 4px 8px; font-size: 11px; }

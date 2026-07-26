@@ -37,6 +37,8 @@
         @toggle-side="sideCollapsed = !sideCollapsed"
       />
 
+      <div class="workcol">
+        <div class="workrow">
       <main class="main">
         <!-- 背景点缀：水墨竹枝（纯线条 SVG），极慢摇曳 -->
         <div class="wm" aria-hidden="true">
@@ -104,9 +106,11 @@
       <aside class="detailcol">
         <TermDetail :term="detailTerm" @toggle="toggleCart" @jump="jumpToZh" @close="closeDetail" />
       </aside>
-    </div>
+        </div>
 
-    <PromptBar />
+        <PromptBar />
+      </div>
+    </div>
 
     <div class="toast" :class="{ show: !!toastMsg }">{{ toastMsg }}</div>
   </div>
@@ -228,7 +232,7 @@ async function applyHash() {
       if (data.items && data.items.length) {
         cart.clear()
         data.items.forEach((t) => cart.toggle(t))
-        toast('已从链接还原提示词栏 ' + data.items.length + ' 项')
+        toast('已从链接还原提示词篮 ' + data.items.length + ' 项')
       }
       showOverview()
       return
@@ -543,6 +547,9 @@ async function jumpToZh(zhName) {
 @media (min-width: 881px) {
   .app.side-hidden :deep(.side) { width: 0; flex-basis: 0; opacity: 0; pointer-events: none; }
 }
+/* 右侧工作列：中栏+右栏在上，提示词篮在下——篮子不横穿左侧栏 */
+.workcol { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
+.workrow { flex: 1; display: flex; min-height: 0; }
 .main { flex: 1; min-width: 0; overflow-y: auto; position: relative; }
 .inner { max-width: 880px; padding: 26px 34px 48px; position: relative; z-index: 1; }
 /* 留白处的水墨竹枝：整体 8% 墨色，竿与叶各自极慢摇曳（动中有静） */

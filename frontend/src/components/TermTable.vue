@@ -25,7 +25,7 @@
         class="tc-add"
         :class="{ on: cart.has(t.term_uid) }"
         role="button"
-        :aria-label="cart.has(t.term_uid) ? '移出提示词栏' : '加入提示词栏'"
+        :aria-label="cart.has(t.term_uid) ? '移出提示词篮' : '加入提示词篮'"
         @click.stop="$emit('toggle', t)"
       >
         <Icon :name="cart.has(t.term_uid) ? 'check' : 'plus'" />

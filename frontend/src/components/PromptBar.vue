@@ -1,8 +1,11 @@
 <template>
   <footer class="bar">
-    <div class="row1">
-      <span class="blbl"><Icon name="grid" />提示词篮<span class="bnum">{{ cart.count.value }}</span></span>
-      <div class="chips">
+    <div class="row1" :class="{ open: expanded }">
+      <span class="blbl">
+        <Icon name="grid" />提示词篮<span class="bnum">{{ cart.count.value }}</span>
+        <span v-if="conflictUids.size" class="cw" title="同一最深分支下的术语互为可选项（已标红，仍可复制）">互斥 {{ conflictUids.size }}</span>
+      </span>
+      <div class="chips" :class="{ expanded }">
         <span v-if="!cart.items.length" class="ph">在列表或详情中「加入」术语；按 主体→风格→光影→构图→参数 槽位自动排序</span>
         <span
           v-for="t in sortedItems"
@@ -16,6 +19,13 @@
           <button aria-label="移除" @click="cart.remove(t.term_uid)"><Icon name="x" /></button>
         </span>
       </div>
+      <button
+        v-if="cart.items.length"
+        class="expander"
+        :class="{ on: expanded }"
+        :title="expanded ? '收起为单行' : '展开显示全部词条'"
+        @click="expanded = !expanded"
+      ><Icon name="chevR" /></button>
       <div class="langs" title="复制语言">
         <button v-for="l in LANGS" :key="l.k" :class="{ on: lang === l.k }" @click="lang = l.k">{{ l.label }}</button>
       </div>
@@ -26,13 +36,10 @@
         <Icon :name="shared === 'ok' ? 'check' : shared === 'fail' ? 'x' : 'tag'" />
         <span class="sh-t">{{ shared === 'ok' ? '已复制链接' : shared === 'fail' ? '复制失败' : '分享' }}</span>
       </button>
-      <button class="copyall" @click="copyAll">
+      <button class="copyall" :title="promptText" @click="copyAll">
         <Icon :name="copied === 'ok' ? 'check' : copied === 'fail' ? 'x' : 'copy'" />
         {{ copied === 'ok' ? '已复制' : copied === 'fail' ? '复制失败' : '复制提示词' }}
       </button>
-    </div>
-    <div v-if="cart.items.length" class="preview">
-      <span v-if="conflictUids.size" class="cw">同叶互斥 {{ conflictUids.size }} 项（已标红，仍可复制） </span>{{ promptText }}
     </div>
   </footer>
 </template>
@@ -50,6 +57,7 @@ const lang = ref('en')
 const dialect = ref('generic')
 const copied = ref('')   // '' | 'ok' | 'fail'
 const shared = ref('')   // '' | 'ok' | 'fail'
+const expanded = ref(false)  // 篮子展开：chips 换行铺开，全部可见可删
 
 /* 槽位映射：卷 → 提示词结构位（主体→风格→光影→构图→参数），未映射的归「其他」。
    与后端无耦合，纯前端组词次序约定。 */
@@ -129,7 +137,22 @@ async function shareBasket() {
   background: var(--accent-tint); border-radius: 999px; min-width: 22px; height: 20px;
   display: inline-flex; align-items: center; justify-content: center; padding: 0 7px;
 }
-.chips { flex: 1; display: flex; gap: 7px; overflow-x: auto; min-height: 30px; align-items: center; }
+.chips { flex: 1; display: flex; gap: 7px; overflow-x: auto; min-height: 30px; align-items: center; min-width: 0; }
+/* 展开态：换行铺开全部词条，超过约三行内部滚动（滚轮可达，无需拖动） */
+.chips.expanded {
+  flex-wrap: wrap; overflow-x: visible; overflow-y: auto;
+  max-height: 138px; align-content: flex-start; padding: 4px 0;
+}
+.row1.open { padding-top: 8px; padding-bottom: 8px; }
+.expander {
+  width: 30px; height: 30px; flex: 0 0 30px;
+  border: 1px solid var(--line-2); border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center; color: var(--ink-3);
+  transition: color .15s, border-color .15s;
+}
+.expander :deep(svg.ic) { width: 13px; height: 13px; transform: rotate(-90deg); transition: transform .18s ease; }
+.expander.on :deep(svg.ic) { transform: rotate(90deg); }
+.expander:hover { border-color: var(--ink); color: var(--ink); }
 .chip {
   background: var(--surface-2); border: 1px solid transparent; border-radius: 999px;
   padding: 3px 6px 3px 6px; white-space: nowrap;
@@ -165,12 +188,10 @@ async function shareBasket() {
 }
 .copyall :deep(svg.ic) { width: 13px; height: 13px; }
 .copyall:hover { background: var(--accent-deep); }
-.preview {
-  border-top: 1px solid var(--line); padding: 7px 20px; background: var(--surface-3);
-  font-family: var(--mono); font-size: 11px; color: var(--ink-2);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+.cw {
+  font-size: 10.5px; font-weight: 600; color: var(--danger);
+  background: #f8edea; border-radius: 999px; padding: 2px 8px;
 }
-.cw { color: var(--danger); font-weight: 600; }
 
 /* 窄屏：词条行独占一行在上，控件行在下换行排布 */
 @media (max-width: 880px) {
@@ -181,7 +202,6 @@ async function shareBasket() {
   .share { padding: 6px 10px; }
   .share .sh-t { display: none; }
   .copyall { padding: 6px 14px; margin-left: auto; }
-  .preview { padding: 6px 12px; }
 }
 @media (max-width: 400px) {
   .langs button { padding: 3px 6px; }

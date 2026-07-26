@@ -179,14 +179,31 @@ function toast(m) {
   toastTimer = setTimeout(() => (toastMsg.value = ''), 1600)
 }
 
-/* ---------- hash 路由：#/V01/曝光控制/光圈/@V01_T0001 可分享、可回退 ---------- */
+/* ---------- hash 路由：#/V01/~<base64url路径>/@V01_T0001 ----------
+   分类路径用 base64url 编码，地址栏纯 ASCII 无中文/百分号；
+   旧格式（中文分段）仍可解析，历史分享链接不失效。 */
+function b64urlEncode(s) {
+  const bytes = new TextEncoder().encode(s)
+  let bin = ''
+  bytes.forEach((b) => (bin += String.fromCharCode(b)))
+  return btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+}
+function b64urlDecode(s) {
+  try {
+    const b64 = s.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (s.length % 4)) % 4)
+    const bin = atob(b64)
+    return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))
+  } catch (e) {
+    return ''
+  }
+}
 let applyingHash = false
 function syncHash() {
   if (applyingHash) return
   let h = '#/'
   if (view.code && (view.type === 'volume' || view.type === 'node')) {
     h = '#/' + view.code
-    if (view.path) h += '/' + view.path.split(SEP).map(encodeURIComponent).join('/')
+    if (view.path) h += '/~' + b64urlEncode(view.path)
     if (detailTerm.value && view.type === 'node' && !view.cards.length) h += '/@' + detailTerm.value.term_uid
   }
   if (location.hash !== h) {
@@ -218,7 +235,9 @@ async function applyHash() {
     }
     let uid = null
     if (parts.length && parts[parts.length - 1].startsWith('@')) uid = parts.pop().slice(1)
-    const path = parts.join(SEP) || null
+    let path = null
+    if (parts.length === 1 && parts[0].startsWith('~')) path = b64urlDecode(parts[0].slice(1)) || null
+    else path = parts.join(SEP) || null  // 旧格式：中文分段，向后兼容
     if (!vols.value.some((v) => v.code === code)) { showOverview(); return }
     if (view.code !== code || (view.path || null) !== path) await navigate(code, path)
     if (uid && (!detailTerm.value || detailTerm.value.term_uid !== uid)) {

@@ -219,7 +219,7 @@ def term_detail_select(conn: sqlite3.Connection) -> str:
     """
 
 
-@app.get("/api/health")
+@app.get("/api/health", summary="健康检查")
 def health() -> dict:
     if not DB_PATH.exists():
         return {"status": "no_db", "detail": "运行 python scripts/build_kb.py 生成主库"}
@@ -231,7 +231,7 @@ def health() -> dict:
     return {"status": "ok", "terms": n, "version": "2.1"}
 
 
-@app.get("/api/meta")
+@app.get("/api/meta", summary="元数据（卷册/标签/统计）")
 def meta() -> dict:
     """一次性返回卷册、标签、统计，供前端初始化下拉框。"""
     conn = get_conn()
@@ -306,7 +306,7 @@ def _volumes(conn: sqlite3.Connection) -> list[dict]:
     return out
 
 
-@app.get("/api/volumes")
+@app.get("/api/volumes", summary="卷册列表")
 def volumes() -> dict:
     conn = get_conn()
     try:
@@ -315,7 +315,7 @@ def volumes() -> dict:
         conn.close()
 
 
-@app.get("/api/volumes/{code}/categories")
+@app.get("/api/volumes/{code}/categories", summary="卷册分类列表")
 def volume_categories(code: str) -> dict:
     conn = get_conn()
     try:
@@ -335,7 +335,7 @@ def volume_categories(code: str) -> dict:
         conn.close()
 
 
-@app.get("/api/tags")
+@app.get("/api/tags", summary="标签云")
 def tags() -> dict:
     conn = get_conn()
     try:
@@ -351,7 +351,7 @@ def tags() -> dict:
         conn.close()
 
 
-@app.get("/api/terms")
+@app.get("/api/terms", summary="术语列表（筛选+分页）")
 def list_terms(
     q: Optional[str] = Query(None, description="关键词，匹配中英文名/别名/定义"),
     volume: Optional[str] = Query(None, description="卷册 code，如 V08"),
@@ -443,7 +443,7 @@ def list_terms(
         conn.close()
 
 
-@app.get("/api/tree")
+@app.get("/api/tree", summary="全库骨架（卷+分类路径+计数）")
 def tree() -> dict:
     """全库骨架一次拉取：卷 + 全部分类路径 + 计数（无正文，约几十 KB）。
 
@@ -491,7 +491,7 @@ def tree() -> dict:
     }
 
 
-@app.get("/api/contract")
+@app.get("/api/contract", summary="供稿契约（Schema+顶层白名单+流程）")
 def contract() -> dict:
     """机器可读供稿契约：term JSON Schema + 各卷顶层分类白名单 + 提交流程。
 
@@ -599,7 +599,7 @@ def _rows_by_ids(conn: sqlite3.Connection, ids: list[int]) -> dict:
     return {r["id"]: r for r in rows}
 
 
-@app.get("/api/search/semantic")
+@app.get("/api/search/semantic", summary="语义模糊检索")
 def search_semantic(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=100)) -> dict:
     """模糊/语义检索：字符 n-gram 向量余弦，比 LIKE 更能容忍换词与描述式查询。
 
@@ -622,7 +622,7 @@ def search_semantic(q: str = Query(..., min_length=1), limit: int = Query(20, ge
         conn.close()
 
 
-@app.get("/api/terms/{term_uid}/similar")
+@app.get("/api/terms/{term_uid}/similar", summary="相似术语（向量）")
 def similar_terms(term_uid: str, limit: int = Query(10, ge=1, le=50)) -> dict:
     """基于向量的相似术语（查重视角：分数≥0.6 通常是近重复候选）。"""
     conn = get_conn()
@@ -650,7 +650,7 @@ def similar_terms(term_uid: str, limit: int = Query(10, ge=1, le=50)) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/{term_uid}/graph")
+@app.get("/api/terms/{term_uid}/graph", summary="术语关系图谱（1跳）")
 def term_graph(term_uid: str) -> dict:
     """术语 1 跳关系图：related / confused_with 的出边与入边。
 
@@ -704,7 +704,7 @@ def term_graph(term_uid: str) -> dict:
         conn.close()
 
 
-@app.post("/api/ingest/check")
+@app.post("/api/ingest/check", summary="术语在线校验（dry-run 不写入）")
 def ingest_check(payload: list[dict] = Body(...)) -> dict:
     """只读 dry-run 校验：复用 scripts/ingest.py 的全部规则，不写入任何数据。
 
@@ -765,7 +765,7 @@ def ingest_check(payload: list[dict] = Body(...)) -> dict:
     }
 
 
-@app.get("/api/search")
+@app.get("/api/search", summary="全文搜索")
 def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=100)) -> dict:
     """全文搜索：
     - ≥3字：trigram FTS 子串检索（已索引，十万级也快），覆盖中英文/别名/正文。
@@ -800,7 +800,7 @@ def search(q: str = Query(..., min_length=1), limit: int = Query(20, ge=1, le=10
         conn.close()
 
 
-@app.get("/api/stats")
+@app.get("/api/stats", summary="全局统计")
 def stats() -> dict:
     conn = get_conn()
     try:
@@ -821,7 +821,7 @@ def stats() -> dict:
         conn.close()
 
 
-@app.get("/api/export/prompts")
+@app.get("/api/export/prompts", summary="导出纯提示词清单")
 def export_prompts(
     volume: Optional[str] = Query(None),
     tag: Optional[str] = Query(None),
@@ -880,7 +880,7 @@ def export_prompts(
     )
 
 
-@app.post("/api/terms/batch")
+@app.post("/api/terms/batch", summary="批量获取术语详情")
 def batch_terms(payload: list[str] | TermUidListPayload = Body(...)) -> dict:
     """批量获取多个术语的完整详情。
 
@@ -910,7 +910,7 @@ def batch_terms(payload: list[str] | TermUidListPayload = Body(...)) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/random")
+@app.get("/api/terms/random", summary="随机术语")
 def random_terms(
     count: int = Query(5, ge=1, le=20, description="返回数量"),
     volume: Optional[str] = Query(None, description="限定卷册"),
@@ -949,7 +949,7 @@ def random_terms(
         conn.close()
 
 
-@app.post("/api/prompts/combine")
+@app.post("/api/prompts/combine", summary="组合提示词（SD/MJ方言）")
 def combine_prompts(payload: CombinePromptsPayload) -> dict:
     """合并多个术语的提示词。
 
@@ -1053,7 +1053,7 @@ def combine_prompts(payload: CombinePromptsPayload) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/compare")
+@app.get("/api/terms/compare", summary="对比两个术语")
 def compare_terms(a: str, b: str) -> dict:
     """对比两个术语的异同。"""
     conn = get_conn()
@@ -1095,7 +1095,7 @@ def compare_terms(a: str, b: str) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/{term_uid}")
+@app.get("/api/terms/{term_uid}", summary="术语详情")
 def term_detail(term_uid: str) -> dict:
     conn = get_conn()
     try:
@@ -1110,7 +1110,7 @@ def term_detail(term_uid: str) -> dict:
         conn.close()
 
 
-@app.get("/api/terms/{term_uid}/related")
+@app.get("/api/terms/{term_uid}/related", summary="相关术语推荐")
 def related_terms(term_uid: str, limit: int = Query(5, ge=1, le=10)) -> dict:
     """获取相关术语（基于同分类、同标签智能推荐）。"""
     conn = get_conn()
@@ -1146,7 +1146,7 @@ def related_terms(term_uid: str, limit: int = Query(5, ge=1, le=10)) -> dict:
         conn.close()
 
 
-@app.get("/api/volumes/{code}/categories/tree")
+@app.get("/api/volumes/{code}/categories/tree", summary="卷内分类树")
 def category_tree(code: str) -> dict:
     """获取分类的树状结构。"""
     conn = get_conn()
@@ -1185,7 +1185,7 @@ def category_tree(code: str) -> dict:
         conn.close()
 
 
-@app.get("/api/search/advanced")
+@app.get("/api/search/advanced", summary="高级搜索（按字段）")
 def advanced_search(
     zh_term: Optional[str] = Query(None),
     en_term: Optional[str] = Query(None),
@@ -1227,7 +1227,7 @@ def advanced_search(
         conn.close()
 
 
-@app.get("/")
+@app.get("/", summary="服务信息")
 def root() -> dict:
     return {
         "name": "AI视觉设计与提示词工程百科 API",

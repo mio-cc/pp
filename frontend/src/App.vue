@@ -534,7 +534,7 @@ async function jumpToZh(zhName) {
 .mtop { display: none; }
 .scrim-side, .scrim-detail { display: none; }
 .unfold { display: none; }
-@media (min-width: 881px) {
+@media (min-width: 621px) {
   /* 折叠态的可见还原入口（触屏设备没有 Ctrl+\） */
   .unfold {
     display: flex; position: absolute; left: 10px; top: 14px; z-index: 10;
@@ -544,8 +544,12 @@ async function jumpToZh(zhName) {
   }
   .unfold:hover { border-color: var(--ink); color: var(--ink); }
 }
-@media (min-width: 881px) {
+@media (min-width: 621px) {
   .app.side-hidden :deep(.side) { width: 0; flex-basis: 0; opacity: 0; pointer-events: none; }
+}
+/* 中屏 621–880：侧栏保持常驻但收窄，内容推排不遮盖 */
+@media (min-width: 621px) and (max-width: 880px) {
+  :deep(.side) { width: 240px; flex: 0 0 240px; }
 }
 /* 右侧工作列：中栏+右栏在上，提示词篮在下——篮子不横穿左侧栏 */
 .workcol { flex: 1; min-width: 0; display: flex; flex-direction: column; min-height: 0; }
@@ -606,8 +610,14 @@ async function jumpToZh(zhName) {
   .scrim-detail.show { opacity: 1; pointer-events: auto; }
 }
 
-/* ---------- 手机 ≤880px：顶栏 + 侧栏抽屉 ---------- */
+/* ---------- 中屏 ≤880px：仅收紧留白（侧栏仍常驻推排） ---------- */
 @media (max-width: 880px) {
+  .inner { padding: 18px 16px 40px; }
+  .toast { top: 62px; max-width: 90vw; }
+}
+
+/* ---------- 手机 ≤620px：顶栏 + 侧栏抽屉（此宽度下两栏放不下才悬浮） ---------- */
+@media (max-width: 620px) {
   .mtop {
     display: flex; align-items: center; gap: 10px;
     flex: 0 0 52px; height: 52px; padding: 0 12px;
@@ -634,13 +644,11 @@ async function jumpToZh(zhName) {
   :deep(.side.open) { transform: none; box-shadow: var(--sh-md); }
   .scrim-side {
     display: block; position: fixed; inset: 0; z-index: 75;
-    background: rgba(20, 20, 22, .35);
+    background: rgba(20, 20, 22, .48);  /* 手机抽屉遮罩加深，弱化背后残卡 */
     opacity: 0; pointer-events: none; transition: opacity .2s ease;
   }
   .scrim-side.show { opacity: 1; pointer-events: auto; }
   .detailcol { z-index: 78; }
   .scrim-detail { z-index: 77; }
-  .inner { padding: 18px 16px 40px; }
-  .toast { top: 62px; max-width: 90vw; }
 }
 </style>

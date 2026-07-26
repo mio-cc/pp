@@ -208,7 +208,7 @@ onUnmounted(() => {
   background: var(--surface); padding: 1px 6px;
 }
 .ver { margin-left: auto; font-family: var(--mono); }
-@media (max-width: 880px) { .sfoot { display: none; } }
+@media (max-width: 620px) { .sfoot { display: none; } }
 /* 书签滑绳：墨色缎带造型（底部燕尾口），拖动映射滚动位置 */
 .ribbon {
   position: absolute; right: 3px; width: 12px; height: 46px;
@@ -245,8 +245,16 @@ onUnmounted(() => {
 .tcount { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
 .tcount.zero { color: var(--line-2); }
 
-/* 窄屏抽屉模式：桌面折叠钮无意义，隐藏；触控目标加高 */
-@media (max-width: 880px) {
+/* 中屏 621–880：侧栏 240px 常驻，收紧内边距 */
+@media (min-width: 621px) and (max-width: 880px) {
+  .brand { padding: 14px 10px 10px 14px; }
+  .searchbox { padding: 0 10px 10px; }
+  .searchbox .sic { left: 22px; }
+  .progress { padding: 2px 14px 12px; }
+  .sfoot { padding: 0 12px; }
+}
+/* 手机抽屉模式：桌面折叠钮无意义，隐藏；触控目标加高 */
+@media (max-width: 620px) {
   .fold { display: none; }
   .tnode { padding-top: 8px; padding-bottom: 8px; }
 }

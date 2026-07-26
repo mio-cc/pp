@@ -1,31 +1,13 @@
 <template>
   <footer class="bar">
-    <div class="row1" :class="{ open: expanded }">
+    <!-- 第一行：篮标签 + 控件（词条不在此行，避免窄宽度被挤压） -->
+    <div class="row1">
       <span class="blbl">
         <Icon name="grid" />提示词篮<span class="bnum">{{ cart.count.value }}</span>
         <span v-if="conflictUids.size" class="cw" title="同一最深分支下的术语互为可选项（已标红，仍可复制）">互斥 {{ conflictUids.size }}</span>
       </span>
-      <div class="chips" :class="{ expanded }">
-        <span v-if="!cart.items.length" class="ph">在列表或详情中「加入」术语；按 主体→风格→光影→构图→参数 槽位自动排序</span>
-        <span
-          v-for="t in sortedItems"
-          :key="t.term_uid"
-          class="chip"
-          :class="{ conflict: conflictUids.has(t.term_uid) }"
-          :title="(t.volume_code || '') + ' · ' + (t.category || '')"
-        >
-          <i class="slot">{{ slotOf(t.volume_code).label }}</i>
-          {{ t.zh_term }}
-          <button aria-label="移除" @click="cart.remove(t.term_uid)"><Icon name="x" /></button>
-        </span>
-      </div>
-      <button
-        v-if="cart.items.length"
-        class="expander"
-        :class="{ on: expanded }"
-        :title="expanded ? '收起为单行' : '展开显示全部词条'"
-        @click="expanded = !expanded"
-      ><Icon name="chevR" /></button>
+      <span v-if="!cart.items.length" class="ph">在列表或详情中「加入」术语，组合成提示词</span>
+      <span v-else class="spacer"></span>
       <div class="langs" title="复制语言">
         <button v-for="l in LANGS" :key="l.k" :class="{ on: lang === l.k }" @click="lang = l.k">{{ l.label }}</button>
       </div>
@@ -40,6 +22,21 @@
         <Icon :name="copied === 'ok' ? 'check' : copied === 'fail' ? 'x' : 'copy'" />
         {{ copied === 'ok' ? '已复制' : copied === 'fail' ? '复制失败' : '复制提示词' }}
       </button>
+    </div>
+
+    <!-- 第二行（有词才显示）：加入的提示词，全宽换行铺开，超约三行内部滚动 -->
+    <div v-if="cart.items.length" class="chipsrow">
+      <span
+        v-for="t in sortedItems"
+        :key="t.term_uid"
+        class="chip"
+        :class="{ conflict: conflictUids.has(t.term_uid) }"
+        :title="(t.volume_code || '') + ' · ' + (t.category || '')"
+      >
+        <i class="slot">{{ slotOf(t.volume_code).label }}</i>
+        {{ t.zh_term }}
+        <button aria-label="移除" @click="cart.remove(t.term_uid)"><Icon name="x" /></button>
+      </span>
     </div>
   </footer>
 </template>
@@ -57,7 +54,6 @@ const lang = ref('en')
 const dialect = ref('generic')
 const copied = ref('')   // '' | 'ok' | 'fail'
 const shared = ref('')   // '' | 'ok' | 'fail'
-const expanded = ref(false)  // 篮子展开：chips 换行铺开，全部可见可删
 
 /* 槽位映射：卷 → 提示词结构位（主体→风格→光影→构图→参数），未映射的归「其他」。
    与后端无耦合，纯前端组词次序约定。 */
@@ -137,22 +133,19 @@ async function shareBasket() {
   background: var(--accent-tint); border-radius: 999px; min-width: 22px; height: 20px;
   display: inline-flex; align-items: center; justify-content: center; padding: 0 7px;
 }
-.chips { flex: 1; display: flex; gap: 7px; overflow-x: auto; min-height: 30px; align-items: center; min-width: 0; }
-/* 展开态：换行铺开全部词条，超过约三行内部滚动（滚轮可达，无需拖动） */
-.chips.expanded {
-  flex-wrap: wrap; overflow-x: visible; overflow-y: auto;
-  max-height: 138px; align-content: flex-start; padding: 4px 0;
+.cw {
+  font-size: 10.5px; font-weight: 600; color: var(--danger);
+  background: #f8edea; border-radius: 999px; padding: 2px 8px;
 }
-.row1.open { padding-top: 8px; padding-bottom: 8px; }
-.expander {
-  width: 30px; height: 30px; flex: 0 0 30px;
-  border: 1px solid var(--line-2); border-radius: var(--r-sm);
-  display: flex; align-items: center; justify-content: center; color: var(--ink-3);
-  transition: color .15s, border-color .15s;
+.ph { flex: 1; min-width: 0; color: var(--ink-3); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.spacer { flex: 1; }
+
+/* 词条行：独立于控件行，全宽换行，超约三行内部滚动（滚轮可达） */
+.chipsrow {
+  display: flex; flex-wrap: wrap; gap: 7px; align-content: flex-start;
+  max-height: 118px; overflow-y: auto;
+  padding: 0 20px 10px;
 }
-.expander :deep(svg.ic) { width: 13px; height: 13px; transform: rotate(-90deg); transition: transform .18s ease; }
-.expander.on :deep(svg.ic) { transform: rotate(90deg); }
-.expander:hover { border-color: var(--ink); color: var(--ink); }
 .chip {
   background: var(--surface-2); border: 1px solid transparent; border-radius: 999px;
   padding: 3px 6px 3px 6px; white-space: nowrap;
@@ -168,9 +161,9 @@ async function shareBasket() {
 .chip button :deep(svg.ic) { width: 11px; height: 11px; }
 .chip button:hover { color: var(--ink); background: var(--line); }
 .chip.conflict button { color: var(--danger); }
-.ph { color: var(--ink-3); font-size: 12px; }
+
 .langs { display: flex; background: var(--surface-2); border-radius: var(--r); padding: 2px; }
-.langs button { padding: 4px 10px; font-size: 11.5px; font-weight: 550; color: var(--ink-3); border-radius: var(--r-sm); transition: background-color .15s, color .15s; }
+.langs button { padding: 4px 12px; font-size: 11.5px; font-weight: 550; color: var(--ink-3); border-radius: var(--r-sm); transition: background-color .15s, color .15s; }
 .langs button.on { background: var(--surface); color: var(--ink); box-shadow: var(--sh-sm); }
 .share {
   display: inline-flex; align-items: center; gap: 6px;
@@ -188,20 +181,17 @@ async function shareBasket() {
 }
 .copyall :deep(svg.ic) { width: 13px; height: 13px; }
 .copyall:hover { background: var(--accent-deep); }
-.cw {
-  font-size: 10.5px; font-weight: 600; color: var(--danger);
-  background: #f8edea; border-radius: 999px; padding: 2px 8px;
-}
 
-/* 窄屏：词条行独占一行在上，控件行在下换行排布 */
-@media (max-width: 880px) {
+/* 手机：控件行允许换行收紧 */
+@media (max-width: 620px) {
   .row1 { flex-wrap: wrap; row-gap: 8px; padding: 8px 12px; min-height: 0; }
-  .chips { order: -1; flex-basis: 100%; }
   .blbl { font-size: 12.5px; }
   .langs button { padding: 4px 8px; font-size: 11px; }
   .share { padding: 6px 10px; }
   .share .sh-t { display: none; }
   .copyall { padding: 6px 14px; margin-left: auto; }
+  .chipsrow { padding: 0 12px 8px; max-height: 96px; }
+  .ph { flex-basis: 100%; }
 }
 @media (max-width: 400px) {
   .langs button { padding: 3px 6px; }
